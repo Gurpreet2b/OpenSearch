@@ -1,0 +1,299 @@
+<div class="super-container">
+  <div class="flex m-0 propertyName">
+    <a class="flex1 m-0 bbutton" (click)="goBack()"
+      ><i class='fas fa-angle-left arrow-icon'></i>Back to Rules</a
+    >
+  </div>
+  <div class="row flex1">
+    <div class="m-1 fgrow">
+      <div class="title-block pull-left">
+        <a class="ruleName">
+          {{ ruleName }}
+        </a>
+        <hr />
+        <div class="flex">
+          <a class="column-text c-m-1"
+            >Created on:
+            <a>{{
+              metadata.created != "-"
+                ? (metadata.created | date: "medium")
+                : "-"
+            }}</a></a
+          >
+          <a class="column-text c-m-1"
+            >Last Updated on:
+            <a>{{
+              metadata.updated != "-"
+                ? (metadata.updated | date: "medium")
+                : "-"
+            }}</a></a
+          >
+          <a class="column-text c-m-1"
+            >Last Run:
+            <a>
+              <!-- {{ metadata.last_run | date: "medium" }} -->
+              {{
+                metadata.last_run != "-"
+                  ? (metadata.last_run | date: "medium")
+                  : "-"
+              }}
+            </a></a
+          >
+          <a class="column-text c-m-1"
+            >Last Alert:
+            <a>
+              {{
+                metadata.last_alert != "-"
+                  ? (metadata.last_alert | date: "medium")
+                  : "-"
+              }}</a
+            ></a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="m-1">
+      <div class="pull-right">
+        <nav class="flex aibaseline primary pull-left">
+          <div *ngIf="loading" id="loading"></div>
+          <div class="flex aibaseline">
+            <div class="p-1 propertyName"><a>Active</a></div>
+            <label class="switch">
+              <input
+                type="checkbox"
+                [checked]="active"
+                (change)="statusChange($event)"
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div>
+            <button
+              class="cbutton rbutton"
+              [disabled]="loading"
+              (click)="runItNow()"
+            >
+              Run It Now
+            </button>
+          </div>
+          <ul
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            <button
+              class="cbutton"
+              (click)="editThisRule()"
+              [disabled]="loading"
+            >
+              Edit Rule
+            </button>
+            <!-- <a class="bbutton">Refresh</a> -->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="row p-1 col-lg-12 jflex">
+    <div
+      class="col-lg-6 jflex"
+      [ngClass]="{ fcolumn: investigation_guide.length > 0 }"
+    >
+      <div class="col-lg-12 listing">
+        <div class="row flex p-1">
+          <div class="col-sm-12">
+            <div class="title-block pull-left">
+              <a class="sectionName">Details</a>
+            </div>
+          </div>
+        </div>
+        <hr class="m-0" />
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Description</a>
+          </div>
+          <div class="col-lg-8">
+            <a> {{ ruleDescription }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Severity</a>
+          </div>
+          <div class="col-lg-8">
+            <a ngClass="{{ severity }}">{{ severity }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Threat Score</a>
+          </div>
+          <div class="col-lg-8">
+            <a>{{ valueSlider }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Tags</a>
+          </div>
+          <div class="col-lg-8 list-tag fwrap">
+            <a *ngFor="let tag of tags" class="atag">{{ tag }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>MITRE ATT&CK</a>
+          </div>
+          <div
+            class="jflex fcolumn col-lg-8 fwrap aibaseline"
+          >
+            <div *ngFor="let tactic of tacticArray; let i = index">
+              <div class="tactic">{{ tactic.name }}</div>
+              <div *ngFor="let technique of techniqueArray[i]; let j = index">
+                <div class="technique">{{ technique.name }}</div>
+                <div
+                  *ngFor="
+                    let subtechnique of subtechniqueArray[i][j];
+                    let k = index
+                  "
+                >
+                  <div class="subtechnique">
+                    {{ subtechnique.name }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Reference URL(s)</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column fcolumn">
+            <a
+              *ngFor="let ref of refArray"
+              class="unit link"
+              href="{{ ref.name }}"
+              >{{ ref.name }}</a
+            >
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>False Positive(s)</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column fcolumn">
+            <a *ngFor="let fp of falseArray" class="unit">{{ fp.name }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Author</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column">
+            <a>{{ author }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>License</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column">
+            <a>{{ license }}</a>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="investigation_guide.length > 0"
+        class="col-lg-12 listing mar-top-1"
+      >
+        <div class="row flex p-1">
+          <div class="col-sm-12">
+            <div class="title-block pull-left">
+              <a class="sectionName">Investigation Guide</a>
+            </div>
+          </div>
+        </div>
+        <hr class="m-0" />
+        <div class="row flex p-1">
+          <div class="col-lg-12">
+            <a> {{ investigation_guide }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- second section -->
+    <div class="col-lg-6 jflex fcolumn">
+      <div class="col-lg-12 listing">
+        <div class="row flex p-1">
+          <div class="col-sm-12">
+            <div class="title-block pull-left">
+              <a class="sectionName">Definition</a>
+            </div>
+          </div>
+        </div>
+        <hr class="m-0" />
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Rule Type</a>
+          </div>
+          <div class="col-lg-8">
+            <a>{{ ruleType }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Index Pattern(s)</a>
+          </div>
+          <div class="col-lg-8">
+            <a *ngFor="let ind of indexPatterns" class="atag">{{ ind }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Query</a>
+          </div>
+          <div class="col-lg-8">
+            <a>{{ eqlQuery }}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 listing mar-top-1 fgrow">
+        <div class="row flex p-1">
+          <div class="col-sm-12">
+            <div class="title-block pull-left">
+              <a class="sectionName">Schedule</a>
+            </div>
+          </div>
+        </div>
+        <hr class="m-0" />
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Runs Every</a>
+          </div>
+          <div class="col-lg-8">
+            <a>{{ runs_every }} {{ runs_every_in }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Additional Look-back Time</a>
+          </div>
+          <div class="col-lg-8">
+            <a>{{ additional_loopback }} {{ additional_loopback_in }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <ngb-pagination class="d-flex justify-content-end" [collectionSize]="historyOrderCount" [(page)]="page" aria-label="Default pagination" (pageChange)="updateOrderHistory()" ></ngb-pagination> -->
+</div>
+
+<!-- <ng-template #dialogRef let-mydata>
+  <h2 mat-dialog-title>selectedRule</h2>
+  <h3>Are You Sure you want to delete this Rule?</h3>
+
+  <div class="pull-right">
+    <button mat-button mat-dialog-close="false">No</button>
+    <button mat-button mat-dialog-close="true">Yes</button>
+  </div>
+</ng-template> -->

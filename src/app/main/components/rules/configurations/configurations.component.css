@@ -1,0 +1,136 @@
+* {
+  font-family: "Nunito", sans-serif !important;
+}
+label {
+  margin-bottom: 0px;
+}
+.title {
+  background-color: #daf0ff;
+}
+.title-text {
+  font-size: 2vw;
+}
+.pad-left-10p {
+  padding-left: 10%;
+}
+.jflex {
+  display: flex;
+  background-color: #fff;
+}
+.fcolumn {
+  flex-direction: column;
+}
+.fwrap {
+  flex-wrap: wrap;
+}
+.aibaseline {
+  align-items: baseline;
+}
+.space-between {
+  justify-content: space-between;
+}
+.listing {
+  /* border: 1px solid #e7eeff; */
+  /* box-shadow: 0px 0px 20px 0px #ededed; */
+  background-color: #ffffff;
+  /* border-radius: 10px; */
+}
+.sectionName {
+  font-size: 1vw;
+  font-weight: 700;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.flex1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.propertyName,
+.head-column-text {
+  font-weight: 700;
+  font-size: 14px;
+}
+/* .propertyName a {
+  font-weight: 600;
+  font-size: 0.9vw;
+} */
+.propertyValue a {
+  color: #444444;
+}
+.list-column {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.p-1c {
+  padding: 1vh 3vh;
+}
+.rule-list-row {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0rem;
+  border-bottom: 1px solid rgb(200, 200, 200);
+}
+.rule-row {
+  /* height: 100px; */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  width: 100%;
+  /* background-color: #f59999; */
+  border-top: 1px solid #e7f3fc;
+  border-bottom: 1px solid #e7f3fc;
+}
+.rule-row:hover {
+  background-color: #e7f3fc;
+}
+.list-column {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+/* .head-column-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+} */
+.button-one {
+  border: 1px solid #aaa;
+}
+.button-one:hover {
+  background-color: #e7f3fc;
+}
+.form-control {
+  background-color: #f4faff;
+}
+.displayPanel {
+  border: 1px solid #aaa;
+  box-shadow: 0px 0px 5px 0px #aaa;
+  border-radius: 3px;
+  padding: 1rem 3rem;
+}
+.cbutton {
+  border-radius: 100px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: #2196f3;
+  color: #fff;
+  border: 1px solid #ededed;
+}
+.cbutton:hover {
+  background-color: #fff;
+  color: #2196f3;
+  border: 1px solid #2196f3;
+  box-shadow: 0px 0px 10px 0px #e7f3fc;
+}
+
+.popup_success{
+  margin-bottom: 15px;
+}

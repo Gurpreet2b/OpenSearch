@@ -1,0 +1,1164 @@
+<!-- <div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2 no-top-margin"></div>
+    <div class="page__content shadow p-3 position-relative">
+      <div class="flexclass">
+        <iframe src="https://2bofficedubai.ddns.net:5601/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-7d%2Fd,to:now))&_a=(columns:!(),filters:!(),index:'0c91ed10-2736-11ec-95a5-dffa0fbb8006',interval:auto,query:(language:kuery,query:''),sort:!(!('@timestamp',desc)))" height="100%" width="100%"></iframe>
+
+      </div>
+    </div>
+  </div> -->
+
+<div class="container m-t-30">
+  <form>
+    <!-- <h4 class="mb-0">Rules</h4> -->
+    <div>
+      <h1 *ngIf="exRuleId == 'new'; else elseb">Create New Detection Rule</h1>
+      <ng-template #elseb>
+        <h1>Update Detection Rule</h1>
+      </ng-template>
+    </div>
+    <div class="widget clearfix">
+      <!-- /widget heading -->
+      <div
+        class="widget-heading"
+        data-toggle="collapse"
+        href="#define"
+        aria-expanded="true"
+      >
+        <h3 class="widget-title flexclass">
+          <div class="step">
+            <span> 1 </span>
+          </div>
+          Rule Definition
+        </h3>
+        <div class="clearfix"></div>
+      </div>
+      <div id="define" class="widget-body collapse in">
+        <!-- <button (click)="navigateToConfigs()">Configs</button> -->
+        <div class="row">
+          <div class="col-sm-12 margin-b-30">
+            <!-- <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>First Name*</label>
+                                  <input type="text" class="form-control" placeholder="John"> </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <label>Last Name*</label>
+                                  <input type="text" class="form-control" placeholder="Doe"> </div>
+                          </div>
+                      </div> -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Rule Type</label>
+                  <select class="form-control">
+                    <option>Event Correlation</option>
+                  </select>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Index Patterns</label>
+                  <div
+                    *ngFor="let ind of selectedIndices; let i = index"
+                    class="flex"
+                  >
+                    <select
+                      class="form-control"
+                      [(ngModel)]="ind.name"
+                      [ngModelOptions]="{ standalone: true }"
+                      name="curIndex{{ i }}"
+                    >
+                      <option *ngFor="let opt of indexPatterns">
+                        {{ opt }}
+                      </option>
+                    </select>
+                    <div class="pad-10" *ngIf="i != 0">
+                      <button class="delButton" (click)="removeIndex(i)">
+                        x
+                      </button>
+                    </div>
+                  </div>
+                  <!-- <div class="p-1">
+                    <small class="addNewText" (click)="addIndex()">Add</small>
+                  </div> -->
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Index Pattern</label>
+                    <select
+                      class="form-control"
+                      [(ngModel)]="currentIndex"
+                      name="currentIndex"
+                      required
+                    >
+                      <option *ngFor="let opt of indexPatterns">
+                        {{ opt }}
+                      </option>
+                    </select>
+                    <small
+                      >Enter the pattern of Elasticsearch indices where you
+                      would like this rule to run. By default, these will
+                      include index patterns defined in Security Solution
+                      advanced settings.</small
+                    >
+                  </div>
+                </div>
+              </div> -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="query_title">
+                    <label>EQL Query</label>
+                  </div>
+                  <textarea
+                    #rQUERY="ngModel"
+                    type="text"
+                    class="form-control flat-bottom"
+                    name="eqlquery"
+                    rows="10"
+                    [(ngModel)]="eqlQuery"
+                    ngClass="{{ syntax_state }}"
+                    (keyup)="onKeyUp($event)"
+                    required
+                  >
+                  </textarea>
+
+                  <pre
+                    class="m-0 p-l-1 form-control flat-top red"
+                    ngClass="{{ syntax_state }} bg-{{ syntax_state }}"
+                    >{{ syntax_message }}</pre
+                  >
+                  <div *ngIf="rQUERY.invalid" style="color: red">*Required</div>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <!-- <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Timeline Template</label>
+                  <select class="form-control">
+                    <option>Event</option>
+                    <option>Event1</option>
+                    <option>Event12</option>
+                  </select>
+                </div>
+              </div>
+            </div> -->
+            <div class="row flex2">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Quick Query Preview</label>
+                  <select
+                    class="form-control"
+                    name="quickpreviewtime"
+                    [(ngModel)]="quickPreviewTime"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <option>Last Hour</option>
+                    <option>Last Day</option>
+                    <!-- <option>Last Week</option> -->
+                  </select>
+                </div>
+
+                <!--/form-group-->
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <div class="flex">
+                    <button
+                      class="btn theme-btn"
+                      type="submit"
+                      (click)="quickPreview()"
+                      [disabled]="
+                        quickPreviewTime.length == 0 || syntax_state == 'red'
+                      "
+                    >
+                      Preview
+                    </button>
+                    <!-- <div class="pad-10" *ngIf="previewLoading == true">
+                        <a>Loading</a>
+                      </div> -->
+                  </div>
+                </div>
+                <!--/form-group-->
+              </div>
+              <div class="col-sm-3"></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 p-1">
+                <div class="form-group">
+                  <div class="flex">
+                    <!-- <div *ngIf="previewLoading == true; else elseBlock">
+                        <h5><a>Loading</a></h5>
+                      </div> -->
+                    <div *ngIf="previewLoading; else elseBlock">
+                      <div id="loading"></div>
+                    </div>
+                    <ng-template class="col-sm-12" #elseBlock>
+                      <div
+                        *ngIf="firstRun == false"
+                        class="col-sm-12 preview-box"
+                      >
+                        <!-- <div class="chart-wrapper">
+                          <ngx-charts-bar-vertical
+                            [view]="view"
+                            [results]="previewData"
+                            [legendTitle]="'Time Range'"
+                            [legend]="false"
+                            [showXAxisLabel]="true"
+                            [xAxisLabel]="'Time'"
+                            [showYAxisLabel]="false"
+                            [yAxisLabel]="'Count'"
+                            [xAxis]="true"
+                            [yAxis]="false"
+                            [gradient]="false"
+                            [customColors]="colorScheme"
+                          >
+                          </ngx-charts-bar-vertical>
+                        </div> -->
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="widget clearfix">
+      <!-- /widget heading -->
+      <div
+        class="widget-heading"
+        data-toggle="collapse"
+        href="#options"
+        aria-expanded="false"
+      >
+        <h3 class="widget-title flexclass">
+          <div class="step">
+            <span> 2 </span>
+          </div>
+          Rule Options
+        </h3>
+        <div class="clearfix"></div>
+      </div>
+      <div id="options" class="widget-body collapse in">
+        <div class="row">
+          <div class="col-sm-12 margin-b-30">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input
+                    #rNAME="ngModel"
+                    type="text"
+                    class="form-control"
+                    placeholder="Rule one"
+                    name="rulename"
+                    [(ngModel)]="ruleName"
+                    required
+                  />
+                  <div *ngIf="rNAME.invalid" style="color: red">*Required</div>
+                  <!-- <div class="invalid-feedback">This Field is Required</div> -->
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    rows="10"
+                    placeholder="A Description"
+                    name="ruledescription"
+                    [(ngModel)]="ruleDescription"
+                    #rDESC="ngModel"
+                    required
+                  >
+                  </textarea>
+                  <div *ngIf="rDESC.invalid" style="color: red">*Required</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Severity</label>
+                  <div>
+                    <small>Select a severity level</small>
+                  </div>
+                  <select
+                    class="form-control"
+                    [(ngModel)]="severity"
+                    [ngModelOptions]="{ standalone: true }"
+                    name="severity"
+                  >
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                    <option>Critical</option>
+                  </select>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Threat Score</label>
+                  <div class="custom-slider flex">
+                    <!-- <ngx-slider [(value)]="sliderValue" [options]="options"></ngx-slider> -->
+                    <!-- <mat-slider
+                      name="threatslider"
+                      class="fullwidth"
+                      thumbLabel
+                      [min]="minSlider"
+                      [max]="maxSlider"
+                      step="1"
+                      [(ngModel)]="valueSlider"
+                      [ngModelOptions]="{ standalone: true }"
+                      (change)="slidechange($event.value)"
+                      tickInterval="1"
+                    ></mat-slider> -->
+                    <div class="valueBox">
+                      {{ valueSlider }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Tags (Optional)</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    name="taggs"
+                    rows="10"
+                    [(ngModel)]="tags"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                  </textarea>
+                  <small>Please write each tag in a new line</small>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <div class="row pad-b-10">
+              <div class="col-sm-12">
+                <div class="flex m-0 form-group">
+                  <hr />
+                  <label class="expandingLabel">Advanced Settings</label>
+                  <hr />
+                  <!-- <select class="form-control">
+                                  <option>Event</option>
+                                  <option>Event1</option>
+                                  <option>Event12</option>
+                              </select>  -->
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="row pad-b-10">
+              <div class="col-sm-12">
+                <div class="flex m-0">
+                  <hr />
+                  <div class="form-group">
+                    <label>MITRE ATT&CK Threats (Optional)</label>
+                  </div>
+                  <!-- <button (click)="logAttack()">click me</button> -->
+                  <hr />
+                </div>
+              </div>
+            </div>
+            <div *ngFor="let obj of tacticArray; let i = index">
+              <div class="row flex pad-left-1r a-i-baseline pad-b-10">
+                <div class="col-sm-11">
+                  <div class="form-group">
+                    <div class="flex p-l-0">
+                      <label class="w-30">ATT&CK Tactic</label>
+                      <select
+                        #tactic{{i}}
+                        class="w-70 form-control"
+                        name="tactic{{ i }}"
+                        [(ngModel)]="obj.name"
+                        (change)="getTechniquesOfTactic(obj.name, i)"
+                      >
+                        <!-- <option disabled selected value>
+                          -- select an option --
+                        </option> -->
+                        <option
+                          *ngFor="let tactop of pretacticArray"
+                          [value]="tactop.id + '-' + tactop.name"
+                        >
+                          {{ tactop.id }}-{{ tactop.name }}
+                        </option>
+                      </select>
+                    </div>
+                    <div
+                      class="p-l-1 signal-line"
+                      *ngFor="let technique of techniqueArray[i]; let j = index"
+                    >
+                      <div class="flex a-i-baseline">
+                        <div class="flex-col-grow">
+                          <div class="flex p-l-1">
+                            <div class="w-30">
+                              <label class="">ATT&CK Technique(s)</label>
+                            </div>
+                            <div class="w-70">
+                              <select
+                                class="form-control"
+                                name="tech{{ i }}{{ j }}"
+                                [(ngModel)]="technique.name"
+                                [disabled]="!obj.name.length"
+                                (change)="
+                                  getSubtechniquesofTechnique(
+                                    technique.name,
+                                    i,
+                                    j
+                                  )
+                                "
+                              >
+                                <!-- <option label=" " selected></option> -->
+                                <!-- <option disabled selected value>
+                                  -- select an option --
+                                </option> -->
+
+                                <option
+                                  *ngFor="let techop of pretechniqueArray[i]"
+                                  [value]="techop.id + '-' + techop.name"
+                                >
+                                  {{ techop.id }}-{{ techop.name }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <!-- subtechnique starts -->
+                          <div
+                            class="flex p-l-2 signal-line"
+                            *ngFor="
+                              let subtechnique of subtechniqueArray[i][j];
+                              let k = index
+                            "
+                          >
+                            <div class="flex flex-grow p-l-2">
+                              <div class="w-30">
+                                <label class="">ATT&CK Subtechnique(s)</label>
+                              </div>
+                              <div class="w-70">
+                                <select
+                                  class="form-control"
+                                  name="subtechnique{{ i }}{{ j }}{{ k }}"
+                                  [(ngModel)]="subtechnique.name"
+                                  [disabled]="!technique.name.length"
+                                >
+                                  <!-- <option value="sdfsnd">sdfsnd</option> -->
+                                  <option
+                                    *ngFor="
+                                      let subtech of presubtechniqueArray[i][j]
+                                    "
+                                    [value]="subtech.id + '-' + subtech.name"
+                                  >
+                                    {{ subtech.id }}-{{ subtech.name }}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                            <div *ngIf="k != 0" class="pad-10">
+                              <button
+                                class="delButton"
+                                (click)="removesubtechnique(i, j, k)"
+                              >
+                                x
+                              </button>
+                            </div>
+                          </div>
+                          <div
+                            class="flex p-l-2 signal-line"
+                            [ngClass]="{
+                              nopoint: !(
+                                subtechniqueArray[i][j][
+                                  subtechniqueArray[i][j].length - 1
+                                ].name.length > 0
+                              )
+                            }"
+                          >
+                            <button
+                              class="button addNewText p-l-2"
+                              (click)="addsubtechnique(i, j)"
+                              [disabled]="
+                                !(
+                                  subtechniqueArray[i][j][
+                                    subtechniqueArray[i][j].length - 1
+                                  ].name.length > 0
+                                )
+                              "
+                            >
+                              + Add Subtechnique
+                            </button>
+                          </div>
+                        </div>
+                        <div *ngIf="j != 0" class="pad-10">
+                          <button
+                            class="delButton"
+                            (click)="removetechnique(i, j)"
+                          >
+                            x
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="p-l-1 signal-line flex"
+                      [ngClass]="{
+                        nopoint: !(
+                          techniqueArray[i][techniqueArray[i].length - 1].name
+                            .length > 0
+                        )
+                      }"
+                    >
+                      <button
+                        class="button addNewText p-l-2"
+                        (click)="addtechnique(i)"
+                        [disabled]="
+                          !(
+                            techniqueArray[i][techniqueArray[i].length - 1].name
+                              .length > 0
+                          )
+                        "
+                      >
+                        + Add Technique
+                      </button>
+                    </div>
+                    <!-- <div class='flex'>
+                              <label class="first w-30">ATT&CK Subtechnique</label>
+                              <select class="form-control last w-70" name='subtechnique{{i}}' [(ngModel)]='obj.subtechnique'>
+                                <option>None</option>
+                                <option>Archive via Custom Method</option>
+                                <option>Archive via Library</option>
+                                <option>Archive via Utility</option>
+                              </select>
+                            </div>
+                            <div class="flex1">
+                              <hr>
+                              <small> + Add Subtechnique</small>
+                              <hr>
+                            </div> -->
+                  </div>
+                  <!--/-->
+                </div>
+                <div *ngIf="i != 0">
+                  <button class="delButton" (click)="removetactic(i)">x</button>
+                  <!-- <img src="assets/img/delete-16.png" alt="" /> -->
+                </div>
+              </div>
+              <!-- <hr class="w-70" /> -->
+
+              <!-- <button class="button" disabled='true' type="button" >Remove</button> -->
+            </div>
+            <div
+              class="flex"
+              [ngClass]="{
+                nopoint: !(tacticArray[tacticArray.length - 1].name.length > 0)
+              }"
+            >
+              <button
+                class="button addNewText p-l-1"
+                (click)="addtactic()"
+                [disabled]="
+                  !(tacticArray[tacticArray.length - 1].name.length > 0)
+                "
+              >
+                + Add New
+              </button>
+            </div>
+            <!-- <div class="flex1">
+                <a class="btn theme-btn" type="submit" (click)="logAttack()"
+                  >Confirm</a
+                >
+              </div> -->
+            <div class="row pad-t-1">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Reference URL (Optional)</label>
+                  <div *ngFor="let obj of refArray; let i = index" class="flex">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder=""
+                      name="ref{{ i }}"
+                      [(ngModel)]="obj.name"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                    <div class="pad-10" *ngIf="i != 0">
+                      <button
+                        class="delButton"
+                        (click)="removeRef(i)"
+                        [disabled]="i == 0"
+                      >
+                        x
+                      </button>
+                    </div>
+                  </div>
+                  <div class="pt-1">
+                    <button class="button addNewText p-l-1" (click)="addRef()">
+                      + Add New
+                    </button>
+                  </div>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>False Positive Examples (Optional)</label>
+                  <div
+                    *ngFor="let obj of falseArray; let i = index"
+                    class="flex"
+                  >
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder=""
+                      name="false{{ i }}"
+                      [(ngModel)]="obj.name"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                    <div class="pad-10" *ngIf="i != 0">
+                      <button class="delButton" (click)="removeFalse(i)">
+                        x
+                      </button>
+                    </div>
+                  </div>
+                  <div class="pt-1">
+                    <button
+                      class="button addNewText p-l-1"
+                      (click)="addFalse()"
+                    >
+                      + Add New
+                    </button>
+                  </div>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Investigation Guide(Optional)</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    rows="10"
+                    placeholder=""
+                    name="investigation_guide"
+                    [(ngModel)]="investigation_guide"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                  </textarea>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Author (Optional)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    name="author"
+                    [(ngModel)]="author"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <small
+                    >Type one or more authors for this rule. Press enter after
+                    each author to add a new one.
+                  </small>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>License (Optional)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder=""
+                    name="license"
+                    [(ngModel)]="license"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <small>Add a License Name</small>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <!-- <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label class="flex"
+                    >Elastic Endpoint Exceptions (Optional)</label
+                  >
+                  <div class="pd-lr-30">
+                    <input
+                      type="checkbox"
+                      id="endpointexceptions"
+                      name="endpointexceptions"
+                      value="True"
+                    />
+                    <label class="fw-300" for="endpointexceptions"
+                      >Add existing Endpoint exceptions to the rule</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Building Block (Optional)</label>
+                  <div class="pd-lr-30">
+                    <input
+                      type="checkbox"
+                      id="buildingblock"
+                      name="buildingblock"
+                      value="True"
+                    />
+                    <label class="fw-300" for="buildingblock"
+                      >Mark all generated alerts as "building block"
+                      alerts</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8">
+                <div class="form-group">
+                  <label>Rule Name Override (Optional)</label>
+                  <select
+                    class="form-control"
+                    [(ngModel)]="rule_name_override"
+                    name="rule_name_override"
+                  >
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                    <option>Critical</option>
+                  </select>
+                  <small
+                    >Choose a field from the source event to populate the rule
+                    name in the alert list.</small
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8">
+                <div class="form-group">
+                  <label>TimeStamp Override (Optional)</label>
+                  <select
+                    class="form-control"
+                    [(ngModel)]="timestamp_override"
+                    name="timestamp_override"
+                  >
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                    <option>Critical</option>
+                  </select>
+                  <small
+                    >Choose timestamp field used when executing rule. Pick field
+                    with timestamp closest to ingest time (e.g.
+                    event.ingested).</small
+                  >
+                </div>
+              </div>
+            </div> -->
+            <!-- end -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="widget clearfix">
+      <!-- /widget heading -->
+      <div
+        class="widget-heading"
+        data-toggle="collapse"
+        href="#schedule"
+        aria-expanded="false"
+      >
+        <h3 class="widget-title flexclass">
+          <div class="step">
+            <span> 3 </span>
+          </div>
+          Rule Schedule
+        </h3>
+        <div class="clearfix"></div>
+      </div>
+      <div id="schedule" class="widget-body collapse">
+        <div class="row">
+          <div class="col-sm-12 margin-b-30">
+            <!-- <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>First Name*</label>
+                              <input type="text" class="form-control" placeholder="John"> </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Last Name*</label>
+                              <input type="text" class="form-control" placeholder="Doe"> </div>
+                      </div>
+                  </div> -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Runs Every</label>
+                  <div class="flex">
+                    <input
+                      type="number"
+                      min="1"
+                      class="form-control auto-width first"
+                      placeholder="1"
+                      name="runs_every"
+                      [(ngModel)]="runs_every"
+                    />
+                    <!-- <select class="form-control auto-width first">
+                                      <option>Event Correlation</option>
+                                    </select> -->
+                    <select
+                      class="form-control auto-width last"
+                      name="runs_every_in"
+                      [(ngModel)]="runs_every_in"
+                      #rRUN="ngModel"
+                      required
+                    >
+                      <option>Seconds</option>
+                      <option>Minutes</option>
+                      <option>Hours</option>
+                    </select>
+                  </div>
+                  <div *ngIf="rRUN.invalid" style="color: red">*Required</div>
+                  <div>
+                    <small>Rules run periodically and detect alerts </small>
+                  </div>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Additional Look-back Time</label>
+                  <div class="flex">
+                    <input
+                      type="number"
+                      min="1"
+                      class="form-control auto-width first"
+                      placeholder="1"
+                      name="additional_loopback"
+                      [(ngModel)]="additional_loopback"
+                    />
+                    <!-- <select class="form-control auto-width first">
+                                      <option>Event Correlation</option>
+                                    </select> -->
+                    <select
+                      class="form-control auto-width last"
+                      name="additional_loopback_in"
+                      [(ngModel)]="additional_loopback_in"
+                      #rADD="ngModel"
+                      required
+                    >
+                      <option>Seconds</option>
+                      <option>Minutes</option>
+                      <option>Hours</option>
+                    </select>
+                  </div>
+                  <div *ngIf="rADD.invalid" style="color: red">*Required</div>
+                  <div>
+                    <small
+                      >Adds time to the look-back period to prevent missed
+                      alerts.
+                    </small>
+                  </div>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="widget clearfix">
+      <!-- /widget heading -->
+      <div
+        class="widget-heading"
+        data-toggle="collapse"
+        href="#actions"
+        aria-expanded="false"
+      >
+        <h3 class="widget-title flexclass">
+          <div class="step">
+            <span> 4 </span>
+          </div>
+          Rule Actions
+        </h3>
+        <div class="clearfix"></div>
+      </div>
+      <div id="actions" class="widget-body collapse">
+        <div class="row">
+          <div class="col-sm-12 margin-b-30">
+            <!-- <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>First Name*</label>
+                              <input type="text" class="form-control" placeholder="John"> </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group">
+                              <label>Last Name*</label>
+                              <input type="text" class="form-control" placeholder="Doe"> </div>
+                      </div>
+                  </div> -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Rule Action</label>
+                  <div class="input-group">
+                    <select
+                      class="form-control"
+                      name="actionVal"
+                      [(ngModel)]="actionVal"
+                      #rACT="ngModel"
+                      required
+                    >
+                      <option>Perform No Action</option>
+                      <option>On Each Rule Execution</option>
+                      <!-- <option>Hourly</option>
+                      <option>Daily</option>
+                      <option>Weekly</option> -->
+                    </select>
+                    <div *ngIf="rACT.invalid" style="color: red">*Required</div>
+                  </div>
+                  <div>
+                    <small>Rules run periodically and detect alerts </small>
+                  </div>
+                </div>
+                <!--/form-group-->
+              </div>
+            </div>
+            <div
+              class="row"
+              *ngIf="rACT.value != 'Perform No Action' && rACT.value"
+            >
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Create Ticket (Optional)</label>
+                  <div class="pd-lr-30">
+                    <input
+                      type="checkbox"
+                      id="buildingblock"
+                      name="buildingblock"
+                      value="false"
+                      [(ngModel)]="ticketFlag"
+                    />
+                    <label class="fw-300" for="buildingblock"
+                      >Create a Ticket on selected Platform
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="ticketFlag">
+                <div class="row p-1">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Ticketing Platform</label>
+                      <div class="input-group">
+                        <select
+                          class="form-control"
+                          name="ticketPlatform"
+                          [(ngModel)]="ticketPlatform"
+                          #rTickPlat="ngModel"
+                          required
+                        >
+                          <option value="jira">Atlassian JIRA Software</option>
+                        </select>
+                        <div *ngIf="rTickPlat.invalid" style="color: red">
+                          *Required
+                        </div>
+                      </div>
+                    </div>
+                    <!--/form-group-->
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Select Configuration</label>
+                      <div class="input-group">
+                        <select
+                          class="form-control"
+                          name="ticketConfig"
+                          [(ngModel)]="ticketConfig"
+                          #rTickConf="ngModel"
+                          required
+                        >
+                          <option *ngFor="let conf of ticketConfigs">
+                            {{ conf }}
+                          </option>
+                        </select>
+                        <div *ngIf="rTickConf.invalid" style="color: red">
+                          *Required
+                        </div>
+                      </div>
+                    </div>
+                    <!--/form-group-->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-7">
+                <button
+                class="pull-left btn theme-btn"
+                (click)="navigateToConfigs()"
+              >
+                Create Configuration
+              </button>
+              </div>
+              <div class="col-md-5">
+                <input
+                type="checkbox"
+                id="buildingblock"
+                name="buildingblock"
+                [(ngModel)]="active"
+                [ngModelOptions]="{ standalone: true }"
+              />
+              <label class="" for="buildingblock">Activate This Rule</label>
+              <button
+                *ngIf="exRuleId == 'new'; else else1"
+                class="btn theme-btn ml-3"
+                type="submit"
+                (click)="createRule()"
+                [disabled]="
+                  rQUERY.invalid ||
+                  rNAME.invalid ||
+                  rDESC.invalid ||
+                  rRUN.invalid ||
+                  rADD.invalid ||
+                  rACT.invalid ||
+                  syntax_message != 'Valid' ||
+                  (ticketFlag && (ticketPlatform == '' || ticketConfig == ''))
+                "
+              >
+                Create Rule
+              </button>
+              <ng-template #else1>
+                <button
+                  class="btn theme-btn ml-3"
+                  type="submit"
+                  (click)="updateRule()"
+                  [disabled]="
+                    rQUERY.invalid ||
+                    rNAME.invalid ||
+                    rDESC.invalid ||
+                    rRUN.invalid ||
+                    rADD.invalid ||
+                    rACT.invalid ||
+                    syntax_message != 'Valid' ||
+                    (ticketFlag && (ticketPlatform == '' || ticketConfig == ''))
+                  "
+                >
+                  Update Rule
+                </button>
+              </ng-template>
+              </div>
+            </div>
+
+           
+            <!-- <div class="flex1">
+              <div class="form-group m-0">
+                <div class="pd-lr-30">
+                  <input
+                    type="checkbox"
+                    id="buildingblock"
+                    name="buildingblock"
+                    [(ngModel)]="active"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                  <label class="" for="buildingblock">Activate This Rule</label>
+                </div>
+              </div>
+
+              <button
+                *ngIf="exRuleId == 'new'; else else1"
+                class="btn theme-btn"
+                type="submit"
+                (click)="createRule()"
+                [disabled]="
+                  rQUERY.invalid ||
+                  rNAME.invalid ||
+                  rDESC.invalid ||
+                  rRUN.invalid ||
+                  rADD.invalid ||
+                  rACT.invalid ||
+                  syntax_message != 'Valid' ||
+                  (ticketFlag && (ticketPlatform == '' || ticketConfig == ''))
+                "
+              >
+                Create Rule
+              </button>
+              <ng-template #else1>
+                <button
+                  class="btn theme-btn"
+                  type="submit"
+                  (click)="updateRule()"
+                  [disabled]="
+                    rQUERY.invalid ||
+                    rNAME.invalid ||
+                    rDESC.invalid ||
+                    rRUN.invalid ||
+                    rADD.invalid ||
+                    rACT.invalid ||
+                    syntax_message != 'Valid' ||
+                    (ticketFlag && (ticketPlatform == '' || ticketConfig == ''))
+                  "
+                >
+                  Update Rule
+                </button>
+              </ng-template>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

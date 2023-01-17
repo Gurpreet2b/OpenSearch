@@ -1,0 +1,166 @@
+<div class="super-container pt-1">
+  <!-- <div class="row flex1">
+        <div class="col-sm-4">
+          <div class="title-block pull-left">
+            <h1>Rules</h1>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="float-right">
+            <nav class="primary pull-left">
+              <ul>
+  
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div> -->
+  <div class="row">
+    <div class="col-lg-12" id="content" #content>
+      <div class="listing col-lg-12">
+        <div class="list-head col-lg-12">
+          <div class="row flex1">
+            <div class="col-sm-4">
+              <div class="title-block pull-left">
+                <h2 class="mb-0">Previous Reports</h2>
+                <div class="row flex1 p-0 m-0">
+                  <h6 class="pr-1 column-text">Total: {{ reportCount }}</h6>
+                  <!-- <h6 class="px-1 column-text">
+                      Filtered: {{ filteredRuleCount }}
+                    </h6> -->
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="float-right">
+                <nav class="primary pull-left">
+                  <div class="form-group flex">
+                    <div>
+                      <div *ngIf="loading" id="loading"></div>
+                    </div>
+                    <!-- <label>Search </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder=""
+                        [(ngModel)]="search_term"
+                        (keydown.enter)="getRuleList(false)"
+                      />
+                      <div class="pl-1 pr-0">
+                        <a class="delButton rbutton" (click)="getRuleList(false)">
+                          Search
+                        </a>
+                      </div> -->
+                    <div class="p-1">
+                      <a class="delButton rbutton" (click)="getReportList(true,0)">
+                        Refresh
+                      </a>
+                    </div>
+                    <!-- <div class="p-1">
+                        <a class="delButton rbutton" (click)="DownloadFromHTML()">
+                          Download
+                        </a>
+                      </div> -->
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+          <div class="flex space-between rule-list-row">
+            <div class="list-column">
+              <div class="head-column-text">Created On</div>
+            </div>
+            <div class="list-column">
+              <div class="head-column-text">From</div>
+            </div>
+            <div class="list-column">
+              <div class="head-column-text">To</div>
+            </div>
+            <div class="list-column">
+              <div class="head-column-text">Report Type</div>
+            </div>
+            <div class="list-column">
+              <div class="head-column-text">User Type</div>
+            </div>
+            <div class="list-column">
+              <div class="head-column-text">User</div>
+            </div>
+            <div class="list-column">
+              <div class="head-column-text">Status</div>
+            </div>
+          </div>
+
+          <div
+            *ngFor="let rep of pageSlice | paginate: { id:'first', itemsPerPage: 10, currentPage: currentPage, totalItems: totalItems }; let i=index"
+            class="rule-list-row rule-row flex space-between">
+            
+            <div class="list-column">
+              <div class="column-text">
+                {{ rep.Report.GeneratedDateISO | date : "medium" }}
+              </div>
+            </div>
+            <div class="list-column just-center">
+              <div class="column-text">
+                {{ rep.Report.StartDateISO | date : "medium" }}
+              </div>
+            </div>
+            <div class="list-column">
+              <div class="column-text">
+                {{ rep.Report.EndDateISO | date : "medium" }}
+              </div>
+            </div>
+            <div class="list-column">
+              <div class="column-text">
+                {{ rep.Report.ReportType }}
+              </div>
+            </div>
+            <div class="list-column">
+              <div class="column-text">
+                {{ rep.Report.UserType }}
+              </div>
+            </div>
+            <div class="list-column">
+              <div class="column-text">
+                {{ rep.Report.UserBasisValue }}
+              </div>
+            </div>
+
+            <div class="list-column flex space-between">
+              <div class="column-text status-text" ngClass="{{ rep.Report.Status }}">
+                {{ rep.Report.Status }}
+              </div>
+              <div>
+                <button *ngIf="rep.Report.Status === 'Finished'" type="button" class="viewButton"
+                  (click)="viewThisReport(rep.Report.ID)" data-toggle="modal"
+                  data-target="#viewGenerateReport">
+                  <!-- <mat-icon style="color: #0362f1">edit</mat-icon>
+                  <i class="fa fa-eye fa-2x" aria-hidden="true"></i> -->
+                  View
+                  <!-- data-toggle="modal"
+                    data-target="#exampleModalCenter" -->
+                  <!-- (click)="selectThisRule(rule._id)" -->
+                  <!-- X -->
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row pagination-container">
+            <div class="mt-4">
+              <pagination-controls (pageChange)="onPageChange($event, '1')" id="first">
+              </pagination-controls>
+            </div>
+            <div class="m-pagination">
+              <span>Jump to page</span>
+              <select id="PerPage" class="form-control" (change)="onPageChange($event, '2')">
+                <option *ngFor="let item of PageTotalNumber" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,159 @@
+<div class="row">
+    <div class="col-md-12 m-datepicker">
+        <div class="col-md-6">
+            <div class="col-md-6">
+                <div class="col-md-12 bandwidth-bg-color">
+                    <label>Start date</label>
+                    <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="fullStartDate"
+                        [ngModelOptions]="{ standalone: true }">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 bandwidth-bg-color">
+                    <label>End date</label>
+                    <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="fullEndDate"
+                        [ngModelOptions]="{ standalone: true }">
+                </div>
+                <!-- <button (click)="overviewDashboard()">asdd</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container m-t-10">
+    <!-- <button (click)="prre()" >cfghfh</button> -->
+    <div class="row mt-3 p-box bandwidth-bg-color">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="padding-bottom-zero">
+                        <div class="card">
+                            <div class="card-body">
+                                <label class="box-font">39</label> <br>
+                                <label>Total Size</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="padding-bottom-zero">
+                        <div class="card">
+                            <div class="card-body">
+                                <label class="box-font">39</label> <br>
+                                <label>Average Size</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="padding-bottom-zero">
+                        <div class="card">
+                            <div class="card-body">
+                                <label class="box-font">39</label> <br>
+                                <label>Largest download</label>
+                            </div>
+                            <button (click)="redrawThischart()" >redrawThischart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2 mt-3 bandwidth-bg-color">
+            <h4 class="text-center p-bandwidth">Bandwidth
+                <hr class="hr-mb-bandwidth">
+            </h4>
+            <div class="padding-bottom-zero">
+                <div class="card">
+                    <div class="card-body">
+                        <label class="box-font">39</label> <br>
+                        <label>Total Size</label>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-2 padding-bottom-zero">
+                <div class="card-body">
+                    <label class="box-font">39</label> <br>
+                    <label>Average Size</label>
+                </div>
+            </div>
+            <div class="card mt-2 padding-bottom-zero">
+                <div class="card-body">
+                    <label class="box-font">39</label> <br>
+                    <label>Largest download</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 mt-3 pr-0">
+            <!-- <div class="col-md-6"> -->
+            <!-- <highcharts-chart id="hc1" [Highcharts]="highcharts" [options]="BandwidthOverTimeChartData">
+            </highcharts-chart> -->
+            <div id="bandwidthOvertime1"></div>
+            <!-- </div> -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 mt-3 pl-0">
+            <div id="productivityOvertime1"></div>
+            <!-- <highcharts-chart id="hc2" [Highcharts]="highcharts" [options]="ProductivityOverTimeChartData"
+                style="width: 100%; height: 400px; display: block;">
+            </highcharts-chart> -->
+        </div>
+        <div class="col-md-2 mt-3 bandwidth-bg-color">
+            <h4 class="text-center p-bandwidth">Productivity
+                <hr class="hr-mb-bandwidth">
+            </h4>
+            <div class="padding-bottom-zero">
+                <div class="card">
+                    <div class="card-body">
+                        <label class="box-font">39</label> <br>
+                        <label>Total Size</label>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-2 padding-bottom-zero">
+                <div class="card-body">
+                    <label class="box-font">39</label> <br>
+                    <label>Average Size</label>
+                </div>
+            </div>
+            <div class="card mt-2 padding-bottom-zero">
+                <div class="card-body">
+                    <label class="box-font">39</label> <br>
+                    <label>Largest download</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mt-3 pl-0 pr-0">
+            <div id="trafficActionOvertime1"></div>
+            <!-- <highcharts-chart [Highcharts]="highcharts" [options]="TrafficActionsOverTime"
+                style="width: 100%; height: 400px; display: block;">
+            </highcharts-chart> -->
+        </div>
+        <div class="col-md-6 mt-3 pr-0">
+            <div id="productivityPieChart"></div>
+            <!-- <highcharts-chart [Highcharts]="highcharts" [options]="TotalProductivityPieChart"
+                style="width: 100%; height: 400px; display: block;">
+            </highcharts-chart> -->
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6 mt-3 pl-0">
+            <div id="trafficPieChart1"></div>
+            <!-- <highcharts-chart [Highcharts]="highcharts" [options]="TrafficActionsPieChart"
+                style="width: 100%; height: 400px; display: block;">
+            </highcharts-chart> -->
+        </div>
+
+    </div>
+
+
+</div>

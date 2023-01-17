@@ -1,0 +1,217 @@
+<div class="super-container pt-1">
+  <div class="row flex1">
+    <div class="col-sm-4">
+      <div class="title-block pull-left">
+        <h1>Rules</h1>
+        <!-- <h4 class="column-text">Showing {{ ruleCount }} Rules</h4> -->
+      </div>
+    </div>
+    <div class="col-sm-8 text-right">
+      <div class="pull-right">
+        <nav class="primary pull-left">
+          <ul>
+            <!-- <li><a href="#" class="selected" data-filter="*">Grill</a></li>
+                <li><a href="#" data-filter=".fish">fish</a></li> -->
+            <!-- <button class="cbutton">Import Rules</button> -->
+
+            <button class="cbutton" (click)="activateRuleDetail()">
+              Create New Rule
+            </button>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-1 col-lg-12 report_bg" id="content" #content>
+    <div class="listing padding-1 col-lg-12">
+      <div class="list-head col-lg-12">
+        <div class="row flex1">
+          <div class="col-md-7">
+            <div class="title-block pull-left">
+              <h2 class="mb-0">All Rules</h2>
+              <div class="row flex1 p-0 m-0">
+                <h6 class="pr-1 column-text">Total: {{ ruleCount }}</h6>
+                <h6 class="px-1 column-text">
+                  Filtered: {{ filteredRuleCount }}
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <nav class="title-block pull-left">
+              <div class="form-group flex">
+
+                <div *ngIf="loading" id="loading"></div>
+
+                <label>Search </label>
+                <input type="text" class="form-control" placeholder="" [(ngModel)]="search_term"
+                  (keydown.enter)="getRuleList(false)" />
+                <div class="pl-1 pr-0 ml-3">
+                  <a class="delButton rbutton" (click)="getRuleList(false)">
+                    Search
+                  </a>
+                </div>
+                <div class="p-1">
+                  <a class="delButton rbutton" (click)="getRuleList(true)">
+                    Refresh
+                  </a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="flex space-between rule-list-row">
+          <div class="list-column">
+            <div class="head-column-text">Rule Name</div>
+          </div>
+          <div class="list-column just-center">
+            <div class="head-column-text">Threat Score</div>
+          </div>
+          <div class="list-column">
+            <div class="head-column-text">Severity</div>
+          </div>
+          <div class="list-column">
+            <div class="head-column-text">Last scan</div>
+          </div>
+          <div class="list-column">
+            <div class="head-column-text">Last Result</div>
+          </div>
+          <div class="list-column">
+            <div class="head-column-text">Last Updated</div>
+          </div>
+          <div class="list-column">
+            <div class="head-column-text">Version</div>
+          </div>
+          <div class="list-column">
+            <div class="head-column-text">Tags</div>
+          </div>
+          <div class="list-column">
+            <div class="head-column-text">Status</div>
+          </div>
+        </div>
+
+        <div
+          *ngFor="let rule of pageSlice | paginate: { id:'first', itemsPerPage: 10, currentPage: currentPage, totalItems: totalItems }; let i=index"
+          class="rule-list-row rule-row flex space-between">
+          <div class="list-column">
+            <div class="column-text ruleName" (click)="viewThisRule(rule._id)">
+              {{ rule._source.options.name }}
+            </div>
+          </div>
+          <div class="list-column just-center">
+            <div class="column-text">{{ rule._source.options.risk_score }}</div>
+          </div>
+          <div class="list-column">
+            <div class="column-text" ngClass="{{ rule._source.options.severity }}" style="text-transform: capitalize">
+              {{ rule._source.options.severity }}
+            </div>
+          </div>
+          <div class="list-column">
+            <div class="column-text">
+              {{
+              rule._source.meta && rule._source.meta.last_run != "-"
+              ? (rule._source.meta.last_run | date: "medium")
+              : "-"
+              }}
+            </div>
+          </div>
+          <div class="list-column">
+            <div class="column-text Success">
+              {{
+              rule._source.meta && rule._source.meta.last_result != "-"
+              ? rule._source.meta.last_result
+              : "-"
+              }}
+            </div>
+          </div>
+          <div class="list-column">
+            <div class="column-text">
+              {{
+              rule._source.meta && rule._source.meta.updated != "-"
+              ? (rule._source.meta.updated | date: "medium")
+              : "-"
+              }}
+            </div>
+          </div>
+          <div class="list-column">
+            <div class="column-text">
+              {{
+              rule._source.meta && rule._source.meta.version != "-"
+              ? rule._source.meta.version
+              : "-"
+              }}
+            </div>
+          </div>
+          <div class="list-column flex-column">
+            <div class="column-text">
+              <a class="ebutton" *ngIf="rule._source.options.tags.length > 1; else elseblock" data-toggle="collapse"
+                href="#t{{ i }}" aria-expanded="true">
+                Show/Hide
+              </a>
+              <ng-template #elseblock>
+                <div class="column-text flex-column flex-wrap">
+                  <span class="tagg">{{ rule._source.options.tags[0] }}</span>
+                  <span class="tagg">{{ rule._source.options.tags[1] }}</span>
+                  <span class="tagg">{{ rule._source.options.tags[2] }}</span>
+                </div>
+              </ng-template>
+            </div>
+            <div class="column-text flex-warp">
+              <div id="t{{ i }}" class="collapse">
+                <div class="column-text flex-warp">
+                  <span *ngFor="let tag of rule._source.options.tags" class="tagg">{{ tag }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-column flex space-between">
+            <div class="column-text">
+              <label class="switch">
+                <input type="checkbox" [checked]="rule._source.active"
+                  (change)="statusChange($event, rule._id, rule._source.active)" />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div>
+              <button type="button" class="delButton" (click)="openDialog(rule._source.options.name, rule._id)"
+                data-toggle="modal" data-target="#dialogRef">
+                <!-- data-toggle="modal"
+                  data-target="#exampleModalCenter" -->
+                <!-- (click)="selectThisRule(rule._id)" -->
+                X
+              </button>
+            </div>
+          </div>
+        </div>
+      <div class="row pagination-container">
+        <div class="mt-4">
+          <pagination-controls (pageChange)="onPageChange($event, '1')" id="first">
+          </pagination-controls>
+        </div>
+        <div class="m-pagination">
+          <span>Jump to page</span>
+          <select id="PerPage" class="form-control" (change)="onPageChange($event, '2')">
+            <option *ngFor="let item of PageTotalNumber" [value]="item">
+              {{ item }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="dialogRef">
+  <div class="modal-dialog">
+    <div class="modal-content popup_success">
+      <div class="modal-body">
+        <h4 class="popup_success">{{ selectedRule }}</h4>
+        <label class="popup_success">Are You Sure you want to delete this Rule?</label>
+        <div class="col-lg-12 text-right">
+          <button type="button" class="btn btn-light mr-2" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-light" data-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

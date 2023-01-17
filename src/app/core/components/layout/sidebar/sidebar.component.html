@@ -1,0 +1,107 @@
+<div class="wrapper">
+    <nav id="sidebar">
+        <ul id="sidebar_menu" class="sidebar_content">
+            <li>
+                <a class="has-arrow" data-toggle="collapse" href="#ui-dashboard" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <i class='fas fa-home icon_alert'></i>
+                    <span>Dashboard</span>
+                </a>
+                <div class="collapse" id="ui-dashboard">
+                    <ul class="nav_content">
+                        <li><a routerLink="/dashboard" [ngClass]="{'active': authService.TitleName === 'Overview'}"><i
+                                    class='fas fa-tv icon_device'></i>Overview</a></li>
+                        <li><a routerLink="/dashboard/firewall-bandwidth" routerLinkActive="active"><i
+                                    class='fas fa-tv icon_device'></i>Firewall-bandwidth</a>
+                        </li>
+                        <li><a routerLink="/dashboard/firewall-duration" routerLinkActive="active"><i
+                                    class='fas fa-tv icon_device'></i>Firewall-duration</a>
+                        </li>
+                        <li><a routerLink="/dashboard/firewall-protection" routerLinkActive="active"><i
+                                    class='fas fa-tv icon_device'></i>Firewall-Protection</a>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+            </li>
+
+            <li>
+                <a class="has-arrow" data-toggle="collapse" href="#ui-monitoring" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <i class='fas fa-home icon_alert'></i>
+                    <span>Monitoring Dashboards</span>
+                </a>
+                <div class="collapse" id="ui-dashboard">
+                    <ul class="nav_content">
+                        <li><a routerLink="/zero-monitoring"> <i
+                                    class='fas fa-tv icon_device'></i>Zeroth Monitoring Iframe
+                            </a></li>
+                        <!-- <li><a routerLink="/create-alerts/multiple" routerLinkActive="active"><i
+                                    class='fas fa-caret-right image'></i>{{'Sidebar.createMultiples' | translate}}</a>
+                        </li> -->
+                        <li><a routerLink="/zero-monitoring/first" routerLinkActive="active"><i
+                                    class='fas fa-tv icon_device'></i>First Monitoring Iframe</a></li>
+                        <li><a routerLink="/zero-monitoring/second" routerLinkActive="active"><i
+                                    class='fas fa-tv icon_device'></i>Second Monitoring Iframe</a></li>
+                    </ul>
+                </div>
+                <hr>
+            </li>
+            <li>
+                <a class="has-arrow" data-toggle="collapse" href="#ui-Discover" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <i class='fas fa-th-large icon_alert'></i>
+                    <span>Discover</span>
+                </a>
+                <div class="collapse" id="ui-Discover">
+                    <ul class="nav_content">
+                        <li><a routerLink="/zero"><i
+                                    class='fas fa-tv icon_device'></i>Zero Iframe</a></li>
+                        <li><a routerLink="/zero/first-iframe" routerLinkActive="active"><i
+                                    class='fas fa-tv icon_device'></i> First Iframe</a>
+                        </li>
+                        <li><a routerLink="/zero/second-iframe" routerLinkActive="active"><i
+                                    class='fas fa-tv icon_device'></i> Second Iframe</a>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+            </li>
+         
+            <li>
+                <a class="has-arrow" data-toggle="collapse" href="#ui-reporting" aria-expanded="false"
+                    aria-controls="ui-basic">
+                    <i class='fas fa-pencil-alt icon_alert'></i>
+                    <span>Reporting</span>
+                </a>
+                <div class="collapse" id="ui-reporting">
+                    <ul class="nav_content">
+                        <li><a routerLink="/reporting" [ngClass]="{'active': authService.TitleName === 'Reporting'}"><i
+                                    class='fas fa-tv icon_device'></i>Report</a></li>
+                        <li><a routerLink="/reporting/report-list" routerLinkActive="active"><i
+                                    class='fas fa-tv icon_device'></i>Report-list</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <hr>
+            </li>
+
+            <li>
+                <a class="has-arrow" data-toggle="collapse" href="#ui-Detection" aria-expanded="false"
+                    aria-controls="ui-basic">
+
+                    <i class="fa fa-bars icon_alert"></i>
+                    <span> Detection Rules</span>
+                </a>
+                <div class="collapse" id="ui-Detection">
+                    <ul class="nav_content">
+                        <li><a routerLink="/rules" [ngClass]="{'active': authService.TitleName === 'Rules'}"><i
+                                    class='fas fa-pencil-alt'></i>Rules</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>

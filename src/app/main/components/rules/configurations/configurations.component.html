@@ -1,0 +1,260 @@
+<div class="row p-2 title">
+  <div class="container">
+    <h1 class="title-text mb-0">
+      External Ticket Creation Configuation Management
+    </h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row p-1 col-lg-12 jflex">
+    <div class="col-lg-6 jflex fcolumn">
+      <div class="col-lg-12 listing">
+        <div class="row flex p-1">
+          <div class="col-sm-12 flex1">
+            <div class="title-block pull-left">
+              <a class="sectionName">Existing Configurations</a>
+            </div>
+            <!-- <div class="title-block pull-right">
+              <button class="cbutton" (click)="openDialog()">
+                Create New Configuration
+              </button>
+            </div> -->
+          </div>
+        </div>
+        <hr class="m-0" />
+        <div class="flex space-between rule-list-row">
+          <div class="list-column">
+            <div class="head-column-text">Configuration Name</div>
+          </div>
+          <div class="list-column just-center">
+            <div class="head-column-text">Reporter</div>
+          </div>
+        </div>
+        <hr class="m-0" />
+        <div class="rule-list-row rule-row flex space-between" *ngFor="let i of configs; let ind = index"
+          (click)="selectThisConfig(ind)">
+          <div class="list-column">
+            <div class="column-text ruleName">{{ i["_source"]["name"] }}</div>
+          </div>
+          <div class="list-column just-center">
+            <div class="column-text">{{ i["_source"]["usermail"] }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 listing" *ngIf="selectedConfig['name']">
+        <div class="row flex p-1">
+          <div class="col-sm-12">
+            <div class="title-block">
+              <a class="sectionName">Details</a>
+            </div>
+          </div>
+        </div>
+        <hr class="m-0" />
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Configuration Name</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column">
+            <a>{{ selectedConfig["name"] }} </a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>URL</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column">
+            <a>{{ selectedConfig["url"] }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Project Key</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column">
+            <a>{{ selectedConfig["projectkey"] }}</a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Reporter</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column">
+            <a>{{ selectedConfig["usermail"] }} </a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Assignee</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column">
+            <a>{{ selectedConfig["assignee"] }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- second section -->
+    <div class="col-lg-6 jflex fcolumn displayPanel">
+      <div class="col-lg-12 listing">
+        <div class="row flex p-1">
+          <div class="col-sm-12">
+            <div class="title-block pull-left">
+              <a class="sectionName">Details</a>
+            </div>
+          </div>
+        </div>
+        <hr class="m-0" />
+        <div>
+          <div class="row flex">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>Configuration Name</label>
+                <input #cNAME="ngModel" type="text" class="form-control" placeholder="" name="rulename"
+                  [(ngModel)]="newConfigName" required />
+                <div *ngIf="cNAME.invalid" style="color: red">*Required</div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>Project URL</label>
+                <input #cURL="ngModel" type="text" class="form-control" placeholder="" name="rulename"
+                  [(ngModel)]="newConfigUrl" required />
+                <div *ngIf="cURL.invalid" style="color: red">*Required</div>
+                <!-- <div class="invalid-feedback">This Field is Required</div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>Project Key</label>
+                <input #cKEY="ngModel" type="text" class="form-control" placeholder="" name="rulename"
+                  [(ngModel)]="newConfigKey" required />
+                <div *ngIf="cKEY.invalid" style="color: red">*Required</div>
+                <!-- <div class="invalid-feedback">This Field is Required</div> -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>Reporter JIRA email</label>
+                <input #cMAIL="ngModel" type="text" class="form-control" placeholder="" name="rulename"
+                  [(ngModel)]="newConfigMail" required />
+                <div *ngIf="cMAIL.invalid" style="color: red">*Required</div>
+                <!-- <div class="invalid-feedback">This Field is Required</div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>Assignee</label>
+                <input #cASSI="ngModel" type="text" class="form-control" placeholder="" name="rulename"
+                  [(ngModel)]="newConfigAssignee" required />
+                <div *ngIf="cASSI.invalid" style="color: red">*Required</div>
+                <!-- <div class="invalid-feedback">This Field is Required</div> -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>API Key</label>
+                <input #cAP="ngModel" type="password" class="form-control" placeholder="" name="rulename"
+                  [(ngModel)]="newConfigAp" required />
+                <div *ngIf="cAP.invalid" style="color: red">*Required</div>
+                <!-- <div class="invalid-feedback">This Field is Required</div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-right">
+          <!-- <button
+            mat-button
+            [disabled]="
+              cNAME.invalid ||
+              cURL.invalid ||
+              cKEY.invalid ||
+              cMAIL.invalid ||
+              cASSI.invalid ||
+              cAP.invalid
+            "
+            class="pull-right button-one"
+            (click)="createConfig()"
+          >
+            Create Configuration
+          </button> -->
+
+          <button [disabled]="
+          cNAME.invalid ||
+          cURL.invalid ||
+          cKEY.invalid ||
+          cMAIL.invalid ||
+          cASSI.invalid ||
+          cAP.invalid
+        " class="pull-right button-one btn-lg" data-toggle="modal" data-target="#dialogRef"
+            (click)="createConfig()">Create Configuration</button>
+        </div>
+      </div>
+      <!-- <div class="col-lg-12 listing mar-top-1 fgrow">
+        <div class="row flex p-1">
+          <div class="col-sm-12">
+            <div class="title-block pull-left">
+              <a class="sectionName">Schedule</a>
+            </div>
+          </div>
+        </div>
+        <hr class="m-0" />
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Runs Every</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column">
+            <a> runs_every runs_every_in </a>
+          </div>
+        </div>
+        <div class="row flex p-1">
+          <div class="col-lg-4 propertyName">
+            <a>Additional Look-back Time</a>
+          </div>
+          <div class="col-lg-8 propertyValue list-column">
+            <a> additional_loopback additional_loopback_in </a>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+<!-- <ng-template #dialogRef let-mydata>
+  <h2 mat-dialog-title>Success</h2>
+  <h3>New Configuration has been Created.</h3>
+  <div class="pull-right">
+    <button mat-button mat-dialog-close="true">OK</button>
+  </div>
+</ng-template> -->
+<div class="modal" id="dialogRef">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <!-- <div class="modal-header">
+      <h4 class="modal-title"> Success</h4>
+      <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+    </div> -->
+      <!-- Modal body -->
+      <div class="modal-body">
+        <h4 class="popup_success">Success</h4>
+        <label class="popup_success">New Configuration has been Created.</label>
+        <div class="col-lg-12 text-right">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+        </div>
+        <!-- <app-create-opt [optId]="optId" (valueChange)='ValueChanged($event)'></app-create-opt> -->
+      </div>
+    </div>
+  </div>
+</div>
