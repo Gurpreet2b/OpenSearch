@@ -294,7 +294,7 @@
           class="widget-body generator-content collapse in"
         ></div> -->
         </div>
-        <div *ngIf="reportDataReady" class="widget generator-content" id="contentFull" #contentFull>
+        <div *ngIf="reportDataReady" class="widget generator-content" id="content" #content>
             <div class="widget-heading-report" data-toggle="collapse" href="#report" aria-expanded="true">
                 <div>
                     <div class="row">
@@ -3965,7 +3965,7 @@
          (click)="test()">
         Test
     </button> -->
-    <button class="floatingButton fB-left" title="Save As PDF" (click)="DownloadPDF('contentFull')">
+    <button class="floatingButton fB-left" title="Save As PDF" (click)="DownloadPDF('content')">
         <i class="far fa-file-pdf"></i>
     </button>
     <button (click)="topFunction()" class="floatingButton" title="Go to top">

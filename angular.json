@@ -31,12 +31,7 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "jspdf",
-              "raf",
-              "@babel/runtime-corejs3",
-              "lodash",
-              "moment",
-              "canvg"
+              "raf"
             ]
           },
           "configurations": {

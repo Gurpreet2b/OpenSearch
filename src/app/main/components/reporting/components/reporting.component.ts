@@ -30,7 +30,7 @@ export class ReportingComponent implements OnInit {
   public chartOptions: any;
   public chartOptionsLine: any;
   public OPTIONS: any = null;
-  @ViewChild('contentFull')
+  @ViewChild('content')
   // @ViewChild('appbysizechart')
   content!: ElementRef<any>;
   document: any;

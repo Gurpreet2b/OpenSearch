@@ -39,6 +39,13 @@ export class DashboardComponent implements OnInit {
   public productivityPieChart: any;
   public trafficPieChart1: any;
 
+
+  //charts data
+  public productivityPieChartData:any = [];
+  public productivityOverTime: any;
+  public trafficActionPieChartData: any;
+  public trafficChartData: any;
+
   // columnChart: any = [{
   //   name: 'Year 1990',
   //   data: [631, 727, 3202, 721, 426]
@@ -52,12 +59,12 @@ export class DashboardComponent implements OnInit {
   //   name: 'Year 2018',
   //   data: [1276, 1007, 4561, 746, 742]
   // }]
-  newData:any = [
-    [1245466562000,45],
-    [1245566562000,55],
-    [1245666562000,65],
-    [1245766562000,35],
-  ]
+  // newData:any = [
+  //   [1245466562000,45],
+  //   [1245566562000,55],
+  //   [1245666562000,65],
+  //   [1245766562000,35],
+  // ]
 
 
   barChartSeriesData: any = [{
@@ -132,11 +139,7 @@ export class DashboardComponent implements OnInit {
     }
   ]
 
-  traffic: any = [{
-    type: 'area',
-    name: 'Traffic',
-    data: [6, 1, 4, 6, 3, 8]
-  }]
+ 
 
   constructor(private _http: HttpService,
     private router: Router,
@@ -172,11 +175,7 @@ export class DashboardComponent implements OnInit {
     }
     this.localSavedState = !this.localSavedState;
   }
-  redrawThischart(){
-    debugger;
-    this.bandwidthOvertime1.series = this.bandwidthOvertime;
-    this.bandwidthOvertime1.redraw();
-  }
+
   shrink() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.6);
@@ -230,8 +229,7 @@ export class DashboardComponent implements OnInit {
       return;
     }
     this.loading = true;
-    // this.fullStartDate.setHours(this.fromHours, this.fromMinutes, 0);
-    // this.fullEndDate.setHours(this.toHours, this.toMinutes, 0);
+    
     let request: any = {
       start: new Date(this.fullStartDate).toISOString(),
       end: new Date(this.fullEndDate).toISOString(),
@@ -243,31 +241,18 @@ export class DashboardComponent implements OnInit {
         if (res.status) {
           alert('Success');
           console.log(res)
-          // this.IsUserSelected = this.userType;
+      
           this.bandwidthOvertime = res.data.BandWidthOverTime;
-          this.productivityPieChart = res.data.ProductivityPie;
-          // this.reportData_Blocked = res.data.Data.Widgets.Blocked;
-          // this.reportData_Warned = res.data.Data.Widgets.Warned;
-          // this.reportData_Productivity = res.data.Data.Widgets.Productivity;
-          // this.reportData_Unacceptable = res.data.Data.Widgets.Unacceptable;
-          // this.reportData_Unproductive = res.data.Data.Widgets.Unproductive;
-          // this.reportData_Productive = res.data.Data.Widgets.Productive;
-          // this.reportData_Acceptable = res.data.Data.Widgets.Acceptable;
+          this.productivityOverTime = res.data.ProductivityOverTime;
+          this.productivityPieChartData = res.data.ProductivityPie;
+       
 
-          // this.ApplicationsTableData =
-          //   res.data.Data.Widgets.Productivity.ApplicationsTableData;
-          // this.SitesTableData =
-          //   res.data.BandWidthOverTime;
-          // this.AllTopProductivityTables =
-          //   res.data.Data.Widgets['Productivity-Tables'];
+          this.trafficActionPieChartData = res.data.TrafficActionsPie;
+          this.trafficChartData = res.data.TrafficActionsOverTime
+         
 
           this.chartOverview();
-          // this.reportDataReady = true;
-          // this.IsDisabledReport = true;
-          // await new Promise((f) => setTimeout(f, 3000));
-          // this.onDismiss();
-          // this.scroll(this.content.nativeElement);
-          // this.scroll(this.document.getElementById('content'))
+         
           this.createCharts()
         } else {
           this.loading = false;
@@ -295,6 +280,28 @@ export class DashboardComponent implements OnInit {
         zoomType: 'x',
         backgroundColor: 'snow',
       },
+
+      time: {
+        // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        // timezone: 'Asia/Calcutta',
+        useUTC: false,
+      },
+      xAxis: {
+        title: {
+          text: 'Date',
+        },
+        type: 'datetime',
+        dateTimeLabelFormats: {
+          millisecond: '%I:%M:%S.%L %p',
+          second: '%I:%M:%S %p',
+          minute: '%I:%M %p',
+          hour: '%I:%M %p',
+          // day: '%e. %b',
+          // week: '%e. %b',
+          // month: "%b '%y",
+          // year: '%Y',
+        },
+      },
       title: {
         text: 'Traffic Actions over Time'
       },
@@ -302,9 +309,7 @@ export class DashboardComponent implements OnInit {
       //   text: document.ontouchstart === undefined ?
       //     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
       // },
-      xAxis: {
-        // type: 'datetime'
-      },
+     
       yAxis: {
         title: {
           // text: 'Exchange rate'
@@ -343,7 +348,7 @@ export class DashboardComponent implements OnInit {
         enabled: false
       },
 
-      series: this.traffic
+      series: []
     }
     if (widget === 'bandwidth-chart') {
       this.TrafficActionsOverTime = TrafficChart;
@@ -383,7 +388,16 @@ export class DashboardComponent implements OnInit {
       credits: {
         enabled: false
       },
-      series: this.topPieChartData
+      series: []
+      // series : [
+      //    {
+      //     type: 'pie',
+      //     name: 'Brands',
+      //     colorByPoint: true,
+      //     data: [],
+      //   },
+      // ]
+      
 
     }
     if (widget === 'productivity-pie') {
@@ -399,19 +413,39 @@ export class DashboardComponent implements OnInit {
   setLineChartData(widget: string, bytes: string = 'MB') {
     let chartOptions = {
       chart: {
-        type: "spline",
+        type: "",
         backgroundColor: 'snow',
       },
+
+      time: {
+        // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        // timezone: 'Asia/Calcutta',
+        useUTC: false,
+      },
+      xAxis: {
+        title: {
+          text: 'Date',
+        },
+        type: 'datetime',
+        dateTimeLabelFormats: {
+          millisecond: '%I:%M:%S.%L %p',
+          second: '%I:%M:%S %p',
+          minute: '%I:%M %p',
+          hour: '%I:%M %p',
+          // day: '%e. %b',
+          // week: '%e. %b',
+          // month: "%b '%y",
+          // year: '%Y',
+        },
+      },
+    
       title: {
         text: ""
       },
       // subtitle: {
       //   text: "Source: WorldClimate.com"
       // },
-      xAxis: {
-        // categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        //   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-      },
+     
       yAxis: {
         title: {
           text: "Temperature °C"
@@ -426,7 +460,7 @@ export class DashboardComponent implements OnInit {
       credits: {
         enabled: false
       },
-      series: this.newData
+      series: []
     };
     if (widget === 'bandwidth-chart') {
       this.ProductivityOverTimeChartData = chartOptions;
@@ -503,31 +537,31 @@ export class DashboardComponent implements OnInit {
     console.log('initializing charts');
 
     this.setLineChartData('bandwidth-chart', 'MB');
-    this.ProductivityOverTimeChartData['series'] = this.barChart;
+    this.ProductivityOverTimeChartData['series'] = this.productivityOverTime;
 
     this.setTrafficChartData('bandwidth-chart', 'MB');
-    this.TrafficActionsOverTime['series'] = this.traffic;
+    this.TrafficActionsOverTime['series'] = this.trafficChartData;
 
     this.setPieChartData('productivity-pie', 'MB');
-    this.TotalProductivityPieChart['series'] = this.productivityPieChart;
+    this.TotalProductivityPieChart['series'] = this.productivityPieChartData;
 
     this.setPieChartData('top-action-pie-applications', 'MB');
-    this.TrafficActionsPieChart['series'] = this.topPieChartData;
+    this.TrafficActionsPieChart['series'] = this.trafficActionPieChartData;
 
     this.setLineChartData('bandwidth-chart-band', 'MB');
-    // this.BandwidthOverTimeChartData['series'] = this.newData;
+    this.BandwidthOverTimeChartData['series'] = this.bandwidthOvertime;
 
   }
   createCharts(){
-    console.log(this.bandwidthOvertime)
-    console.log(this.BandwidthOverTimeChartData)
+    // console.log(this.bandwidthOvertime)
+    // console.log(this.BandwidthOverTimeChartData)
     this.bandwidthOvertime1 = Highcharts.chart('bandwidthOvertime1', this.BandwidthOverTimeChartData);
-    this.ProductivityOverTimeChartData.series = this.newData;
-    console.log(this.ProductivityOverTimeChartData)
+    // this.ProductivityOverTimeChartData.series = this.productivityOverTime;
+    // console.log(this.ProductivityOverTimeChartData)
     this.productivityOvertime1 = Highcharts.chart('productivityOvertime1', this.ProductivityOverTimeChartData);
     this.trafficActionOvertime1 = Highcharts.chart('trafficActionOvertime1', this.TrafficActionsOverTime);
     
-    console.log(this.TotalProductivityPieChart )
+    // console.log(this.productivityPieChartData )
     this.productivityPieChart = Highcharts.chart('productivityPieChart', this.TotalProductivityPieChart);
 
     this.trafficPieChart1 = Highcharts.chart('trafficPieChart1', this.TrafficActionsPieChart);
