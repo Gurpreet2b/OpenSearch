@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   public localSavedState: boolean = true;
   public bandwidthOvertime: any = [];
   public showIt = true;
+  public IsOverviewCard: any = false;
 
   public toggleshowIt(){
     this.showIt = !this.showIt;
@@ -237,7 +238,7 @@ export class DashboardComponent implements OnInit {
     };
 
     this._http.post('eql/overview', request).subscribe(
-      async (res) => {
+      (res) => {
         if (res.status) {
           alert('Success');
           console.log(res)
@@ -245,15 +246,12 @@ export class DashboardComponent implements OnInit {
           this.bandwidthOvertime = res.data.BandWidthOverTime;
           this.productivityOverTime = res.data.ProductivityOverTime;
           this.productivityPieChartData = res.data.ProductivityPie;
-       
 
           this.trafficActionPieChartData = res.data.TrafficActionsPie;
           this.trafficChartData = res.data.TrafficActionsOverTime
-         
-
           this.chartOverview();
-         
           this.createCharts()
+          this.IsOverviewCard = true;
         } else {
           this.loading = false;
           alert('something is wrong');
@@ -274,13 +272,13 @@ export class DashboardComponent implements OnInit {
   }
 
   //trafic chart
-  setTrafficChartData(widget: string, bytes: string = 'MB') {
+  setTrafficChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
     let TrafficChart = {
       chart: {
         zoomType: 'x',
+        plotShadow: false,
         backgroundColor: 'snow',
       },
-
       time: {
         // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         // timezone: 'Asia/Calcutta',
@@ -288,7 +286,7 @@ export class DashboardComponent implements OnInit {
       },
       xAxis: {
         title: {
-          text: 'Date',
+          text: 'date',
         },
         type: 'datetime',
         dateTimeLabelFormats: {
@@ -303,53 +301,61 @@ export class DashboardComponent implements OnInit {
         },
       },
       title: {
-        text: 'Traffic Actions over Time'
+        text: type
       },
-      // subtitle: {
-      //   text: document.ontouchstart === undefined ?
-      //     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-      // },
-     
-      yAxis: {
-        title: {
-          // text: 'Exchange rate'
-        }
-      },
-      legend: {
-        enabled: true
-      },
-      plotOptions: {
-        area: {
-          fillColor: {
-            linearGradient: {
-              x1: 0,
-              y1: 0,
-              x2: 0,
-              y2: 1
-            },
-            stops: [
-              [0, Highcharts.getOptions().colors[0]],
-              [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-            ]
-          },
-          marker: {
-            radius: 2
-          },
-          lineWidth: 1,
-          states: {
-            hover: {
-              lineWidth: 1
-            }
-          },
-          threshold: null
-        }
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
       },
       credits: {
-        enabled: false
+        enabled: false,
       },
-
-      series: []
-    }
+      plotOptions: {
+        // pie: {
+        //   allowPointSelect: true,
+        //   cursor: 'pointer',
+        //   dataLabels: {
+        //     enabled: true,
+        //     format: '<b>{point.percentage:.1f}%<b>',
+        //     style: {
+        //       fontSize: '10px',
+        //     },
+        //     connectorShape: 'straight',
+        //     crookDistance: '70%',
+        //   },
+        //   showInLegend: false,
+        // },
+        // area: {
+        //   fillColor: {
+        //     linearGradient: {
+        //       x1: 0,
+        //       y1: 0,
+        //       x2: 0,
+        //       y2: 1,
+        //     },
+        //     // stops: [
+        //     //     [0, Highcharts.getOptions().colors[0]],
+        //     //     [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+        //     // ]
+        //   },
+        //   marker: {
+        //     radius: 2,
+        //   },
+        //   lineWidth: 1,
+        //   states: {
+        //     hover: {
+        //       lineWidth: 1,
+        //     },
+        //   },
+        //   threshold: null,
+        // },
+      },
+      series: [
+        {
+          name: 'Year 1990',
+          data: [631, 727, 3202, 72],
+        },
+      ],
+    };
     if (widget === 'bandwidth-chart') {
       this.TrafficActionsOverTime = TrafficChart;
     }
@@ -357,49 +363,92 @@ export class DashboardComponent implements OnInit {
 
   //pie chart data
 
-  setPieChartData(widget: string, bytes: string = 'MB') {
+  setPieChartData(widget: string, bytes: string = 'MB', title: string = 'Chart') {
+    
     let chartData = {
       chart: {
-        zoomType: 'x',
+        //  plotBorderWidth: null,
+        type: 'pie',
+        plotShadow: false,
         backgroundColor: 'snow',
-        type: 'pie'
       },
       title: {
-        text: 'Total Productivity'
+        text: title,
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-      },
-      accessibility: {
-        point: {
-          valueSuffix: '%'
-        }
-      },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-            enabled: false
-          },
-          showInLegend: true
-        }
+        pointFormat:
+          '{series.name}: <b>{point.y} ' +
+          bytes +
+          ' ({point.percentage:.1f}%) </b>',
       },
       credits: {
-        enabled: false
+        enabled: false,
       },
-      series: []
-      // series : [
-      //    {
-      //     type: 'pie',
-      //     name: 'Brands',
-      //     colorByPoint: true,
-      //     data: [],
-      //   },
-      // ]
-      
+      yAxis: {
+        labels: {
+          format: '${value}',
+          title: {
+            text: 'Thousands',
+          },
+        },
+      },
+      // plotOptions: {
+      //   pie: {
+      //     innerSize: 200,
+      //     depth: 45,
+      //       dataLabels: {
+      //           enabled: false,
+      //       }
+      //   }
+      // },
+      plotOptions: {
+        pie: {
+          innerSize: 200,
+              // depth: 45,
+         
+          allowPointSelect: true,
+          cursor: 'pointer',
 
-    }
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.percentage:.1f}%<b>',
+            style: {
+              fontSize: '10px',
+            },
+            connectorShape: 'straight',
+            crookDistance: '70%',
+          },
+          showInLegend: true,
+        },
+        series: {
+          states: {
+            hover: {
+              enabled: false,
+            },
+            inactive: {
+              opacity: 1,
+            },
+          },
+        },
+      },
+      legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        layout: 'vertical',
+        x: -10,
+        y: 85,
+        itemMarginTop: 5,
+        itemDistance: 20,
+      },
+      series: [
+        {
+          type: 'pie',
+          name: 'Brands',
+          colorByPoint: true,
+          data: [],
+        },
+      ],
+    };
     if (widget === 'productivity-pie') {
       this.TotalProductivityPieChart = chartData;
     }
@@ -410,13 +459,15 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  setLineChartData(widget: string, bytes: string = 'MB') {
+  setLineChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
+    
+
     let chartOptions = {
       chart: {
-        type: "",
+        zoomType: 'x',
+        plotShadow: false,
         backgroundColor: 'snow',
       },
-
       time: {
         // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         // timezone: 'Asia/Calcutta',
@@ -424,7 +475,7 @@ export class DashboardComponent implements OnInit {
       },
       xAxis: {
         title: {
-          text: 'Date',
+          text: 'date',
         },
         type: 'datetime',
         dateTimeLabelFormats: {
@@ -438,29 +489,61 @@ export class DashboardComponent implements OnInit {
           // year: '%Y',
         },
       },
-    
       title: {
-        text: ""
-      },
-      // subtitle: {
-      //   text: "Source: WorldClimate.com"
-      // },
-     
-      yAxis: {
-        title: {
-          text: "Temperature °C"
-        }
-      },
-      legend: {
-        enabled: true
+        text: type
       },
       tooltip: {
-        valueSuffix: " °C"
+        pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
       },
       credits: {
-        enabled: false
+        enabled: false,
       },
-      series: []
+      plotOptions: {
+        // pie: {
+        //   allowPointSelect: true,
+        //   cursor: 'pointer',
+        //   dataLabels: {
+        //     enabled: true,
+        //     format: '<b>{point.percentage:.1f}%<b>',
+        //     style: {
+        //       fontSize: '10px',
+        //     },
+        //     connectorShape: 'straight',
+        //     crookDistance: '70%',
+        //   },
+        //   showInLegend: false,
+        // },
+        // area: {
+        //   fillColor: {
+        //     linearGradient: {
+        //       x1: 0,
+        //       y1: 0,
+        //       x2: 0,
+        //       y2: 1,
+        //     },
+        //     // stops: [
+        //     //     [0, Highcharts.getOptions().colors[0]],
+        //     //     [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+        //     // ]
+        //   },
+        //   marker: {
+        //     radius: 2,
+        //   },
+        //   lineWidth: 1,
+        //   states: {
+        //     hover: {
+        //       lineWidth: 1,
+        //     },
+        //   },
+        //   threshold: null,
+        // },
+      },
+      series: [
+        {
+          name: 'Year 1990',
+          data: [631, 727, 3202, 72],
+        },
+      ],
     };
     if (widget === 'bandwidth-chart') {
       this.ProductivityOverTimeChartData = chartOptions;
@@ -536,19 +619,19 @@ export class DashboardComponent implements OnInit {
   public chartOverview() {
     console.log('initializing charts');
 
-    this.setLineChartData('bandwidth-chart', 'MB');
+    this.setLineChartData('bandwidth-chart', 'MB', 'Productivity over Time');
     this.ProductivityOverTimeChartData['series'] = this.productivityOverTime;
 
-    this.setTrafficChartData('bandwidth-chart', 'MB');
+    this.setTrafficChartData('bandwidth-chart', 'MB', 'Traffic Actions over Time');
     this.TrafficActionsOverTime['series'] = this.trafficChartData;
 
-    this.setPieChartData('productivity-pie', 'MB');
+    this.setPieChartData('productivity-pie', 'MB', 'Total Productivity');
     this.TotalProductivityPieChart['series'] = this.productivityPieChartData;
 
-    this.setPieChartData('top-action-pie-applications', 'MB');
-    this.TrafficActionsPieChart['series'] = this.trafficActionPieChartData;
+    this.setPieChartData('top-action-pie-applications', 'MB', 'Traffic Actions');
+    this.TrafficActionsPieChart['series']= this.trafficActionPieChartData;
 
-    this.setLineChartData('bandwidth-chart-band', 'MB');
+    this.setLineChartData('bandwidth-chart-band', 'MB', 'Bandwidth over Time');
     this.BandwidthOverTimeChartData['series'] = this.bandwidthOvertime;
 
   }

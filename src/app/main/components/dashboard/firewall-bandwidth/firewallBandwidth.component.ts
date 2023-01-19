@@ -30,6 +30,7 @@ export class FirewallBandwidthComponent implements OnInit {
   public startDate: any = new Date();
   public endDate: any = new Date();
   public localSavedState: boolean = true;
+  public IsOverviewCard: any = false;
 
  //ids of chart expand
   public topApplicationId: any;
@@ -44,7 +45,7 @@ export class FirewallBandwidthComponent implements OnInit {
   public topsitesColumnChartData: any;
 
   //table data
-  public topDownloadTableData: any;
+  public topDownloadTableData: any = [];
 
   topColumnChartData: any = [{
     name: 'Year 1990',
@@ -198,10 +199,10 @@ export class FirewallBandwidthComponent implements OnInit {
           this.toptrafficCategoriesChartData = res.data.TopCategories;
           this.topUsersIpBarChartData = res.data.TopUsers;
           this.topsitesColumnChartData = res.data.TopSites;
-          // this.topDownloadTableData = res.data.
+          this.topDownloadTableData = res.data.TopDownloads;
           this.chartBandwidth();
-         
-          this.createBandwidthCharts()
+          this.createBandwidthCharts();
+          this.IsOverviewCard = true;
         } else {
           this.loading = false;
           alert('something is wrong');
@@ -223,7 +224,7 @@ export class FirewallBandwidthComponent implements OnInit {
 
 
   //trafic chart
-  setPieChartApplications(widget: string, bytes: string = 'MB') {
+  setPieChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart') {
     let TopApplicationsChartData = {
       chart: {
         zoomType: 'x',
@@ -243,6 +244,7 @@ export class FirewallBandwidthComponent implements OnInit {
       },
       plotOptions: {
         pie: {
+          innerSize: 70,
           allowPointSelect: true,
           cursor: 'pointer',
           dataLabels: {
@@ -258,6 +260,79 @@ export class FirewallBandwidthComponent implements OnInit {
       series: []
 
     }
+    // let TopApplicationsChartData = {
+    //   chart: {
+    //     //  plotBorderWidth: null,
+    //     type: 'pie',
+    //     plotShadow: false,
+    //     backgroundColor: 'snow',
+    //   },
+    //   title: {
+    //     text: title
+    //   },
+    //   tooltip: {
+    //     pointFormat:
+    //       '{series.name}: <b>{point.y} ' +
+    //       bytes +
+    //       ' ({point.percentage:.1f}%) </b>',
+    //   },
+    //   credits: {
+    //     enabled: false,
+    //   },
+    //   yAxis: {
+    //     labels: {
+    //       format: '${value}',
+    //       title: {
+    //         text: 'Thousands',
+    //       },
+    //     },
+    //   },
+    //   plotOptions: {
+    //     pie: {
+    //       innerSize: 20,
+    //       allowPointSelect: true,
+    //       cursor: 'pointer',
+
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '<b>{point.percentage:.1f}%<b>',
+    //         style: {
+    //           fontSize: '10px',
+    //         },
+    //         connectorShape: 'straight',
+    //         crookDistance: '100%',
+    //       },
+    //       showInLegend: true,
+    //     },
+    //     series: {
+    //       states: {
+    //         hover: {
+    //           enabled: false,
+    //         },
+    //         inactive: {
+    //           opacity: 1,
+    //         },
+    //       },
+    //     },
+    //   },
+    //   // legend: {
+    //   //   align: 'right',
+    //   //   verticalAlign: 'top',
+    //   //   layout: 'vertical',
+    //   //   x: -10,
+    //   //   y: 85,
+    //   //   itemMarginTop: 5,
+    //   //   itemDistance: 20,
+    //   // },
+    //   series: [
+    //     {
+    //       type: 'pie',
+    //       name: 'Brands',
+    //       colorByPoint: true,
+    //       data: [],
+    //     },
+    //   ],
+    // };
     if (widget === 'top-applications') {
       this.TopApplications = TopApplicationsChartData;
     }
@@ -266,38 +341,8 @@ export class FirewallBandwidthComponent implements OnInit {
     }
   }
 
-  setBarChartApplications(widget: string, bytes: string = 'MB') {
-    // let TopApplicationsBarChartData = {
-    //   chart: {
-    //     zoomType: 'x',
-    //     backgroundColor: 'snow',
-    //     type: 'bar'
-    //   },
-    //   title: {
-    //     text: 'Top Users IPs'
-    //   },
-    //   xAxis: {
-    //     title: {
-    //       text: null
-    //     }
-    //   },ltip: {
-    //     valueSuffix: ' millions'
-    //   },
-    //   plotOptions: {
-    //     bar: {
-    //       dataLabels: {
-    //         enabled: true
-    //       }
-    //     }
-    //   },
-
-    //   credits: {
-    //     enabled: false
-    //   },
-    //   // series: this.topBarChartData
-    //   series : []
-
-    // }
+  setBarChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart') {
+   
     let TopApplicationsBarChartData = {
       chart: {
         type: 'bar',
@@ -319,7 +364,7 @@ export class FirewallBandwidthComponent implements OnInit {
         // },
       },
       title: {
-        text: '',
+        text: title
       },
       xAxis: {
         categories: [],
@@ -375,7 +420,7 @@ export class FirewallBandwidthComponent implements OnInit {
     }
   }
 
-  setColumnChartApplications(widget: string, bytes: string = 'MB') {
+  setColumnChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart') {
     let TopApplicationsColumnChartData = {
       chart: {
         zoomType: 'x',
@@ -383,7 +428,7 @@ export class FirewallBandwidthComponent implements OnInit {
         type: 'column'
       },
       title: {
-        text: 'Top Sites'
+        text: title
       },
       xAxis: {
         title: {
@@ -419,20 +464,21 @@ export class FirewallBandwidthComponent implements OnInit {
   public chartBandwidth() {
     console.log('initializing charts');
 
-    this.setPieChartApplications('top-applications', 'MB');
+    this.setPieChartApplications('top-applications', 'MB', 'Top Applications');
     this.TopApplications['series'] = this.topApplicationPieChartData.chart.Series;
     // this.TopTrafficCategoriesPieChart['series'] = this.topPieChartData;
 
-    this.setPieChartApplications('top-traffic-applications', 'MB');
+    this.setPieChartApplications('top-traffic-applications', 'MB', 'Top Traffic Categories');
     this.TopTrafficCategoriesPieChart['series'] = this.toptrafficCategoriesChartData.chart.Series;
 
-    this.setBarChartApplications('top-bar-chart', 'MB');
+    this.setBarChartApplications('top-bar-chart', 'MB', 'Top Users Ips');
     this.TopUsersIpsBar['xAxis']['categories'] = this.topUsersIpBarChartData.Labels;
     this.TopUsersIpsBar['series'] = this.topUsersIpBarChartData.Series;
 
-    this.setColumnChartApplications('top-sites-applications', 'MB');
+    this.setColumnChartApplications('top-sites-applications', 'MB', 'Top Sites');
     this.TopSitesColumnChart['xAxis']['categories'] = this.topsitesColumnChartData.chart.Labels;
     this.TopSitesColumnChart['series'] = this.topsitesColumnChartData.chart.Series;
+
   }
 
   createBandwidthCharts(){

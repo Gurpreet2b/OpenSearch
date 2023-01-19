@@ -1,19 +1,24 @@
 <div class="row">
     <div class="col-md-12 m-datepicker">
-        <div class="col-md-6">
-            <div class="col-md-6">
+        <div class="col-md-12">
+            <div class="col-md-5">
                 <div class="col-md-12 bandwidth-bg-color">
                     <label>Start date</label>
                     <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="startDate"
                         [ngModelOptions]="{ standalone: true }">
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="col-md-12 bandwidth-bg-color">
                     <label>End date</label>
                     <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="endDate"
                         [ngModelOptions]="{ standalone: true }">
                 </div>
+            </div>
+            <div class="col-md-2 m-t-1">
+                <button type="button" class="btn btn-color" (click)="overviewBandwidthDashboard()">
+              Set Date
+            </button>
             </div>
         </div>
     </div>
@@ -39,7 +44,7 @@
     </div>
 </div>
 
-<div class="row padding-bottom-zero">
+<div class="row padding-bottom-zero" *ngIf="IsOverviewCard">
     <div class="col-xs-6 col-sm-6 col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -50,22 +55,23 @@
                     <table class="table tablesorter" id="">
                         <thead class="text-primary">
                             <tr>
-                                <th>download File Name</th>
+                                <th>Download File Name</th>
                                 <th class="text-center">Download File Type</th>
                                 <th class="text-center">Download Size(MBs)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <!-- *ngFor="let top of topDownloadTableData.ApplicationsBySize.Table.Data" -->
+                            <tr *ngFor="let top of topDownloadTableData">
+                              
                                 <td>
-                                    
+                                    {{top.name}}
                                 </td>
                                 <td class="text-center">
-                                   
+                                    {{top.type}}
                                 </td>
                                 <td class="text-center">
-                                   
+                                  
+                                    {{top.size}}
                                 </td>
                             </tr>
                         </tbody>
