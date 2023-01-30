@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService, HttpService } from 'src/app/core/services';
 import HighchartsMore from 'highcharts/highcharts-more';
 import * as Highcharts from 'highcharts';
-// import $ from "jquery";
+import $ from "jquery";
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,6 @@ import * as Highcharts from 'highcharts';
 export class DashboardComponent implements OnInit {
   public loading = false;
   public fromHours: number = 1;
-
   highcharts = Highcharts;
   public multidatachart: any = {};
   public ProductivityOverTimeChartData: any = {};
@@ -30,7 +29,7 @@ export class DashboardComponent implements OnInit {
   public showIt = true;
   public IsOverviewCard: any = false;
 
-  public toggleshowIt(){
+  public toggleshowIt() {
     this.showIt = !this.showIt;
   }
   //ids of chart expand
@@ -40,107 +39,15 @@ export class DashboardComponent implements OnInit {
   public productivityPieChart: any;
   public trafficPieChart1: any;
 
+  //cards Data
+  public averageBandwidth: any;
+  public totalBandwidth: any;
 
   //charts data
-  public productivityPieChartData:any = [];
+  public productivityPieChartData: any = [];
   public productivityOverTime: any;
   public trafficActionPieChartData: any;
   public trafficChartData: any;
-
-  // columnChart: any = [{
-  //   name: 'Year 1990',
-  //   data: [631, 727, 3202, 721, 426]
-  // }, {
-  //   name: 'Year 2000',
-  //   data: [814, 841, 3714, 726, 331]
-  // }, {
-  //   name: 'Year 2010',
-  //   data: [1044, 944, 4170, 735, 640]
-  // }, {
-  //   name: 'Year 2018',
-  //   data: [1276, 1007, 4561, 746, 742]
-  // }]
-  // newData:any = [
-  //   [1245466562000,45],
-  //   [1245566562000,55],
-  //   [1245666562000,65],
-  //   [1245766562000,35],
-  // ]
-
-
-  barChartSeriesData: any = [{
-    name: 'Brands',
-    colorByPoint: true,
-    data: [{
-      name: 'Chrome',
-      y: 80,
-      sliced: true,
-      selected: true
-    }, {
-      name: 'Edge',
-      y: 50
-    }, {
-      name: 'Firefox',
-      y: 5.67
-    }, {
-      name: 'Safari',
-      y: 7.63
-    }, {
-      name: 'Internet Explorer',
-      y: 3.53
-    }, {
-      name: 'Opera',
-      y: 2.50
-    }, {
-      name: 'Sogou Explorer',
-      y: 5.84
-    }, {
-      name: 'QQ',
-      y: 9.51
-    }, {
-      name: 'Other',
-      y: 8.6
-    }, {
-      name: 'Sogou Explorer',
-      y: 4.84
-    }]
-  }]
-
-  topPieChartData: any = [{
-    name: 'Brands',
-    // colorByPoint: true,
-    data: [{
-
-      name: 'Objectionable',
-      y: 1.53
-    }, {
-      name: 'Unproductivity',
-      y: 1.40
-    }, {
-      name: 'Acceptable',
-      y: 0.84
-    }, {
-      name: 'Unacceptable',
-      y: 1.40
-    }]
-  }]
-
-  barChart: any = [
-    {
-      name: 'Tokyo',
-      data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-    },
-    {
-      name: 'New York',
-      data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-    },
-    {
-      name: 'Berlin',
-      data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-    }
-  ]
-
- 
 
   constructor(private _http: HttpService,
     private router: Router,
@@ -181,19 +88,19 @@ export class DashboardComponent implements OnInit {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.6);
     this.bandwidthOvertime1.setSize(window.innerWidth / 1.6, undefined)
-    this.productivityOvertime1.setSize(window.innerWidth / 1.6, undefined)
-    this.trafficActionOvertime1.setSize(window.innerWidth / 2.65, undefined)
-    this.productivityPieChart.setSize(window.innerWidth / 2.65, undefined)
-    this.trafficPieChart1.setSize(window.innerWidth / 2.65, undefined)
+    this.productivityPieChart.setSize(window.innerWidth / 4, undefined)
+    this.productivityOvertime1.setSize(window.innerWidth / 2, undefined)
+    this.trafficActionOvertime1.setSize(window.innerWidth / 2, undefined)
+    this.trafficPieChart1.setSize(window.innerWidth / 4, undefined)
   }
   expand() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.3);
     this.bandwidthOvertime1.setSize(window.innerWidth / 1.3, undefined)
-    this.productivityOvertime1.setSize(window.innerWidth / 1.3, undefined)
-    this.trafficActionOvertime1.setSize(window.innerWidth / 2.2, undefined)
-    this.productivityPieChart.setSize(window.innerWidth / 2.2, undefined)
-    this.trafficPieChart1.setSize(window.innerWidth / 2.2, undefined)
+    this.productivityPieChart.setSize(window.innerWidth / 3.3, undefined)
+    this.productivityOvertime1.setSize(window.innerWidth / 1.65, undefined)
+    this.trafficActionOvertime1.setSize(window.innerWidth / 1.65, undefined)
+    this.trafficPieChart1.setSize(window.innerWidth / 3.3, undefined)
   }
 
   printpre() {
@@ -210,6 +117,8 @@ export class DashboardComponent implements OnInit {
   }
 
   overviewDashboard() {
+    const target = "#overviewChart";
+    $(target).show();
     if (
       new Date(this.fullStartDate).getTime() >=
       new Date(this.fullEndDate).getTime()
@@ -230,7 +139,7 @@ export class DashboardComponent implements OnInit {
       return;
     }
     this.loading = true;
-    
+
     let request: any = {
       start: new Date(this.fullStartDate).toISOString(),
       end: new Date(this.fullEndDate).toISOString(),
@@ -239,14 +148,24 @@ export class DashboardComponent implements OnInit {
 
     this._http.post('eql/overview', request).subscribe(
       (res) => {
+
         if (res.status) {
-          alert('Success');
+          this.onDismiss();
+          // alert('Success');
           console.log(res)
-      
+          this.averageBandwidth = res.data.AverageBandwidth;
+          if (this.averageBandwidth.raw > 1024) {
+            let ab: any = this.averageBandwidth.raw / 1024
+            this.averageBandwidth.text = ab.toFixed([3]) + ' GB';
+          }
+          this.totalBandwidth = res.data.TotalBandwidth;
+          if (this.totalBandwidth.raw > 1024) {
+            let ab: any = this.totalBandwidth.raw / 1024
+            this.totalBandwidth.text = ab.toFixed([3]) + ' GB';
+          }
           this.bandwidthOvertime = res.data.BandWidthOverTime;
           this.productivityOverTime = res.data.ProductivityOverTime;
           this.productivityPieChartData = res.data.ProductivityPie;
-
           this.trafficActionPieChartData = res.data.TrafficActionsPie;
           this.trafficChartData = res.data.TrafficActionsOverTime
           this.chartOverview();
@@ -254,7 +173,7 @@ export class DashboardComponent implements OnInit {
           this.IsOverviewCard = true;
         } else {
           this.loading = false;
-          alert('something is wrong');
+          this.onDismiss();
         }
       },
       (error) => {
@@ -262,22 +181,54 @@ export class DashboardComponent implements OnInit {
           this._auth.logout();
           this.router.navigate(['/signin']);
           this.loading = false;
+          this.onDismiss();
           // alert(error.error.error);
         } else {
           this.loading = false;
-          alert(error.error.error);
+          this.onDismiss();
+          // alert(error.error.error);
         }
       }
     );
   }
 
-  //trafic chart
-  setTrafficChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
-    let TrafficChart = {
+  onDismiss() {
+    const target = "#overviewChart";
+    $(target).hide();
+    $('.modal-backdrop').remove();
+    $("body").removeClass("modal-open");
+    $("body").addClass("modal-overflow");
+  }
+
+  // msToTime(duration: any) {
+  //   var milliseconds = Math.floor((duration % 1000) / 100),
+  //     seconds = Math.floor((duration / 1000) % 60),
+  //     minutes = Math.floor((duration / (1000 * 60)) % 60),
+  //     hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+  //   hours = (hours < 10) ? 0 + hours : hours;
+  //   minutes = (minutes < 10) ? 0 + minutes : minutes;
+  //   seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+  //   return hours + ":" + minutes + ":" + seconds;
+  // }
+
+
+  //bandwidth chart
+
+  setBandwidthLineChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
+
+    let chartOptions = {
       chart: {
         zoomType: 'x',
         plotShadow: false,
         backgroundColor: 'snow',
+        height: 350,
+        // events:{
+        //   click: function(evt:any){
+        //     console.log(evt)
+        //   }
+        // } 
       },
       time: {
         // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -285,9 +236,9 @@ export class DashboardComponent implements OnInit {
         useUTC: false,
       },
       xAxis: {
-        title: {
-          text: 'date',
-        },
+        // title: {
+        //   text: 'date',
+        // },
         type: 'datetime',
         dateTimeLabelFormats: {
           millisecond: '%I:%M:%S.%L %p',
@@ -300,11 +251,465 @@ export class DashboardComponent implements OnInit {
           // year: '%Y',
         },
       },
+      yAxis: {
+        title: {
+          text: 'Bandwidth (MBs)',
+        },
+      },
       title: {
         text: type
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
+        // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
+        formatter: function () {
+          console.log(this)
+          let bandwidthMB: any = this;
+          var text = bandwidthMB.y;
+          if (text > 1024) {
+            return '<b>' + text / 1024 + ' GB </b>';
+          }
+          else {
+            return '<b>' + text + ' MB</b>';
+          }
+        }
+      },
+
+      // shared: true
+      // tooltip: {
+      //   // pointFormat: 
+      //   pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
+      // },
+      credits: {
+        enabled: false,
+      },
+      plotOptions: {
+
+      },
+      series: [],
+    };
+
+    if (widget === 'bandwidth-chart-band') {
+      this.BandwidthOverTimeChartData = chartOptions;
+    }
+    // var data= { "notification": { "title": "Hello World" }, "to": "/topics/user_123" };
+    // const response = fetch("https://192.168.3.76/", {
+    //   method: 'POST',
+    //   body: data,
+    //   headers: {'Content-Type': 'application/json'} 
+    // });
+
+
+  }
+
+  //productivity chart
+
+  setPieChartData(widget: string, bytes: string = 'MB', title: string = 'Chart') {
+
+    let chartData = {
+      chart: {
+        //  plotBorderWidth: null,
+        type: 'pie',
+        plotShadow: false,
+        backgroundColor: 'snow',
+        height: 350
+      },
+      title: {
+        text: title,
+      },
+      tooltip: {
+        // pointFormat:
+        // '{series.name}: <b>{point.y} ' +
+        // bytes +
+        // ' ({point.percentage:.1f}%) </b>',
+
+        formatter: function () {
+          let a: any = this;
+          var duration = a.y;
+
+          // msToTime(duration: any) {
+          var milliseconds = Math.floor((duration % 1000) / 100),
+            seconds = Math.floor((duration / 1000) % 60),
+            minutes = Math.floor((duration / (1000 * 60)) % 60),
+            hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          hours = (hours < 10) ? 0 + hours : hours;
+          minutes = (minutes < 10) ? 0 + minutes : minutes;
+          seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          if (hours < 10) {
+            var str_hours = "0" + hours;
+          }
+          else {
+            var str_hours = hours.toString();
+          }
+
+          if (minutes < 10) {
+            var str_minutes = "0" + minutes;
+          }
+          else {
+            var str_minutes = minutes.toString();
+          }
+
+          if (seconds < 10) {
+            var str_seconds = "0" + seconds;
+          }
+          else {
+            var str_seconds = seconds.toString();
+          }
+
+          var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
+          var str_milliseconds = remaining_milliseconds.toString();
+          // if (milliseconds <10) {
+          //     var str_milliseconds = "0" + milliseconds;
+          // }
+          // else {
+          //     var str_milliseconds = milliseconds.toString();
+          // }
+
+          // return  + ":" +  + ":" +  + "." + ;
+          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
+          // }
+
+          // var milliseconds = Math.floor((duration % 1000) / 100),
+          //   seconds = Math.floor((duration / 1000) % 60),
+          //   minutes = Math.floor((duration / (1000 * 60)) % 60),
+          //   hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          // hours = (hours < 10) ? 0 + hours : hours;
+          // minutes = (minutes < 10) ? 0 + minutes : minutes;
+          // seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+
+
+        },
+      },
+      credits: {
+        enabled: false,
+      },
+      yAxis: {
+        labels: {
+          format: '${value}',
+          title: {
+            text: 'Thousands',
+          },
+        },
+      },
+      // plotOptions: {
+      //   pie: {
+      //     innerSize: 200,
+      //     depth: 45,
+      //       dataLabels: {
+      //           enabled: false,
+      //       }
+      //   }
+      // },
+      plotOptions: {
+        pie: {
+          innerSize: 75,
+          // depth: 45,
+
+          allowPointSelect: true,
+          cursor: 'pointer',
+
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.percentage:.1f}%<b>',
+            style: {
+              fontSize: '10px',
+            },
+            connectorShape: 'straight',
+            crookDistance: '70%',
+          },
+          showInLegend: true,
+        },
+        series: {
+          states: {
+            hover: {
+              enabled: false,
+            },
+            inactive: {
+              opacity: 1,
+            },
+          },
+        },
+      },
+
+      series: [
+        {
+          type: 'pie',
+          name: 'Brands',
+          colorByPoint: true,
+          data: [],
+        },
+      ],
+    };
+
+    if (widget === 'productivity-pie') {
+      this.TotalProductivityPieChart = chartData;
+    }
+
+
+  }
+
+  //prod. line chart
+
+  setLineChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
+
+    let chartOptions = {
+      chart: {
+        zoomType: 'x',
+        plotShadow: false,
+        backgroundColor: 'snow',
+        height: 350,
+        events: {
+          click: function (evt: any) {
+            console.log(evt)
+          }
+        }
+      },
+      time: {
+        // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        // timezone: 'Asia/Calcutta',
+        useUTC: false,
+      },
+      xAxis: {
+        // title: {
+        //   text: 'date',
+        // },
+        type: 'datetime',
+        dateTimeLabelFormats: {
+          millisecond: '%I:%M:%S.%L %p',
+          second: '%I:%M:%S %p',
+          minute: '%I:%M %p',
+          hour: '%I:%M %p',
+          // day: '%e. %b',
+          // week: '%e. %b',
+          // month: "%b '%y",
+          // year: '%Y',
+        },
+      },
+      yAxis: {
+        title: {
+          text: 'Count',
+        },
+      },
+      title: {
+        text: type
+      },
+      tooltip: {
+        formatter: function () {
+          let a: any = this;
+          var duration = a.y;
+          var milliseconds = Math.floor((duration % 1000) / 100),
+            seconds = Math.floor((duration / 1000) % 60),
+            minutes = Math.floor((duration / (1000 * 60)) % 60),
+            hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          hours = (hours < 10) ? 0 + hours : hours;
+          minutes = (minutes < 10) ? 0 + minutes : minutes;
+          seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          if (hours < 10) {
+            var str_hours = "0" + hours;
+          }
+          else {
+            var str_hours = hours.toString();
+          }
+
+          if (minutes < 10) {
+            var str_minutes = "0" + minutes;
+          }
+          else {
+            var str_minutes = minutes.toString();
+          }
+
+          if (seconds < 10) {
+            var str_seconds = "0" + seconds;
+          }
+          else {
+            var str_seconds = seconds.toString();
+          }
+
+          var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
+          var str_milliseconds = remaining_milliseconds.toString();
+          // if (milliseconds <10) {
+          //     var str_milliseconds = "0" + milliseconds;
+          // }
+          // else {
+          //     var str_milliseconds = milliseconds.toString();
+          // }
+
+          // return  + ":" +  + ":" +  + "." + ;
+          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          // var milliseconds = Math.floor((duration % 1000) / 100),
+          //   seconds = Math.floor((duration / 1000) % 60),
+          //   minutes = Math.floor((duration / (1000 * 60)) % 60),
+          //   hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          // hours = (hours < 10) ? 0 + hours : hours;
+          // minutes = (minutes < 10) ? 0 + minutes : minutes;
+          // seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          // return a.series.name + ' : <b>' + hours + ":" + minutes + ":" + seconds + '</b>'
+          // return hours + ":" + minutes + ":" + seconds;
+          // // return
+          // // return 'The value for <b>' + x +
+          // //     '</b> is <b>' + this.y + '</b>';
+          // return a.y;
+        },
+        // shared: true
+      },
+      // tooltip: {
+      //   // pointFormat: 
+      //   pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
+      // },
+      credits: {
+        enabled: false,
+      },
+      plotOptions: {
+
+      },
+      series: [],
+    };
+    if (widget === 'bandwidth-chart') {
+      this.ProductivityOverTimeChartData = chartOptions;
+    }
+
+    // var data= { "notification": { "title": "Hello World" }, "to": "/topics/user_123" };
+    // const response = fetch("https://192.168.3.76/", {
+    //   method: 'POST',
+    //   body: data,
+    //   headers: {'Content-Type': 'application/json'} 
+    // });
+
+
+  }
+
+  //traffic pie chart
+  setTrafficPieChartData(widget: string, bytes: string = 'MB', title: string = 'Chart') {
+
+    let chartData = {
+      chart: {
+        //  plotBorderWidth: null,
+        type: 'pie',
+        plotShadow: false,
+        backgroundColor: 'snow',
+        height: 350
+      },
+      title: {
+        text: title,
+      },
+      tooltip: {
+
+      },
+      credits: {
+        enabled: false,
+      },
+      yAxis: {
+        labels: {
+          format: '${value}',
+          title: {
+            text: 'Thousands',
+          },
+        },
+      },
+      // plotOptions: {
+      //   pie: {
+      //     innerSize: 200,
+      //     depth: 45,
+      //       dataLabels: {
+      //           enabled: false,
+      //       }
+      //   }
+      // },
+      plotOptions: {
+        pie: {
+          innerSize: 75,
+          // depth: 45,
+
+          allowPointSelect: true,
+          cursor: 'pointer',
+
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.percentage:.1f}%<b>',
+            style: {
+              fontSize: '10px',
+            },
+            connectorShape: 'straight',
+            crookDistance: '70%',
+          },
+          showInLegend: true,
+        },
+        series: {
+          states: {
+            hover: {
+              enabled: false,
+            },
+            inactive: {
+              opacity: 1,
+            },
+          },
+        },
+      },
+
+      series: [
+        {
+          type: 'pie',
+          name: 'Brands',
+          colorByPoint: true,
+          data: [],
+        },
+      ],
+    };
+
+
+    if (widget === 'top-action-pie-applications') {
+      this.TrafficActionsPieChart = chartData;
+    }
+
+  }
+
+  //trafic chart
+  setTrafficChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
+    let TrafficChart = {
+      chart: {
+        zoomType: 'x',
+        plotShadow: false,
+        backgroundColor: 'snow',
+        height: 350
+      },
+      time: {
+        // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        // timezone: 'Asia/Calcutta',
+        useUTC: false,
+      },
+      xAxis: {
+        // title: {
+        //   text: 'date',
+        // },
+        type: 'datetime',
+        dateTimeLabelFormats: {
+          millisecond: '%I:%M:%S.%L %p',
+          second: '%I:%M:%S %p',
+          minute: '%I:%M %p',
+          hour: '%I:%M %p',
+          // day: '%e. %b',
+          // week: '%e. %b',
+          // month: "%b '%y",
+          // year: '%Y',
+        },
+      },
+      yAxis: {
+        title: {
+          text: 'Count'
+        },
+      },
+      title: {
+        text: type
+      },
+      tooltip: {
+        // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
       },
       credits: {
         enabled: false,
@@ -361,198 +766,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  //pie chart data
-
-  setPieChartData(widget: string, bytes: string = 'MB', title: string = 'Chart') {
-    
-    let chartData = {
-      chart: {
-        //  plotBorderWidth: null,
-        type: 'pie',
-        plotShadow: false,
-        backgroundColor: 'snow',
-      },
-      title: {
-        text: title,
-      },
-      tooltip: {
-        pointFormat:
-          '{series.name}: <b>{point.y} ' +
-          bytes +
-          ' ({point.percentage:.1f}%) </b>',
-      },
-      credits: {
-        enabled: false,
-      },
-      yAxis: {
-        labels: {
-          format: '${value}',
-          title: {
-            text: 'Thousands',
-          },
-        },
-      },
-      // plotOptions: {
-      //   pie: {
-      //     innerSize: 200,
-      //     depth: 45,
-      //       dataLabels: {
-      //           enabled: false,
-      //       }
-      //   }
-      // },
-      plotOptions: {
-        pie: {
-          innerSize: 200,
-              // depth: 45,
-         
-          allowPointSelect: true,
-          cursor: 'pointer',
-
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.percentage:.1f}%<b>',
-            style: {
-              fontSize: '10px',
-            },
-            connectorShape: 'straight',
-            crookDistance: '70%',
-          },
-          showInLegend: true,
-        },
-        series: {
-          states: {
-            hover: {
-              enabled: false,
-            },
-            inactive: {
-              opacity: 1,
-            },
-          },
-        },
-      },
-      legend: {
-        align: 'right',
-        verticalAlign: 'top',
-        layout: 'vertical',
-        x: -10,
-        y: 85,
-        itemMarginTop: 5,
-        itemDistance: 20,
-      },
-      series: [
-        {
-          type: 'pie',
-          name: 'Brands',
-          colorByPoint: true,
-          data: [],
-        },
-      ],
-    };
-    if (widget === 'productivity-pie') {
-      this.TotalProductivityPieChart = chartData;
-    }
-    if (widget === 'top-action-pie-applications') {
-      this.TrafficActionsPieChart = chartData;
-    }
-
-  }
 
 
-  setLineChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
-    
-
-    let chartOptions = {
-      chart: {
-        zoomType: 'x',
-        plotShadow: false,
-        backgroundColor: 'snow',
-      },
-      time: {
-        // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        // timezone: 'Asia/Calcutta',
-        useUTC: false,
-      },
-      xAxis: {
-        title: {
-          text: 'date',
-        },
-        type: 'datetime',
-        dateTimeLabelFormats: {
-          millisecond: '%I:%M:%S.%L %p',
-          second: '%I:%M:%S %p',
-          minute: '%I:%M %p',
-          hour: '%I:%M %p',
-          // day: '%e. %b',
-          // week: '%e. %b',
-          // month: "%b '%y",
-          // year: '%Y',
-        },
-      },
-      title: {
-        text: type
-      },
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
-      },
-      credits: {
-        enabled: false,
-      },
-      plotOptions: {
-        // pie: {
-        //   allowPointSelect: true,
-        //   cursor: 'pointer',
-        //   dataLabels: {
-        //     enabled: true,
-        //     format: '<b>{point.percentage:.1f}%<b>',
-        //     style: {
-        //       fontSize: '10px',
-        //     },
-        //     connectorShape: 'straight',
-        //     crookDistance: '70%',
-        //   },
-        //   showInLegend: false,
-        // },
-        // area: {
-        //   fillColor: {
-        //     linearGradient: {
-        //       x1: 0,
-        //       y1: 0,
-        //       x2: 0,
-        //       y2: 1,
-        //     },
-        //     // stops: [
-        //     //     [0, Highcharts.getOptions().colors[0]],
-        //     //     [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-        //     // ]
-        //   },
-        //   marker: {
-        //     radius: 2,
-        //   },
-        //   lineWidth: 1,
-        //   states: {
-        //     hover: {
-        //       lineWidth: 1,
-        //     },
-        //   },
-        //   threshold: null,
-        // },
-      },
-      series: [
-        {
-          name: 'Year 1990',
-          data: [631, 727, 3202, 72],
-        },
-      ],
-    };
-    if (widget === 'bandwidth-chart') {
-      this.ProductivityOverTimeChartData = chartOptions;
-    }
-    if (widget === 'bandwidth-chart-band') {
-      this.BandwidthOverTimeChartData = chartOptions;
-    }
-
-  }
   // newf(chart: any) {
   //   console.log('bar callback');
   //   console.log(chart)
@@ -570,84 +785,71 @@ export class DashboardComponent implements OnInit {
   //   // });
   // }
 
-  setColumnChartData(widget: string, bytes: string = 'MB') {
-    let columnChartOption = {
-      chart: {
-        zoomType: 'x',
-        backgroundColor: 'snow',
-        type: 'column',
-      },
-      title: {
-        text: 'Bandwidth Over Time'
-      },
-      xAxis: {
-        title: {
-          text: null
-        }
-      },
-      yAxis: {
-        // min: 0,
-        // title: {
-        //     text: 'Top Users IPs',
-        //     align: 'high'
-        // },
-        // labels: {
-        //     overflow: 'justify'
-        // }
-      },
-      // tooltip: {
-      //   valueSuffix: ' millions'
-      // },
-      // plotOptions: {
-      //   bar: {
-      //     dataLabels: {
-      //       enabled: true
-      //     }
-      //   }
-      // },
+  // setColumnChartData(widget: string, bytes: string = 'MB') {
+  //   let columnChartOption = {
+  //     chart: {
+  //       zoomType: 'x',
+  //       backgroundColor: 'snow',
+  //       type: 'column',
+  //     },
+  //     title: {
+  //       text: 'Bandwidth Over Time'
+  //     },
+  //     xAxis: {
+  //       title: {
+  //         text: null
+  //       }
+  //     },
+  //     yAxis: {
 
-      credits: {
-        enabled: false
-      },
-      series: []
-    }
-   
-  }
+  //     },
+
+
+  //     credits: {
+  //       enabled: false
+  //     },
+  //     series: []
+  //   }
+
+  // }
 
 
 
   public chartOverview() {
     console.log('initializing charts');
 
-    this.setLineChartData('bandwidth-chart', 'MB', 'Productivity over Time');
-    this.ProductivityOverTimeChartData['series'] = this.productivityOverTime;
-
-    this.setTrafficChartData('bandwidth-chart', 'MB', 'Traffic Actions over Time');
-    this.TrafficActionsOverTime['series'] = this.trafficChartData;
+    this.setBandwidthLineChartData('bandwidth-chart-band', 'MB', 'Bandwidth over Time');
+    this.BandwidthOverTimeChartData['series'] = this.bandwidthOvertime;
 
     this.setPieChartData('productivity-pie', 'MB', 'Total Productivity');
     this.TotalProductivityPieChart['series'] = this.productivityPieChartData;
 
-    this.setPieChartData('top-action-pie-applications', 'MB', 'Traffic Actions');
-    this.TrafficActionsPieChart['series']= this.trafficActionPieChartData;
+    this.setLineChartData('bandwidth-chart', 'MB', 'Productivity over Time');
+    this.ProductivityOverTimeChartData['series'] = this.productivityOverTime;
 
-    this.setLineChartData('bandwidth-chart-band', 'MB', 'Bandwidth over Time');
-    this.BandwidthOverTimeChartData['series'] = this.bandwidthOvertime;
+    this.setTrafficPieChartData('top-action-pie-applications', 'MB', 'Traffic Actions');
+    this.TrafficActionsPieChart['series'] = this.trafficActionPieChartData;
 
+    this.setTrafficChartData('bandwidth-chart', 'MB', 'Traffic Actions over Time');
+    this.TrafficActionsOverTime['series'] = this.trafficChartData;
   }
-  createCharts(){
+  createCharts() {
     // console.log(this.bandwidthOvertime)
     // console.log(this.BandwidthOverTimeChartData)
     this.bandwidthOvertime1 = Highcharts.chart('bandwidthOvertime1', this.BandwidthOverTimeChartData);
+
     // this.ProductivityOverTimeChartData.series = this.productivityOverTime;
     // console.log(this.ProductivityOverTimeChartData)
-    this.productivityOvertime1 = Highcharts.chart('productivityOvertime1', this.ProductivityOverTimeChartData);
-    this.trafficActionOvertime1 = Highcharts.chart('trafficActionOvertime1', this.TrafficActionsOverTime);
-    
-    // console.log(this.productivityPieChartData )
     this.productivityPieChart = Highcharts.chart('productivityPieChart', this.TotalProductivityPieChart);
 
+    this.productivityOvertime1 = Highcharts.chart('productivityOvertime1', this.ProductivityOverTimeChartData);
+
     this.trafficPieChart1 = Highcharts.chart('trafficPieChart1', this.TrafficActionsPieChart);
+
+    this.trafficActionOvertime1 = Highcharts.chart('trafficActionOvertime1', this.TrafficActionsOverTime);
+
+    // console.log(this.productivityPieChartData )
+
   }
 
 }

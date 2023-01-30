@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService, HttpService } from 'src/app/core/services';
 import HighchartsMore from 'highcharts/highcharts-more';
 import * as Highcharts from 'highcharts';
-
+import $ from "jquery";
 @Component({
   selector: 'app-firewallProtection',
   templateUrl: './firewallProtection.component.html',
@@ -33,6 +33,7 @@ export class FirewallProtectionComponent implements OnInit {
   public topBlockedApplicationsChartData: any;
   public topBlockedCategoriesChartData: any;
   public topBlockedSitesChartData: any;
+  public topUserChartData: any;
 
   // table Data
 
@@ -77,7 +78,7 @@ export class FirewallProtectionComponent implements OnInit {
       'yyyy-MM-ddTHH:mm'
     );
     this.overviewProtectionDashboard();
-    
+
   }
 
   ngDoCheck(): void {
@@ -97,33 +98,35 @@ export class FirewallProtectionComponent implements OnInit {
   shrink() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.6);
-    this.topBlockedChartId.setSize(window.innerWidth / 4, undefined)
-    this.topAccessingBlockedId.setSize(window.innerWidth / 4, undefined)
-    // this.topBlockedContentId.setSize(window.innerWidth / 4, undefined)
-    this.topCategoryId.setSize(window.innerWidth / 4, undefined)
+    this.topBlockedChartId.setSize(window.innerWidth / 3.85, undefined)
+    this.topAccessingBlockedId.setSize(window.innerWidth / 3.85, undefined)
+    this.topBlockedContentId.setSize(window.innerWidth / 3.85, undefined)
+    this.topCategoryId.setSize(window.innerWidth / 3.85, undefined)
   }
 
   expand() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.3);
-    this.topBlockedChartId.setSize(window.innerWidth /3.3, undefined)
-    this.topAccessingBlockedId.setSize(window.innerWidth /3.4, undefined)
-    // this.topBlockedContentId.setSize(window.innerWidth /3.3, undefined)
-    this.topCategoryId.setSize(window.innerWidth /3.3, undefined)
+    this.topBlockedChartId.setSize(window.innerWidth / 3.35, undefined)
+    this.topAccessingBlockedId.setSize(window.innerWidth / 3.35, undefined)
+    this.topBlockedContentId.setSize(window.innerWidth / 3.35, undefined)
+    this.topCategoryId.setSize(window.innerWidth / 3.35, undefined)
   }
 
 
   dateTimeFilter() {
-  
+
     let request = {
       start: new Date(this.startDate).toISOString(),
       end: new Date(this.endDate).toISOString(),
     };
     console.log(request);
   }
-  
+
 
   overviewProtectionDashboard() {
+    const target = "#protectionChart";
+    $(target).show();
     if (
       new Date(this.startDate).getTime() >=
       new Date(this.endDate).getTime()
@@ -144,32 +147,32 @@ export class FirewallProtectionComponent implements OnInit {
       return;
     }
     this.loading = true;
-    
+
     let request: any = {
       start: new Date(this.startDate).toISOString(),
       end: new Date(this.endDate).toISOString(),
-
     };
 
     this._http.post('eql/protection', request).subscribe(
       async (res) => {
         if (res.status) {
-          alert('Success');
+          // alert('Success');
+          this.onDismiss();
           console.log(res)
-      
+
           this.topBlockedApplicationsChartData = res.data.TopBlockedApplications;
           this.topBlockedCategoriesChartData = res.data.TopBlockedCategories;
           this.topBlockedSitesChartData = res.data.TopBlockedSites;
-          // this.filterActionTableData = res.data
-          // this.topUsersIpBarChartData = res.data.TopUsers;
-          // this.topsitesColumnChartData = res.data.TopSites;
-          // this.topDownloadTableData = res.data.TopDownloads;
+          this.topUserChartData = res.data.TopBlockedUsers
+          this.filterActionTableData = res.data.TopFilterActions;
+
           this.chartProtection();
           this.createProtectionCharts();
           this.IsOverviewCard = true;
         } else {
           this.loading = false;
-          alert('something is wrong');
+          this.onDismiss();
+          // alert('something is wrong');
         }
       },
       (error) => {
@@ -177,28 +180,40 @@ export class FirewallProtectionComponent implements OnInit {
           this._auth.logout();
           this.router.navigate(['/signin']);
           this.loading = false;
+          this.onDismiss();
           // alert(error.error.error);
         } else {
           this.loading = false;
-          alert(error.error.error);
+          this.onDismiss();
+          // alert(error.error.error);
         }
       }
     );
   }
+  onDismiss() {
+    const target = "#protectionChart";
+    $(target).hide();
+    $('.modal-backdrop').remove();
+    $("body").removeClass("modal-open");
+    $("body").addClass("modal-overflow");
+  }
 
   //trafic chart
   setPieChartData(widget: string, bytes: string = 'MB', title: string = 'Chart') {
- 
+
     let TopApplicationsChartData = {
       chart: {
         //  plotBorderWidth: null,
         type: 'pie',
         plotShadow: false,
         backgroundColor: 'snow',
+        height: 400
       },
       title: {
-        text: title
+        useHTML: true,
+        text: `<span style="font-family:Nunito;">`+title +`</span>`
       },
+
       tooltip: {
         pointFormat:
           '{series.name}: <b>{point.y} ' +
@@ -254,7 +269,7 @@ export class FirewallProtectionComponent implements OnInit {
       //   itemDistance: 20,
       // },
       series: [
-        
+
       ],
     };
     if (widget === 'top-blocked-chart') {
@@ -263,9 +278,9 @@ export class FirewallProtectionComponent implements OnInit {
     if (widget === 'top-user-ips') {
       this.TopUserIpsAccessingBlockedContent = TopApplicationsChartData;
     }
-    // if (widget === 'top-user-ips') {
-    //   this.TopApplicationAccessingBlockedContent = TopApplicationsChartData;
-    // }
+    if (widget === 'top-user-ips-data') {
+      this.TopApplicationAccessingBlockedContent = TopApplicationsChartData;
+    }
     if (widget === 'top-user-ips-chart') {
       this.TopCategoriesOfBlockedContent = TopApplicationsChartData;
     }
@@ -274,23 +289,23 @@ export class FirewallProtectionComponent implements OnInit {
   public chartProtection() {
     console.log('initializing charts');
 
-    this.setPieChartData('top-blocked-chart', 'MB', 'Top Blocked Applications');
+    this.setPieChartData('top-blocked-chart', 'MB', 'Top Blocked Sites');
     this.TopBlockedPieChartData['series'] = this.topBlockedApplicationsChartData.chart.Series;
 
     this.setPieChartData('top-user-ips', 'MB', 'Top Categories of Blocked Content');
     this.TopUserIpsAccessingBlockedContent['series'] = this.topBlockedCategoriesChartData.chart.Series;
 
-    // this.setPieChartData('top-user-ips', 'MB');
-    // this.TopApplicationAccessingBlockedContent['series'] = this.topPieChartData;
+    this.setPieChartData('top-user-ips-data', 'MB', 'Top Applications Accessing Blocked Content');
+    this.TopApplicationAccessingBlockedContent['series'] = this.topUserChartData.chart.Series;
 
     this.setPieChartData('top-user-ips-chart', 'MB', 'Top Users Accessing Blocked Content');
     this.TopCategoriesOfBlockedContent['series'] = this.topBlockedSitesChartData.chart.Series;
   }
 
-  createProtectionCharts(){
+  createProtectionCharts() {
     this.topBlockedChartId = Highcharts.chart('topBlockedChartId', this.TopBlockedPieChartData)
     this.topAccessingBlockedId = Highcharts.chart('topAccessingBlockedId', this.TopUserIpsAccessingBlockedContent)
-    // this.topBlockedContentId = Highcharts.chart('topBlockedContentId', this.TopApplicationAccessingBlockedContent)
+    this.topBlockedContentId = Highcharts.chart('topBlockedContentId', this.TopApplicationAccessingBlockedContent)
     this.topCategoryId = Highcharts.chart('topCategoryId', this.TopCategoriesOfBlockedContent)
   }
 

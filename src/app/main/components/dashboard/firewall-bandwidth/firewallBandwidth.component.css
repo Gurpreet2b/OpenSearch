@@ -77,9 +77,10 @@ label{
 
 .card {
   /* background: var(--theme-color1); */
-  border: 3px solid #ff9933;
-  border-radius: 1rem;
+  /* border: 3px solid #ff9933;
+  border-radius: 1rem; */
   color: #fff;
+  border: none !important
 }
 
 .card:hover{
@@ -142,45 +143,14 @@ label{
 .m-datepicker{
   margin: 1vw 0px 0px 0.7vw;
 }
-.scroll {
-  display: block;
-  overflow: auto;
-  max-height: 500px;
-  width: 100%;
+.t-data-color{
+  background-color: snow !important;
 }
-.scroll::-webkit-scrollbar {
-  width: 8px;
+.table thead th{
+  color: #000 !important;
 }
-
-.scroll::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+h5{
+  font-size: 18px !important;
+  color: #333333 !important;
+  font-family: "Nunito" !important;
 }
-
-.scroll::-webkit-scrollbar-thumb {
-  background-color: silver;
-  outline: 1px solid #eee;
-}
-
-/* .addNewText {
-  border-radius: 100px;
-  border-radius: 100px;
-  padding: 7px 13px;
-  cursor: pointer;
-  background-color: #ff9933;
-  color: #fff;
-  border: 1px solid #ff9933;
-  margin-left: 2rem;
-}
-
-disabled {
-  cursor: not-allowed;
-}
-
-.addNewText:hover {
-  color: #ff9933;
-  background-color: #fff;
-} */
-
-/* #chartContainer{
-    margin: auto;
-} */

@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService, HttpService } from 'src/app/core/services';
 import HighchartsMore from 'highcharts/highcharts-more';
 import * as Highcharts from 'highcharts';
-
+import $ from "jquery";
+import { title } from 'process';
 @Component({
   selector: 'app-firewallDuration',
   templateUrl: './firewallDuration.component.html',
@@ -13,7 +14,7 @@ import * as Highcharts from 'highcharts';
 export class FirewallDurationComponent implements OnInit {
   public loading = false;
   highcharts = Highcharts;
-  public FWTopSitesPieChartData: any = {};
+  public FWTopSitesChartData: any = {};
   public TopUserIpsBarChartData: any = {};
   public TopApplicationsChartData: any = {};
   public startDate: any = new Date();;
@@ -30,51 +31,6 @@ export class FirewallDurationComponent implements OnInit {
   public topApplicationChartData: any;
   public topSitesChartData: any;
   public topUserChartData: any;
-
-  topColumnChartData: any =   [{
-    name: 'Year 1990',
-    data: [5000, 727, 502, 721, 26]
-  }, {
-    name: 'Year 2000',
-    data: [814, 841, 3714, 726, 31]
-  }, {
-    name: 'Year 2010',
-    data: [1044, 944, 4170, 735, 40]
-  }, {
-    name: 'Year 2018',
-    data: [1276, 1007, 4561, 746, 42]
-  }]
-
-  topBarChartData: any =  [{
-    name: 'Year 2000',
-    data: [814, 841, 3714, 726, 31]
-  }, {
-    name: 'Year 1990',
-    data: [631, 727, 3202, 721, 26]
-  }, {
-    name: 'Year 2018',
-    data: [1276, 1007, 4561, 746, 42]
-  }]
-
-
-  topPieChartData: any = [{
-    name: 'Brands',
-    colorByPoint: true,
-    data: [{
-
-      name: 'Objectionable',
-      y: 1.53
-    }, {
-      name: 'Unproductivity',
-      y: 1.40
-    }, {
-      name: 'Acceptable',
-      y: 0.84
-    }, {
-      name: 'Unacceptable',
-      y: 1.40
-    }]
-  }]
 
 
   constructor(private _http: HttpService,
@@ -99,7 +55,7 @@ export class FirewallDurationComponent implements OnInit {
 
   ngDoCheck(): void {
     // console.log('btn')
-    if(this.authService.getSidebarState() == this.localSavedState){
+    if (this.authService.getSidebarState() == this.localSavedState) {
       return;
     }
     if (this.authService.getSidebarState()) {
@@ -111,22 +67,21 @@ export class FirewallDurationComponent implements OnInit {
     this.localSavedState = !this.localSavedState;
   }
 
-  shrink(){
+  shrink() {
     console.log(window.innerWidth);
-    console.log(window.innerWidth/1.6);
-    this.topApplicationId2.setSize(window.innerWidth/2, undefined)
-    this.fwTopSitesId2.setSize(window.innerWidth/4, undefined)
-    this.topUsersId2.setSize(window.innerWidth/2, undefined)
-  }
-  
-  expand(){
-    console.log(window.innerWidth);
-    console.log(window.innerWidth/1.3);
-    this.topApplicationId2.setSize(window.innerWidth/1.7, undefined)
-    this.fwTopSitesId2.setSize(window.innerWidth/3.3, undefined)
-    this.topUsersId2.setSize(window.innerWidth/1.7, undefined)
+    console.log(window.innerWidth / 1.6);
+    this.fwTopSitesId2.setSize(window.innerWidth / 2.6, undefined)
+    this.topUsersId2.setSize(window.innerWidth / 2.7, undefined)
+    this.topApplicationId2.setSize(window.innerWidth / 2.6, undefined)
   }
 
+  expand() {
+    console.log(window.innerWidth);
+    console.log(window.innerWidth / 1.3);
+    this.fwTopSitesId2.setSize(window.innerWidth / 2.2, undefined)
+    this.topUsersId2.setSize(window.innerWidth / 2.2, undefined)
+    this.topApplicationId2.setSize(window.innerWidth / 2.2, undefined)
+  }
 
   dateTimeFilter() {
     let request = {
@@ -136,103 +91,190 @@ export class FirewallDurationComponent implements OnInit {
     console.log(request);
   }
 
-  overviewDurationDashboard(){
-      if (
-        new Date(this.startDate).getTime() >=
-        new Date(this.endDate).getTime()
-      ) {
-        alert(
-          'The Starting Date-Time should be greater than the ending Date-Time. Please Use Appropriate Data and Time Values'
-        );
-        return;
-      }
-      if (
-        new Date(this.endDate).getTime() -
-        new Date(this.startDate).getTime() <
-        300000
-      ) {
-        alert(
-          'The difference in Starting and Ending time must be atleast 10 minutes'
-        );
-        return;
-      }
-      this.loading = true;
-      
-      let request: any = {
-        start: new Date(this.startDate).toISOString(),
-        end: new Date(this.endDate).toISOString(),
-  
-      };
-  
-      this._http.post('eql/duration', request).subscribe(
-        async (res) => {
-          if (res.status) {
-            alert('Success');
-            console.log(res)
-        
-            this.topApplicationChartData = res.data.TopApplications;
-            this.topSitesChartData = res.data.TopSites;
-            this.topUserChartData = res.data.TopUsers;
-            // this.topBlockedSitesChartData = res.data.TopBlockedSites;
-            // this.filterActionTableData = res.data
-            // this.topUsersIpBarChartData = res.data.TopUsers;
-            // this.topsitesColumnChartData = res.data.TopSites;
-            // this.topDownloadTableData = res.data.TopDownloads;
-            this.chartDuration();
-            this.createDurationCharts();
-            // this.IsOverviewCard = true;
-          } else {
-            this.loading = false;
-            alert('something is wrong');
-          }
-        },
-        (error) => {
-          if (error.error.code === 'token_not_valid') {
-            this._auth.logout();
-            this.router.navigate(['/signin']);
-            this.loading = false;
-            // alert(error.error.error);
-          } else {
-            this.loading = false;
-            alert(error.error.error);
-          }
-        }
+  overviewDurationDashboard() {
+    const target = "#durationChart";
+    $(target).show();
+    if (
+      new Date(this.startDate).getTime() >=
+      new Date(this.endDate).getTime()
+    ) {
+      alert(
+        'The Starting Date-Time should be greater than the ending Date-Time. Please Use Appropriate Data and Time Values'
       );
+      return;
+    }
+    if (
+      new Date(this.endDate).getTime() -
+      new Date(this.startDate).getTime() <
+      300000
+    ) {
+      alert(
+        'The difference in Starting and Ending time must be atleast 10 minutes'
+      );
+      return;
+    }
+    this.loading = true;
+
+    let request: any = {
+      start: new Date(this.startDate).toISOString(),
+      end: new Date(this.endDate).toISOString(),
+
+    };
+
+    this._http.post('eql/duration', request).subscribe(
+      async (res) => {
+        if (res.status) {
+          // alert('Success');
+          this.onDismiss();
+          console.log(res)
+
+          this.topApplicationChartData = res.data.TopApplications;
+          this.topSitesChartData = res.data.TopSites;
+          this.topUserChartData = res.data.TopUsers;
+
+          this.chartDuration();
+          this.createDurationCharts();
+        } else {
+          this.loading = false;
+          // alert('something is wrong');
+          this.onDismiss();
+        }
+      },
+      (error) => {
+        if (error.error.code === 'token_not_valid') {
+          this._auth.logout();
+          this.router.navigate(['/signin']);
+          this.loading = false;
+          this.onDismiss();
+          // alert(error.error.error);
+        } else {
+          this.loading = false;
+          this.onDismiss();
+          // alert(error.error.error);
+        }
+      }
+    );
+  }
+  onDismiss() {
+    const target = "#durationChart";
+    $(target).hide();
+    $('.modal-backdrop').remove();
+    $("body").removeClass("modal-open");
+    $("body").addClass("modal-overflow");
+    // const ele =  $('#viewGenerateReport');
+
+    // $('#viewGenerateReport').modal('toggle')
+    // ele.modal('toggle')
   }
   //trafic chart
-  setColumnChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
+  setColumnChartData(widget: string, bytes: string = 'ms', type: string = 'Chart') {
     let TopApplicationsChartData = {
       chart: {
         zoomType: 'x',
         backgroundColor: 'snow',
-        type: 'column'
+        type: 'column',
+        height: 380,
+       
       },
       title: {
         text: type
       },
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      xAxis: {
+        // title: {
+        //   text: 'date',
+        // },
+        type: 'datetime',
+        dateTimeLabelFormats: {
+          millisecond: '%I:%M:%S.%L %p',
+          second: '%I:%M:%S %p',
+          minute: '%I:%M %p',
+          hour: '%I:%M %p',
+          // day: '%e. %b',
+          // week: '%e. %b',
+          // month: "%b '%y",
+          // year: '%Y',
+        },
       },
-      accessibility: {
-        point: {
-          valueSuffix: '%'
+      yAxis: {
+        title: {
+          text: 'Duration (Hours)'
         }
+      },
+      tooltip: {
+        formatter: function () {
+          let a: any = this;
+          var duration = a.y;
+          var milliseconds = Math.floor((duration % 1000) / 100),
+          seconds = Math.floor((duration / 1000) % 60),
+          minutes = Math.floor((duration / (1000 * 60)) % 60),
+          hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+    
+        hours = (hours < 10) ? 0 + hours : hours;
+        minutes = (minutes < 10) ? 0 + minutes : minutes;
+        seconds = (seconds < 10) ? 0 + seconds : seconds;
+    
+        if (hours <10) {
+          var str_hours = "0" + hours;
+        }
+        else {
+            var str_hours = hours.toString();
+        }
+    
+        if (minutes <10) {
+            var str_minutes = "0" + minutes;
+        }
+        else {
+            var str_minutes = minutes.toString();
+        }
+    
+        if (seconds <10) {
+            var str_seconds = "0" + seconds;
+        }
+        else {
+            var str_seconds = seconds.toString();
+        }
+    
+        var remaining_milliseconds=duration-((hours*60*60*1000)+(minutes*60*1000)+(seconds*1000));
+        var str_milliseconds=remaining_milliseconds.toString();
+        // if (milliseconds <10) {
+        //     var str_milliseconds = "0" + milliseconds;
+        // }
+        // else {
+        //     var str_milliseconds = milliseconds.toString();
+        // }
+    
+        // return  + ":" +  + ":" +  + "." + ;
+        return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          // var milliseconds = Math.floor((duration % 1000) / 100),
+          //   seconds = Math.floor((duration / 1000) % 60),
+          //   minutes = Math.floor((duration / (1000 * 60)) % 60),
+          //   hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          // hours = (hours < 10) ? 0 + hours : hours;
+          // minutes = (minutes < 10) ? 0 + minutes : minutes;
+          // seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          // return a.series.name + ' : <b>' + hours + ":" + minutes + ":" + seconds  + '</b>'
+
+        },
+        // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
       },
       plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: false
-            },
-            showInLegend: true
-        }
-    },
-    credits: {
-      enabled: false
-    },
-      series: []
+        bar: {
+          dataLabels: {
+            enabled: false
+          }
+        },
+        series: {
+          pointWidth: 30,
+        },
+      },
 
+      credits: {
+        enabled: false
+      },
+      // series: this.topColumnChartData
+      series: []
     }
 
     // let TopApplicationsChartData = {
@@ -308,11 +350,11 @@ export class FirewallDurationComponent implements OnInit {
     //   ],
     // };
     if (widget === 'top-fw-sites') {
-      this.FWTopSitesPieChartData = TopApplicationsChartData;
+      this.FWTopSitesChartData = TopApplicationsChartData;
     }
   }
 
-  
+
   setBarChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
     // let TopApplicationsBarChartData = {
     //   chart: {
@@ -352,21 +394,8 @@ export class FirewallDurationComponent implements OnInit {
       chart: {
         type: 'bar',
         backgroundColor: 'snow',
-        events: {
-          redraw: (chart: any) => {
-            console.log('bar callback event');
-            console.log(chart);
-            let categoryHeight = 20;
-            chart.update({
-              chart: {
-                height:
-                  categoryHeight * chart.pointCount +
-                  (chart.chartHeight - chart.plotHeight),
-              },
-            });
-            // chart.target.callback(this);
-          },
-        },
+        height: 380,
+
       },
       title: {
         text: type
@@ -388,8 +417,65 @@ export class FirewallDurationComponent implements OnInit {
           overflow: 'justify',
         },
       },
-      tooltip: {
-        valueSuffix: ' MB',
+     tooltip: {
+        formatter: function () {
+          let a: any = this;
+          var duration = a.y;
+
+          var milliseconds = Math.floor((duration % 1000) / 100),
+          seconds = Math.floor((duration / 1000) % 60),
+          minutes = Math.floor((duration / (1000 * 60)) % 60),
+          hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+    
+        hours = (hours < 10) ? 0 + hours : hours;
+        minutes = (minutes < 10) ? 0 + minutes : minutes;
+        seconds = (seconds < 10) ? 0 + seconds : seconds;
+    
+        if (hours <10) {
+          var str_hours = "0" + hours;
+        }
+        else {
+            var str_hours = hours.toString();
+        }
+    
+        if (minutes <10) {
+            var str_minutes = "0" + minutes;
+        }
+        else {
+            var str_minutes = minutes.toString();
+        }
+    
+        if (seconds <10) {
+            var str_seconds = "0" + seconds;
+        }
+        else {
+            var str_seconds = seconds.toString();
+        }
+    
+        var remaining_milliseconds=duration-((hours*60*60*1000)+(minutes*60*1000)+(seconds*1000));
+        var str_milliseconds=remaining_milliseconds.toString();
+        // if (milliseconds <10) {
+        //     var str_milliseconds = "0" + milliseconds;
+        // }
+        // else {
+        //     var str_milliseconds = milliseconds.toString();
+        // }
+    
+        // return  + ":" +  + ":" +  + "." + ;
+        return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          // var milliseconds = Math.floor((duration % 1000) / 100),
+          //   seconds = Math.floor((duration / 1000) % 60),
+          //   minutes = Math.floor((duration / (1000 * 60)) % 60),
+          //   hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          // hours = (hours < 10) ? 0 + hours : hours;
+          // minutes = (minutes < 10) ? 0 + minutes : minutes;
+          // seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          // return a.series.name + ' : <b>' + hours + ":" + minutes + ":" + seconds  + '</b>'
+
+        },
+        // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
       },
       plotOptions: {
         bar: {
@@ -401,7 +487,7 @@ export class FirewallDurationComponent implements OnInit {
           // maxPointWidth: 30,
         },
         series: {
-          pointWidth: 20,
+          pointWidth: 15,
         },
       },
       // legend: {
@@ -425,7 +511,7 @@ export class FirewallDurationComponent implements OnInit {
     }
   }
 
-  topPieChartDataApplication(widget: string, bytes: string = 'MB', type: string= 'Chart') {
+  topPieDataApplication(widget: string, bytes: string = 'MB', type: string = 'Chart') {
     // let TopApplicationsColumnChartData = {
     //   chart: {
     //     zoomType: 'x',
@@ -464,13 +550,69 @@ export class FirewallDurationComponent implements OnInit {
       chart: {
         zoomType: 'x',
         backgroundColor: 'snow',
-        type: 'pie'
+        type: 'pie',
+        height: 350
       },
       title: {
-        text: 'Top Applications'
+        text: type
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
+        formatter: function () {
+          let a: any = this;
+          var duration = a.y;
+          var milliseconds = Math.floor((duration % 1000) / 100),
+          seconds = Math.floor((duration / 1000) % 60),
+          minutes = Math.floor((duration / (1000 * 60)) % 60),
+          hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+    
+        hours = (hours < 10) ? 0 + hours : hours;
+        minutes = (minutes < 10) ? 0 + minutes : minutes;
+        seconds = (seconds < 10) ? 0 + seconds : seconds;
+    
+        if (hours <10) {
+          var str_hours = "0" + hours;
+        }
+        else {
+            var str_hours = hours.toString();
+        }
+    
+        if (minutes <10) {
+            var str_minutes = "0" + minutes;
+        }
+        else {
+            var str_minutes = minutes.toString();
+        }
+    
+        if (seconds <10) {
+            var str_seconds = "0" + seconds;
+        }
+        else {
+            var str_seconds = seconds.toString();
+        }
+    
+        var remaining_milliseconds=duration-((hours*60*60*1000)+(minutes*60*1000)+(seconds*1000));
+        var str_milliseconds=remaining_milliseconds.toString();
+        // if (milliseconds <10) {
+        //     var str_milliseconds = "0" + milliseconds;
+        // }
+        // else {
+        //     var str_milliseconds = milliseconds.toString();
+        // }
+    
+        // return  + ":" +  + ":" +  + "." + ;
+        return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
+          // var milliseconds = Math.floor((duration % 1000) / 100),
+          //   seconds = Math.floor((duration / 1000) % 60),
+          //   minutes = Math.floor((duration / (1000 * 60)) % 60),
+          //   hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          // hours = (hours < 10) ? 0 + hours : hours;
+          // minutes = (minutes < 10) ? 0 + minutes : minutes;
+          // seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          // return a.series.name + ' : <b>' + hours + ":" + minutes + ":" + seconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
+
+        },
       },
       accessibility: {
         point: {
@@ -479,7 +621,7 @@ export class FirewallDurationComponent implements OnInit {
       },
       plotOptions: {
         pie: {
-          innerSize: 70,
+          innerSize: 60,
           allowPointSelect: true,
           cursor: 'pointer',
           dataLabels: {
@@ -504,25 +646,22 @@ export class FirewallDurationComponent implements OnInit {
   public chartDuration() {
     console.log('initializing charts');
 
-    this.setColumnChartData('top-fw-sites', 'MB', 'Top Applications');
-    this.FWTopSitesPieChartData['series'] = this.topSitesChartData.chart.Series;
-    // this.FWTopSitesPieChartData['xAxis']['categories'] = this.topSitesChartData.chart.Labels;
-    // this.FWTopSitesPieChartData['series'][0]['data'] =
-    //     this.topSitesChartData.chart.Series[0].data;
-
+    this.setColumnChartData('top-fw-sites', 'ms', 'Top Sites');
+    this.FWTopSitesChartData['series'] = this.topSitesChartData.chart.Series;
+    this.FWTopSitesChartData['xAxis']['categories'] = this.topSitesChartData.chart.Labels;
 
     this.setBarChartData('top-applications', 'MB', 'Top User Ips');
     this.TopUserIpsBarChartData['series'] = this.topUserChartData.Series;
     this.TopUserIpsBarChartData['xAxis']['categories'] = this.topUserChartData.Labels;
 
-    this.topPieChartDataApplication('top-applications-data', 'MB', 'FW Top Site');
+    this.topPieDataApplication('top-applications-data', 'MB', 'Top Applications');
     this.TopApplicationsChartData['series'] = this.topApplicationChartData.chart.Series;
   }
 
-  createDurationCharts(){
-    this.topApplicationId2 = Highcharts.chart('topApplicationId2', this.TopApplicationsChartData)
-    this.fwTopSitesId2 = Highcharts.chart('fwTopSitesId2', this.FWTopSitesPieChartData)
+  createDurationCharts() {
+    this.fwTopSitesId2 = Highcharts.chart('fwTopSitesId2', this.FWTopSitesChartData)
     this.topUsersId2 = Highcharts.chart('topUsersId2', this.TopUserIpsBarChartData)
+    this.topApplicationId2 = Highcharts.chart('topApplicationId2', this.TopApplicationsChartData)
   }
 
 

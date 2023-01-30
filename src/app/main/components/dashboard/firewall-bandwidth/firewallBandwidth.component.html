@@ -15,10 +15,10 @@
                         [ngModelOptions]="{ standalone: true }">
                 </div>
             </div>
-            <div class="col-md-2 m-t-1">
+            <div class="col-md-2 m-t-0">
                 <button type="button" class="btn btn-color" (click)="overviewBandwidthDashboard()">
-              Set Date
-            </button>
+                    <i class="fas fa-arrow-up"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -42,40 +42,66 @@
             <div id="topSitesColumnChartId"></div>
         </div>
     </div>
+
+    <div class="row padding-bottom-zero" *ngIf="IsOverviewCard">
+        <div class="col-xs-6 col-sm-6 col-lg-12 pl-0">
+            <div class="card t-data-color">
+                <div class="t-data-color">
+                    <h5 class="card-title">Top Downloads</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table tablesorter" id="">
+                            <thead class="text-primary">
+                                <tr>
+                                    <th class="text-left">Download File Name</th>
+                                    <th class="text-center">Download File Type</th>
+                                    <th class="text-center">Download Size(MBs)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let top of topDownloadTableData">
+
+                                    <td class="text-left">
+                                        {{top.name}}
+                                    </td>
+                                    <td class="text-center">
+                                        {{top.type}}
+                                    </td>
+                                    <td class="text-center">
+
+                                        {{top.size}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="row padding-bottom-zero" *ngIf="IsOverviewCard">
-    <div class="col-xs-6 col-sm-6 col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">Top Downloads</h5>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table tablesorter" id="">
-                        <thead class="text-primary">
-                            <tr>
-                                <th>Download File Name</th>
-                                <th class="text-center">Download File Type</th>
-                                <th class="text-center">Download Size(MBs)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let top of topDownloadTableData">
-                              
-                                <td>
-                                    {{top.name}}
-                                </td>
-                                <td class="text-center">
-                                    {{top.type}}
-                                </td>
-                                <td class="text-center">
-                                  
-                                    {{top.size}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+
+<div class="modal innm" id="bandwidthChart" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content dashboard-popup">
+            <div class="modal-body">
+                <h4>Bandwidth</h4>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <b>Please wait...</b><br>
+                        <!-- <label>Preparing Download</label> -->
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="logo">
+                            <div id="sudarshanloading">
+                                <img src="./assets/img/sdlogo.png" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

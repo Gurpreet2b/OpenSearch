@@ -9,7 +9,7 @@ import HighchartsMore from 'highcharts/highcharts-more';
 // HighchartsMore(Highcharts);
 // HighchartsSolidGauge(Highcharts);
 import * as Highcharts from 'highcharts';
-
+import $ from "jquery";
 @Component({
   selector: 'app-firewallBandwidth',
   templateUrl: './firewallBandwidth.component.html',
@@ -32,7 +32,7 @@ export class FirewallBandwidthComponent implements OnInit {
   public localSavedState: boolean = true;
   public IsOverviewCard: any = false;
 
- //ids of chart expand
+  //ids of chart expand
   public topApplicationId: any;
   public topUsersIpBarId: any;
   public topTrafficCategoryId: any;
@@ -118,12 +118,12 @@ export class FirewallBandwidthComponent implements OnInit {
       'yyyy-MM-ddTHH:mm'
     );
     this.overviewBandwidthDashboard();
-   
+
   }
 
   ngDoCheck(): void {
     // console.log('btn')
-    if(this.authService.getSidebarState() == this.localSavedState){
+    if (this.authService.getSidebarState() == this.localSavedState) {
       return;
     }
     if (this.authService.getSidebarState()) {
@@ -135,24 +135,24 @@ export class FirewallBandwidthComponent implements OnInit {
     this.localSavedState = !this.localSavedState;
   }
 
-  shrink(){
+  shrink() {
     console.log(window.innerWidth);
-    console.log(window.innerWidth/1.6);
-    this.topApplicationId.setSize(window.innerWidth/4, undefined)
-    this.topUsersIpBarId.setSize(window.innerWidth/2, undefined)
-    this.topTrafficCategoryId.setSize(window.innerWidth/4, undefined)
-    this.topSitesColumnChartId.setSize(window.innerWidth/2, undefined)
+    console.log(window.innerWidth / 1.6);
+    this.topApplicationId.setSize(window.innerWidth / 4, undefined)
+    this.topUsersIpBarId.setSize(window.innerWidth / 2, undefined)
+    this.topTrafficCategoryId.setSize(window.innerWidth / 4, undefined)
+    this.topSitesColumnChartId.setSize(window.innerWidth / 2, undefined)
   }
 
-  expand(){
+  expand() {
     console.log(window.innerWidth);
-    console.log(window.innerWidth/1.3);
-    this.topApplicationId.setSize(window.innerWidth/3.3, undefined)
-    this.topUsersIpBarId.setSize(window.innerWidth/1.7, undefined)
-    this.topTrafficCategoryId.setSize(window.innerWidth/3.3, undefined)
-    this.topSitesColumnChartId.setSize(window.innerWidth/1.7, undefined)
+    console.log(window.innerWidth / 1.3);
+    this.topApplicationId.setSize(window.innerWidth / 3.3, undefined)
+    this.topUsersIpBarId.setSize(window.innerWidth / 1.7, undefined)
+    this.topTrafficCategoryId.setSize(window.innerWidth / 3.3, undefined)
+    this.topSitesColumnChartId.setSize(window.innerWidth / 1.7, undefined)
   }
-  
+
   dateTimeFilter() {
     let request = {
       start: new Date(this.startDate).toISOString(),
@@ -162,6 +162,8 @@ export class FirewallBandwidthComponent implements OnInit {
   }
 
   overviewBandwidthDashboard() {
+    const target = "#bandwidthChart";
+    $(target).show();
     if (
       new Date(this.startDate).getTime() >=
       new Date(this.endDate).getTime()
@@ -182,7 +184,7 @@ export class FirewallBandwidthComponent implements OnInit {
       return;
     }
     this.loading = true;
-    
+
     let request: any = {
       start: new Date(this.startDate).toISOString(),
       end: new Date(this.endDate).toISOString(),
@@ -192,9 +194,10 @@ export class FirewallBandwidthComponent implements OnInit {
     this._http.post('eql/bandwidth', request).subscribe(
       async (res) => {
         if (res.status) {
-          alert('Success');
+          this.onDismiss();
+          // alert('Success');
           console.log(res)
-      
+
           this.topApplicationPieChartData = res.data.TopApplications;
           this.toptrafficCategoriesChartData = res.data.TopCategories;
           this.topUsersIpBarChartData = res.data.TopUsers;
@@ -205,7 +208,7 @@ export class FirewallBandwidthComponent implements OnInit {
           this.IsOverviewCard = true;
         } else {
           this.loading = false;
-          alert('something is wrong');
+          this.onDismiss();
         }
       },
       (error) => {
@@ -214,12 +217,24 @@ export class FirewallBandwidthComponent implements OnInit {
           this.router.navigate(['/signin']);
           this.loading = false;
           // alert(error.error.error);
+          this.onDismiss();
         } else {
           this.loading = false;
-          alert(error.error.error);
+          this.onDismiss();
+          // alert(error.error.error);
         }
       }
     );
+  }
+
+
+  onDismiss() {
+    const target = "#bandwidthChart";
+    $(target).hide();
+    $('.modal-backdrop').remove();
+    $("body").removeClass("modal-open");
+    $("body").addClass("modal-overflow");
+
   }
 
 
@@ -229,13 +244,17 @@ export class FirewallBandwidthComponent implements OnInit {
       chart: {
         zoomType: 'x',
         backgroundColor: 'snow',
-        type: 'pie'
+        type: 'pie',
+        height: 380
       },
       title: {
-        text: 'Top Applications'
+        text: title
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
+        pointFormat:
+          '{series.name}: <b>{point.y} ' +
+          bytes +
+          ' ({point.percentage:.1f}%) </b>',
       },
       accessibility: {
         point: {
@@ -244,7 +263,7 @@ export class FirewallBandwidthComponent implements OnInit {
       },
       plotOptions: {
         pie: {
-          innerSize: 70,
+          innerSize: 60,
           allowPointSelect: true,
           cursor: 'pointer',
           dataLabels: {
@@ -342,11 +361,12 @@ export class FirewallBandwidthComponent implements OnInit {
   }
 
   setBarChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart') {
-   
+
     let TopApplicationsBarChartData = {
       chart: {
         type: 'bar',
         backgroundColor: 'snow',
+        height: 380
         // events: {
         //   redraw: (chart: any) => {
         //     console.log('bar callback event');
@@ -396,9 +416,18 @@ export class FirewallBandwidthComponent implements OnInit {
           // maxPointWidth: 30,
         },
         series: {
-          pointWidth: 20,
+          pointWidth: 15,
+
         },
       },
+      // plotOptions: {
+      //   series: {
+      //     stacking: 'normal',
+      //     dataLabels: {
+      //       enabled: false
+      //     }
+      //   }
+      // },
       // legend: {
       //   layout: 'vertical',
       //   align: 'right',
@@ -425,10 +454,12 @@ export class FirewallBandwidthComponent implements OnInit {
       chart: {
         zoomType: 'x',
         backgroundColor: 'snow',
-        type: 'column'
+        type: 'column',
+        height: 380
       },
       title: {
-        text: title
+        useHTML: true,
+        text: `<span style="font-family:Nunito;">`+title +`</span>`
       },
       xAxis: {
         title: {
@@ -436,7 +467,9 @@ export class FirewallBandwidthComponent implements OnInit {
         }
       },
       yAxis: {
-
+        title: {
+          text: 'Bandwidth (MBs)'
+        }
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
@@ -481,7 +514,7 @@ export class FirewallBandwidthComponent implements OnInit {
 
   }
 
-  createBandwidthCharts(){
+  createBandwidthCharts() {
     this.topApplicationId = Highcharts.chart('topApplicationId', this.TopApplications);
     this.topUsersIpBarId = Highcharts.chart('topUsersIpBarId', this.TopUsersIpsBar);
     this.topTrafficCategoryId = Highcharts.chart('topTrafficCategoryId', this.TopTrafficCategoriesPieChart)

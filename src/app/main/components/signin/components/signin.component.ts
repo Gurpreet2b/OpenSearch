@@ -37,8 +37,8 @@ export class SigninComponent implements OnInit {
     }
     const data = {
       data: {
-        user: user,
-        pass: pass,
+        user:btoa(user),
+        pass: btoa(pass),
       },
     };
     this.loading = true;

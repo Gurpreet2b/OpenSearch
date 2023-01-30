@@ -15,9 +15,9 @@
                         [ngModelOptions]="{ standalone: true }">
                 </div>
             </div>
-            <div class="col-md-2 m-t-1">
+            <div class="col-md-2 m-t-0">
                 <button type="button" class="btn btn-color" (click)="overviewDurationDashboard()">
-                    Set Date
+                    <i class="fas fa-arrow-up"></i>
                 </button>
             </div>
         </div>
@@ -26,16 +26,17 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8 mt-3 pl-0 mb-3">
-            <div id="topUsersId2"></div>
+        <div class="col-md-6 mt-3 pl-0 mb-3">
+            <div id="fwTopSitesId2"></div>
+           
         </div>
-        <div class="col-md-4 mt-3 pl-0 mb-3">
-            <div id="topApplicationId2"></div>
+        <div class="col-md-6 mt-3 pl-0 mb-3">
+            <div id="topUsersId2"></div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 pl-0">
-            <div id="fwTopSitesId2"></div>
+        <div class="col-md-6 pl-0">
+            <div id="topApplicationId2"></div>
         </div>
     </div>
 </div>
@@ -43,3 +44,27 @@
 <div class="col-md-4 mt-3 pl-0 mb-3">
     <div id="fwTopSitesId2"></div>
 </div> -->
+
+<div class="modal innm" id="durationChart" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content dashboard-popup">
+            <div class="modal-body">
+                <h4>Duration</h4>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <b>Please wait...</b><br>
+                        <!-- <label>Preparing Download</label> -->
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="logo">
+                            <div id="sudarshanloading">
+                                <img src="./assets/img/sdlogo.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

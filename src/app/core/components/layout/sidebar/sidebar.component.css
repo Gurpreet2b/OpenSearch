@@ -16,7 +16,7 @@
 }
 
 #sidebar {
-    width: 262px;
+    width: 17vw;
     position: fixed;
     /* top: 5.5em; */
     left: 0;
@@ -26,7 +26,7 @@
     /* color: #000; */
     transition: all 0.5s;
     /* min-width: 250px; */
-    max-width: 270px;
+    max-width: 25vw;
     overflow-y: auto;
     padding: 0;
     padding-bottom: 85px;

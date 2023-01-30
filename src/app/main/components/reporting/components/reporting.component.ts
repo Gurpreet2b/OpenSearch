@@ -305,11 +305,13 @@ export class ReportingComponent implements OnInit {
     });
   };
 
-  // test(){
-  //   const target = "#pdfDownload";
-  //   $(target).show();
+  test(){
+    // debugger;
+    const target = "#loadLatestReport";
+    // $(target).hide();
+    console.log('########## test')
 
-  // }
+  }
 
   public async DownloadPDF(contentName: any) {
     const target = "#pdfDownload";
@@ -1501,6 +1503,7 @@ export class ReportingComponent implements OnInit {
     else {
       alert('An Error has occured while preparing charts')
     }
+    
     // }
     // openDialog() {
     //   const myTempDialog = this.dialog.open(this.dialogRef, {
@@ -1527,5 +1530,9 @@ export class ReportingComponent implements OnInit {
     //   });
     // }
 
+  }
+
+  adsghs() {
+    
   }
 }
