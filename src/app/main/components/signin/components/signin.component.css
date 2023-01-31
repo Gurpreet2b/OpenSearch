@@ -14,7 +14,7 @@ html {
 .user_card {
   height: 400px;
   width: 350px;
-  margin-top: auto;
+  margin-top: 30px;
   margin-bottom: auto;
   /* background: #f39c12; */
   background: #00000080;
@@ -34,7 +34,7 @@ html {
   position: absolute;
   height: 170px;
   width: 170px;
-  top: -75px;
+  top: -85px;
   border-radius: 50%;
   /* background: #60a3bc; */
   /* background: #185adb; */
