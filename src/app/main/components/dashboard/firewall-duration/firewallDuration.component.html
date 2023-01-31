@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-md-12 m-datepicker">
         <div class="col-md-12">
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="col-md-12 bandwidth-bg-color">
                     <label>Start date</label>
                     <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="startDate"
                         [ngModelOptions]="{ standalone: true }">
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="col-md-12 bandwidth-bg-color">
                     <label>End date</label>
                     <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="endDate"
@@ -20,7 +20,21 @@
                     <i class="fas fa-arrow-up"></i>
                 </button>
             </div>
+            <div class="col-md-2 m-t-0">
+                <button type="button" class="btn btn-color" (click)="resetFilters()">
+                    Clear Filter
+                </button>
+            </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 m-t-1" *ngIf="useFilter">
+        <!-- <button type="button" class="btn btn-color-org"> -->
+          <label class="f-size">Filters:</label>  
+         <label class="btn-color-org">{{filterFieldName}} : {{filterFieldValue}}</label> 
+        <!-- </button> -->
     </div>
 </div>
 
@@ -37,6 +51,9 @@
     <div class="row">
         <div class="col-md-6 pl-0">
             <div id="topApplicationId2"></div>
+        </div>
+        <div class="col-md-6 pl-0">
+            <div id="topCategories"></div>
         </div>
     </div>
 </div>

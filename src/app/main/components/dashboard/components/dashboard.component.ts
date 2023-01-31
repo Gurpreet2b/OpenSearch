@@ -28,6 +28,9 @@ export class DashboardComponent implements OnInit {
   public bandwidthOvertime: any = [];
   public showIt = true;
   public IsOverviewCard: any = false;
+  public filterFieldValue: any;
+  public useFilter: boolean = false;
+  public filterFieldName: string;
 
   public toggleshowIt() {
     this.showIt = !this.showIt;
@@ -41,6 +44,7 @@ export class DashboardComponent implements OnInit {
 
   //cards Data
   public averageBandwidth: any;
+  public bandwidthRate: any;
   public totalBandwidth: any;
 
   //charts data
@@ -68,10 +72,12 @@ export class DashboardComponent implements OnInit {
     );
     // this.chartOverview();
     this.overviewDashboard();
+
   }
 
+
   ngDoCheck(): void {
-    console.log('btn')
+    // console.log('btn')
     if (this.authService.getSidebarState() == this.localSavedState) {
       return;
     }
@@ -111,7 +117,6 @@ export class DashboardComponent implements OnInit {
 
     console.log(request);
   }
-
   setho() {
     this.fromHours = 18;
   }
@@ -145,6 +150,12 @@ export class DashboardComponent implements OnInit {
       end: new Date(this.fullEndDate).toISOString(),
 
     };
+    if (this.useFilter) {
+      request.filter = {
+        "fieldValue": this.filterFieldValue,
+        "fieldType": this.filterFieldName
+      }
+    }
 
     this._http.post('eql/overview', request).subscribe(
       (res) => {
@@ -153,11 +164,12 @@ export class DashboardComponent implements OnInit {
           this.onDismiss();
           // alert('Success');
           console.log(res)
-          this.averageBandwidth = res.data.AverageBandwidth;
-          if (this.averageBandwidth.raw > 1024) {
-            let ab: any = this.averageBandwidth.raw / 1024
-            this.averageBandwidth.text = ab.toFixed([3]) + ' GB';
-          }
+          // this.averageBandwidth = res.data.AverageBandwidth;
+          this.bandwidthRate = res.data.BandwidthRate;
+          // if (this.bandwidthRate.raw > 1024) {
+          //   let ab: any = this.bandwidthRate.raw / 1024
+          //   this.bandwidthRate.text = ab.toFixed([3]) + ' GB';
+          // }
           this.totalBandwidth = res.data.TotalBandwidth;
           if (this.totalBandwidth.raw > 1024) {
             let ab: any = this.totalBandwidth.raw / 1024
@@ -215,10 +227,16 @@ export class DashboardComponent implements OnInit {
 
 
   //bandwidth chart
+  // outfun(){  
+  //   console.log('hsd')
+  // }
 
   setBandwidthLineChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
-
+    let self = this;
     let chartOptions = {
+      accessibility: {
+        description: "Protocol"
+      },
       chart: {
         zoomType: 'x',
         plotShadow: false,
@@ -227,6 +245,7 @@ export class DashboardComponent implements OnInit {
         // events:{
         //   click: function(evt:any){
         //     console.log(evt)
+        //     console.log(this)
         //   }
         // } 
       },
@@ -262,7 +281,7 @@ export class DashboardComponent implements OnInit {
       tooltip: {
         // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
         formatter: function () {
-          console.log(this)
+          // console.log(this)
           let bandwidthMB: any = this;
           var text = bandwidthMB.y;
           if (text > 1024) {
@@ -283,7 +302,34 @@ export class DashboardComponent implements OnInit {
         enabled: false,
       },
       plotOptions: {
+        series: {
+          events: {
+            // click: function (event) {
+            //   console.log('@@@@', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
 
+            legendItemClick: function (event) {
+              self.outfun(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
+          }
+        },
+        // line:{
+        // custom:"Protocol",
+        // accessibility:{
+        //   description: "dsahgh",
+        //   enabled: true
+        // }
+
+        // }
       },
       series: [],
     };
@@ -304,8 +350,11 @@ export class DashboardComponent implements OnInit {
   //productivity chart
 
   setPieChartData(widget: string, bytes: string = 'MB', title: string = 'Chart') {
-
+    let self = this;
     let chartData = {
+      accessibility: {
+        description: "ProductivityPie"
+      },
       chart: {
         //  plotBorderWidth: null,
         type: 'pie',
@@ -386,14 +435,14 @@ export class DashboardComponent implements OnInit {
       credits: {
         enabled: false,
       },
-      yAxis: {
-        labels: {
-          format: '${value}',
-          title: {
-            text: 'Thousands',
-          },
-        },
-      },
+      // yAxis: {
+      //   labels: {
+      //     format: '${value}',
+      //     title: {
+      //       text: 'Thousands',
+      //     },
+      //   },
+      // },
       // plotOptions: {
       //   pie: {
       //     innerSize: 200,
@@ -404,6 +453,36 @@ export class DashboardComponent implements OnInit {
       //   }
       // },
       plotOptions: {
+        series: {
+          // states: {
+          //   hover: {
+          //     enabled: false,
+          //   },
+          //   inactive: {
+          //     opacity: 1,
+          //   },
+          // },
+          // events: {
+          //   // click: function (event) {
+          //   //   console.log('%%%', event)
+          //   //   console.log('######', this)
+          //   //   self.outfun(event, this);
+          //   //   // self.filterFieldValue = event.point.series.name;
+          //   // },
+
+          //   show: function (event) {
+          //     console.log(event);
+          //     console.log(this);
+          //     self.outfun(event, this);
+          //     return false;
+          //     // if (!confirm('The series is currently ' +
+          //     //              visibility + '. Do you want to change that?')) {
+          //     //     
+          //     // }
+          //   }
+          //   // clicking: this.outfun(),
+          // }
+        },
         pie: {
           innerSize: 75,
           // depth: 45,
@@ -421,19 +500,59 @@ export class DashboardComponent implements OnInit {
             crookDistance: '70%',
           },
           showInLegend: true,
-        },
-        series: {
-          states: {
-            hover: {
-              enabled: false,
-            },
-            inactive: {
-              opacity: 1,
-            },
-          },
+          events: {
+            // click: function (event) {
+            //   console.log('%%%', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
+
+            click: function (event) {
+              console.log(event);
+              console.log(this);
+              self.outfun(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
+          }
         },
       },
 
+      // plotOptions: {
+      //   series: {
+      //     events: {
+      //       click: function (event) {
+      //         console.log('%%%', event)
+      //         console.log('######', this)
+      //         self.outfun(event, this);
+      //         // self.filterFieldValue = event.point.series.name;
+      //       },
+
+      //       legendItemClick: function (event) {
+      //         self.outfun(event, this);
+      //         return false;
+      //         // if (!confirm('The series is currently ' +
+      //         //              visibility + '. Do you want to change that?')) {
+      //         //     
+      //         // }
+      //       }
+      //       // clicking: this.outfun(),
+      //     }
+      //   },
+      //   // line:{
+      //   // custom:"Protocol",
+      //   // accessibility:{
+      //   //   description: "dsahgh",
+      //   //   enabled: true
+      //   // }
+
+      //   // }
+      // },
       series: [
         {
           type: 'pie',
@@ -454,8 +573,11 @@ export class DashboardComponent implements OnInit {
   //prod. line chart
 
   setLineChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
-
+    let self = this;
     let chartOptions = {
+      accessibility: {
+        description: "Productivity"
+      },
       chart: {
         zoomType: 'x',
         plotShadow: false,
@@ -567,7 +689,34 @@ export class DashboardComponent implements OnInit {
         enabled: false,
       },
       plotOptions: {
+        series: {
+          events: {
+            // click: function (event) {
+            //   console.log('%%%', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
 
+            legendItemClick: function (event) {
+              self.outfun(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
+          }
+        },
+        // line:{
+        // custom:"Protocol",
+        // accessibility:{
+        //   description: "dsahgh",
+        //   enabled: true
+        // }
+
+        // }
       },
       series: [],
     };
@@ -587,8 +736,11 @@ export class DashboardComponent implements OnInit {
 
   //traffic pie chart
   setTrafficPieChartData(widget: string, bytes: string = 'MB', title: string = 'Chart') {
-
+    let self = this;
     let chartData = {
+      accessibility: {
+        description: "Traffic Pie"
+      },
       chart: {
         //  plotBorderWidth: null,
         type: 'pie',
@@ -605,14 +757,14 @@ export class DashboardComponent implements OnInit {
       credits: {
         enabled: false,
       },
-      yAxis: {
-        labels: {
-          format: '${value}',
-          title: {
-            text: 'Thousands',
-          },
-        },
-      },
+      // yAxis: {
+      //   labels: {
+      //     format: '${value}',
+      //     title: {
+      //       text: 'Thousands',
+      //     },
+      //   },
+      // },
       // plotOptions: {
       //   pie: {
       //     innerSize: 200,
@@ -627,39 +779,69 @@ export class DashboardComponent implements OnInit {
           innerSize: 75,
           // depth: 45,
 
-          allowPointSelect: true,
+          // allowPointSelect: true,
           cursor: 'pointer',
 
           dataLabels: {
-            enabled: true,
+            // enabled: true,
             format: '<b>{point.percentage:.1f}%<b>',
             style: {
               fontSize: '10px',
             },
-            connectorShape: 'straight',
-            crookDistance: '70%',
+            // connectorShape: 'straight',
+            // crookDistance: '70%',
           },
           showInLegend: true,
         },
+
         series: {
-          states: {
-            hover: {
-              enabled: false,
-            },
-            inactive: {
-              opacity: 1,
-            },
-          },
+          events: {
+            // click: function (event) {
+            //   console.log('%%%', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
+            // legendItemClick
+            click: function (event) {
+              self.outfun(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
+          }
         },
+        // line:{
+        // custom:"Protocol",
+        // accessibility:{
+        //   description: "dsahgh",
+        //   enabled: true
+        // }
+
+        // }
+
+        // series: {
+        //   states: {
+        //     hover: {
+        //       enabled: false,
+        //     },
+        //     inactive: {
+        //       opacity: 1,
+        //     },
+        //   },
+        // },
       },
 
       series: [
-        {
-          type: 'pie',
-          name: 'Brands',
-          colorByPoint: true,
-          data: [],
-        },
+        // {
+        //   type: 'pie',
+        //   name: 'Brands',
+        //   colorByPoint: true,
+        //   data: [],
+        // },
       ],
     };
 
@@ -672,7 +854,11 @@ export class DashboardComponent implements OnInit {
 
   //trafic chart
   setTrafficChartData(widget: string, bytes: string = 'MB', type: string = 'Chart') {
+    let self = this;
     let TrafficChart = {
+      accessibility: {
+        description: "TrafficActions"
+      },
       chart: {
         zoomType: 'x',
         plotShadow: false,
@@ -715,6 +901,34 @@ export class DashboardComponent implements OnInit {
         enabled: false,
       },
       plotOptions: {
+        series: {
+          events: {
+            // click: function (event) {
+            //   console.log('%%%', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
+
+            legendItemClick: function (event) {
+              self.outfun(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
+          }
+          // line:{
+          // custom:"Protocol",
+          // accessibility:{
+          //   description: "dsahgh",
+          //   enabled: true
+          // }
+
+          // }
+        },
         // pie: {
         //   allowPointSelect: true,
         //   cursor: 'pointer',
@@ -851,6 +1065,28 @@ export class DashboardComponent implements OnInit {
     // console.log(this.productivityPieChartData )
 
   }
+  outfun(event: any, data: any) {
+    // console.log(event);
+    // console.log(data);
+    // console.log('test event', event.point.y);
+    // console.log('test data', data.name);
+    // chart.options.accessibility.description
+    // this.filterFieldValue = event.point.series.name;
+
+    //legend click
+
+    this.filterFieldValue = data.name;
+    this.filterFieldName = data.chart.options.accessibility.description;
+    let lk = data.options.custom;
+    this.useFilter = true;
+    this.overviewDashboard();
+    // throw new Error('Function not implemented.');
+  }
+  resetFilters() {
+    this.useFilter = false;
+    this.overviewDashboard();
+  }
 
 }
+
 

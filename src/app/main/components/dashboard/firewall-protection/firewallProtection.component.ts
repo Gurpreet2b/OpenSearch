@@ -22,6 +22,13 @@ export class FirewallProtectionComponent implements OnInit {
   public localSavedState: boolean = true;
   public IsOverviewCard: any = false;
 
+  
+  public filterFieldValue: any;
+  public useFilter: boolean = false;
+  public filterFieldName: string;
+  public pieChartName: string;
+  public pieChartDescription: string;
+
   //ids of chart expand
   public topBlockedChartId: any;
   public topAccessingBlockedId: any;
@@ -151,7 +158,16 @@ export class FirewallProtectionComponent implements OnInit {
     let request: any = {
       start: new Date(this.startDate).toISOString(),
       end: new Date(this.endDate).toISOString(),
-    };
+    }; 
+
+    if (this.useFilter) {
+      request.filter = {
+        "fieldValue": this.filterFieldValue,
+        "fieldType": this.filterFieldName,
+        "filterType": this.pieChartName,
+        "filterValue": this.pieChartDescription,
+      }
+    }
 
     this._http.post('eql/protection', request).subscribe(
       async (res) => {
@@ -200,8 +216,11 @@ export class FirewallProtectionComponent implements OnInit {
 
   //trafic chart
   setPieChartData(widget: string, bytes: string = 'MB', title: string = 'Chart') {
-
+    let self = this;
     let TopApplicationsChartData = {
+      accessibility: {
+        description: "Applications"
+      },
       chart: {
         //  plotBorderWidth: null,
         type: 'pie',
@@ -232,8 +251,40 @@ export class FirewallProtectionComponent implements OnInit {
         },
       },
       plotOptions: {
+        series: {
+          // states: {
+          //   hover: {
+          //     enabled: false,
+          //   },
+          //   inactive: {
+          //     opacity: 1,
+          //   },
+          // },
+          // events: {
+          //   // click: function (event) {
+          //   //   console.log('%%%', event)
+          //   //   console.log('######', this)
+          //   //   self.outfun(event, this);
+          //   //   // self.filterFieldValue = event.point.series.name;
+          //   // },
+
+          //   show: function (event) {
+          //     console.log(event);
+          //     console.log(this);
+          //     self.outfun(event, this);
+          //     return false;
+          //     // if (!confirm('The series is currently ' +
+          //     //              visibility + '. Do you want to change that?')) {
+          //     //     
+          //     // }
+          //   }
+          //   // clicking: this.outfun(),
+          // }
+        },
         pie: {
-          innerSize: 100,
+          innerSize: 5,
+          // depth: 45,
+
           allowPointSelect: true,
           cursor: 'pointer',
 
@@ -247,18 +298,56 @@ export class FirewallProtectionComponent implements OnInit {
             crookDistance: '70%',
           },
           showInLegend: true,
-        },
-        series: {
-          states: {
-            hover: {
-              enabled: false,
-            },
-            inactive: {
-              opacity: 1,
-            },
-          },
+          events: {
+            // click: function (event) {
+            //   console.log('%%%', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
+
+            click: function (event) {
+              console.log(event);
+              console.log(this);
+              self.filterTypeChartSeries(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
+          }
         },
       },
+      // plotOptions: {
+      //   pie: {
+      //     innerSize: 100,
+      //     allowPointSelect: true,
+      //     cursor: 'pointer',
+
+      //     dataLabels: {
+      //       enabled: true,
+      //       format: '<b>{point.percentage:.1f}%<b>',
+      //       style: {
+      //         fontSize: '10px',
+      //       },
+      //       connectorShape: 'straight',
+      //       crookDistance: '70%',
+      //     },
+      //     showInLegend: true,
+      //   },
+      //   series: {
+      //     states: {
+      //       hover: {
+      //         enabled: false,
+      //       },
+      //       inactive: {
+      //         opacity: 1,
+      //       },
+      //     },
+      //   },
+      // },
       // legend: {
       //   align: 'right',
       //   verticalAlign: 'top',
@@ -289,24 +378,52 @@ export class FirewallProtectionComponent implements OnInit {
   public chartProtection() {
     console.log('initializing charts');
 
-    this.setPieChartData('top-blocked-chart', 'MB', 'Top Blocked Sites');
+    this.setPieChartData('top-blocked-chart', 'MB', 'Top Applications Accessing Blocked Content');
     this.TopBlockedPieChartData['series'] = this.topBlockedApplicationsChartData.chart.Series;
+
+    this.setPieChartData('top-user-ips-chart', 'MB', 'Top Blocked Sites');
+    this.TopCategoriesOfBlockedContent['series'] = this.topBlockedSitesChartData.chart.Series;
+
+    this.setPieChartData('top-user-ips-data', 'MB', 'Top Users Accessing Blocked Content');
+    this.TopApplicationAccessingBlockedContent['series'] = this.topUserChartData.chart.Series;
 
     this.setPieChartData('top-user-ips', 'MB', 'Top Categories of Blocked Content');
     this.TopUserIpsAccessingBlockedContent['series'] = this.topBlockedCategoriesChartData.chart.Series;
 
-    this.setPieChartData('top-user-ips-data', 'MB', 'Top Applications Accessing Blocked Content');
-    this.TopApplicationAccessingBlockedContent['series'] = this.topUserChartData.chart.Series;
-
-    this.setPieChartData('top-user-ips-chart', 'MB', 'Top Users Accessing Blocked Content');
-    this.TopCategoriesOfBlockedContent['series'] = this.topBlockedSitesChartData.chart.Series;
+  
   }
 
   createProtectionCharts() {
     this.topBlockedChartId = Highcharts.chart('topBlockedChartId', this.TopBlockedPieChartData)
-    this.topAccessingBlockedId = Highcharts.chart('topAccessingBlockedId', this.TopUserIpsAccessingBlockedContent)
-    this.topBlockedContentId = Highcharts.chart('topBlockedContentId', this.TopApplicationAccessingBlockedContent)
     this.topCategoryId = Highcharts.chart('topCategoryId', this.TopCategoriesOfBlockedContent)
+    this.topBlockedContentId = Highcharts.chart('topBlockedContentId', this.TopApplicationAccessingBlockedContent)
+    this.topAccessingBlockedId = Highcharts.chart('topAccessingBlockedId', this.TopUserIpsAccessingBlockedContent)
+  }
+
+  // outfun(event: any, data: any) {
+  //   // console.log(event);
+  //   // console.log(data);
+  //   // console.log('test event', event.point.y);
+  //   // console.log('test data', data.name);
+  //   // chart.options.accessibility.description
+  //   // this.filterFieldValue = event.point.series.name;
+
+  //   //legend click
+
+  //   this.filterFieldValue = data.name;
+  //   this.filterFieldName = data.chart.options.accessibility.description;
+  //   let lk = data.options.custom;
+  //   this.useFilter = true;
+  //   this.overviewProtectionDashboard();
+  //   // throw new Error('Function not implemented.');
+  // }
+  filterTypeChartSeries(event: any, data:any){
+    this.pieChartName = event.point.name;
+    this.pieChartDescription = data.chart.options.accessibility.description;
+  }
+  resetFilters() {
+    this.useFilter = false;
+    this.overviewProtectionDashboard();
   }
 
 

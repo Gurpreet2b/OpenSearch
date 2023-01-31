@@ -32,6 +32,11 @@ export class FirewallBandwidthComponent implements OnInit {
   public localSavedState: boolean = true;
   public IsOverviewCard: any = false;
 
+  public filterFieldValue: any;
+  public useFilter: boolean = false;
+  public filterFieldName: string;
+  public pieChartName: string;
+  public pieChartDescription: string;
   //ids of chart expand
   public topApplicationId: any;
   public topUsersIpBarId: any;
@@ -191,6 +196,15 @@ export class FirewallBandwidthComponent implements OnInit {
 
     };
 
+    if (this.useFilter) {
+      request.filter = {
+        "fieldValue": this.filterFieldValue,
+        "fieldType": this.filterFieldName,
+        "filterType": this.pieChartName,
+        "filterValue": this.pieChartDescription,
+      }
+    }
+
     this._http.post('eql/bandwidth', request).subscribe(
       async (res) => {
         if (res.status) {
@@ -239,8 +253,12 @@ export class FirewallBandwidthComponent implements OnInit {
 
 
   //trafic chart
-  setPieChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart') {
+  setPieChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart', des: string = 'name') {
+    let self = this;
     let TopApplicationsChartData = {
+      accessibility: {
+        description: des
+      },
       chart: {
         zoomType: 'x',
         backgroundColor: 'snow',
@@ -256,22 +274,93 @@ export class FirewallBandwidthComponent implements OnInit {
           bytes +
           ' ({point.percentage:.1f}%) </b>',
       },
-      accessibility: {
-        point: {
-          valueSuffix: '%'
-        }
-      },
+      // accessibility: {
+      //   point: {
+      //     valueSuffix: '%'
+      //   }
+      // },
       plotOptions: {
+        series: {
+          // states: {
+          //   hover: {
+          //     enabled: false,
+          //   },
+          //   inactive: {
+          //     opacity: 1,
+          //   },
+          // },
+          // events: {
+          //   // click: function (event) {
+          //   //   console.log('%%%', event)
+          //   //   console.log('######', this)
+          //   //   self.outfun(event, this);
+          //   //   // self.filterFieldValue = event.point.series.name;
+          //   // },
+
+          //   show: function (event) {
+          //     console.log(event);
+          //     console.log(this);
+          //     self.outfun(event, this);
+          //     return false;
+          //     // if (!confirm('The series is currently ' +
+          //     //              visibility + '. Do you want to change that?')) {
+          //     //     
+          //     // }
+          //   }
+          //   // clicking: this.outfun(),
+          // }
+        },
         pie: {
-          innerSize: 60,
+          innerSize: 20,
+          // depth: 45,
+
           allowPointSelect: true,
           cursor: 'pointer',
+
           dataLabels: {
-            enabled: false
+            enabled: true,
+            format: '<b>{point.percentage:.1f}%<b>',
+            style: {
+              fontSize: '10px',
+            },
+            connectorShape: 'straight',
+            crookDistance: '70%',
           },
-          showInLegend: true
-        }
+          showInLegend: true,
+          events: {
+            // click: function (event) {
+            //   console.log('%%%', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
+
+            click: function (event) {
+              console.log(event);
+              console.log(this);
+              self.pieChartDataName(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
+          }
+        },
       },
+
+      // plotOptions: {
+      //   pie: {
+      //     innerSize: 60,
+      //     allowPointSelect: true,
+      //     cursor: 'pointer',
+      //     dataLabels: {
+      //       enabled: false
+      //     },
+      //     showInLegend: true
+      //   }
+      // },
       credits: {
         enabled: false
       },
@@ -361,8 +450,11 @@ export class FirewallBandwidthComponent implements OnInit {
   }
 
   setBarChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart') {
-
+    let self = this;
     let TopApplicationsBarChartData = {
+      accessibility: {
+        description: "Users"
+      },
       chart: {
         type: 'bar',
         backgroundColor: 'snow',
@@ -407,19 +499,49 @@ export class FirewallBandwidthComponent implements OnInit {
         valueSuffix: ' MB',
       },
       plotOptions: {
-        bar: {
-          dataLabels: {
-            // groupPadding: 0,
-            // pointPadding: 0,
-            enabled: false,
-          },
-          // maxPointWidth: 30,
-        },
         series: {
-          pointWidth: 15,
+          events: {
+            // click: function (event) {
+            //   console.log('@@@@', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
 
+            legendItemClick: function (event) {
+              self.outfun(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
+          }
         },
+        // line:{
+        // custom:"Protocol",
+        // accessibility:{
+        //   description: "dsahgh",
+        //   enabled: true
+        // }
+
+        // }
       },
+      // plotOptions: {
+      //   bar: {
+      //     dataLabels: {
+      //       // groupPadding: 0,
+      //       // pointPadding: 0,
+      //       enabled: false,
+      //     },
+      //     // maxPointWidth: 30,
+      //   },
+      //   series: {
+      //     pointWidth: 15,
+
+      //   },
+      // },
       // plotOptions: {
       //   series: {
       //     stacking: 'normal',
@@ -450,7 +572,11 @@ export class FirewallBandwidthComponent implements OnInit {
   }
 
   setColumnChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart') {
+    let self = this;
     let TopApplicationsColumnChartData = {
+      accessibility: {
+        description: "Sites"
+      },
       chart: {
         zoomType: 'x',
         backgroundColor: 'snow',
@@ -475,12 +601,42 @@ export class FirewallBandwidthComponent implements OnInit {
         pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
       },
       plotOptions: {
-        bar: {
-          dataLabels: {
-            enabled: false
+        series: {
+          events: {
+            // click: function (event) {
+            //   console.log('@@@@', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
+
+            legendItemClick: function (event) {
+              self.outfun(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
           }
-        }
+        },
+        // line:{
+        // custom:"Protocol",
+        // accessibility:{
+        //   description: "dsahgh",
+        //   enabled: true
+        // }
+
+        // }
       },
+      // plotOptions: {
+      //   bar: {
+      //     dataLabels: {
+      //       enabled: false
+      //     }
+      //   }
+      // },
 
       credits: {
         enabled: false
@@ -497,11 +653,11 @@ export class FirewallBandwidthComponent implements OnInit {
   public chartBandwidth() {
     console.log('initializing charts');
 
-    this.setPieChartApplications('top-applications', 'MB', 'Top Applications');
+    this.setPieChartApplications('top-applications', 'MB', 'Top Applications', 'Applications');
     this.TopApplications['series'] = this.topApplicationPieChartData.chart.Series;
     // this.TopTrafficCategoriesPieChart['series'] = this.topPieChartData;
 
-    this.setPieChartApplications('top-traffic-applications', 'MB', 'Top Traffic Categories');
+    this.setPieChartApplications('top-traffic-applications', 'MB', 'Top Traffic Categories', 'Traffic');
     this.TopTrafficCategoriesPieChart['series'] = this.toptrafficCategoriesChartData.chart.Series;
 
     this.setBarChartApplications('top-bar-chart', 'MB', 'Top Users Ips');
@@ -519,6 +675,32 @@ export class FirewallBandwidthComponent implements OnInit {
     this.topUsersIpBarId = Highcharts.chart('topUsersIpBarId', this.TopUsersIpsBar);
     this.topTrafficCategoryId = Highcharts.chart('topTrafficCategoryId', this.TopTrafficCategoriesPieChart)
     this.topSitesColumnChartId = Highcharts.chart('topSitesColumnChartId', this.TopSitesColumnChart)
+  }
+
+  outfun(event: any, data: any) {
+    // console.log(event);
+    // console.log(data);
+    // console.log('test event', event.point.y);
+    // console.log('test data', data.name);
+    // chart.options.accessibility.description
+    // this.filterFieldValue = event.point.series.name;
+
+    //legend click
+
+    this.filterFieldValue = data.name;
+    this.filterFieldName = data.chart.options.accessibility.description;
+    let lk = data.options.custom;
+    this.useFilter = true;
+    this.overviewBandwidthDashboard();
+    // throw new Error('Function not implemented.');
+  }
+  pieChartDataName(event: any, data:any){
+    this.pieChartName = event.point.name;
+    this.pieChartDescription = data.chart.options.accessibility.description;
+  }
+  resetFilters() {
+    this.useFilter = false;
+    this.overviewBandwidthDashboard();
   }
 
 }

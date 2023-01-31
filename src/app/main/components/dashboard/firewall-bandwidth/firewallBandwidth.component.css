@@ -154,3 +154,20 @@ h5{
   color: #333333 !important;
   font-family: "Nunito" !important;
 }
+
+.m-t-1{
+  margin-left: 2.6rem;
+}
+
+.btn-color-org{
+  border: 2px solid #ff9933;
+  color: #000;
+  /* box-shadow: 0px 0px 5px 0px #ff9933; */
+  padding: 0px 18px;
+  margin-left: 20px;
+}
+
+.f-size{
+  font-size: 16px !important;
+
+}

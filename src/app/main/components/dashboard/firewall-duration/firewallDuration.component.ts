@@ -17,12 +17,20 @@ export class FirewallDurationComponent implements OnInit {
   public FWTopSitesChartData: any = {};
   public TopUserIpsBarChartData: any = {};
   public TopApplicationsChartData: any = {};
+  public TopCategoriesChartData: any = {};
   public startDate: any = new Date();;
   public endDate: any = new Date();
   public localSavedState: boolean = true;
 
+  public filterFieldValue: any;
+  public useFilter: boolean = false;
+  public filterFieldName: string;
+  public pieChartName: string;
+  public pieChartDescription: string;
+
   //ids of chart expand
   public topApplicationId2: any;
+  public topCategories: any;
   public fwTopSitesId2: any;
   public topUsersId2: any;
 
@@ -31,6 +39,7 @@ export class FirewallDurationComponent implements OnInit {
   public topApplicationChartData: any;
   public topSitesChartData: any;
   public topUserChartData: any;
+  public topCategoriesChartData: any;
 
 
   constructor(private _http: HttpService,
@@ -73,6 +82,7 @@ export class FirewallDurationComponent implements OnInit {
     this.fwTopSitesId2.setSize(window.innerWidth / 2.6, undefined)
     this.topUsersId2.setSize(window.innerWidth / 2.7, undefined)
     this.topApplicationId2.setSize(window.innerWidth / 2.6, undefined)
+    this.topCategories.setSize(window.innerWidth / 2.7, undefined)
   }
 
   expand() {
@@ -81,6 +91,7 @@ export class FirewallDurationComponent implements OnInit {
     this.fwTopSitesId2.setSize(window.innerWidth / 2.2, undefined)
     this.topUsersId2.setSize(window.innerWidth / 2.2, undefined)
     this.topApplicationId2.setSize(window.innerWidth / 2.2, undefined)
+    this.topCategories.setSize(window.innerWidth / 2.2, undefined)
   }
 
   dateTimeFilter() {
@@ -121,16 +132,25 @@ export class FirewallDurationComponent implements OnInit {
 
     };
 
+    if (this.useFilter) {
+      request.filter = {
+        "fieldValue": this.filterFieldValue,
+        "fieldType": this.filterFieldName,
+        "filterType": this.pieChartName,
+        "filterValue": this.pieChartDescription,
+      }
+    }
+
     this._http.post('eql/duration', request).subscribe(
       async (res) => {
         if (res.status) {
           // alert('Success');
           this.onDismiss();
           console.log(res)
-
           this.topApplicationChartData = res.data.TopApplications;
           this.topSitesChartData = res.data.TopSites;
           this.topUserChartData = res.data.TopUsers;
+          this.topCategoriesChartData  = res.data.TopCategories;
 
           this.chartDuration();
           this.createDurationCharts();
@@ -168,13 +188,17 @@ export class FirewallDurationComponent implements OnInit {
   }
   //trafic chart
   setColumnChartData(widget: string, bytes: string = 'ms', type: string = 'Chart') {
+    let self = this;
     let TopApplicationsChartData = {
+      accessibility: {
+        description: "Sites"
+      },
       chart: {
         zoomType: 'x',
         backgroundColor: 'snow',
         type: 'column',
         height: 380,
-       
+
       },
       title: {
         text: type
@@ -197,7 +221,19 @@ export class FirewallDurationComponent implements OnInit {
       },
       yAxis: {
         title: {
-          text: 'Duration (Hours)'
+          text: 'Duration'
+        },
+        type: "datetime",
+        datetimeLabelFormats: {
+          millisecond: '%H:%M:%S.%L',
+          second: '%H:%M:%S',
+          minute: '%H:%M',
+          hour: '%H:%M',
+          day: '%e. %b',
+          week: '%e. %b',
+          month: '%b \'%y',
+          year: '%Y'
+
         }
       },
       tooltip: {
@@ -205,46 +241,46 @@ export class FirewallDurationComponent implements OnInit {
           let a: any = this;
           var duration = a.y;
           var milliseconds = Math.floor((duration % 1000) / 100),
-          seconds = Math.floor((duration / 1000) % 60),
-          minutes = Math.floor((duration / (1000 * 60)) % 60),
-          hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
-    
-        hours = (hours < 10) ? 0 + hours : hours;
-        minutes = (minutes < 10) ? 0 + minutes : minutes;
-        seconds = (seconds < 10) ? 0 + seconds : seconds;
-    
-        if (hours <10) {
-          var str_hours = "0" + hours;
-        }
-        else {
+            seconds = Math.floor((duration / 1000) % 60),
+            minutes = Math.floor((duration / (1000 * 60)) % 60),
+            hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          hours = (hours < 10) ? 0 + hours : hours;
+          minutes = (minutes < 10) ? 0 + minutes : minutes;
+          seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          if (hours < 10) {
+            var str_hours = "0" + hours;
+          }
+          else {
             var str_hours = hours.toString();
-        }
-    
-        if (minutes <10) {
+          }
+
+          if (minutes < 10) {
             var str_minutes = "0" + minutes;
-        }
-        else {
+          }
+          else {
             var str_minutes = minutes.toString();
-        }
-    
-        if (seconds <10) {
+          }
+
+          if (seconds < 10) {
             var str_seconds = "0" + seconds;
-        }
-        else {
+          }
+          else {
             var str_seconds = seconds.toString();
-        }
-    
-        var remaining_milliseconds=duration-((hours*60*60*1000)+(minutes*60*1000)+(seconds*1000));
-        var str_milliseconds=remaining_milliseconds.toString();
-        // if (milliseconds <10) {
-        //     var str_milliseconds = "0" + milliseconds;
-        // }
-        // else {
-        //     var str_milliseconds = milliseconds.toString();
-        // }
-    
-        // return  + ":" +  + ":" +  + "." + ;
-        return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          }
+
+          var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
+          var str_milliseconds = remaining_milliseconds.toString();
+          // if (milliseconds <10) {
+          //     var str_milliseconds = "0" + milliseconds;
+          // }
+          // else {
+          //     var str_milliseconds = milliseconds.toString();
+          // }
+
+          // return  + ":" +  + ":" +  + "." + ;
+          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
           // var milliseconds = Math.floor((duration % 1000) / 100),
           //   seconds = Math.floor((duration / 1000) % 60),
           //   minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -260,15 +296,45 @@ export class FirewallDurationComponent implements OnInit {
         // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
       },
       plotOptions: {
-        bar: {
-          dataLabels: {
-            enabled: false
+        series: {
+          events: {
+            // click: function (event) {
+            //   console.log('@@@@', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
+
+            legendItemClick: function (event) {
+              self.outfun(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
           }
         },
-        series: {
-          pointWidth: 30,
-        },
+        // line:{
+        // custom:"Protocol",
+        // accessibility:{
+        //   description: "dsahgh",
+        //   enabled: true
+        // }
+
+        // }
       },
+      // plotOptions: {
+      //   bar: {
+      //     dataLabels: {
+      //       enabled: false
+      //     }
+      //   },
+      //   series: {
+      //     pointWidth: 30,
+      //   },
+      // },
 
       credits: {
         enabled: false
@@ -389,8 +455,11 @@ export class FirewallDurationComponent implements OnInit {
     //   series: this.topBarChartData
 
     // }
-
+    let self = this;
     let TopApplicationsBarChartData = {
+      accessibility: {
+        description: "Users"
+      },
       chart: {
         type: 'bar',
         backgroundColor: 'snow',
@@ -417,52 +486,52 @@ export class FirewallDurationComponent implements OnInit {
           overflow: 'justify',
         },
       },
-     tooltip: {
+      tooltip: {
         formatter: function () {
           let a: any = this;
           var duration = a.y;
 
           var milliseconds = Math.floor((duration % 1000) / 100),
-          seconds = Math.floor((duration / 1000) % 60),
-          minutes = Math.floor((duration / (1000 * 60)) % 60),
-          hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
-    
-        hours = (hours < 10) ? 0 + hours : hours;
-        minutes = (minutes < 10) ? 0 + minutes : minutes;
-        seconds = (seconds < 10) ? 0 + seconds : seconds;
-    
-        if (hours <10) {
-          var str_hours = "0" + hours;
-        }
-        else {
+            seconds = Math.floor((duration / 1000) % 60),
+            minutes = Math.floor((duration / (1000 * 60)) % 60),
+            hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          hours = (hours < 10) ? 0 + hours : hours;
+          minutes = (minutes < 10) ? 0 + minutes : minutes;
+          seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          if (hours < 10) {
+            var str_hours = "0" + hours;
+          }
+          else {
             var str_hours = hours.toString();
-        }
-    
-        if (minutes <10) {
+          }
+
+          if (minutes < 10) {
             var str_minutes = "0" + minutes;
-        }
-        else {
+          }
+          else {
             var str_minutes = minutes.toString();
-        }
-    
-        if (seconds <10) {
+          }
+
+          if (seconds < 10) {
             var str_seconds = "0" + seconds;
-        }
-        else {
+          }
+          else {
             var str_seconds = seconds.toString();
-        }
-    
-        var remaining_milliseconds=duration-((hours*60*60*1000)+(minutes*60*1000)+(seconds*1000));
-        var str_milliseconds=remaining_milliseconds.toString();
-        // if (milliseconds <10) {
-        //     var str_milliseconds = "0" + milliseconds;
-        // }
-        // else {
-        //     var str_milliseconds = milliseconds.toString();
-        // }
-    
-        // return  + ":" +  + ":" +  + "." + ;
-        return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          }
+
+          var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
+          var str_milliseconds = remaining_milliseconds.toString();
+          // if (milliseconds <10) {
+          //     var str_milliseconds = "0" + milliseconds;
+          // }
+          // else {
+          //     var str_milliseconds = milliseconds.toString();
+          // }
+
+          // return  + ":" +  + ":" +  + "." + ;
+          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
           // var milliseconds = Math.floor((duration % 1000) / 100),
           //   seconds = Math.floor((duration / 1000) % 60),
           //   minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -477,19 +546,50 @@ export class FirewallDurationComponent implements OnInit {
         },
         // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
       },
+
       plotOptions: {
-        bar: {
-          dataLabels: {
-            // groupPadding: 0,
-            // pointPadding: 0,
-            enabled: false,
-          },
-          // maxPointWidth: 30,
-        },
         series: {
-          pointWidth: 15,
+          events: {
+            // click: function (event) {
+            //   console.log('@@@@', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
+
+            legendItemClick: function (event) {
+              self.outfun(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
+          }
         },
+        // line:{
+        // custom:"Protocol",
+        // accessibility:{
+        //   description: "dsahgh",
+        //   enabled: true
+        // }
+
+        // }
       },
+      // plotOptions: {
+      //   bar: {
+      //     dataLabels: {
+      //       // groupPadding: 0,
+      //       // pointPadding: 0,
+      //       enabled: false,
+      //     },
+      //     // maxPointWidth: 30,
+      //   },
+      //   series: {
+      //     pointWidth: 15,
+      //   },
+      // },
       // legend: {
       //   layout: 'vertical',
       //   align: 'right',
@@ -545,8 +645,11 @@ export class FirewallDurationComponent implements OnInit {
     //   series: []
 
     // }
-
+    let self = this;
     let TopApplicationsColumnChartData = {
+      accessibility: {
+        description: "Applications"
+      },
       chart: {
         zoomType: 'x',
         backgroundColor: 'snow',
@@ -561,46 +664,46 @@ export class FirewallDurationComponent implements OnInit {
           let a: any = this;
           var duration = a.y;
           var milliseconds = Math.floor((duration % 1000) / 100),
-          seconds = Math.floor((duration / 1000) % 60),
-          minutes = Math.floor((duration / (1000 * 60)) % 60),
-          hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
-    
-        hours = (hours < 10) ? 0 + hours : hours;
-        minutes = (minutes < 10) ? 0 + minutes : minutes;
-        seconds = (seconds < 10) ? 0 + seconds : seconds;
-    
-        if (hours <10) {
-          var str_hours = "0" + hours;
-        }
-        else {
+            seconds = Math.floor((duration / 1000) % 60),
+            minutes = Math.floor((duration / (1000 * 60)) % 60),
+            hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          hours = (hours < 10) ? 0 + hours : hours;
+          minutes = (minutes < 10) ? 0 + minutes : minutes;
+          seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          if (hours < 10) {
+            var str_hours = "0" + hours;
+          }
+          else {
             var str_hours = hours.toString();
-        }
-    
-        if (minutes <10) {
+          }
+
+          if (minutes < 10) {
             var str_minutes = "0" + minutes;
-        }
-        else {
+          }
+          else {
             var str_minutes = minutes.toString();
-        }
-    
-        if (seconds <10) {
+          }
+
+          if (seconds < 10) {
             var str_seconds = "0" + seconds;
-        }
-        else {
+          }
+          else {
             var str_seconds = seconds.toString();
-        }
-    
-        var remaining_milliseconds=duration-((hours*60*60*1000)+(minutes*60*1000)+(seconds*1000));
-        var str_milliseconds=remaining_milliseconds.toString();
-        // if (milliseconds <10) {
-        //     var str_milliseconds = "0" + milliseconds;
-        // }
-        // else {
-        //     var str_milliseconds = milliseconds.toString();
-        // }
-    
-        // return  + ":" +  + ":" +  + "." + ;
-        return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
+          }
+
+          var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
+          var str_milliseconds = remaining_milliseconds.toString();
+          // if (milliseconds <10) {
+          //     var str_milliseconds = "0" + milliseconds;
+          // }
+          // else {
+          //     var str_milliseconds = milliseconds.toString();
+          // }
+
+          // return  + ":" +  + ":" +  + "." + ;
+          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
           // var milliseconds = Math.floor((duration % 1000) / 100),
           //   seconds = Math.floor((duration / 1000) % 60),
           //   minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -614,22 +717,92 @@ export class FirewallDurationComponent implements OnInit {
 
         },
       },
-      accessibility: {
-        point: {
-          valueSuffix: '%'
-        }
-      },
+      // accessibility: {
+      //   point: {
+      //     valueSuffix: '%'
+      //   }
+      // },
       plotOptions: {
+        series: {
+          // states: {
+          //   hover: {
+          //     enabled: false,
+          //   },
+          //   inactive: {
+          //     opacity: 1,
+          //   },
+          // },
+          // events: {
+          //   // click: function (event) {
+          //   //   console.log('%%%', event)
+          //   //   console.log('######', this)
+          //   //   self.outfun(event, this);
+          //   //   // self.filterFieldValue = event.point.series.name;
+          //   // },
+
+          //   show: function (event) {
+          //     console.log(event);
+          //     console.log(this);
+          //     self.outfun(event, this);
+          //     return false;
+          //     // if (!confirm('The series is currently ' +
+          //     //              visibility + '. Do you want to change that?')) {
+          //     //     
+          //     // }
+          //   }
+          //   // clicking: this.outfun(),
+          // }
+        },
         pie: {
-          innerSize: 60,
+          innerSize: 5,
+          // depth: 45,
+
           allowPointSelect: true,
           cursor: 'pointer',
+
           dataLabels: {
-            enabled: false
+            enabled: true,
+            format: '<b>{point.percentage:.1f}%<b>',
+            style: {
+              fontSize: '10px',
+            },
+            connectorShape: 'straight',
+            crookDistance: '70%',
           },
-          showInLegend: true
-        }
+          showInLegend: true,
+          events: {
+            // click: function (event) {
+            //   console.log('%%%', event)
+            //   console.log('######', this)
+            //   self.outfun(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
+
+            click: function (event) {
+              console.log(event);
+              console.log(this);
+              self.pieChartDataName(event, this);
+              return false;
+              // if (!confirm('The series is currently ' +
+              //              visibility + '. Do you want to change that?')) {
+              //     
+              // }
+            }
+            // clicking: this.outfun(),
+          }
+        },
       },
+      // plotOptions: {
+      //   pie: {
+      //     innerSize: 60,
+      //     allowPointSelect: true,
+      //     cursor: 'pointer',
+      //     dataLabels: {
+      //       enabled: false
+      //     },
+      //     showInLegend: true
+      //   }
+      // },
       credits: {
         enabled: false
       },
@@ -639,6 +812,9 @@ export class FirewallDurationComponent implements OnInit {
     }
     if (widget === 'top-applications-data') {
       this.TopApplicationsChartData = TopApplicationsColumnChartData;
+    }
+    if (widget === 'top-categories') {
+      this.TopCategoriesChartData = TopApplicationsColumnChartData;
     }
   }
 
@@ -656,12 +832,42 @@ export class FirewallDurationComponent implements OnInit {
 
     this.topPieDataApplication('top-applications-data', 'MB', 'Top Applications');
     this.TopApplicationsChartData['series'] = this.topApplicationChartData.chart.Series;
+
+    this.topPieDataApplication('top-categories', 'MB', 'Top Categories');
+    this.TopCategoriesChartData['series'] = this.topCategoriesChartData.chart.Series;
   }
 
   createDurationCharts() {
     this.fwTopSitesId2 = Highcharts.chart('fwTopSitesId2', this.FWTopSitesChartData)
     this.topUsersId2 = Highcharts.chart('topUsersId2', this.TopUserIpsBarChartData)
     this.topApplicationId2 = Highcharts.chart('topApplicationId2', this.TopApplicationsChartData)
+    this.topCategories = Highcharts.chart('topCategories', this.TopCategoriesChartData)
+  }
+
+  outfun(event: any, data: any) {
+    // console.log(event);
+    // console.log(data);
+    // console.log('test event', event.point.y);
+    // console.log('test data', data.name);
+    // chart.options.accessibility.description
+    // this.filterFieldValue = event.point.series.name;
+
+    //legend click
+
+    this.filterFieldValue = data.name;
+    this.filterFieldName = data.chart.options.accessibility.description;
+    let lk = data.options.custom;
+    this.useFilter = true;
+    this.overviewDurationDashboard();
+    // throw new Error('Function not implemented.');
+  }
+  pieChartDataName(event: any, data:any){
+    this.pieChartName = event.point.name;
+    this.pieChartDescription = data.chart.options.accessibility.description;
+  }
+  resetFilters() {
+    this.useFilter = false;
+    this.overviewDurationDashboard();
   }
 
 
