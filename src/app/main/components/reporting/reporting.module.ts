@@ -8,13 +8,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ReportlistComponent } from './report-list/report-list.component';
+import { CreateReportComponent } from './create-report/create-report.component';
 // import { MatFormFieldModule } from '@angular/material/form-field';
 
 export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
-  declarations: [ReportingComponent, ReportlistComponent],
+  declarations: [ReportingComponent, CreateReportComponent, ReportlistComponent],
   imports: [
     CommonModule,
     ReportingRoutingModule,

@@ -1,0 +1,374 @@
+<div class="container m-t-30">
+    <form>
+        <!-- <div class="just-space-even">
+            <h1 (click)="togg()">Generate Reports</h1>
+        </div> -->
+        <div class="widget_header clearfix" [ngClass]="{ disabledClass: loading }">
+
+            <!-- created new reports -->
+            <div class="row generator-heading m-0" data-toggle="collapse" href="#reportStart" aria-expanded="false">
+
+                <div class="col-lg-12">
+                    <label>Generate New Report</label>
+                </div>
+            </div>
+            <div *ngIf="showControls" class="row generator-content" id="reportStart" #reportStart>
+                <div class="row pad-b-0">
+                    <div class="col-md-12">
+                        <div class="col-md-8">
+                            <label>Report Type</label>
+                            <hr>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Select User</label>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pad-b-0 pad-t-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-8 p-l-indent">
+                                <!-- <h3>Report Type</h3> -->
+
+                                <div class="rad-container">
+                                    <label class="rad-label" [ngClass]="{ active: isActivityRadio === 'allActivity' }">
+                                        <input type="radio" class="rad-input" name="all" id="allActivity"
+                                            value="All Activity" checked (change)="allActivityRadio('allActivity')" />
+                                        <div class="rad-design"></div>
+                                        <div class="rad-text">All Activity</div>
+                                    </label>
+
+                                    <label class="rad-label" [ngClass]="{
+                                        active: isActivityRadio === 'internetActivity'}">
+                                        <input type="radio" class="rad-input" name="all" id="internetActivity"
+                                            value="Internet Activity" [(ngModel)]="reportType"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            (change)="allActivityRadio('internetActivity')" />
+                                        <div class="rad-design"></div>
+                                        <div class="rad-text">Internet Activity</div>
+                                    </label>
+
+                                    <label class="rad-label"
+                                        [ngClass]="{active: isActivityRadio === 'securityNetwork'}">
+                                        <input type="radio" class="rad-input" name="all" id="securityNetwork"
+                                            value="Internet Security and Network" [(ngModel)]="reportType"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            (change)="allActivityRadio('securityNetwork')" />
+                                        <div class="rad-design"></div>
+                                        <div class="rad-text">Internet Security and Network</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 p-l-indent">
+                                <!-- <h3>Select User</h3> -->
+
+                                <div class="rad-container">
+                                    <label class="rad-label" [ngClass]="{ active: IsUserSelected == 'singleuser' }">
+                                        <input type="radio" class="rad-input" name="Single" id="singleuser"
+                                            value="singleuser" [(ngModel)]="userType"
+                                            [ngModelOptions]="{ standalone: true }" checked
+                                            (change)="setUserType('singleuser')" />
+                                        <div class="rad-design"></div>
+                                        <div class="rad-text">Single User</div>
+                                    </label>
+
+                                    <label class="rad-label" [ngClass]="{ active: IsUserSelected == 'allusers' }">
+                                        <input type="radio" class="rad-input" name="All" id="allusers" value="allusers"
+                                            [(ngModel)]="userType" [ngModelOptions]="{ standalone: true }"
+                                            (change)="setUserType('allusers')" />
+                                        <div class="rad-design"></div>
+                                        <div class="rad-text">All Users</div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- covers starting, ending date and user ip -->
+                <div class="row p-top pad-b-0">
+                    <div class="row pad-b-0">
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <label>Start Date</label>
+                                <hr>
+                            </div>
+                            <div class="col-md-4">
+                                <label>End Date</label>
+                                <hr>
+                            </div>
+                            <div class="col-md-4 userParent" *ngIf="IsHideAllUsers">
+                                <div class="flexclass">
+                                    <div class="userChild1">
+                                        <label>User</label>
+                                    </div>
+                                    <div class="userChild2">
+                                        <div class="userChild1">
+                                            <div>IPV4</div>
+                                            <label class="switch">
+                                                <input type="checkbox" [checked]="useFirewallID"
+                                                    (change)="userBasisChange($event)" />
+                                                <span class="slider round"></span>
+                                            </label>
+                                            <div>FW ID</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pad-b-0">
+                        <div class="col-md-12">
+                            <!-- <hr class="hr_datetime"> -->
+                            <div class="col-md-4 p-l-indent">
+                                <!-- <label>Start Date</label> -->
+
+                                <div class="">
+                                    <input class="datepicker-input" type="datetime-local"
+                                        class="form-control date_picker" [(ngModel)]="fullStartDate"
+                                        [ngModelOptions]="{ standalone: true }" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 p-l-indent">
+                                <!-- <label>End Date</label> -->
+
+                                <div class="">
+                                    <input type="datetime-local" class="datepicker-input"
+                                        class="form-control date_picker" [(ngModel)]="fullEndDate"
+                                        [ngModelOptions]="{ standalone: true }" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 p-l-indent" *ngIf="IsHideAllUsers">
+                                <!-- <label>Users</label> -->
+                                <div class="">
+                                    <input type="text" class="form-control box_security" [(ngModel)]="reportUser"
+                                        [ngModelOptions]="{ standalone: true }" name="reportUser" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- covers additional filters -->
+                <div class="row pad-b-0">
+                    <div class="col-lg-12">
+                        <div class="col-lg-12">
+                            <div class="flexclass">
+                                <div>
+                                    <input class="form-check-input" type="checkbox" id="addFilter"
+                                        name="additionalFilters" [(ngModel)]="additionalFiltersEnabled"
+                                        [ngModelOptions]="{ standalone: true }" checked />
+                                    <label> Additional Filters </label>
+                                </div>
+                                <div class="flex-spacer">
+                                    <hr class="flex-spacer" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="additionalFiltersEnabled" class="row pad-b-0">
+                    <div class="row pad-b-0">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <label>Field</label>
+                                <hr>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Relation</label>
+                                <hr>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Values</label>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="w-input-0" *ngFor="let obj of additionalFilterArray; let i = index">
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select class="form-control box" [(ngModel)]="obj.field"
+                                            [ngModelOptions]="{ standalone: true }">
+                                            <option value="parameter">Origin Domain</option>
+                                            <option value="internet">Department</option>
+                                            <option value="security">Security Group</option>
+                                            <option value="company">Company</option>
+                                            <option value="office">Office</option>
+                                            <option value="manager">Manager</option>
+                                            <option value="site">Site</option>
+                                            <option value="siteDomain">Site Domain</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <select class="form-control box" name="filter{{ i }}relation"
+                                        [(ngModel)]="obj.relation" [ngModelOptions]="{ standalone: true }">
+                                        <option>Equal to</option>
+                                        <option>Not Equal to</option>
+                                        <option>Starts with</option>
+                                        <option>Does not start with</option>
+                                        <option>Ends with</option>
+                                        <option>Does not end with</option>
+                                        <option>Contains</option>
+                                        <option>Does not contain</option>
+                                        <option>Contains whole word</option>
+                                        <option>Does not contain whole word</option>
+                                        <option>In keyword group</option>
+                                        <option>Not in keyword group</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3" *ngIf="obj.field !== 'security'">
+                                    <!-- <label>Users</label> -->
+
+                                    <select class="form-control box" name="filter{{ i }}value" [(ngModel)]="obj.value">
+                                        <option>Productive</option>
+                                        <option>Acceptable</option>
+                                        <option>Unproductive</option>
+                                        <option>Unacceptable</option>
+                                        <option>Unassigned</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4" *ngIf="obj.field === 'security'">
+                                    <input type="text" class="form-control box_security" name="filter{{ i }}value"
+                                        [(ngModel)]="obj.value" />
+                                </div>
+
+                                <div *ngIf="i != 0">
+                                    <button class="crossButton" (click)="removeAdditionalFilter(i)" [disabled]="i == 0">
+                                        x
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="button addNewText" (click)="addFilter()">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pad-b-0">
+                    <div class="col-md-12">
+                        <div class="flex">
+                            <div class="loader_margin">
+                                <div *ngIf="loading" id="loading"></div>
+                            </div>
+                            <button type="button" class="btn theme-btn" data-toggle="modal"
+                                data-target="#loadLatestReport">
+                                Load Latest Report
+                            </button>
+                            <button type="button" class="btn theme-btn" (click)="generateOverallReport()">
+                                Generate Report
+                            </button>
+                            <!-- <button type="button" class="btn theme-btn" (click)="ShowReportPopup()">
+                                Test
+                            </button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal" id="loadLatestReport" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content popup_success">
+            <div class="modal-body">
+                
+                <h4>Do you want to see last Report?</h4>
+                <label>Details of the report are as follows:</label>
+                <hr>
+                <!-- <div class="col-lg-12 text-right"> -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div>
+                            <label>Generated on:
+                                <div class="bold-text">
+                                    <b>{{ latestReportInfo.GeneratedDateISO | date : "medium" }}</b>
+                                </div>
+                            </label>
+                        </div>
+                        <div>
+                            <label>Report Type:
+                                <div class="bold-text">{{ latestReportInfo.ReportType }}</div>
+                            </label>
+                        </div>
+                        <div>
+                            <label>User Type:
+                                <div class="bold-text">{{ latestReportInfo.UserType }}</div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div>
+                            <label>From:
+                                <div class="bold-text">
+                                    {{ latestReportInfo.StartDateISO | date : "medium" }}
+                                </div>
+                            </label>
+                        </div>
+                        <div>
+                            <label>To:
+                                <div class="bold-text">
+                                    {{ latestReportInfo.EndDateISO | date : "medium" }}
+                                </div>
+                            </label>
+                        </div>
+                        <div>
+                            <label>User:
+                                <div class="bold-text">
+                                    {{ latestReportInfo.UserBasisValue }}
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text text-right">
+                        <button type="button" class="btn btn-light mr-2" data-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-light" (click)="loadLatestReport(latestReportInfo.ID)">Yes</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal in" id="generateReport">
+    <div class="modal-dialog">
+        <div class="modal-content popup_success">
+            <div class="modal-body">
+                <h4>Info</h4>
+                <!-- <label>Details of the report are as follows:</label> -->
+                <hr>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="bold-text p-0">Report Genertion has Started!</div>
+                        <label>We are processing your request. Report Generation will take some
+                            time.</label>
+                        <label>Please take a seat.</label>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="logo">
+                            <div id="sudarshanloading">
+                                <img src="./assets/img/sdlogo.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 text-right">
+
+                    <button class="popup-thm-btn ml-2" (click)="DismissReport()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
