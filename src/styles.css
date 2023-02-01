@@ -70,6 +70,10 @@
     cursor: pointer;
 }
 
+.row {
+    margin: 0;
+  }
+
 .header-title.fontSize_title {
     font-size: 22px;
     text-align: left;

@@ -29,23 +29,16 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-4 stat-icon">
-                                                <div class="icon-big text-center icon-warning">
-                                                    <i class="fa fa-layer-group fa-2x" aria-hidden="true">
-                                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                                    </i>
-                                                </div>
-                                            </div>
-                                            <div class="col-8 col-md-8">
-                                                <div class="numbers">
+                                        <div class="row stat-heading" >
+                                            <div class="col-12 col-md-12">
+                                                <div class="stat-heading-content">
                                                     <div class="p-t-color">
                                                         <p class="card-category">Total Bandwidth</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row pt-0">
+                                        <div class="row">
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
@@ -61,7 +54,93 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-3 col-md-6 col-sm-6 child">
+                                <div class="card card-stats cardx">
+                                    <div class="card-body">
+                                        <div class="row stat-heading" >
+                                            <div class="col-12 col-md-12">
+                                                <div class="stat-heading-content">
+                                                    <div class="p-t-color">
+                                                        <p class="card-category">Top Site</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-md-12">
+                                                <div class="numbers">
+                                                    <!-- <p class="card-category">Total Bandwidth</p> -->
+                                                    <div class="p-t-color">
+                                                        <p class="card-title">
+                                                            {{ reportData_Overview?.TopSite.Top }}
+                                                        </p>
+                                                    </div>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-6 child">
+                                <div class="card card-stats cardx">
+                                    <div class="card-body">
+                                        <div class="row stat-heading" >
+                                            <div class="col-12 col-md-12">
+                                                <div class="stat-heading-content">
+                                                    <div class="p-t-color">
+                                                        <p class="card-category">Top Application</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-md-12">
+                                                <div class="numbers">
+                                                    <div class="p-t-color">
+                                                        <p class="card-title">
+                                                            {{ reportData_Overview?.TopApplication.Top }}
+                                                        </p>
+                                                    </div>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-6 child">
+                                <div class="card card-stats cardx">
+                                    <div class="card-body">
+                                        <div class="row stat-heading" >
+                                            <div class="col-12 col-md-12">
+                                                <div class="stat-heading-content">
+                                                    <div class="p-t-color">
+                                                        <p class="card-category">Top Category</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-md-12">
+                                                <div class="numbers">
+                                                    <div class="p-t-color">
+                                                        <p class="card-title">
+                                                            {{ reportData_Overview?.TopCategory.Top }}
+                                                        </p>
+                                                    </div>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
                                         <div class="row">
@@ -81,7 +160,6 @@
                                         <div class="row pt-0">
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
-                                                    <!-- <p class="card-category">Total Bandwidth</p> -->
                                                     <p class="card-title">
                                                         {{ reportData_Overview?.TopSite.Top }}
                                                     </p>
@@ -92,8 +170,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 child">
+                            </div> -->
+
+                            <!-- <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
                                         <div class="row">
@@ -113,9 +192,7 @@
                                         <div class="row pt-0">
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
-                                                    <!-- <p class="card-category">Total Bandwidth</p> -->
                                                     <p class="card-title">
-                                                        <!-- {{ reportData_Overview?.TopApplication.Top }} -->
                                                         {{ reportData_Overview?.TopApplication.Top }}
                                                     </p>
 
@@ -125,8 +202,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 child">
+                            </div> -->
+
+                            <!-- <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
                                         <div class="row">
@@ -146,7 +224,6 @@
                                         <div class="row pt-0">
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
-                                                    <!-- <p class="card-category">Total Bandwidth</p> -->
                                                     <p class="card-title">
                                                         {{ reportData_Overview?.TopCategory.Top }}
                                                     </p>
@@ -156,7 +233,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div *ngIf="IsUserSelected === 'singleuser'">
