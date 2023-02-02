@@ -32,8 +32,8 @@
 <div class="row">
     <div class="col-md-6 m-t-1" *ngIf="useFilter">
         <!-- <button type="button" class="btn btn-color-org"> -->
-          <label class="f-size">Filters:</label>  
-         <label class="btn-color-org">{{filterFieldValue}} : {{filterFieldName}}</label> 
+        <label class="f-size">Filters:</label>
+        <label class="btn-color-org">{{filterFieldValue}} : {{filterFieldName}}</label>
         <!-- </button> -->
     </div>
 </div>
@@ -41,19 +41,28 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 mt-3 pl-0 mb-3">
-            <div id="fwTopSitesId2"></div>
-           
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="fwTopSitesId2"></div>
+            </div>
+
         </div>
         <div class="col-md-6 mt-3 pl-0 mb-3">
-            <div id="topUsersId2"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="topUsersId2"></div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 pl-0">
-            <div id="topApplicationId2"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="topApplicationId2"></div>
+            </div>
+
         </div>
         <div class="col-md-6 pl-0">
-            <div id="topCategories"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="topCategories"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -71,7 +80,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <b>Please wait...</b><br>
-                   
+
                     </div>
                     <div class="col-lg-4">
                         <div class="logo">

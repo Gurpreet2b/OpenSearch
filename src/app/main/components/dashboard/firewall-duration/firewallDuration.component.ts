@@ -21,7 +21,7 @@ export class FirewallDurationComponent implements OnInit {
   public startDate: any = new Date();;
   public endDate: any = new Date();
   public localSavedState: boolean = true;
-
+  public IsOverviewCard: any = false;
   public filterFieldValue: any;
   public useFilter: boolean = false;
   public filterFieldName: string;
@@ -154,6 +154,7 @@ export class FirewallDurationComponent implements OnInit {
 
           this.chartDuration();
           this.createDurationCharts();
+          this.IsOverviewCard = true;
         } else {
           this.loading = false;
           // alert('something is wrong');

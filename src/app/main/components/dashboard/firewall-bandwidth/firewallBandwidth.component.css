@@ -171,3 +171,8 @@ h5{
   font-size: 16px !important;
 
 }
+
+.bgColorShadow{
+  border: 1px solid #f1e9e9;
+  box-shadow: 1px 1px 5px 0px #f1e9e9;
+}

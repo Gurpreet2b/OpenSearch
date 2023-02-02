@@ -16,7 +16,7 @@
                 </div>
                 <!-- <button (click)="overviewDashboard()">asdd</button> -->
             </div>
-            
+
             <div class="col-md-2 m-t-0">
                 <button type="button" class="btn btn-color" (click)="overviewDashboard()">
                     <i class="fas fa-arrow-up"></i>
@@ -28,14 +28,14 @@
                 </button>
             </div>
         </div>
-      
+
     </div>
 </div>
 <div class="row">
     <div class="col-md-6 m-t-1" *ngIf="useFilter">
         <!-- <button type="button" class="btn btn-color-org"> -->
-          <label class="f-size">Filters:</label>  
-         <label class="label-filter">{{filterFieldValue}} : {{filterFieldName}}</label> 
+        <label class="f-size">Filters:</label>
+        <label class="label-filter">{{filterFieldValue}} : {{filterFieldName}}</label>
         <!-- </button> -->
     </div>
 </div>
@@ -81,7 +81,8 @@
     </div> -->
 
     <div class="row">
-        <div class="col-md-2 mt-3 bandwidth-card" *ngIf="IsOverviewCard">
+        <div class="col-md-2 mt-3 bandwidth-card" *ngIf="IsOverviewCard"
+            [ngClass]="{bgColorShadow: IsOverviewCard === true }">
             <h4 class="text-center p-bandwidth">Bandwidth
                 <hr class="hr-mb-bandwidth">
             </h4>
@@ -113,16 +114,24 @@
             </div> -->
         </div>
         <div class="col-md-10 mt-3">
-            <div id="bandwidthOvertime1"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="bandwidthOvertime1"></div>
+
+            </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4 mt-3 pl-0">
-            <div id="productivityPieChart"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="productivityPieChart"></div>
+            </div>
         </div>
         <div class="col-md-8 mt-3">
-            <div id="productivityOvertime1"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="productivityOvertime1"></div>
+            </div>
+
         </div>
         <!-- <div class="col-md-2 mt-3 bandwidth-bg-color" *ngIf="IsOverviewCard">
             <h4 class="text-center p-bandwidth">Productivity
@@ -153,10 +162,16 @@
 
     <div class="row">
         <div class="col-md-4 mt-3 pl-0">
-            <div id="trafficPieChart1"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="trafficPieChart1"></div>
+            </div>
+
         </div>
         <div class="col-md-8 mt-3">
-            <div id="trafficActionOvertime1"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="trafficActionOvertime1"></div>
+            </div>
+
         </div>
 
     </div>

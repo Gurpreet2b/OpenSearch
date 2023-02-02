@@ -175,3 +175,9 @@ h5{
 .m-t-table {
   margin-top: 1.2rem;
 }
+
+
+.bgColorShadow{
+  border: 1px solid #f1e9e9;
+  box-shadow: 1px 1px 5px 0px #f1e9e9;
+}
