@@ -301,21 +301,21 @@ export class FirewallDurationComponent implements OnInit {
             // click: function (event) {
             //   console.log('@@@@', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.filterTypeDurationChart(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
             click: function (event) {
               console.log(event);
               console.log(this);
-              self.outfun(event, this);
+              self.filterTypeDurationChart(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
               //     
               // }
             }
-            // clicking: this.outfun(),
+            // clicking: this.filterTypeDurationChart(),
           }
         },
         // line:{
@@ -555,24 +555,24 @@ export class FirewallDurationComponent implements OnInit {
             // click: function (event) {
             //   console.log('@@@@', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.filterTypeDurationChart(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
             click: function (event) {
               console.log(event);
               console.log(this);
-              self.outfun(event, this);
+              self.filterTypeDurationChart(event, this);
               return false;
           },
             // click: function (event) {
-            //   self.outfun(event, this);
+            //   self.filterTypeDurationChart(event, this);
             //   return false;
             //   // if (!confirm('The series is currently ' +
             //   //              visibility + '. Do you want to change that?')) {
             //   //     
             //   // }
             // }
-            // clicking: this.outfun(),
+            // clicking: this.filterTypeDurationChart(),
           }
         },
         // line:{
@@ -736,7 +736,7 @@ export class FirewallDurationComponent implements OnInit {
       //       click: function (event) {
       //         console.log(event);
       //         console.log(this);
-      //         self.outfun(event, this);
+      //         self.filterTypeDurationChart(event, this);
       //         return false;
       //     },
       //       // click: function (event) {
@@ -782,21 +782,21 @@ export class FirewallDurationComponent implements OnInit {
           //   // click: function (event) {
           //   //   console.log('%%%', event)
           //   //   console.log('######', this)
-          //   //   self.outfun(event, this);
+          //   //   self.filterTypeDurationChart(event, this);
           //   //   // self.filterFieldValue = event.point.series.name;
           //   // },
 
           //   show: function (event) {
           //     console.log(event);
           //     console.log(this);
-          //     self.outfun(event, this);
+          //     self.filterTypeDurationChart(event, this);
           //     return false;
           //     // if (!confirm('The series is currently ' +
           //     //              visibility + '. Do you want to change that?')) {
           //     //     
           //     // }
           //   }
-          //   // clicking: this.outfun(),
+          //   // clicking: this.filterTypeDurationChart(),
           // }
         },
         pie: {
@@ -820,21 +820,21 @@ export class FirewallDurationComponent implements OnInit {
             // click: function (event) {
             //   console.log('%%%', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.filterTypeDurationChart(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
             click: function (event) {
               console.log(event);
               console.log(this);
-              self.pieChartDataName(event, this);
+              self.filterTypePieChart(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
               //     
               // }
             }
-            // clicking: this.outfun(),
+            // clicking: this.filterTypeDurationChart(),
           }
         },
       },
@@ -890,7 +890,7 @@ export class FirewallDurationComponent implements OnInit {
     this.topCategories = Highcharts.chart('topCategories', this.TopCategoriesChartData)
   }
 
-  outfun(event: any, data: any) {
+  filterTypeDurationChart(event: any, data: any) {
     // console.log(event);
     // console.log(data);
     // console.log('test event', event.point.y);
@@ -907,7 +907,7 @@ export class FirewallDurationComponent implements OnInit {
     this.overviewDurationDashboard();
     // throw new Error('Function not implemented.');
   }
-  pieChartDataName(event: any, data:any){
+  filterTypePieChart(event: any, data:any){
     this.filterFieldName = event.point.name;
     this.filterFieldValue = data.chart.options.accessibility.description;
     this.useFilter = true;

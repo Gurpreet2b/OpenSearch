@@ -227,7 +227,7 @@ export class DashboardComponent implements OnInit {
 
 
   //bandwidth chart
-  // outfun(){  
+  // filterTypeChartSeries(){  
   //   console.log('hsd')
   // }
 
@@ -313,19 +313,19 @@ export class DashboardComponent implements OnInit {
             // click: function (event) {
             //   console.log('@@@@', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.filterTypeChartSeries(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
             legendItemClick: function (event) {
-              self.outfun(event, this);
+              self.filterTypeChartSeries(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
               //     
               // }
             }
-            // clicking: this.outfun(),
+            // clicking: this.filterTypeChartSeries(),
           }
         },
         // line:{
@@ -477,21 +477,21 @@ export class DashboardComponent implements OnInit {
           //   // click: function (event) {
           //   //   console.log('%%%', event)
           //   //   console.log('######', this)
-          //   //   self.outfun(event, this);
+          //   //   self.filterTypeChartSeries(event, this);
           //   //   // self.filterFieldValue = event.point.series.name;
           //   // },
 
           //   show: function (event) {
           //     console.log(event);
           //     console.log(this);
-          //     self.outfun(event, this);
+          //     self.filterTypeChartSeries(event, this);
           //     return false;
           //     // if (!confirm('The series is currently ' +
           //     //              visibility + '. Do you want to change that?')) {
           //     //     
           //     // }
           //   }
-          //   // clicking: this.outfun(),
+          //   // clicking: this.filterTypeChartSeries(),
           // }
         },
         pie: {
@@ -515,14 +515,14 @@ export class DashboardComponent implements OnInit {
             // click: function (event) {
             //   console.log('%%%', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.filterTypeChartSeries(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
             click: function (event) {
               console.log(event);
               console.log(this);
-              self.filterTypeChartSeries(event, this);
+              self.filterTypePieChart(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
@@ -533,14 +533,14 @@ export class DashboardComponent implements OnInit {
             // click: function (event) {
             //   console.log(event);
             //   console.log(this);
-            //   self.outfun(event, this);
+            //   self.filterTypeChartSeries(event, this);
             //   return false;
             //   // if (!confirm('The series is currently ' +
             //   //              visibility + '. Do you want to change that?')) {
             //   //     
             //   // }
             // }
-            // clicking: this.outfun(),
+            // clicking: this.filterTypeChartSeries(),
           }
         },
       },
@@ -551,19 +551,19 @@ export class DashboardComponent implements OnInit {
       //       click: function (event) {
       //         console.log('%%%', event)
       //         console.log('######', this)
-      //         self.outfun(event, this);
+      //         self.filterTypeChartSeries(event, this);
       //         // self.filterFieldValue = event.point.series.name;
       //       },
 
       //       legendItemClick: function (event) {
-      //         self.outfun(event, this);
+      //         self.filterTypeChartSeries(event, this);
       //         return false;
       //         // if (!confirm('The series is currently ' +
       //         //              visibility + '. Do you want to change that?')) {
       //         //     
       //         // }
       //       }
-      //       // clicking: this.outfun(),
+      //       // clicking: this.filterTypeChartSeries(),
       //     }
       //   },
       //   // line:{
@@ -722,19 +722,19 @@ export class DashboardComponent implements OnInit {
             // click: function (event) {
             //   console.log('%%%', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.filterTypeChartSeries(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
             legendItemClick: function (event) {
-              self.outfun(event, this);
+              self.filterTypeChartSeries(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
               //     
               // }
             }
-            // clicking: this.outfun(),
+            // clicking: this.filterTypeChartSeries(),
           }
         },
         // line:{
@@ -832,7 +832,7 @@ export class DashboardComponent implements OnInit {
             // click: function (event) {
             //   console.log('%%%', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.filterTypeChartSeries(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
             // legendItemClick
@@ -840,7 +840,7 @@ export class DashboardComponent implements OnInit {
             click: function (event) {
               console.log(event);
               console.log(this);
-              self.filterTypeChartSeries(event, this);
+              self.filterTypePieChart(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
@@ -848,14 +848,14 @@ export class DashboardComponent implements OnInit {
               // }
             }
             // click: function (event) {
-            //   self.outfun(event, this);
+            //   self.filterTypeChartSeries(event, this);
             //   return false;
             //   // if (!confirm('The series is currently ' +
             //   //              visibility + '. Do you want to change that?')) {
             //   //     
             //   // }
             // }
-            // clicking: this.outfun(),
+            // clicking: this.filterTypeChartSeries(),
           }
         },
         // line:{
@@ -955,19 +955,19 @@ export class DashboardComponent implements OnInit {
             // click: function (event) {
             //   console.log('%%%', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.filterTypeChartSeries(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
             legendItemClick: function (event) {
-              self.outfun(event, this);
+              self.filterTypeChartSeries(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
               //     
               // }
             }
-            // clicking: this.outfun(),
+            // clicking: this.filterTypeChartSeries(),
           }
           // line:{
           // custom:"Protocol",
@@ -1114,7 +1114,7 @@ export class DashboardComponent implements OnInit {
     // console.log(this.productivityPieChartData )
 
   }
-  outfun(event: any, data: any) {
+  filterTypeChartSeries(event: any, data: any) {
     // console.log(event);
     // console.log(data);
     // console.log('test event', event.point.y);
@@ -1132,7 +1132,7 @@ export class DashboardComponent implements OnInit {
     // throw new Error('Function not implemented.');
   }
 
-  filterTypeChartSeries(event: any, data:any){
+  filterTypePieChart(event: any, data:any){
     this.filterFieldValue = data.chart.options.accessibility.description;
     this.filterFieldName = event.point.name;
     this.useFilter = true;

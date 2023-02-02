@@ -295,21 +295,21 @@ export class FirewallBandwidthComponent implements OnInit {
           //   // click: function (event) {
           //   //   console.log('%%%', event)
           //   //   console.log('######', this)
-          //   //   self.barChart(event, this);
+          //   //   self.filterTypeBarChart(event, this);
           //   //   // self.filterFieldValue = event.point.series.name;
           //   // },
 
           //   show: function (event) {
           //     console.log(event);
           //     console.log(this);
-          //     self.barChart(event, this);
+          //     self.filterTypeBarChart(event, this);
           //     return false;
           //     // if (!confirm('The series is currently ' +
           //     //              visibility + '. Do you want to change that?')) {
           //     //     
           //     // }
           //   }
-          //   // clicking: this.barChart(),
+          //   // clicking: this.filterTypeBarChart(),
           // }
         },
         pie: {
@@ -333,21 +333,21 @@ export class FirewallBandwidthComponent implements OnInit {
             // click: function (event) {
             //   console.log('%%%', event)
             //   console.log('######', this)
-            //   self.barChart(event, this);
+            //   self.filterTypeBarChart(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
             click: function (event) {
               console.log(event);
               console.log(this);
-              self.pieChartDataName(event, this);
+              self.filterTypePieChart(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
               //     
               // }
             }
-            // clicking: this.barChart(),
+            // clicking: this.filterTypeBarChart(),
           }
         },
       },
@@ -507,27 +507,27 @@ export class FirewallBandwidthComponent implements OnInit {
             click: function (event) {
               console.log(event);
               console.log(this);
-              self.barChart(event, this);
+              self.filterTypeBarChart(event, this);
               return false;
           },
             // click: function (event) {
             //   console.log('@@@@', event)
             //   console.log('######', this)
-            //   self.barChart(event, this);
+            //   self.filterTypeBarChart(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
             // legendItemClick: function (event) {
             //   console.log(event);
             //   console.log(this);
-            //   self.barChart(event, this);
+            //   self.filterTypeBarChart(event, this);
             //   return false;
             //   // if (!confirm('The series is currently ' +
             //   //              visibility + '. Do you want to change that?')) {
             //   //     
             //   // }
             // }
-            // clicking: this.barChart(),
+            // clicking: this.filterTypeBarChart(),
           }
         },
         // line:{
@@ -617,19 +617,19 @@ export class FirewallBandwidthComponent implements OnInit {
             // click: function (event) {
             //   console.log('@@@@', event)
             //   console.log('######', this)
-            //   self.barChart(event, this);
+            //   self.filterTypeBarChart(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
             click: function (event) {
-              self.barChart(event, this);
+              self.filterTypeBarChart(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
               //     
               // }
             }
-            // clicking: this.barChart(),
+            // clicking: this.filterTypeBarChart(),
           }
         },
         // line:{
@@ -688,7 +688,7 @@ export class FirewallBandwidthComponent implements OnInit {
     this.topSitesColumnChartId = Highcharts.chart('topSitesColumnChartId', this.TopSitesColumnChart)
   }
 
-  barChart(event: any, data: any) {
+  filterTypeBarChart(event: any, data: any) {
     // console.log(event);
     // console.log(data);
     // console.log('test event', event.point.y);
@@ -705,7 +705,7 @@ export class FirewallBandwidthComponent implements OnInit {
     this.overviewBandwidthDashboard();
     // throw new Error('Function not implemented.');
   }
-  pieChartDataName(event: any, data:any){
+  filterTypePieChart(event: any, data:any){
     this.filterFieldName = data.chart.options.accessibility.description;
     this.filterFieldValue = event.point.name; 
     this.useFilter = true;
