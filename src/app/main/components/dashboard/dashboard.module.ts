@@ -10,12 +10,14 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { FirewallBandwidthComponent } from './firewall-bandwidth/firewallBandwidth.component';
 import { FirewallDurationComponent } from './firewall-duration/firewallDuration.component';
 import { FirewallProtectionComponent } from './firewall-protection/firewallProtection.component';
+import { EDRComponent } from './EDR/EDR.component';
 
 export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
-  declarations: [DashboardComponent, FirewallBandwidthComponent, FirewallDurationComponent, FirewallProtectionComponent],
+  declarations: [DashboardComponent, FirewallBandwidthComponent, 
+    FirewallDurationComponent, FirewallProtectionComponent, EDRComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

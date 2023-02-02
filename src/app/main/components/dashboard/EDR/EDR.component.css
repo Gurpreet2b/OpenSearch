@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono&display=swap');
+h6{
+  font-family: "Nunito", sans-serif !important;
+  font-size: 18px !important;
+}
+label{
+  font-family: "Nunito", sans-serif !important;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+
+.padding-bottom-zero {
+  padding-bottom: 0px;
+  text-align: center;
+}
+
+
+.dashboard-btn {
+  background-color: #ff9933;
+  color: white;
+  border: 1px solid #ff9933;
+}
+
+
+.bg-color-user {
+  background: #f2f2f2;
+}
+
+
+.sectionName {
+  font-size: 1vw;
+  font-weight: 700;
+}
+
+
+.displayPanel {
+  border: 1px solid #aaa;
+  box-shadow: 0px 0px 5px 0px #aaa;
+  border-radius: 3px;
+  padding: 1rem 3rem;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 0px;
+}
+
+.card-body .hover {
+  background-color: #ff9933;
+}
+
+.card-stats .card-body .numbers {
+  text-align: right;
+  font-size: 1em;
+}
+
+.m-t-largest {
+  margin-top: 3.5rem;
+}
+
+
+.card-stats .card-body .numbers .card-category {
+
+  font-size: 16px;
+  line-height: 1.4em;
+  color: #000;
+}
+
+.card-stats .card-body .numbers p {
+  margin-bottom: 0.25em;
+}
+
+.card-stats .card-body {
+  padding: 0px 15px;
+}
+
+.card {
+  /* background: var(--theme-color1); */
+  /* border: 3px solid #ff9933;
+  border-radius: 1rem; */
+  color: #fff;
+  border: none !important
+}
+
+.card:hover{
+  background: var(--dashboard-bg);
+  color: #ff9933;
+}
+
+
+.col-md-3 {
+  float: left;
+  width: 20%;
+}
+
+
+.bandwidth-color {
+  color: gray;
+}
+
+.cardx {
+  transition-duration: 0.5s;
+  background-color: #fff;
+  /* border: 3px solid #cc1416; */
+  border: 2px solid #f7f4f4;
+  border-radius: 1rem;
+  color: #000;
+  flex: 1;
+}
+
+
+.cardx:hover {
+  /* transform: scale(1.03); */
+  transform: translateY(-10px);
+  /* background-color: #cc1416; */
+  /* background-color: var(--prim); */
+  background: linear-gradient(50deg, #f7f4f4, #f7f7f7);
+  /* color: #fff !important; */
+}
+
+.box-font {
+  font-size: 26px !important;
+}
+
+.bandwidth-bg-color{
+  background-color: var(--dashboard-bg);
+  /* padding: 3px; */
+}
+.p-bandwidth{
+  padding: 10px;
+}
+.hr-mb-bandwidth{
+  margin-top: 8px;
+  margin-bottom: 0px;
+  border: 0;
+  border-top: 1px solid #eaebeb;
+}
+.p-box{
+  padding: 10px;
+}
+
+.m-datepicker{
+  margin: 1vw 0px 0px 0.7vw;
+}
+.t-data-color{
+  background-color: snow !important;
+}
+.table thead th{
+  color: #000 !important;
+}
+h5{
+  font-size: 18px !important;
+  color: #333333 !important;
+  font-family: "Nunito" !important;
+}
+
+.m-t-1{
+  margin-left: 2.6rem;
+}
+
+.btn-color-org{
+  border: 2px solid #ff9933;
+  color: #000;
+  /* box-shadow: 0px 0px 5px 0px #ff9933; */
+  padding: 0px 18px;
+  margin-left: 20px;
+}
+
+.f-size{
+  font-size: 16px !important;
+
+}
+
+.bgColorShadow{
+  border: 1px solid #f1e9e9;
+  box-shadow: 1px 1px 5px 0px #f1e9e9;
+}
