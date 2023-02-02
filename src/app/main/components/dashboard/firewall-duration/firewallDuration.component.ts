@@ -79,19 +79,19 @@ export class FirewallDurationComponent implements OnInit {
   shrink() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.6);
-    this.fwTopSitesId2.setSize(window.innerWidth / 2.6, undefined)
-    this.topUsersId2.setSize(window.innerWidth / 2.7, undefined)
-    this.topApplicationId2.setSize(window.innerWidth / 2.6, undefined)
-    this.topCategories.setSize(window.innerWidth / 2.7, undefined)
+    this.fwTopSitesId2.setSize(window.innerWidth / 2.55, undefined)
+    this.topUsersId2.setSize(window.innerWidth / 2.48, undefined)
+    this.topApplicationId2.setSize(window.innerWidth / 2.55, undefined)
+    this.topCategories.setSize(window.innerWidth / 2.35, undefined)
   }
 
   expand() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.3);
-    this.fwTopSitesId2.setSize(window.innerWidth / 2.2, undefined)
-    this.topUsersId2.setSize(window.innerWidth / 2.2, undefined)
-    this.topApplicationId2.setSize(window.innerWidth / 2.2, undefined)
-    this.topCategories.setSize(window.innerWidth / 2.2, undefined)
+    this.fwTopSitesId2.setSize(window.innerWidth / 2.1, undefined)
+    this.topUsersId2.setSize(window.innerWidth / 2.08, undefined)
+    this.topApplicationId2.setSize(window.innerWidth / 2.1, undefined)
+    this.topCategories.setSize(window.innerWidth / 2.08, undefined)
   }
 
   dateTimeFilter() {
@@ -202,7 +202,11 @@ export class FirewallDurationComponent implements OnInit {
 
       },
       title: {
-        text: type
+        text: type,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       xAxis: {
         // title: {
@@ -470,7 +474,11 @@ export class FirewallDurationComponent implements OnInit {
 
       },
       title: {
-        text: type
+        text: type,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       xAxis: {
         categories: [],
@@ -479,6 +487,8 @@ export class FirewallDurationComponent implements OnInit {
           text: null,
         },
       },
+
+      
       yAxis: {
         min: 0,
         title: {
@@ -665,7 +675,11 @@ export class FirewallDurationComponent implements OnInit {
         height: 350
       },
       title: {
-        text: type
+        text: type,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       tooltip: {
         formatter: function () {

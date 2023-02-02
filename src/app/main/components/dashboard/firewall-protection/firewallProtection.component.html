@@ -1,34 +1,37 @@
-<div class="row">
-    <div class="col-md-12 m-datepicker">
-        <div class="col-md-12">
-            <div class="col-md-4">
-                <div class="col-md-12 bandwidth-bg-color">
-                    <label>Start date</label>
-                    <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="startDate"
-                        [ngModelOptions]="{ standalone: true }">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="col-md-12 bandwidth-bg-color">
-                    <label>End date</label>
-                    <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="endDate"
-                        [ngModelOptions]="{ standalone: true }">
-                </div>
-            </div>
-            <div class="col-md-2 m-t-0">
-                <button type="button" class="btn btn-color" (click)="overviewProtectionDashboard()">
-                    <i class="fas fa-arrow-up"></i>
-                </button>
-            </div>
-            <div class="col-md-2 m-t-0">
-                <button type="button" class="btn btn-color" (click)="resetFilters()">
-                    Clear Filter
-                </button>
+<div class="container">
+    <div class="row mt-3">
+        <!-- <div class="col-md-12 m-datepicker"> -->
+        <!-- <div class="col-md-12"> -->
+        <div class="col-md-4 bandwidth-bg-color">
+            <!-- <div class="col-md-12 bandwidth-bg-color"> -->
+            <label>Start date</label>
+            <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="startDate"
+                [ngModelOptions]="{ standalone: true }">
+            <!-- </div> -->
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12 bandwidth-bg-color">
+                <label>End date</label>
+                <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="endDate"
+                    [ngModelOptions]="{ standalone: true }">
             </div>
         </div>
+        <div class="col-md-1 m-t-0">
+            <button type="button" class="btn btn-color" (click)="overviewProtectionDashboard()">
+                Update
+            </button>
+        </div>
+        <div class="col-md-3 m-t-0">
+            <button type="button" class="btn btn-color" (click)="resetFilters()">
+                Clear Filter
+            </button>
+        </div>
+        <!-- </div> -->
 
+        <!-- </div> -->
     </div>
 </div>
+
 
 <div class="row">
     <div class="col-md-6 m-t-1" *ngIf="useFilter">
@@ -41,17 +44,17 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4 mt-3 pl-0 mb-3">
+        <div class="col-md-4 mt-3 pl-0">
             <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
                 <div id="topBlockedChartId"></div>
             </div>
         </div>
-        <div class="col-md-4 mt-3 pl-0 mb-3">
+        <div class="col-md-4 mt-3 pl-0">
             <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
                 <div id="topCategoryId"></div>
             </div>
         </div>
-        <div class="col-md-4 mt-3 pl-0 mb-3">
+        <div class="col-md-4 mt-3 pl-0 pr-0">
             <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
                 <div id="topBlockedContentId"></div>
             </div>
@@ -60,47 +63,52 @@
     </div>
 
 
-    <div class="row">
-        <div class="col-lg-8 m-t-table pl-0" *ngIf="IsOverviewCard">
-            <div class="card t-data-color">
-                <div class="t-data-color">
-                    <h5 class="text-center">Filter Actions</h5>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table tablesorter" id="">
-                            <thead>
-                                <tr>
-                                    <th class="text-left">Firewall Rule Name</th>
-                                    <th class="text-left">Action</th>
-                                    <th class="text-left">IAP</th>
-                                    <th class="text-center">Count</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let filter of filterActionTableData">
+    <div class="row padding-bottom-zero">
+        <div class="col-lg-8 m-t-table pl-0">
+            <div *ngIf="IsOverviewCard" [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div class="card t-data-color">
+                    <div class="t-data-color text-center">
+                        <h4>Filter Actions</h4>
+                        <!-- <h5 class="text-center">Filter Actions</h5> -->
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter" id="">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">Firewall Rule Name</th>
+                                        <th class="text-left">Action</th>
+                                        <th class="text-left">IAP</th>
+                                        <th class="text-center">Count</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let filter of filterActionTableData">
 
 
-                                    <td class="text-left">
-                                        {{filter.name}}
-                                    </td>
-                                    <td class="text-left">
-                                        {{filter.action}}
-                                    </td>
-                                    <td class="text-left">
-                                        {{filter.iap}}
-                                    </td>
-                                    <td class="text-center">
-                                        {{filter.count}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <td class="text-left">
+                                            {{filter.name}}
+                                        </td>
+                                        <td class="text-left">
+                                            {{filter.action}}
+                                        </td>
+                                        <td class="text-left">
+                                            {{filter.iap}}
+                                        </td>
+                                        <td class="text-center">
+                                            {{filter.count}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-3 pl-0 mb-3">
+
+        <div class="col-md-4 mt-3 pl-0 pr-0">
             <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
                 <div id="topAccessingBlockedId"></div>
             </div>
@@ -115,18 +123,17 @@
 </div>
 
 
-
-<div class="modal innm" id="protectionChart">
+<div class="modal innm" id="protectionChart" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content dashboard-popup">
             <div class="modal-body">
-                <h4>Protection</h4>
-                <hr>
+                <!-- <h4>Duration</h4>
+                <hr> -->
                 <div class="row">
-                    <div class="col-lg-8">
-                        <b>Please wait...</b><br>
+                    <div class="col-lg-12 text-center">
+                        <b class="b-font">Please wait...</b><br>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-12 text-center">
                         <div class="logo">
                             <div id="sudarshanloading">
                                 <img src="./assets/img/sdlogo.png" />

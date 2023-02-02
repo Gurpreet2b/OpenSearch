@@ -22,7 +22,7 @@ export class FirewallProtectionComponent implements OnInit {
   public localSavedState: boolean = true;
   public IsOverviewCard: any = false;
 
-  
+
   public filterFieldValue: any;
   public useFilter: boolean = false;
   public filterFieldName: string;
@@ -106,18 +106,18 @@ export class FirewallProtectionComponent implements OnInit {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.6);
     this.topBlockedChartId.setSize(window.innerWidth / 3.85, undefined)
-    this.topAccessingBlockedId.setSize(window.innerWidth / 3.85, undefined)
-    this.topBlockedContentId.setSize(window.innerWidth / 3.85, undefined)
     this.topCategoryId.setSize(window.innerWidth / 3.85, undefined)
+    this.topBlockedContentId.setSize(window.innerWidth / 3.75, undefined)
+    this.topAccessingBlockedId.setSize(window.innerWidth / 3.75, undefined)
   }
 
   expand() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.3);
-    this.topBlockedChartId.setSize(window.innerWidth / 3.35, undefined)
-    this.topAccessingBlockedId.setSize(window.innerWidth / 3.35, undefined)
-    this.topBlockedContentId.setSize(window.innerWidth / 3.35, undefined)
-    this.topCategoryId.setSize(window.innerWidth / 3.35, undefined)
+    this.topBlockedChartId.setSize(window.innerWidth / 3.2, undefined)
+    this.topCategoryId.setSize(window.innerWidth / 3.18, undefined)
+    this.topBlockedContentId.setSize(window.innerWidth / 3.12, undefined)
+    this.topAccessingBlockedId.setSize(window.innerWidth / 3.12, undefined)
   }
 
 
@@ -158,7 +158,7 @@ export class FirewallProtectionComponent implements OnInit {
     let request: any = {
       start: new Date(this.startDate).toISOString(),
       end: new Date(this.endDate).toISOString(),
-    }; 
+    };
 
     if (this.useFilter) {
       request.filter = {
@@ -233,8 +233,13 @@ export class FirewallProtectionComponent implements OnInit {
         height: 400
       },
       title: {
-        useHTML: true,
-        text: `<span style="font-family:Nunito;">`+title +`</span>`
+        text: title,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+        }
+        // useHTML: true,
+        // text: `<span style="font-family:Nunito;">`+title +`</span>`
       },
 
       tooltip: {
@@ -394,7 +399,7 @@ export class FirewallProtectionComponent implements OnInit {
     this.setPieChartData('top-user-ips', 'MB', 'Top Categories of Blocked Content', 'Category');
     this.TopUserIpsAccessingBlockedContent['series'] = this.topBlockedCategoriesChartData.chart.Series;
 
-  
+
   }
 
   createProtectionCharts() {
@@ -421,7 +426,7 @@ export class FirewallProtectionComponent implements OnInit {
   //   this.overviewProtectionDashboard();
   //   // throw new Error('Function not implemented.');
   // }
-  filterTypeChartSeries(event: any, data:any){
+  filterTypeChartSeries(event: any, data: any) {
     this.pieChartName = event.point.name;  //10.10.101.10
     this.pieChartDescription = data.chart.options.accessibility.description; //application
     this.useFilter = true;

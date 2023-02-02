@@ -93,20 +93,20 @@ export class DashboardComponent implements OnInit {
   shrink() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.6);
-    this.bandwidthOvertime1.setSize(window.innerWidth / 1.6, undefined)
-    this.productivityPieChart.setSize(window.innerWidth / 4, undefined)
-    this.productivityOvertime1.setSize(window.innerWidth / 2, undefined)
-    this.trafficActionOvertime1.setSize(window.innerWidth / 2, undefined)
-    this.trafficPieChart1.setSize(window.innerWidth / 4, undefined)
+    this.bandwidthOvertime1.setSize(window.innerWidth / 1.5, undefined)
+    this.productivityPieChart.setSize(window.innerWidth / 3.9, undefined)
+    this.productivityOvertime1.setSize(window.innerWidth / 1.86, undefined)
+    this.trafficActionOvertime1.setSize(window.innerWidth / 1.865, undefined)
+    this.trafficPieChart1.setSize(window.innerWidth / 3.9, undefined)
   }
   expand() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.3);
-    this.bandwidthOvertime1.setSize(window.innerWidth / 1.3, undefined)
-    this.productivityPieChart.setSize(window.innerWidth / 3.3, undefined)
-    this.productivityOvertime1.setSize(window.innerWidth / 1.65, undefined)
-    this.trafficActionOvertime1.setSize(window.innerWidth / 1.65, undefined)
-    this.trafficPieChart1.setSize(window.innerWidth / 3.3, undefined)
+    this.bandwidthOvertime1.setSize(window.innerWidth / 1.25, undefined)
+    this.productivityPieChart.setSize(window.innerWidth / 3.2, undefined)
+    this.productivityOvertime1.setSize(window.innerWidth / 1.55, undefined)
+    this.trafficActionOvertime1.setSize(window.innerWidth / 1.55, undefined)
+    this.trafficPieChart1.setSize(window.innerWidth / 3.2, undefined)
   }
 
   printpre() {

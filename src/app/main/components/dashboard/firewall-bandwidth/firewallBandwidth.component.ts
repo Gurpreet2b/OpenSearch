@@ -144,19 +144,19 @@ export class FirewallBandwidthComponent implements OnInit {
   shrink() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.6);
-    this.topApplicationId.setSize(window.innerWidth / 4, undefined)
-    this.topUsersIpBarId.setSize(window.innerWidth / 2, undefined)
-    this.topTrafficCategoryId.setSize(window.innerWidth / 4, undefined)
-    this.topSitesColumnChartId.setSize(window.innerWidth / 2, undefined)
+    this.topApplicationId.setSize(window.innerWidth / 3.9, undefined)
+    this.topUsersIpBarId.setSize(window.innerWidth / 1.85, undefined)
+    this.topTrafficCategoryId.setSize(window.innerWidth / 3.9, undefined)
+    this.topSitesColumnChartId.setSize(window.innerWidth / 1.85, undefined)
   }
 
   expand() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.3);
-    this.topApplicationId.setSize(window.innerWidth / 3.3, undefined)
-    this.topUsersIpBarId.setSize(window.innerWidth / 1.7, undefined)
-    this.topTrafficCategoryId.setSize(window.innerWidth / 3.3, undefined)
-    this.topSitesColumnChartId.setSize(window.innerWidth / 1.7, undefined)
+    this.topApplicationId.setSize(window.innerWidth / 3.2, undefined)
+    this.topUsersIpBarId.setSize(window.innerWidth / 1.56, undefined)
+    this.topTrafficCategoryId.setSize(window.innerWidth / 3.2, undefined)
+    this.topSitesColumnChartId.setSize(window.innerWidth / 1.56, undefined)
   }
 
   dateTimeFilter() {
@@ -268,7 +268,11 @@ export class FirewallBandwidthComponent implements OnInit {
         height: 380
       },
       title: {
-        text: title
+        text: title,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       tooltip: {
         pointFormat:
@@ -478,7 +482,11 @@ export class FirewallBandwidthComponent implements OnInit {
         // },
       },
       title: {
-        text: title
+        text: title,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       xAxis: {
         categories: [],
@@ -595,8 +603,13 @@ export class FirewallBandwidthComponent implements OnInit {
         height: 380
       },
       title: {
-        useHTML: true,
-        text: `<span style="font-family:Nunito;">`+title +`</span>`
+        text: title,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
+        // useHTML: true,
+        // text: `<span style="font-family:Nunito;">`+title +`</span>`
       },
       xAxis: {
         title: {

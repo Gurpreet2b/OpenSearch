@@ -1,33 +1,37 @@
-<div class="row">
-    <div class="col-md-12 m-datepicker">
-        <div class="col-md-12">
-            <div class="col-md-4">
-                <div class="col-md-12 bandwidth-bg-color">
-                    <label>Start date</label>
-                    <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="startDate"
-                        [ngModelOptions]="{ standalone: true }">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="col-md-12 bandwidth-bg-color">
-                    <label>End date</label>
-                    <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="endDate"
-                        [ngModelOptions]="{ standalone: true }">
-                </div>
-            </div>
-            <div class="col-md-2 m-t-0">
-                <button type="button" class="btn btn-color" (click)="overviewBandwidthDashboard()">
-                    <i class="fas fa-arrow-up"></i>
-                </button>
-            </div>
-            <div class="col-md-2 m-t-0">
-                <button type="button" class="btn btn-color" (click)="resetFilters()">
-                    Clear Filter
-                </button>
+<div class="container">
+    <div class="row mt-3">
+        <!-- <div class="col-md-12 m-datepicker"> -->
+        <!-- <div class="col-md-12"> -->
+        <div class="col-md-4 bandwidth-bg-color">
+            <!-- <div class="col-md-12 bandwidth-bg-color"> -->
+            <label>Start date</label>
+            <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="startDate"
+                [ngModelOptions]="{ standalone: true }">
+            <!-- </div> -->
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12 bandwidth-bg-color">
+                <label>End date</label>
+                <input type="datetime-local" class="form-control bandwidth-bg-color" [(ngModel)]="endDate"
+                    [ngModelOptions]="{ standalone: true }">
             </div>
         </div>
+        <div class="col-md-1 m-t-0">
+            <button type="button" class="btn btn-color" (click)="overviewBandwidthDashboard()">
+                <!-- <i class="fas fa-arrow-up"></i> -->
+                Update
+            </button>
+        </div>
+        <div class="col-md-3 m-t-0">
+            <button type="button" class="btn btn-color" (click)="resetFilters()">
+                Clear Filter
+            </button>
+            <!-- </div> -->
+        </div>
+        <!-- </div> -->
     </div>
 </div>
+
 
 <div class="row">
     <div class="col-md-6 m-t-1" *ngIf="useFilter">
@@ -45,7 +49,7 @@
                 <div id="topApplicationId"></div>
             </div>
         </div>
-        <div class="col-md-8 mt-3 pl-0 mb-3">
+        <div class="col-md-8 mt-3 pl-0 mb-3 pr-0">
             <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
                 <div id="topUsersIpBarId"></div>
             </div>
@@ -59,20 +63,24 @@
                 <div id="topTrafficCategoryId"></div>
             </div>
         </div>
-        <div class="col-md-8 pl-0 mb-3">
+        <div class="col-md-8 pl-0 mb-3 pr-0">
             <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
                 <div id="topSitesColumnChartId"></div>
             </div>
         </div>
     </div>
 
-    <div class="row padding-bottom-zero" *ngIf="IsOverviewCard"
-    [ngClass]="{bgColorShadow: IsOverviewCard === true }">
-        <div class="col-xs-6 col-sm-6 col-lg-12 pl-0 pr-0">
+    <div class="row" *ngIf="IsOverviewCard" [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+        <div class="col-xs-6 col-sm-6 col-lg-12 pl-0 t-data-color">
             <div class="card t-data-color">
-                <div class="t-data-color">
-                    <h5 class="card-title">Top Downloads</h5>
+                <div class="t-data-color text-center">
+                    <h4>Top Downloads</h4>
+                    <!-- <h5 class="text-center">Filter Actions</h5> -->
                 </div>
+                <hr>
+                <!-- <div class="t-data-color">
+                    <h4 class="card-title">Top Downloads</h4>
+                </div> -->
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table tablesorter" id="">
@@ -87,7 +95,7 @@
                                 <tr *ngFor="let top of topDownloadTableData">
 
                                     <td class="text-left">
-                                        {{ top.name | slice: 0:60 }}<span *ngIf="top.name.length > 60">...</span>
+                                        {{ top.name | slice: 0:80 }}<span *ngIf="top.name.length > 80">...</span>
                                         <!-- {{top.name}} -->
                                     </td>
                                     <td class="text-center">
@@ -113,13 +121,13 @@
     <div class="modal-dialog">
         <div class="modal-content dashboard-popup">
             <div class="modal-body">
-                <h4>Bandwidth</h4>
-                <hr>
+                <!-- <h4>Duration</h4>
+                <hr> -->
                 <div class="row">
-                    <div class="col-lg-8">
-                        <b>Please wait...</b><br>
+                    <div class="col-lg-12 text-center">
+                        <b class="b-font">Please wait...</b><br>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-12 text-center">
                         <div class="logo">
                             <div id="sudarshanloading">
                                 <img src="./assets/img/sdlogo.png" />

@@ -145,6 +145,7 @@ label{
 }
 .t-data-color{
   background-color: snow !important;
+  padding: 5px;
 }
 .table thead th{
   color: #000 !important;
@@ -179,5 +180,25 @@ h5{
 
 .bgColorShadow{
   border: 1px solid #f1e9e9;
-  box-shadow: 1px 1px 5px 0px #f1e9e9;
+  /* box-shadow: 1px 1px 5px 0px #f1e9e9; */
+}
+
+#sudarshanloading{
+  padding: 3vh;
+}
+
+.logo img{
+  width: 4vw;
+}
+
+.b-font{
+  font-size: 17px;
+}
+
+.f-color{
+  color: #000;
+  /* text-align: center !important; */
+}
+.container{
+  padding-left: 3px !important;
 }

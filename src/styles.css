@@ -349,8 +349,8 @@
 }
 
 .dashboard-popup {
-    height: 10rem;
-    width: 25rem;
+    /* height: 10rem;
+    width: 25rem; */
     margin: 0 0 0 10rem;
 }
 .m-t-0{
@@ -360,3 +360,7 @@
 .modal-dialog {
     pointer-events: unset !important;
 }
+
+.chart-color{
+    background-color: snow !important;
+  }
