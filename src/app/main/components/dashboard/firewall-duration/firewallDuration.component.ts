@@ -134,10 +134,10 @@ export class FirewallDurationComponent implements OnInit {
 
     if (this.useFilter) {
       request.filter = {
-        "fieldValue": this.filterFieldValue,
-        "fieldType": this.filterFieldName,
-        "filterType": this.pieChartName,
-        "filterValue": this.pieChartDescription,
+        "fieldValue": this.filterFieldName,
+        "fieldType": this.filterFieldValue,
+        // "filterType": this.pieChartName,
+        // "filterValue": this.pieChartDescription,
       }
     }
 
@@ -191,7 +191,7 @@ export class FirewallDurationComponent implements OnInit {
     let self = this;
     let TopApplicationsChartData = {
       accessibility: {
-        description: "Sites"
+        description: "Site"
       },
       chart: {
         zoomType: 'x',
@@ -223,16 +223,16 @@ export class FirewallDurationComponent implements OnInit {
         title: {
           text: 'Duration'
         },
-        type: "datetime",
-        datetimeLabelFormats: {
-          millisecond: '%H:%M:%S.%L',
+        type: 'datetime',
+        dateTimeLabelFormats: {
+          millisecond: '%I:%M:%S.%L',
           second: '%H:%M:%S',
           minute: '%H:%M',
           hour: '%H:%M',
-          day: '%e. %b',
-          week: '%e. %b',
-          month: '%b \'%y',
-          year: '%Y'
+          // day: '%e. %b',
+          // week: '%e. %b',
+          // month: '%b \'%y',
+          // year: '%Y'
 
         }
       },
@@ -305,7 +305,9 @@ export class FirewallDurationComponent implements OnInit {
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
-            legendItemClick: function (event) {
+            click: function (event) {
+              console.log(event);
+              console.log(this);
               self.outfun(event, this);
               return false;
               // if (!confirm('The series is currently ' +
@@ -458,7 +460,7 @@ export class FirewallDurationComponent implements OnInit {
     let self = this;
     let TopApplicationsBarChartData = {
       accessibility: {
-        description: "Users"
+        description: "User"
       },
       chart: {
         type: 'bar',
@@ -556,15 +558,20 @@ export class FirewallDurationComponent implements OnInit {
             //   self.outfun(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
-
-            legendItemClick: function (event) {
+            click: function (event) {
+              console.log(event);
+              console.log(this);
               self.outfun(event, this);
               return false;
-              // if (!confirm('The series is currently ' +
-              //              visibility + '. Do you want to change that?')) {
-              //     
-              // }
-            }
+          },
+            // click: function (event) {
+            //   self.outfun(event, this);
+            //   return false;
+            //   // if (!confirm('The series is currently ' +
+            //   //              visibility + '. Do you want to change that?')) {
+            //   //     
+            //   // }
+            // }
             // clicking: this.outfun(),
           }
         },
@@ -611,7 +618,7 @@ export class FirewallDurationComponent implements OnInit {
     }
   }
 
-  topPieDataApplication(widget: string, bytes: string = 'MB', type: string = 'Chart') {
+  topPieDataApplication(widget: string, bytes: string = 'MB', type: string = 'Chart', filterName: string = 'Filter') {
     // let TopApplicationsColumnChartData = {
     //   chart: {
     //     zoomType: 'x',
@@ -648,7 +655,7 @@ export class FirewallDurationComponent implements OnInit {
     let self = this;
     let TopApplicationsColumnChartData = {
       accessibility: {
-        description: "Applications"
+        description: filterName
       },
       chart: {
         zoomType: 'x',
@@ -722,6 +729,45 @@ export class FirewallDurationComponent implements OnInit {
       //     valueSuffix: '%'
       //   }
       // },
+      // plotOptions: {
+      //   series: {
+      //     events: {
+
+      //       click: function (event) {
+      //         console.log(event);
+      //         console.log(this);
+      //         self.outfun(event, this);
+      //         return false;
+      //     },
+      //       // click: function (event) {
+      //       //   console.log('@@@@', event)
+      //       //   console.log('######', this)
+      //       //   self.barChart(event, this);
+      //       //   // self.filterFieldValue = event.point.series.name;
+      //       // },
+
+      //       // legendItemClick: function (event) {
+      //       //   console.log(event);
+      //       //   console.log(this);
+      //       //   self.barChart(event, this);
+      //       //   return false;
+      //       //   // if (!confirm('The series is currently ' +
+      //       //   //              visibility + '. Do you want to change that?')) {
+      //       //   //     
+      //       //   // }
+      //       // }
+      //       // clicking: this.barChart(),
+      //     }
+      //   },
+      //   // line:{
+      //   // custom:"Protocol",
+      //   // accessibility:{
+      //   //   description: "dsahgh",
+      //   //   enabled: true
+      //   // }
+
+      //   // }
+      // },
       plotOptions: {
         series: {
           // states: {
@@ -754,14 +800,14 @@ export class FirewallDurationComponent implements OnInit {
           // }
         },
         pie: {
-          innerSize: 5,
+          innerSize: 50,
           // depth: 45,
 
           allowPointSelect: true,
           cursor: 'pointer',
 
           dataLabels: {
-            enabled: true,
+            enabled: false,
             format: '<b>{point.percentage:.1f}%<b>',
             style: {
               fontSize: '10px',
@@ -830,10 +876,10 @@ export class FirewallDurationComponent implements OnInit {
     this.TopUserIpsBarChartData['series'] = this.topUserChartData.Series;
     this.TopUserIpsBarChartData['xAxis']['categories'] = this.topUserChartData.Labels;
 
-    this.topPieDataApplication('top-applications-data', 'MB', 'Top Applications');
+    this.topPieDataApplication('top-applications-data', 'MB', 'Top Applications', 'Application');
     this.TopApplicationsChartData['series'] = this.topApplicationChartData.chart.Series;
 
-    this.topPieDataApplication('top-categories', 'MB', 'Top Categories');
+    this.topPieDataApplication('top-categories', 'MB', 'Top Categories', 'Category');
     this.TopCategoriesChartData['series'] = this.topCategoriesChartData.chart.Series;
   }
 
@@ -854,16 +900,18 @@ export class FirewallDurationComponent implements OnInit {
 
     //legend click
 
-    this.filterFieldValue = data.name;
-    this.filterFieldName = data.chart.options.accessibility.description;
+    this.filterFieldName = event.point.category;
+    this.filterFieldValue = data.chart.options.accessibility.description;
     let lk = data.options.custom;
     this.useFilter = true;
     this.overviewDurationDashboard();
     // throw new Error('Function not implemented.');
   }
   pieChartDataName(event: any, data:any){
-    this.pieChartName = event.point.name;
-    this.pieChartDescription = data.chart.options.accessibility.description;
+    this.filterFieldName = event.point.name;
+    this.filterFieldValue = data.chart.options.accessibility.description;
+    this.useFilter = true;
+    this.overviewDurationDashboard();
   }
   resetFilters() {
     this.useFilter = false;

@@ -152,8 +152,8 @@ export class DashboardComponent implements OnInit {
     };
     if (this.useFilter) {
       request.filter = {
-        "fieldValue": this.filterFieldValue,
-        "fieldType": this.filterFieldName
+        "fieldValue": this.filterFieldName,
+        "fieldType": this.filterFieldValue
       }
     }
 
@@ -276,7 +276,13 @@ export class DashboardComponent implements OnInit {
         },
       },
       title: {
-        text: type
+        text: type,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
+        // text: type
+        
       },
       tooltip: {
         // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
@@ -353,7 +359,7 @@ export class DashboardComponent implements OnInit {
     let self = this;
     let chartData = {
       accessibility: {
-        description: "ProductivityPie"
+        description: "Productivity"
       },
       chart: {
         //  plotBorderWidth: null,
@@ -364,6 +370,11 @@ export class DashboardComponent implements OnInit {
       },
       title: {
         text: title,
+       
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       tooltip: {
         // pointFormat:
@@ -511,13 +522,24 @@ export class DashboardComponent implements OnInit {
             click: function (event) {
               console.log(event);
               console.log(this);
-              self.outfun(event, this);
+              self.filterTypeChartSeries(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
               //     
               // }
             }
+
+            // click: function (event) {
+            //   console.log(event);
+            //   console.log(this);
+            //   self.outfun(event, this);
+            //   return false;
+            //   // if (!confirm('The series is currently ' +
+            //   //              visibility + '. Do you want to change that?')) {
+            //   //     
+            //   // }
+            // }
             // clicking: this.outfun(),
           }
         },
@@ -554,12 +576,12 @@ export class DashboardComponent implements OnInit {
       //   // }
       // },
       series: [
-        {
-          type: 'pie',
-          name: 'Brands',
-          colorByPoint: true,
-          data: [],
-        },
+        // {
+        //   type: 'pie',
+        //   name: 'Brands',
+        //   colorByPoint: true,
+        //   data: [],
+        // },
       ],
     };
 
@@ -612,11 +634,17 @@ export class DashboardComponent implements OnInit {
       },
       yAxis: {
         title: {
-          text: 'Count',
+          text: 'Duration',
+          
+
         },
       },
       title: {
-        text: type
+        text: type,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       tooltip: {
         formatter: function () {
@@ -739,7 +767,7 @@ export class DashboardComponent implements OnInit {
     let self = this;
     let chartData = {
       accessibility: {
-        description: "Traffic Pie"
+        description: "TrafficAction"
       },
       chart: {
         //  plotBorderWidth: null,
@@ -750,6 +778,11 @@ export class DashboardComponent implements OnInit {
       },
       title: {
         text: title,
+        
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       tooltip: {
 
@@ -803,14 +836,25 @@ export class DashboardComponent implements OnInit {
             //   // self.filterFieldValue = event.point.series.name;
             // },
             // legendItemClick
+
             click: function (event) {
-              self.outfun(event, this);
+              console.log(event);
+              console.log(this);
+              self.filterTypeChartSeries(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
               //     
               // }
             }
+            // click: function (event) {
+            //   self.outfun(event, this);
+            //   return false;
+            //   // if (!confirm('The series is currently ' +
+            //   //              visibility + '. Do you want to change that?')) {
+            //   //     
+            //   // }
+            // }
             // clicking: this.outfun(),
           }
         },
@@ -857,7 +901,7 @@ export class DashboardComponent implements OnInit {
     let self = this;
     let TrafficChart = {
       accessibility: {
-        description: "TrafficActions"
+        description: "TrafficAction"
       },
       chart: {
         zoomType: 'x',
@@ -892,7 +936,12 @@ export class DashboardComponent implements OnInit {
         },
       },
       title: {
-        text: type
+        text: type,
+        
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       tooltip: {
         // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
@@ -1075,12 +1124,19 @@ export class DashboardComponent implements OnInit {
 
     //legend click
 
-    this.filterFieldValue = data.name;
-    this.filterFieldName = data.chart.options.accessibility.description;
+    this.filterFieldName = data.name;
+    this.filterFieldValue = data.chart.options.accessibility.description;
     let lk = data.options.custom;
     this.useFilter = true;
     this.overviewDashboard();
     // throw new Error('Function not implemented.');
+  }
+
+  filterTypeChartSeries(event: any, data:any){
+    this.filterFieldValue = data.chart.options.accessibility.description;
+    this.filterFieldName = event.point.name;
+    this.useFilter = true;
+    this.overviewDashboard();
   }
   resetFilters() {
     this.useFilter = false;

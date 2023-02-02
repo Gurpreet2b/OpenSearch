@@ -162,11 +162,15 @@ export class FirewallProtectionComponent implements OnInit {
 
     if (this.useFilter) {
       request.filter = {
-        "fieldValue": this.filterFieldValue,
-        "fieldType": this.filterFieldName,
-        "filterType": this.pieChartName,
-        "filterValue": this.pieChartDescription,
+        // "fieldValue": this.filterFieldValue,
+        // "fieldType": this.filterFieldName,
+        "fieldValue": this.pieChartName,
+        "fieldType": this.pieChartDescription,
       }
+      // request.filter = {
+      //   "fieldValue": this.filterFieldValue,
+      //   "fieldType": this.filterFieldName
+      // }
     }
 
     this._http.post('eql/protection', request).subscribe(
@@ -215,11 +219,11 @@ export class FirewallProtectionComponent implements OnInit {
   }
 
   //trafic chart
-  setPieChartData(widget: string, bytes: string = 'MB', title: string = 'Chart') {
+  setPieChartData(widget: string, bytes: string = 'MB', title: string = 'Chart', filterName: string = 'Filter') {
     let self = this;
     let TopApplicationsChartData = {
       accessibility: {
-        description: "Applications"
+        description: filterName
       },
       chart: {
         //  plotBorderWidth: null,
@@ -378,16 +382,16 @@ export class FirewallProtectionComponent implements OnInit {
   public chartProtection() {
     console.log('initializing charts');
 
-    this.setPieChartData('top-blocked-chart', 'MB', 'Top Applications Accessing Blocked Content');
+    this.setPieChartData('top-blocked-chart', 'MB', 'Top Applications Accessing Blocked Content', 'Application');
     this.TopBlockedPieChartData['series'] = this.topBlockedApplicationsChartData.chart.Series;
 
-    this.setPieChartData('top-user-ips-chart', 'MB', 'Top Blocked Sites');
+    this.setPieChartData('top-user-ips-chart', 'MB', 'Top Blocked Sites', 'Site');
     this.TopCategoriesOfBlockedContent['series'] = this.topBlockedSitesChartData.chart.Series;
 
-    this.setPieChartData('top-user-ips-data', 'MB', 'Top Users Accessing Blocked Content');
+    this.setPieChartData('top-user-ips-data', 'MB', 'Top Users Accessing Blocked Content', 'User');
     this.TopApplicationAccessingBlockedContent['series'] = this.topUserChartData.chart.Series;
 
-    this.setPieChartData('top-user-ips', 'MB', 'Top Categories of Blocked Content');
+    this.setPieChartData('top-user-ips', 'MB', 'Top Categories of Blocked Content', 'Category');
     this.TopUserIpsAccessingBlockedContent['series'] = this.topBlockedCategoriesChartData.chart.Series;
 
   
@@ -418,8 +422,10 @@ export class FirewallProtectionComponent implements OnInit {
   //   // throw new Error('Function not implemented.');
   // }
   filterTypeChartSeries(event: any, data:any){
-    this.pieChartName = event.point.name;
-    this.pieChartDescription = data.chart.options.accessibility.description;
+    this.pieChartName = event.point.name;  //10.10.101.10
+    this.pieChartDescription = data.chart.options.accessibility.description; //application
+    this.useFilter = true;
+    this.overviewProtectionDashboard();
   }
   resetFilters() {
     this.useFilter = false;

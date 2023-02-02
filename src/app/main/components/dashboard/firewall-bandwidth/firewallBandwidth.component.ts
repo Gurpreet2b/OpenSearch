@@ -43,6 +43,7 @@ export class FirewallBandwidthComponent implements OnInit {
   public topTrafficCategoryId: any;
   public topSitesColumnChartId: any;
 
+
   //chart Data
   public topApplicationPieChartData: any;
   public toptrafficCategoriesChartData: any;
@@ -200,10 +201,11 @@ export class FirewallBandwidthComponent implements OnInit {
       request.filter = {
         "fieldValue": this.filterFieldValue,
         "fieldType": this.filterFieldName,
-        "filterType": this.pieChartName,
-        "filterValue": this.pieChartDescription,
+        // "filterValue": this.pieChartDescription,
+        // "filterType": this.pieChartName,
       }
     }
+
 
     this._http.post('eql/bandwidth', request).subscribe(
       async (res) => {
@@ -253,11 +255,11 @@ export class FirewallBandwidthComponent implements OnInit {
 
 
   //trafic chart
-  setPieChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart', des: string = 'name') {
+  setPieChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart', filterName: string = 'Filter') {
     let self = this;
     let TopApplicationsChartData = {
       accessibility: {
-        description: des
+        description: filterName
       },
       chart: {
         zoomType: 'x',
@@ -293,32 +295,32 @@ export class FirewallBandwidthComponent implements OnInit {
           //   // click: function (event) {
           //   //   console.log('%%%', event)
           //   //   console.log('######', this)
-          //   //   self.outfun(event, this);
+          //   //   self.barChart(event, this);
           //   //   // self.filterFieldValue = event.point.series.name;
           //   // },
 
           //   show: function (event) {
           //     console.log(event);
           //     console.log(this);
-          //     self.outfun(event, this);
+          //     self.barChart(event, this);
           //     return false;
           //     // if (!confirm('The series is currently ' +
           //     //              visibility + '. Do you want to change that?')) {
           //     //     
           //     // }
           //   }
-          //   // clicking: this.outfun(),
+          //   // clicking: this.barChart(),
           // }
         },
         pie: {
-          innerSize: 20,
+          innerSize: 45,
           // depth: 45,
 
           allowPointSelect: true,
           cursor: 'pointer',
 
           dataLabels: {
-            enabled: true,
+            enabled: false,
             format: '<b>{point.percentage:.1f}%<b>',
             style: {
               fontSize: '10px',
@@ -331,7 +333,7 @@ export class FirewallBandwidthComponent implements OnInit {
             // click: function (event) {
             //   console.log('%%%', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.barChart(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
@@ -345,7 +347,7 @@ export class FirewallBandwidthComponent implements OnInit {
               //     
               // }
             }
-            // clicking: this.outfun(),
+            // clicking: this.barChart(),
           }
         },
       },
@@ -453,7 +455,7 @@ export class FirewallBandwidthComponent implements OnInit {
     let self = this;
     let TopApplicationsBarChartData = {
       accessibility: {
-        description: "Users"
+        description: "User"
       },
       chart: {
         type: 'bar',
@@ -501,22 +503,31 @@ export class FirewallBandwidthComponent implements OnInit {
       plotOptions: {
         series: {
           events: {
+
+            click: function (event) {
+              console.log(event);
+              console.log(this);
+              self.barChart(event, this);
+              return false;
+          },
             // click: function (event) {
             //   console.log('@@@@', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.barChart(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
-            legendItemClick: function (event) {
-              self.outfun(event, this);
-              return false;
-              // if (!confirm('The series is currently ' +
-              //              visibility + '. Do you want to change that?')) {
-              //     
-              // }
-            }
-            // clicking: this.outfun(),
+            // legendItemClick: function (event) {
+            //   console.log(event);
+            //   console.log(this);
+            //   self.barChart(event, this);
+            //   return false;
+            //   // if (!confirm('The series is currently ' +
+            //   //              visibility + '. Do you want to change that?')) {
+            //   //     
+            //   // }
+            // }
+            // clicking: this.barChart(),
           }
         },
         // line:{
@@ -575,7 +586,7 @@ export class FirewallBandwidthComponent implements OnInit {
     let self = this;
     let TopApplicationsColumnChartData = {
       accessibility: {
-        description: "Sites"
+        description: "Site"
       },
       chart: {
         zoomType: 'x',
@@ -606,19 +617,19 @@ export class FirewallBandwidthComponent implements OnInit {
             // click: function (event) {
             //   console.log('@@@@', event)
             //   console.log('######', this)
-            //   self.outfun(event, this);
+            //   self.barChart(event, this);
             //   // self.filterFieldValue = event.point.series.name;
             // },
 
-            legendItemClick: function (event) {
-              self.outfun(event, this);
+            click: function (event) {
+              self.barChart(event, this);
               return false;
               // if (!confirm('The series is currently ' +
               //              visibility + '. Do you want to change that?')) {
               //     
               // }
             }
-            // clicking: this.outfun(),
+            // clicking: this.barChart(),
           }
         },
         // line:{
@@ -653,11 +664,11 @@ export class FirewallBandwidthComponent implements OnInit {
   public chartBandwidth() {
     console.log('initializing charts');
 
-    this.setPieChartApplications('top-applications', 'MB', 'Top Applications', 'Applications');
+    this.setPieChartApplications('top-applications', 'MB', 'Top Applications', 'Application');
     this.TopApplications['series'] = this.topApplicationPieChartData.chart.Series;
     // this.TopTrafficCategoriesPieChart['series'] = this.topPieChartData;
 
-    this.setPieChartApplications('top-traffic-applications', 'MB', 'Top Traffic Categories', 'Traffic');
+    this.setPieChartApplications('top-traffic-applications', 'MB', 'Top Traffic Categories', 'Category');
     this.TopTrafficCategoriesPieChart['series'] = this.toptrafficCategoriesChartData.chart.Series;
 
     this.setBarChartApplications('top-bar-chart', 'MB', 'Top Users Ips');
@@ -677,7 +688,7 @@ export class FirewallBandwidthComponent implements OnInit {
     this.topSitesColumnChartId = Highcharts.chart('topSitesColumnChartId', this.TopSitesColumnChart)
   }
 
-  outfun(event: any, data: any) {
+  barChart(event: any, data: any) {
     // console.log(event);
     // console.log(data);
     // console.log('test event', event.point.y);
@@ -686,8 +697,8 @@ export class FirewallBandwidthComponent implements OnInit {
     // this.filterFieldValue = event.point.series.name;
 
     //legend click
-
-    this.filterFieldValue = data.name;
+    
+    this.filterFieldValue = event.point.category;
     this.filterFieldName = data.chart.options.accessibility.description;
     let lk = data.options.custom;
     this.useFilter = true;
@@ -695,8 +706,10 @@ export class FirewallBandwidthComponent implements OnInit {
     // throw new Error('Function not implemented.');
   }
   pieChartDataName(event: any, data:any){
-    this.pieChartName = event.point.name;
-    this.pieChartDescription = data.chart.options.accessibility.description;
+    this.filterFieldName = data.chart.options.accessibility.description;
+    this.filterFieldValue = event.point.name; 
+    this.useFilter = true;
+    this.overviewBandwidthDashboard();
   }
   resetFilters() {
     this.useFilter = false;
