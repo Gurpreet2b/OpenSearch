@@ -32,8 +32,8 @@
 <div class="row">
     <div class="col-md-6 m-t-1" *ngIf="useFilter">
         <!-- <button type="button" class="btn btn-color-org"> -->
-          <label class="f-size">Filters:</label>  
-         <label class="btn-color-org">{{filterFieldName}} : {{filterFieldValue}}</label> 
+        <label class="f-size">Filters:</label>
+        <label class="btn-color-org">{{filterFieldName}} : {{filterFieldValue}}</label>
         <!-- </button> -->
     </div>
 
@@ -41,24 +41,34 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 mt-3 pl-0 mb-3">
-            <div id="topApplicationId"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="topApplicationId"></div>
+            </div>
         </div>
         <div class="col-md-8 mt-3 pl-0 mb-3">
-            <div id="topUsersIpBarId"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="topUsersIpBarId"></div>
+            </div>
+
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4 pl-0 mb-3">
-            <div id="topTrafficCategoryId"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="topTrafficCategoryId"></div>
+            </div>
         </div>
         <div class="col-md-8 pl-0 mb-3">
-            <div id="topSitesColumnChartId"></div>
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="topSitesColumnChartId"></div>
+            </div>
         </div>
     </div>
 
-    <div class="row padding-bottom-zero" *ngIf="IsOverviewCard">
-        <div class="col-xs-6 col-sm-6 col-lg-12 pl-0">
+    <div class="row padding-bottom-zero" *ngIf="IsOverviewCard"
+    [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+        <div class="col-xs-6 col-sm-6 col-lg-12 pl-0 pr-0">
             <div class="card t-data-color">
                 <div class="t-data-color">
                     <h5 class="card-title">Top Downloads</h5>
