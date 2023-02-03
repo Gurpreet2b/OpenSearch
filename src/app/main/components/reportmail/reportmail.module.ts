@@ -7,12 +7,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { ScheduleReportComponent } from './schedule-report/schedule-report.component';
 
 export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
-  declarations: [ReportmailComponent],
+  declarations: [ReportmailComponent, ScheduleReportComponent],
   imports: [
     CommonModule,
     ReportingRoutingModule,

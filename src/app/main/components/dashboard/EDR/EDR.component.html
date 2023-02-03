@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="col-md-2 m-t-0">
-                <button type="button" class="btn btn-color" (click)="overviewBandwidthDashboard()">
+                <button type="button" class="btn btn-color" (click)="EDRDashboard()">
                     Update
                     <!-- <i class="fas fa-arrow-up"></i> -->
                 </button>
@@ -59,33 +59,32 @@
                 <div id="topSitesColumnChartId"></div>
             </div> -->
             <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
-                <div id="topTrafficCategoryId"></div>
+                <div id="topCategoriesChartId"></div>
             </div>
         </div>
         <div class="col-md-8 pl-0 mb-3">
             <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
-                <div id="topUsersIpBarId"></div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 pl-0 mb-3">
-            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
                 <div id="topSurfedColumnChartId"></div>
             </div>
         </div>
-        <div class="col-md-6 pl-0 mb-3">
+       
+    </div>
+    <div class="row">
+       
+        <div class="col-md-4 pl-0 mb-3">
             <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
-                <div id="topUsersIpBarId"></div>
+                <div id="topBypassedChartId"></div>
+            </div>
+        </div>
+        <div class="col-md-8 pl-0 mb-3">
+            <div [ngClass]="{bgColorShadow: IsOverviewCard === true }">
+                <div id="topBlockedChartId"></div>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-<div class="modal innm" id="bandwidthChart" data-backdrop="static">
+<div class="modal innm" id="EDRChart" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content dashboard-popup">
             <div class="modal-body">

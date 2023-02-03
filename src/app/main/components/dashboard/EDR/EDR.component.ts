@@ -18,8 +18,9 @@ export class EDRComponent implements OnInit {
   public TrafficActionsOverTime: any = {};
   public TopAllowSites: any = {};
   public TopApplicationsBarChartData: any = {};
-  public TopUsersIpsBar: any = {};
-  public TopTrafficCategoriesPieChart: any = {};
+  public TopBypassedWebsiteChart: any = {};
+  public TopBlockedChart: any = {};
+  public TopCategoriesPieChartData: any = {};
   public TopUsersColumnChart: any = {};
   public TopSurfedSiteColumnChart: any = {};
   public startDate: any = new Date();
@@ -34,10 +35,11 @@ export class EDRComponent implements OnInit {
   public pieChartDescription: string;
   //ids of chart expand
   public topAllowedSiteId: any;
-  public topUsersIpBarId: any;
-  public topTrafficCategoryId: any;
+  public topBypassedChartId: any;
+  public topCategoriesChartId: any;
   public topUsersColumnChartId: any;
   public topSurfedColumnChartId: any;
+  public topBlockedChartId: any;
 
 
   //chart Data
@@ -46,6 +48,7 @@ export class EDRComponent implements OnInit {
   public topUsersIpBarChartData: any;
   public topUsersColumnChartData: any;
   public topSurfedColumnChartData: any;
+  public topCategoriesChartData: any;
 
   //table data
   public topDownloadTableData: any = [];
@@ -75,7 +78,7 @@ export class EDRComponent implements OnInit {
       '2022-10-03T16:00',
       'yyyy-MM-ddTHH:mm'
     );
-    this.overviewBandwidthDashboard();
+    this.EDRDashboard();
 
   }
 
@@ -94,19 +97,21 @@ export class EDRComponent implements OnInit {
   }
 
   shrink() {
-    this.topAllowedSiteId.setSize(window.innerWidth / 4, undefined)
-    this.topUsersIpBarId.setSize(window.innerWidth / 2, undefined)
-    this.topTrafficCategoryId.setSize(window.innerWidth / 4, undefined)
-    this.topUsersColumnChartId.setSize(window.innerWidth / 2, undefined)
-    this.topSurfedColumnChartId.setSize(window.innerWidth / 2, undefined)
+    this.topAllowedSiteId.setSize(window.innerWidth / 3.9, undefined)
+    this.topUsersColumnChartId.setSize(window.innerWidth / 1.88, undefined)
+    this.topCategoriesChartId.setSize(window.innerWidth / 3.9, undefined)
+    this.topSurfedColumnChartId.setSize(window.innerWidth / 1.9, undefined)
+    this.topBypassedChartId.setSize(window.innerWidth / 3.9, undefined)
+    this.topBlockedChartId.setSize(window.innerWidth / 1.85, undefined)
   }
 
   expand() {
-    this.topAllowedSiteId.setSize(window.innerWidth / 3.3, undefined)
-    this.topUsersIpBarId.setSize(window.innerWidth / 1.7, undefined)
-    this.topTrafficCategoryId.setSize(window.innerWidth / 3.3, undefined)
-    this.topUsersColumnChartId.setSize(window.innerWidth / 1.7, undefined)
-    this.topSurfedColumnChartId.setSize(window.innerWidth / 1.7, undefined)
+    this.topAllowedSiteId.setSize(window.innerWidth / 3.2, undefined)
+    this.topUsersColumnChartId.setSize(window.innerWidth / 1.58, undefined)
+    this.topCategoriesChartId.setSize(window.innerWidth / 3.2, undefined)
+    this.topSurfedColumnChartId.setSize(window.innerWidth / 1.58, undefined)
+    this.topBypassedChartId.setSize(window.innerWidth / 3.2, undefined)
+    this.topBlockedChartId.setSize(window.innerWidth / 1.56, undefined)
   }
 
   dateTimeFilter() {
@@ -117,8 +122,8 @@ export class EDRComponent implements OnInit {
     console.log(request);
   }
 
-  overviewBandwidthDashboard() {
-    const target = "#bandwidthChart";
+  EDRDashboard() {
+    const target = "#EDRChart";
     $(target).show();
     if (
       new Date(this.startDate).getTime() >=
@@ -169,8 +174,9 @@ export class EDRComponent implements OnInit {
           this.topUsersIpBarChartData = res.data.TopUsers;
           this.topUsersColumnChartData = res.data.TopUsers;
           this.topSurfedColumnChartData = res.data.TopSurfedSites;
+          this.topCategoriesChartData = res.data.TopCategories
           this.chartBandwidth();
-          this.createBandwidthCharts();
+          this.createEDRChart();
           this.IsOverviewCard = true;
         } else {
           this.loading = false;
@@ -195,7 +201,7 @@ export class EDRComponent implements OnInit {
 
 
   onDismiss() {
-    const target = "#bandwidthChart";
+    const target = "#EDRChart";
     $(target).hide();
     $('.modal-backdrop').remove();
     $("body").removeClass("modal-open");
@@ -218,7 +224,11 @@ export class EDRComponent implements OnInit {
         height: 380
       },
       title: {
-        text: title
+        text: title,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       tooltip: {
         pointFormat:
@@ -236,7 +246,7 @@ export class EDRComponent implements OnInit {
         
         },
         pie: {
-          innerSize: 120,
+          innerSize: 40,
           // depth: 45,
 
           allowPointSelect: true,
@@ -297,8 +307,8 @@ export class EDRComponent implements OnInit {
     if (widget === 'top-allowed-sites') {
       this.TopAllowSites = TopApplicationsChartData;
     }
-    if (widget === 'top-traffic-applications') {
-      this.TopTrafficCategoriesPieChart = TopApplicationsChartData;
+    if (widget === 'top-categories-data') {
+      this.TopCategoriesPieChartData = TopApplicationsChartData;
     }
   }
 
@@ -314,7 +324,11 @@ export class EDRComponent implements OnInit {
         height: 380
       },
       title: {
-        text: title
+        text: title,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       xAxis: {
         categories: [],
@@ -355,14 +369,256 @@ export class EDRComponent implements OnInit {
       },
       series: [],
     };
-    if (widget === 'top-bar-chart') {
-      this.TopUsersIpsBar = TopApplicationsBarChartData;
+    if (widget === 'top-bypassed-chart') {
+      this.TopBypassedWebsiteChart = TopApplicationsBarChartData;
+    }
+    if (widget === 'top-blocked-chart') {
+      this.TopBlockedChart = TopApplicationsBarChartData;
     }
   }
 
   setColumnChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart') {
     let self = this;
     let TopApplicationsColumnChartData = {
+      accessibility: {
+        description: "User"
+      },
+      chart: {
+        type: 'bar',
+        backgroundColor: 'snow',
+        height: 380,
+
+      },
+      title: {
+        text: title,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
+      },
+      xAxis: {
+        categories: [],
+
+        title: {
+          text: null,
+        },
+        // labels: {
+        //   overflow: 'justify',
+        // },
+      },
+
+      
+      yAxis: {
+        min: 0,
+        // title: {
+        //   text: 'Bandwidth',
+        //   align: 'high',
+        // },
+        // labels: {
+        //   overflow: 'justify',
+        // },
+      },
+      tooltip: {
+        formatter: function () {
+          let a: any = this;
+          var duration = a.y;
+
+          var milliseconds = Math.floor((duration % 1000) / 100),
+            seconds = Math.floor((duration / 1000) % 60),
+            minutes = Math.floor((duration / (1000 * 60)) % 60),
+            hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          hours = (hours < 10) ? 0 + hours : hours;
+          minutes = (minutes < 10) ? 0 + minutes : minutes;
+          seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          if (hours < 10) {
+            var str_hours = "0" + hours;
+          }
+          else {
+            var str_hours = hours.toString();
+          }
+
+          if (minutes < 10) {
+            var str_minutes = "0" + minutes;
+          }
+          else {
+            var str_minutes = minutes.toString();
+          }
+
+          if (seconds < 10) {
+            var str_seconds = "0" + seconds;
+          }
+          else {
+            var str_seconds = seconds.toString();
+          }
+
+          var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
+          var str_milliseconds = remaining_milliseconds.toString();
+          // if (milliseconds <10) {
+          //     var str_milliseconds = "0" + milliseconds;
+          // }
+          // else {
+          //     var str_milliseconds = milliseconds.toString();
+          // }
+
+          // return  + ":" +  + ":" +  + "." + ;
+          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          // var milliseconds = Math.floor((duration % 1000) / 100),
+          //   seconds = Math.floor((duration / 1000) % 60),
+          //   minutes = Math.floor((duration / (1000 * 60)) % 60),
+          //   hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+          // hours = (hours < 10) ? 0 + hours : hours;
+          // minutes = (minutes < 10) ? 0 + minutes : minutes;
+          // seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+          // return a.series.name + ' : <b>' + hours + ":" + minutes + ":" + seconds  + '</b>'
+
+        },
+        // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
+      },
+
+      plotOptions: {
+        series: {
+          events: {
+            // click: function (event) {
+            //   console.log('@@@@', event)
+            //   console.log('######', this)
+            //   self.filterTypeDurationChart(event, this);
+            //   // self.filterFieldValue = event.point.series.name;
+            // },
+            click: function (event) {
+              console.log(event);
+              console.log(this);
+              // self.filterTypeDurationChart(event, this);
+              return false;
+          },
+            // click: function (event) {
+            //   self.filterTypeDurationChart(event, this);
+            //   return false;
+            //   // if (!confirm('The series is currently ' +
+            //   //              visibility + '. Do you want to change that?')) {
+            //   //     
+            //   // }
+            // }
+            // clicking: this.filterTypeDurationChart(),
+          }
+        },
+        // line:{
+        // custom:"Protocol",
+        // accessibility:{
+        //   description: "dsahgh",
+        //   enabled: true
+        // }
+
+        // }
+      },
+      // plotOptions: {
+      //   bar: {
+      //     dataLabels: {
+      //       // groupPadding: 0,
+      //       // pointPadding: 0,
+      //       enabled: false,
+      //     },
+      //     // maxPointWidth: 30,
+      //   },
+      //   series: {
+      //     pointWidth: 15,
+      //   },
+      // },
+      // legend: {
+      //   layout: 'vertical',
+      //   align: 'right',
+      //   verticalAlign: 'top',
+      //   x: -40,
+      //   y: 80,
+      //   floating: true,
+      //   borderWidth: 1,
+      //   backgroundColor: '#FFFFFF',
+      //   shadow: true,
+      // },
+      credits: {
+        enabled: false,
+      },
+      series: [],
+    };
+    // let TopApplicationsColumnChartData = {
+    //   accessibility: {
+    //     description: "Site"
+    //   },
+    //   chart: {
+    //     zoomType: 'x',
+    //     backgroundColor: 'snow',
+    //     type: 'column',
+    //     height: 380
+    //   },
+    //   title: {
+    //     useHTML: true,
+    //     text: `<span style="font-family:Nunito;">`+title +`</span>`
+    //   },
+    //   xAxis: {
+    //     type: 'datetime',
+    //       dateTimeLabelFormats: {
+    //         millisecond: '%I:%M:%S.%L %p',
+    //         second: '%I:%M:%S %p',
+    //         minute: '%I:%M %p',
+    //         hour: '%I:%M %p',
+    //       },
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Bandwidth (MBs)'
+    //     }
+    //   },
+    //   tooltip: {
+    //     pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       stacking: 'normal',
+    //       events: {
+    //         click: function (event) {
+    //           self.filterTypeBarChart(event, this);
+    //           return false;
+    //         }
+    //         // clicking: this.filterTypeBarChart(),
+    //       }
+    //     },
+    //     // line:{
+    //     // custom:"Protocol",
+    //     // accessibility:{
+    //     //   description: "dsahgh",
+    //     //   enabled: true
+    //     // }
+
+    //     // }
+    //   },
+    //   // plotOptions: {
+    //   //   bar: {
+    //   //     dataLabels: {
+    //   //       enabled: false
+    //   //     }
+    //   //   }
+    //   // },
+
+    //   credits: {
+    //     enabled: false
+    //   },
+    //   // series: this.topColumnChartData
+    //   series: []
+    // }
+    if (widget === 'top-users') {
+      this.TopUsersColumnChart = TopApplicationsColumnChartData;
+    }
+    // if (widget === 'top-surfed-sites') {
+    //   this.TopSurfedSiteColumnChart = TopApplicationsColumnChartData;
+    // }
+  }
+
+  setBarChartData(widget: string, bytes: string = 'MB', title: string = 'Chart') {
+    let self = this;
+    let TopApplicationsBarChart = {
       accessibility: {
         description: "Site"
       },
@@ -373,8 +629,13 @@ export class EDRComponent implements OnInit {
         height: 380
       },
       title: {
-        useHTML: true,
-        text: `<span style="font-family:Nunito;">`+title +`</span>`
+        // useHTML: true,
+        // text: `<span style="font-family:Nunito;">`+title +`</span>`
+        text: title,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       xAxis: {
         type: 'datetime',
@@ -427,45 +688,49 @@ export class EDRComponent implements OnInit {
       // series: this.topColumnChartData
       series: []
     }
-    if (widget === 'top-users') {
-      this.TopUsersColumnChart = TopApplicationsColumnChartData;
-    }
+    // if (widget === 'top-users') {
+    //   this.TopUsersColumnChart = TopApplicationsColumnChartData;
+    // }
     if (widget === 'top-surfed-sites') {
-      this.TopSurfedSiteColumnChart = TopApplicationsColumnChartData;
+      this.TopSurfedSiteColumnChart = TopApplicationsBarChart;
     }
   }
-
 
   public chartBandwidth() {
     console.log('initializing charts');
 
     this.setPieChartApplications('top-allowed-sites', 'MB', 'Top Allowed Websites', 'Application');
     this.TopAllowSites['series'] = this.topAllowSitesPieChartData.chart.Series;
-    // this.TopTrafficCategoriesPieChart['series'] = this.topPieChartData;
+    // this.TopCategoriesPieChartData['series'] = this.topPieChartData;
 
-    this.setPieChartApplications('top-traffic-applications', 'MB', 'Top Traffic Categories', 'Category');
-    this.TopTrafficCategoriesPieChart['series'] = this.toptrafficCategoriesChartData.chart.Series;
+    this.setPieChartApplications('top-categories-data', 'MB', 'Top Categories', 'Category');
+    this.TopCategoriesPieChartData['series'] = this.topCategoriesChartData.chart.Series;
 
-    this.setBarChartApplications('top-bar-chart', 'MB', 'Top Users Ips');
-    this.TopUsersIpsBar['xAxis']['categories'] = this.topUsersIpBarChartData.Labels;
-    this.TopUsersIpsBar['series'] = this.topUsersIpBarChartData.Series;
+    this.setBarChartApplications('top-bypassed-chart', 'MB', 'Top Bypassed Websites');
+    this.TopBypassedWebsiteChart['xAxis']['categories'] = this.topUsersIpBarChartData.Labels;
+    this.TopBypassedWebsiteChart['series'] = this.topUsersIpBarChartData.Series;
+
+    this.setBarChartApplications('top-blocked-chart', 'MB', 'Top Blocked Site Accessed by User');
+    this.TopBlockedChart['xAxis']['categories'] = this.topUsersIpBarChartData.Labels;
+    this.TopBlockedChart['series'] = this.topUsersIpBarChartData.Series;
 
     this.setColumnChartApplications('top-users', 'MB', 'Top Users');
     this.TopUsersColumnChart['xAxis']['categories'] = this.topUsersColumnChartData.chart.Labels;
     this.TopUsersColumnChart['series'] = this.topUsersColumnChartData.chart.Series;
 
-    this.setColumnChartApplications('top-surfed-sites', 'MB', 'Top Surfed Sites');
+    this.setBarChartData('top-surfed-sites', 'MB', 'Top Surfed Sites');
     // this.TopSurfedSiteColumnChart['xAxis']['categories'] = this.topSurfedColumnChartData.chart.Labels;
     this.TopSurfedSiteColumnChart['series'] = this.topSurfedColumnChartData.chart.Series;
 
   }
 
-  createBandwidthCharts() {
+  createEDRChart() {
     this.topAllowedSiteId = Highcharts.chart('topAllowedSiteId', this.TopAllowSites);
-    this.topUsersIpBarId = Highcharts.chart('topUsersIpBarId', this.TopUsersIpsBar);
-    this.topTrafficCategoryId = Highcharts.chart('topTrafficCategoryId', this.TopTrafficCategoriesPieChart)
-    this.topUsersColumnChartId = Highcharts.chart('topUsersColumnChartId', this.TopUsersColumnChart)
+    this.topUsersColumnChartId = Highcharts.chart('topUsersColumnChartId', this.TopUsersColumnChart);
+    this.topCategoriesChartId = Highcharts.chart('topCategoriesChartId', this.TopCategoriesPieChartData);
     this.topSurfedColumnChartId = Highcharts.chart('topSurfedColumnChartId', this.TopSurfedSiteColumnChart)
+    this.topBypassedChartId = Highcharts.chart('topBypassedChartId', this.TopBypassedWebsiteChart);
+    this.topBlockedChartId = Highcharts.chart('topBlockedChartId', this.TopBlockedChart);
   }
 
   filterTypeBarChart(event: any, data: any) {
@@ -482,18 +747,18 @@ export class EDRComponent implements OnInit {
     this.filterFieldName = data.chart.options.accessibility.description;
     let lk = data.options.custom;
     this.useFilter = true;
-    this.overviewBandwidthDashboard();
+    this.EDRDashboard();
     // throw new Error('Function not implemented.');
   }
   filterTypePieChart(event: any, data:any){
     this.filterFieldName = data.chart.options.accessibility.description;
     this.filterFieldValue = event.point.name; 
     this.useFilter = true;
-    this.overviewBandwidthDashboard();
+    this.EDRDashboard();
   }
   resetFilters() {
     this.useFilter = false;
-    this.overviewBandwidthDashboard();
+    this.EDRDashboard();
   }
 
 }

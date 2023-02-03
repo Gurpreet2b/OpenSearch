@@ -11,6 +11,7 @@ const routes: Routes = [
       { path: 'alerts', loadChildren: () => import('../../../main/components/window-alerts/window-alerts.module').then(m => m.WindowAlertsModule) },
       { path: 'reporting', loadChildren: () => import('../../../main/components/reporting/reporting.module').then(m => m.ReportingModule) },
       { path: 'rules', loadChildren: () => import('../../../main/components/rules/rules.module').then(m => m.RulesModule) },
+      { path: 'reportmail', loadChildren: () => import('../../../main/components/reportmail/reportmail.module').then(m => m.ReportMailModule) },
     ],
     canActivate: [AuthGuard]
   }
