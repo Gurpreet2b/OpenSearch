@@ -74,16 +74,16 @@ export class WindowAlertsComponent implements OnInit {
   }
 
   shrink() {
-    this.alertsData.setSize(window.innerWidth / 2.8, undefined)
+    this.alertsData.setSize(window.innerWidth / 2.5, undefined)
     // this.topUsersId2.setSize(window.innerWidth / 2.7, undefined)
-    this.winlogData.setSize(window.innerWidth / 2.8, undefined)
+    this.winlogData.setSize(window.innerWidth / 2.5, undefined)
     // this.topAlerts.setSize(window.innerWidth / 2.7, undefined)
   }
 
   expand() {
-    this.alertsData.setSize(window.innerWidth / 2.2, undefined)
+    this.alertsData.setSize(window.innerWidth / 2.05, undefined)
     // this.topUsersId2.setSize(window.innerWidth / 2.2, undefined)
-    this.winlogData.setSize(window.innerWidth / 2.2, undefined)
+    this.winlogData.setSize(window.innerWidth / 2.05, undefined)
     // this.topAlerts.setSize(window.innerWidth / 2.2, undefined)
   }
 
@@ -386,9 +386,9 @@ export class WindowAlertsComponent implements OnInit {
     if (widget === 'winlog-data') {
       this.WinlogChartData = TopApplicationsColumnChartData;
     }
-    if (widget === 'top-alert') {
-      this.TopAlertChartData = TopApplicationsColumnChartData;
-    }
+    // if (widget === 'top-alert') {
+    //   this.TopAlertChartData = TopApplicationsColumnChartData;
+    // }
   }
 
 
@@ -398,7 +398,7 @@ export class WindowAlertsComponent implements OnInit {
     this.alertsChartData['series'] = this.alertTimeChartData.chart.Series;
     // this.alertsChartData['xAxis']['categories'] = this.alertTimeChartData.chart.Labels;
 
-    this.topPieDataApplication('winlog-data', 'MB', 'Winlog Event Id', 'Winlog');
+    this.topPieDataApplication('winlog-data', 'MB', 'Top Users', 'Winlog');
     this.WinlogChartData['series'] = this.winlogEventChartData.chart.Series;
 
     // this.topPieDataApplication('top-alert', 'MB', 'Top Alert Event codes', 'TopAlert');
@@ -408,7 +408,7 @@ export class WindowAlertsComponent implements OnInit {
   createDurationCharts() {
     this.alertsData = Highcharts.chart('alertsData', this.alertsChartData);
     this.winlogData = Highcharts.chart('winlogData', this.WinlogChartData);
-    this.topAlerts = Highcharts.chart('topAlerts', this.TopAlertChartData);
+    // this.topAlerts = Highcharts.chart('topAlerts', this.TopAlertChartData);
   }
 
   filterTypeDurationChart(event: any, data: any) {

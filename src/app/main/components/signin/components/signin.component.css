@@ -95,3 +95,6 @@ html {
   text-align: center;
   padding: 14px;
 }
+.mb-0-1{
+  margin-bottom: 2rem !important;
+}
