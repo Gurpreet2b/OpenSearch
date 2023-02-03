@@ -45,10 +45,11 @@ export class EDRComponent implements OnInit {
   //chart Data
   public topAllowSitesPieChartData: any;
   public toptrafficCategoriesChartData: any;
-  public topUsersIpBarChartData: any;
+  public topBlockedChartData: any;
   public topUsersColumnChartData: any;
   public topSurfedColumnChartData: any;
   public topCategoriesChartData: any;
+  public topBypassedChartData: any;
 
   //table data
   public topDownloadTableData: any = [];
@@ -171,7 +172,8 @@ export class EDRComponent implements OnInit {
 
           this.topAllowSitesPieChartData = res.data.TopAllowedSites;
           this.toptrafficCategoriesChartData = res.data.TopAllowedSites;
-          this.topUsersIpBarChartData = res.data.TopUsers;
+          this.topBlockedChartData = res.data.TopBlockedSites;
+          this.topBypassedChartData = res.data.TopBypassedSites;
           this.topUsersColumnChartData = res.data.TopUsers;
           this.topSurfedColumnChartData = res.data.TopSurfedSites;
           this.topCategoriesChartData = res.data.TopCategories
@@ -315,27 +317,31 @@ export class EDRComponent implements OnInit {
   setBarChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart') {
     let self = this;
     let TopApplicationsBarChartData = {
-      accessibility: {
-        description: "User"
-      },
       chart: {
         type: 'bar',
         backgroundColor: 'snow',
-        height: 380
+        events: {
+          redraw: (chart: any) => {
+            console.log('bar callback event stacked');
+            console.log(chart);
+            let categoryHeight = 20;
+            // console.log(chart.xAxis[0].categories.length);
+            chart.update({
+              chart: {
+                height:
+                  categoryHeight * chart.xAxis[0].categories.length +
+                  (chart.chartHeight - chart.plotHeight),
+              },
+            });
+            // chart.target.callback(this);
+          },
+        },
       },
       title: {
-        text: title,
-        style: {
-          fontWeight: 'bold',
-          fontSize: '16'
-      }
+        text: title
       },
       xAxis: {
         categories: [],
-
-        title: {
-          text: null,
-        },
       },
       yAxis: {
         min: 0,
@@ -348,27 +354,84 @@ export class EDRComponent implements OnInit {
         },
       },
       tooltip: {
-        valueSuffix: ' MB',
+        valueSuffix: ' sMB',
+      },
+      legend: {
+        enabled: true,
       },
       plotOptions: {
-        series: {
-          events: {
-
-            click: function (event) {
-              console.log(event);
-              console.log(this);
-              self.filterTypeBarChart(event, this);
-              return false;
+        bar: {
+          dataLabels: {
+            enabled: false,
           },
-          
-          }
+          // maxPointWidth: 15,
+        },
+        series: {
+          stacking: 'normal',
+          groupPadding: 0,
+          pointPadding: 0,
         },
       },
       credits: {
-        enabled: false,
+        enabled: false
       },
       series: [],
     };
+    // let TopApplicationsBarChartData = {
+    //   accessibility: {
+    //     description: "User"
+    //   },
+    //   chart: {
+    //     type: 'bar',
+    //     backgroundColor: 'snow',
+    //     height: 380
+    //   },
+    //   title: {
+    //     text: title,
+    //     style: {
+    //       fontWeight: 'bold',
+    //       fontSize: '16'
+    //   }
+    //   },
+    //   xAxis: {
+    //     categories: [],
+
+    //     title: {
+    //       text: null,
+    //     },
+    //   },
+    //   yAxis: {
+    //     min: 0,
+    //     title: {
+    //       text: 'Bandwidth',
+    //       align: 'high',
+    //     },
+    //     labels: {
+    //       overflow: 'justify',
+    //     },
+    //   },
+    //   tooltip: {
+    //     valueSuffix: ' MB',
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       events: {
+
+    //         click: function (event) {
+    //           console.log(event);
+    //           console.log(this);
+    //           self.filterTypeBarChart(event, this);
+    //           return false;
+    //       },
+          
+    //       }
+    //     },
+    //   },
+    //   credits: {
+    //     enabled: false,
+    //   },
+    //   series: [],
+    // };
     if (widget === 'top-bypassed-chart') {
       this.TopBypassedWebsiteChart = TopApplicationsBarChartData;
     }
@@ -707,12 +770,12 @@ export class EDRComponent implements OnInit {
     this.TopCategoriesPieChartData['series'] = this.topCategoriesChartData.chart.Series;
 
     this.setBarChartApplications('top-bypassed-chart', 'MB', 'Top Bypassed Websites');
-    this.TopBypassedWebsiteChart['xAxis']['categories'] = this.topUsersIpBarChartData.Labels;
-    this.TopBypassedWebsiteChart['series'] = this.topUsersIpBarChartData.Series;
+    this.TopBypassedWebsiteChart['xAxis']['categories'] = this.topBypassedChartData.chart.Labels;
+    this.TopBypassedWebsiteChart['series'] = this.topBypassedChartData.chart.Series;
 
     this.setBarChartApplications('top-blocked-chart', 'MB', 'Top Blocked Site Accessed by User');
-    this.TopBlockedChart['xAxis']['categories'] = this.topUsersIpBarChartData.Labels;
-    this.TopBlockedChart['series'] = this.topUsersIpBarChartData.Series;
+    this.TopBlockedChart['xAxis']['categories'] = this.topBlockedChartData.Labels;
+    this.TopBlockedChart['series'] = this.topBlockedChartData.Series;
 
     this.setColumnChartApplications('top-users', 'MB', 'Top Users');
     this.TopUsersColumnChart['xAxis']['categories'] = this.topUsersColumnChartData.chart.Labels;

@@ -6,17 +6,12 @@
         <div class="widget_header clearfix" [ngClass]="{ disabledClass: loading }">
 
             <!-- created new reports -->
-            <div class="row generator-heading m-0" data-toggle="collapse" href="#reportStart" aria-expanded="false">
 
-                <div class="col-lg-12">
-                    <label>Generate New Report</label>
-                </div>
-            </div>
             <div *ngIf="showControls" class="row generator-content" id="reportStart" #reportStart>
-                <div class="row pad-b-0">
+                <!-- <div class="row pad-b-0">
                     <div class="col-md-12">
                         <div class="col-md-8">
-                            <label>Report Type</label>
+                            <label>Report Title</label>
                             <hr>
                         </div>
                         <div class="col-md-4">
@@ -24,14 +19,27 @@
                             <hr>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="row pad-b-0 pad-t-0">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-8 p-l-indent">
+                        <!-- <div class="col-md-12"> -->
+                            <div class="col-md-8">
+                                <label>Report Title</label>
+                                <hr>
                                 <!-- <h3>Report Type</h3> -->
+                                <!-- <div class="col-md-3"> -->
+                                <div class="form-group">
+                                    <select class="f-box box">
+                                        <option value="parameter">Origin Domain</option>
+                                        <option value="internet">Department</option>
+                                        <option value="security">Security Group</option>
+                                        <option value="company">Company</option>
 
-                                <div class="rad-container">
+                                    </select>
+                                </div>
+                                <!-- </div> -->
+
+                                <!-- <div class="rad-container">
                                     <label class="rad-label" [ngClass]="{ active: isActivityRadio === 'allActivity' }">
                                         <input type="radio" class="rad-input" name="all" id="allActivity"
                                             value="All Activity" checked (change)="allActivityRadio('allActivity')" />
@@ -58,12 +66,14 @@
                                         <div class="rad-design"></div>
                                         <div class="rad-text">Internet Security and Network</div>
                                     </label>
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="col-md-4 p-l-indent">
-                                <!-- <h3>Select User</h3> -->
 
-                                <div class="rad-container">
+                            <div class="col-md-4">
+                                <!-- <h3>Select User</h3> -->
+                                <label>Select User</label>
+                                <hr>
+                                <div class="rad-container m-top-2">
                                     <label class="rad-label" [ngClass]="{ active: IsUserSelected == 'singleuser' }">
                                         <input type="radio" class="rad-input" name="Single" id="singleuser"
                                             value="singleuser" [(ngModel)]="userType"
@@ -82,7 +92,8 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                            
+                        <!-- </div> -->
                     </div>
                 </div>
 
@@ -90,14 +101,14 @@
                 <div class="row p-top pad-b-0">
                     <div class="row pad-b-0">
                         <div class="col-md-12">
-                            <div class="col-md-4">
-                                <label>Start Date</label>
+                            <div class="col-md-8">
+                                <label>Report Schedule</label>
                                 <hr>
                             </div>
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <label>End Date</label>
                                 <hr>
-                            </div>
+                            </div> -->
                             <div class="col-md-4 userParent" *ngIf="IsHideAllUsers">
                                 <div class="flexclass">
                                     <div class="userChild1">
@@ -122,23 +133,45 @@
                     <div class="row pad-b-0">
                         <div class="col-md-12">
                             <!-- <hr class="hr_datetime"> -->
-                            <div class="col-md-4 p-l-indent">
+                            <div class="col-md-8 p-l-indent">
                                 <!-- <label>Start Date</label> -->
 
-                                <div class="">
-                                    <input class="datepicker-input" type="datetime-local"
-                                        class="form-control date_picker" [(ngModel)]="fullStartDate"
-                                        [ngModelOptions]="{ standalone: true }" />
+                                <div class="rad-container">
+                                    <label class="rad-label" [ngClass]="{ active: isActivityRadio === 'allActivity' }">
+                                        <input type="radio" class="rad-input" name="all" id="allActivity"
+                                            value="All Activity" checked (change)="allActivityRadio('allActivity')" />
+                                        <div class="rad-design"></div>
+                                        <div class="rad-text">Daily</div>
+                                    </label>
+
+                                    <label class="rad-label" [ngClass]="{ active: isActivityRadio === 'singleuser' }">
+                                        <input type="radio" class="rad-input" name="all" id="singleuser"
+                                            value="All Activity" checked (change)="allActivityRadio('singleuser')" />
+                                        <div class="rad-design"></div>
+                                        <div class="rad-text">Weekly</div>
+                                    </label>
+
+                                    <label class="rad-label" [ngClass]="{ active: isActivityRadio === 'Monthly' }">
+                                        <input type="radio" class="rad-input" name="all" id="Monthly"
+                                            value="All Activity" checked (change)="allActivityRadio('Monthly')" />
+                                        <div class="rad-design"></div>
+                                        <div class="rad-text">Monthly</div>
+                                    </label>
                                 </div>
+                              
+                                <!-- <div class="">
+                                    <input class="datepicker-input" type="datetime-local"
+                                        class="form-control"/>
+                                </div> -->
                             </div>
                             <div class="col-md-4 p-l-indent">
                                 <!-- <label>End Date</label> -->
 
-                                <div class="">
+                                <!-- <div class="">
                                     <input type="datetime-local" class="datepicker-input"
                                         class="form-control date_picker" [(ngModel)]="fullEndDate"
                                         [ngModelOptions]="{ standalone: true }" />
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="col-md-4 p-l-indent" *ngIf="IsHideAllUsers">
@@ -153,7 +186,7 @@
                 </div>
 
                 <!-- covers additional filters -->
-                <div class="row pad-b-0">
+                <!-- <div class="row pad-b-0">
                     <div class="col-lg-12">
                         <div class="col-lg-12">
                             <div class="flexclass">
@@ -224,7 +257,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3" *ngIf="obj.field !== 'security'">
-                                    <!-- <label>Users</label> -->
+                                  
 
                                     <select class="form-control box" name="filter{{ i }}value" [(ngModel)]="obj.value">
                                         <option>Productive</option>
@@ -250,7 +283,7 @@
                             <button class="button addNewText" (click)="addFilter()">+</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="row pad-b-0">
                     <div class="col-md-12">
                         <div class="flex">
@@ -259,10 +292,10 @@
                             </div>
                             <button type="button" class="btn theme-btn" data-toggle="modal"
                                 data-target="#loadLatestReport">
-                                Load Latest Report
+                                Close
                             </button>
                             <button type="button" class="btn theme-btn" (click)="generateOverallReport()">
-                                Generate Report
+                                Schedule Report
                             </button>
                             <!-- <button type="button" class="btn theme-btn" (click)="ShowReportPopup()">
                                 Test
@@ -279,7 +312,7 @@
     <div class="modal-dialog">
         <div class="modal-content popup_success">
             <div class="modal-body">
-                
+
                 <h4>Do you want to see last Report?</h4>
                 <label>Details of the report are as follows:</label>
                 <hr>
@@ -332,7 +365,8 @@
                 <div class="row">
                     <div class="col-md-12 text text-right">
                         <button type="button" class="btn btn-light mr-2" data-dismiss="modal">No</button>
-                        <button type="submit" class="btn btn-light" (click)="loadLatestReport(latestReportInfo.ID)">Yes</button>
+                        <button type="submit" class="btn btn-light"
+                            (click)="loadLatestReport(latestReportInfo.ID)">Yes</button>
                     </div>
                 </div>
 

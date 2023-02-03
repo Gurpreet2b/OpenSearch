@@ -139,7 +139,6 @@ export class ScheduleReportComponent implements OnInit {
   public fullEndDate: any = new Date();
   windowScrolled: boolean = false;
 
-
   subject: Subject<any> = new Subject();
 
 

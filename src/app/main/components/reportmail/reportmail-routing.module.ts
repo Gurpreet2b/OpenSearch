@@ -5,7 +5,7 @@ import { ScheduleReportComponent } from './schedule-report/schedule-report.compo
 
 const routes: Routes = [
   { path: ':id', component: ReportmailComponent },
-  { path: 'schedule-report', component: ScheduleReportComponent },
+  { path: 'schedule-report/create', component: ScheduleReportComponent },
 ];
 
 @NgModule({
