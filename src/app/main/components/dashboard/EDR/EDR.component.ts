@@ -377,9 +377,13 @@ export class EDRComponent implements OnInit {
         text: `<span style="font-family:Nunito;">`+title +`</span>`
       },
       xAxis: {
-        title: {
-          text: null
-        }
+        type: 'datetime',
+          dateTimeLabelFormats: {
+            millisecond: '%I:%M:%S.%L %p',
+            second: '%I:%M:%S %p',
+            minute: '%I:%M %p',
+            hour: '%I:%M %p',
+          },
       },
       yAxis: {
         title: {
@@ -391,6 +395,7 @@ export class EDRComponent implements OnInit {
       },
       plotOptions: {
         series: {
+          stacking: 'normal',
           events: {
             click: function (event) {
               self.filterTypeBarChart(event, this);
@@ -450,7 +455,7 @@ export class EDRComponent implements OnInit {
     this.TopUsersColumnChart['series'] = this.topUsersColumnChartData.chart.Series;
 
     this.setColumnChartApplications('top-surfed-sites', 'MB', 'Top Surfed Sites');
-    this.TopSurfedSiteColumnChart['xAxis']['categories'] = this.topSurfedColumnChartData.chart.Labels;
+    // this.TopSurfedSiteColumnChart['xAxis']['categories'] = this.topSurfedColumnChartData.chart.Labels;
     this.TopSurfedSiteColumnChart['series'] = this.topSurfedColumnChartData.chart.Series;
 
   }
