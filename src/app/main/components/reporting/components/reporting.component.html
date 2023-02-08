@@ -1,11 +1,10 @@
 <div class="container m-t-30">
     <form>
-        <div class="just-space-even">
+        <!-- <div class="just-space-even">
             <h1 (click)="togg()">Generate Reports</h1>
         </div>
         <div class="widget_header clearfix" [ngClass]="{ disabledClass: loading }">
 
-            <!-- created new reports -->
             <div class="row generator-heading m-0" data-toggle="collapse" href="#reportStart" aria-expanded="false">
 
                 <div class="col-lg-12">
@@ -29,7 +28,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-md-8 p-l-indent">
-                                <!-- <h3>Report Type</h3> -->
 
                                 <div class="rad-container">
                                     <label class="rad-label" [ngClass]="{ active: isActivityRadio === 'allActivity' }">
@@ -61,7 +59,6 @@
                                 </div>
                             </div>
                             <div class="col-md-4 p-l-indent">
-                                <!-- <h3>Select User</h3> -->
 
                                 <div class="rad-container">
                                     <label class="rad-label" [ngClass]="{ active: IsUserSelected == 'singleuser' }">
@@ -86,7 +83,6 @@
                     </div>
                 </div>
 
-                <!-- covers starting, ending date and user ip -->
                 <div class="row p-top pad-b-0">
                     <div class="row pad-b-0">
                         <div class="col-md-12">
@@ -121,9 +117,7 @@
                     </div>
                     <div class="row pad-b-0">
                         <div class="col-md-12">
-                            <!-- <hr class="hr_datetime"> -->
                             <div class="col-md-4 p-l-indent">
-                                <!-- <label>Start Date</label> -->
 
                                 <div class="">
                                     <input class="datepicker-input" type="datetime-local"
@@ -132,7 +126,6 @@
                                 </div>
                             </div>
                             <div class="col-md-4 p-l-indent">
-                                <!-- <label>End Date</label> -->
 
                                 <div class="">
                                     <input type="datetime-local" class="datepicker-input"
@@ -142,7 +135,6 @@
                             </div>
 
                             <div class="col-md-4 p-l-indent" *ngIf="IsHideAllUsers">
-                                <!-- <label>Users</label> -->
                                 <div class="">
                                     <input type="text" class="form-control box_security" [(ngModel)]="reportUser"
                                         [ngModelOptions]="{ standalone: true }" name="reportUser" />
@@ -152,7 +144,6 @@
                     </div>
                 </div>
 
-                <!-- covers additional filters -->
                 <div class="row pad-b-0">
                     <div class="col-lg-12">
                         <div class="col-lg-12">
@@ -223,11 +214,8 @@
                                         <option>Not in keyword group</option>
                                     </select>
 
-                                    <!-- [(ngModel)]="obj.name"
-                      [ngModelOptions]="{ standalone: true }" -->
                                 </div>
                                 <div class="col-md-3" *ngIf="obj.field !== 'security'">
-                                    <!-- <label>Users</label> -->
 
                                     <select class="form-control box" name="filter{{ i }}value" [(ngModel)]="obj.value">
                                         <option>Productive</option>
@@ -237,12 +225,8 @@
                                         <option>Unassigned</option>
                                     </select>
 
-                                    <!-- <input type="text" class="form-control" placeholder="" name="ref" /> -->
-                                    <!-- [(ngModel)]="obj.name"
-                                      [ngModelOptions]="{ standalone: true }" -->
                                 </div>
                                 <div class="col-md-4" *ngIf="obj.field === 'security'">
-                                    <!-- <label>Users</label> -->
                                     <input type="text" class="form-control box_security" name="filter{{ i }}value"
                                         [(ngModel)]="obj.value" />
                                 </div>
@@ -282,19 +266,10 @@
                 <div class="col-lg-12">
                     <label>User Report</label>
                 </div>
-                <!-- <h3 class="widget-title text-dark flexclass">
-                    <div class="step">User Report</div>
-                </h3> -->
                 <div class="clearfix"></div>
             </div>
-            <!-- covers report type and user type labels and radio buttons -->
-
-            <!-- <div
-          id="reportContent"
-          class="widget-body generator-content collapse in"
-        ></div> -->
-        </div>
-        <div *ngIf="reportDataReady" class="widget generator-content" id="content" #content>
+        </div> -->
+        <div class="widget generator-content" id="content" #content>
             <div class="widget-heading-report" data-toggle="collapse" href="#report" aria-expanded="true">
                 <div>
                     <div class="row">
@@ -304,16 +279,13 @@
                             </h3>
                         </div>
 
-                        <div class="col-md-4 pdf-btn">
+                        <!-- <div class="col-md-4 pdf-btn">
                             <div>
                                 <h3 class="text-dark" (click)="DownloadPDF('content')">
                                     <u>Export Complete Report</u>
                                 </h3>
-                                <!-- <button class="btn theme-btn" (click)="DownloadPDF('content')" [disabled]="!IsDisabledReport">
-               <u>Export Complete Report</u>
-              </button> -->
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -2366,8 +2338,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of reportData_Unacceptable
-                                      .TopUnacceptableUsers.Table.Data
+                                    let rec of AllTopProductivityTables
+                                      .Users.Table.Unacceptable
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">{{ rec.duration }}</td>
@@ -2512,8 +2484,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let unaccept of reportData_Unacceptable
-                                      .TopUnacceptableApplications.Table.Data
+                                    let unaccept of AllTopProductivityTables
+                                      .Sites.Table.Unacceptable
                                   ">
                                                                 <td class="text-left">{{ unaccept.name }}</td>
                                                                 <td class="text-left">
@@ -2648,8 +2620,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of reportData_Unproductive
-                                      .TopUnproductiveApplications.Table.Data
+                                    let rec of AllTopProductivityTables
+                                      .Users.Table.Unproductive
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
@@ -2795,8 +2767,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of reportData_Unproductive
-                                      .TopUnproductiveSites.Table.Data
+                                    let rec of AllTopProductivityTables
+                                      .Sites.Table.Unproductive
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
@@ -2934,8 +2906,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of reportData_Acceptable
-                                      .TopAcceptableUsers.Table.Data
+                                    let rec of AllTopProductivityTables
+                                      .Users.Table.Acceptable
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
@@ -3075,8 +3047,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of reportData_Acceptable
-                                      .TopAcceptableSites.Table.Data
+                                    let rec of AllTopProductivityTables
+                                      .Sites.Table.Acceptable
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
@@ -3213,8 +3185,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of reportData_Productive
-                                      .TopProductiveUsers.Table.Data
+                                    let rec of AllTopProductivityTables
+                                      .Users.Table.Productive
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -3355,8 +3327,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of reportData_Productive
-                                      .TopProductiveSites.Table.Data
+                                    let rec of AllTopProductivityTables
+                                      .Sites.Table.Productive
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
@@ -3965,9 +3937,9 @@
          (click)="test()">
         Test
     </button> -->
-    <button class="floatingButton fB-left" title="Save As PDF" (click)="DownloadPDF('content')">
+    <!-- <button class="floatingButton fB-left" title="Save As PDF" (click)="DownloadPDF('content')">
         <i class="far fa-file-pdf"></i>
-    </button>
+    </button> -->
     <button (click)="topFunction()" class="floatingButton" title="Go to top">
         <i class="fas fa-arrow-up"></i>
     </button>

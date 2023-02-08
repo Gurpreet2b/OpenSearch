@@ -84,7 +84,7 @@ label {
 
 .card {
   border-radius: 1rem;
-  padding: 10px;
+  padding: 5px;
 }
 
 .card-stats .card-body .numbers {
@@ -151,7 +151,7 @@ label {
   transition-duration: 0.5s;
   background-color: #fff;
   /* border: 3px solid #cc1416; */
-  border: 2px solid var(--prim);
+  border: 2px solid #ff550b;
   border-radius: 1rem;
   color: #000;
   flex: 1;
@@ -223,6 +223,7 @@ th {
 
 .card-title {
   cursor: pointer;
+  word-break: break-all;
 }
 
 .img-circle {
@@ -950,7 +951,7 @@ font-size: 16px !important;
 }
 .stat-heading{
   /* background-color: #ff9900; */
-  background: linear-gradient(90deg, #ff9900, #ff550b);
+  background: #ff550b;
   border-bottom: 1px solid white;
   padding: 5px 10px;
   border-radius: 10px 10px 0px 0px;

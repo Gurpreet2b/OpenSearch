@@ -88,6 +88,9 @@
             <div class="list-column">
               <div class="head-column-text">Status</div>
             </div>
+            <div class="list-column">
+              <div class="head-column-text">Action</div>
+            </div>
           </div>
 
           <div
@@ -126,21 +129,24 @@
             </div>
 
             <div class="list-column flex space-between">
-              <div class="column-text status-text" ngClass="{{ rep.Report.Status }}">
+              <div class="column-text status-text mr-2" ngClass="{{ rep.Report.Status }}">
                 {{ rep.Report.Status }}
               </div>
-              <div>
-                <button *ngIf="rep.Report.Status === 'Finished'" type="button" class="viewButton"
-                  (click)="viewThisReport(rep.Report.ID)" data-toggle="modal"
-                  data-target="#viewGenerateReport">
-                  <!-- <mat-icon style="color: #0362f1">edit</mat-icon>
-                  <i class="fa fa-eye fa-2x" aria-hidden="true"></i> -->
-                  View
-                  <!-- data-toggle="modal"
-                    data-target="#exampleModalCenter" -->
-                  <!-- (click)="selectThisRule(rule._id)" -->
-                  <!-- X -->
-                </button>
+            </div>
+            <div class="list-column">
+              <div class="column-text">
+                <div style="display: flex;">
+                  <button *ngIf="rep.Report.Status === 'Finished'" type="button" class="viewButton mr-2"
+                    (click)="viewThisReport(rep.Report.ID)" data-toggle="modal"
+                    data-target="#viewGenerateReport">
+                    View
+                  </button>
+                  <button type="button" class="PDFButton"
+                    title="Save As PDF" (click)="getDownloadPDf(rep.Report.ID)" data-toggle="modal"
+                    data-target="#PDFGenerateReport">
+                    <img src="https://img.icons8.com/material-outlined/17/null/downloading-updates.png"/>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -162,5 +168,29 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="modal fade" id="PDFGenerateReport" data-backdrop="static">
+  <div class="modal-dialog">
+      <div class="modal-content popup-view-report">
+          <div class="modal-body">
+              <h4>PDF Report</h4>
+              <hr>
+              <div class="row p-1">
+                  <div class="col-lg-8">
+                      <b>Please wait...</b><br>
+                      <label>Preparing pdf report</label>
+                  </div>
+                  <div class="col-lg-4">
+                      <div class="logo">
+                          <div id="sudarshanloading">
+                              <img src="./assets/img/sdlogo.png" />
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
 </div>

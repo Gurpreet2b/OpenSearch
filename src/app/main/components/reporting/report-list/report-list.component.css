@@ -210,6 +210,19 @@ a.theme-btn:hover {
   border: 1px solid #88b7ff;
   cursor: pointer;
 }
+.PDFButton {
+  color: #ff9933;
+  background-color: white;
+  border: 1px solid #ff9933;
+  border-radius: 100px;
+  padding: 5px 11px;
+}
+.PDFButton:hover {
+  color: white;
+  background-color: #ff9933;
+  border: 1px solid #ff9933;
+  cursor: pointer;
+}
 div a.rbutton {
   /* background-color: #f19831; */
   background-color: var(--yellow1);
@@ -342,13 +355,13 @@ select,
   z-index: 2;
 }
 
-.modal-body {
+/* .modal-body {
   padding: 25px 0px !important;
   display: flex !important;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 .modal-content {
   width: 100%;
   margin: 25px;
@@ -394,4 +407,8 @@ span {
 
 .m-pagination{
   margin: 5px 5px 0px 5px
+}
+.popup-view-report {
+  margin-left: 11rem;
+  width: 75%;
 }
