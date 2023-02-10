@@ -225,7 +225,7 @@ export class ReportlistComponent implements OnInit {
     );
   }
 
-  currentPage: number = 0;
+  currentPage: number = 1;
   totalItems: number | undefined;
   onPageChange(event: any, data: any) {
     if (data === '1') {

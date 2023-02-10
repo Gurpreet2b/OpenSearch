@@ -333,7 +333,7 @@
 .innm {
     /* opacity: 0.15; */
     /* opacity: .15s linear !important; */
-    transition: opacity .15s linear !important
+    transition: opacity 10s linear !important
 }
 
 @keyframes spin {

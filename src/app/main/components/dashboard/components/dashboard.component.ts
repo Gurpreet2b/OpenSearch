@@ -251,8 +251,8 @@ export class DashboardComponent implements OnInit {
       },
       time: {
         // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        // timezone: 'Asia/Calcutta',
-        useUTC: false,
+        timezone: 'Asia/Calcutta',
+        // useUTC: false,
       },
       xAxis: {
         // title: {
@@ -280,12 +280,13 @@ export class DashboardComponent implements OnInit {
         style: {
           fontWeight: 'bold',
           fontSize: '16'
-      }
+        }
         // text: type
-        
+
       },
       tooltip: {
         // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
+        headerFormat: '<h1> {series.name} </h1>',
         formatter: function () {
           // console.log(this)
           let bandwidthMB: any = this;
@@ -294,9 +295,19 @@ export class DashboardComponent implements OnInit {
             return '<b>' + text / 1024 + ' GB </b>';
           }
           else {
-            return '<b>' + text + ' MB</b>';
+            let thistime = new Date();
+            thistime.setTime(bandwidthMB.x);
+            return '<small>' + thistime.toUTCString() + '</small><br>' + bandwidthMB.series.name + ':<b>' + text + ' MBs</b>';
           }
         }
+
+        // formatter: () => {
+        //   return this.points.reduce(function (s, point) {
+        //     return s + '<br/>' + point.series.name + ': ' +
+        //       point.y + 'm';
+        //   }, '<b>' + this.x + '</b>');
+        // },
+        // shared: true
       },
 
       // shared: true
@@ -370,11 +381,11 @@ export class DashboardComponent implements OnInit {
       },
       title: {
         text: title,
-       
+
         style: {
           fontWeight: 'bold',
           fontSize: '16'
-      }
+        }
       },
       tooltip: {
         // pointFormat:
@@ -417,6 +428,12 @@ export class DashboardComponent implements OnInit {
             var str_seconds = seconds.toString();
           }
 
+          // else {
+          //   let thistime= new Date();
+          //   thistime.setTime(bandwidthMB.x);
+          //   return '<small>'+ thistime.toUTCString() +'</small><br>'+ bandwidthMB.series.name +':<b>' + text + ' MB</b>';
+          // }
+
           var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
           var str_milliseconds = remaining_milliseconds.toString();
           // if (milliseconds <10) {
@@ -427,7 +444,7 @@ export class DashboardComponent implements OnInit {
           // }
 
           // return  + ":" +  + ":" +  + "." + ;
-          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
+          return a.point.name + '<br>' + a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
           // }
 
           // var milliseconds = Math.floor((duration % 1000) / 100),
@@ -613,8 +630,8 @@ export class DashboardComponent implements OnInit {
       },
       time: {
         // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        // timezone: 'Asia/Calcutta',
-        useUTC: false,
+        timezone: 'Asia/Calcutta',
+        // useUTC: false,
       },
       xAxis: {
         // title: {
@@ -635,7 +652,7 @@ export class DashboardComponent implements OnInit {
       yAxis: {
         title: {
           text: 'Duration',
-          
+
 
         },
       },
@@ -644,7 +661,7 @@ export class DashboardComponent implements OnInit {
         style: {
           fontWeight: 'bold',
           fontSize: '16'
-      }
+        }
       },
       tooltip: {
         formatter: function () {
@@ -682,6 +699,16 @@ export class DashboardComponent implements OnInit {
 
           var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
           var str_milliseconds = remaining_milliseconds.toString();
+
+          let thistime = new Date();
+          thistime.setTime(a.x);
+
+          // else {
+          //   let thistime = new Date();
+          //   thistime.setTime(bandwidthMB.x);
+          //   return '<small>' + thistime.toUTCString() + '</small><br>' + bandwidthMB.series.name + ':<b>' + text + ' MB</b>';
+          // }
+          // return '<small>'+ thistime.toUTCString() +'</small><br>'+ a.series.name +':<b>' + duration + ' MB</b>';
           // if (milliseconds <10) {
           //     var str_milliseconds = "0" + milliseconds;
           // }
@@ -690,7 +717,7 @@ export class DashboardComponent implements OnInit {
           // }
 
           // return  + ":" +  + ":" +  + "." + ;
-          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          return  '<small>' + thistime.toUTCString() + '</small><br>' + a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
           // var milliseconds = Math.floor((duration % 1000) / 100),
           //   seconds = Math.floor((duration / 1000) % 60),
           //   minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -778,11 +805,11 @@ export class DashboardComponent implements OnInit {
       },
       title: {
         text: title,
-        
+
         style: {
           fontWeight: 'bold',
           fontSize: '16'
-      }
+        }
       },
       tooltip: {
 
@@ -937,11 +964,11 @@ export class DashboardComponent implements OnInit {
       },
       title: {
         text: type,
-        
+
         style: {
           fontWeight: 'bold',
           fontSize: '16'
-      }
+        }
       },
       tooltip: {
         // pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
@@ -1115,8 +1142,8 @@ export class DashboardComponent implements OnInit {
 
   }
   filterTypeChartSeries(event: any, data: any) {
-    // console.log(event);
-    // console.log(data);
+    console.log(event);
+    console.log(data);
     // console.log('test event', event.point.y);
     // console.log('test data', data.name);
     // chart.options.accessibility.description
@@ -1132,7 +1159,7 @@ export class DashboardComponent implements OnInit {
     // throw new Error('Function not implemented.');
   }
 
-  filterTypePieChart(event: any, data:any){
+  filterTypePieChart(event: any, data: any) {
     this.filterFieldValue = data.chart.options.accessibility.description;
     this.filterFieldName = event.point.name;
     this.useFilter = true;

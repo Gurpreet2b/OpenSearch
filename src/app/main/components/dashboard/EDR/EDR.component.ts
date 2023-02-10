@@ -52,15 +52,15 @@ export class EDRComponent implements OnInit {
   public topBypassedChartData: any;
 
   //table data
-  public topDownloadTableData: any = [];
+  // public topDownloadTableData: any = [];
 
-  topColumnChartData: any = []
+  // topColumnChartData: any = []
 
-  topBarChartData: any = []
+  // topBarChartData: any = []
 
-  topPieChartData: any = []
+  // topPieChartData: any = []
 
-  traffic: any = []
+  // traffic: any = []
 
   constructor(private _http: HttpService,
     private router: Router,
@@ -98,7 +98,7 @@ export class EDRComponent implements OnInit {
   }
 
   shrink() {
-    this.topAllowedSiteId.setSize(window.innerWidth / 3.9, undefined)
+    this.topAllowedSiteId.setSize(window.innerWidth / 3.85, undefined)
     this.topUsersColumnChartId.setSize(window.innerWidth / 1.88, undefined)
     this.topCategoriesChartId.setSize(window.innerWidth / 3.9, undefined)
     this.topSurfedColumnChartId.setSize(window.innerWidth / 1.9, undefined)
@@ -107,7 +107,7 @@ export class EDRComponent implements OnInit {
   }
 
   expand() {
-    this.topAllowedSiteId.setSize(window.innerWidth / 3.2, undefined)
+    this.topAllowedSiteId.setSize(window.innerWidth / 3.1, undefined)
     this.topUsersColumnChartId.setSize(window.innerWidth / 1.58, undefined)
     this.topCategoriesChartId.setSize(window.innerWidth / 3.2, undefined)
     this.topSurfedColumnChartId.setSize(window.innerWidth / 1.58, undefined)
@@ -177,7 +177,7 @@ export class EDRComponent implements OnInit {
           this.topUsersColumnChartData = res.data.TopUsers;
           this.topSurfedColumnChartData = res.data.TopSurfedSites;
           this.topCategoriesChartData = res.data.TopCategories
-          this.chartBandwidth();
+          this.chartEDR();
           this.createEDRChart();
           this.IsOverviewCard = true;
         } else {
@@ -338,7 +338,11 @@ export class EDRComponent implements OnInit {
         },
       },
       title: {
-        text: title
+        text: title,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+      }
       },
       xAxis: {
         categories: [],
@@ -759,15 +763,23 @@ export class EDRComponent implements OnInit {
     }
   }
 
-  public chartBandwidth() {
+  public chartEDR() {
     console.log('initializing charts');
 
     this.setPieChartApplications('top-allowed-sites', 'MB', 'Top Allowed Websites', 'Application');
     this.TopAllowSites['series'] = this.topAllowSitesPieChartData.chart.Series;
     // this.TopCategoriesPieChartData['series'] = this.topPieChartData;
 
+    this.setColumnChartApplications('top-users', 'MB', 'Top Users');
+    this.TopUsersColumnChart['xAxis']['categories'] = this.topUsersColumnChartData.chart.Labels;
+    this.TopUsersColumnChart['series'] = this.topUsersColumnChartData.chart.Series;
+
     this.setPieChartApplications('top-categories-data', 'MB', 'Top Categories', 'Category');
     this.TopCategoriesPieChartData['series'] = this.topCategoriesChartData.chart.Series;
+
+    this.setBarChartData('top-surfed-sites', 'MB', 'Top Surfed Sites');
+    // this.TopSurfedSiteColumnChart['xAxis']['categories'] = this.topSurfedColumnChartData.chart.Labels;
+    this.TopSurfedSiteColumnChart['series'] = this.topSurfedColumnChartData.chart.Series;
 
     this.setBarChartApplications('top-bypassed-chart', 'MB', 'Top Bypassed Websites');
     this.TopBypassedWebsiteChart['xAxis']['categories'] = this.topBypassedChartData.chart.Labels;
@@ -776,14 +788,6 @@ export class EDRComponent implements OnInit {
     this.setBarChartApplications('top-blocked-chart', 'MB', 'Top Blocked Site Accessed by User');
     this.TopBlockedChart['xAxis']['categories'] = this.topBlockedChartData.Labels;
     this.TopBlockedChart['series'] = this.topBlockedChartData.Series;
-
-    this.setColumnChartApplications('top-users', 'MB', 'Top Users');
-    this.TopUsersColumnChart['xAxis']['categories'] = this.topUsersColumnChartData.chart.Labels;
-    this.TopUsersColumnChart['series'] = this.topUsersColumnChartData.chart.Series;
-
-    this.setBarChartData('top-surfed-sites', 'MB', 'Top Surfed Sites');
-    // this.TopSurfedSiteColumnChart['xAxis']['categories'] = this.topSurfedColumnChartData.chart.Labels;
-    this.TopSurfedSiteColumnChart['series'] = this.topSurfedColumnChartData.chart.Series;
 
   }
 

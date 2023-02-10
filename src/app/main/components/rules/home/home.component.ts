@@ -208,9 +208,9 @@ export class HomeComponent implements OnInit {
       );
     }, 1000);
   }
-  ngDoCheck() {
-    this.setMinMax();
-  }
+  // ngDoCheck() {
+  //   this.setMinMax();
+  // }
   //to Add and Remove index pattern with For Loop on click of the button
   addIndex() {
     this.selectedIndices.push({ name: '' });
@@ -342,8 +342,12 @@ export class HomeComponent implements OnInit {
     console.log(this.valueSlid);
   }
   slidechange(value: any) {
-    this.valueSlider = value;
-    // console.log(this.valueSlider);
+    this.valueSlider = value.target.value;
+    console.log(this.valueSlider);
+  }
+
+  sliderChangeDropdown(){
+    
   }
 
   getframe() {
@@ -1069,29 +1073,30 @@ export class HomeComponent implements OnInit {
     // console.log(output);
   }
   setMinMax() {
+    // let val = event.target.value;
     if (this.severity == 'Low') {
       this.minSlider = 1;
       this.maxSlider = 30;
-      // this.valueSlider = 1;
+      this.valueSlider = 1;
     } else if (this.severity == 'Medium') {
       this.minSlider = 31;
       this.maxSlider = 60;
-      // this.valueSlider = 31;
+      this.valueSlider = 31;
     } else if (this.severity == 'High') {
       this.minSlider = 61;
       this.maxSlider = 80;
-      // this.valueSlider = 61;
+      this.valueSlider = 61;
     } else if (this.severity == 'Critical') {
       this.minSlider = 81;
       this.maxSlider = 100;
-      // this.valueSlider = 81;
+      this.valueSlider = 81;
     }
-    if (this.valueSlider < this.minSlider) {
-      this.valueSlider = this.minSlider;
-    }
-    if (this.valueSlider > this.maxSlider) {
-      this.valueSlider = this.maxSlider;
-    }
+    // if (this.valueSlider < this.minSlider) {
+    //   this.valueSlider = this.minSlider;
+    // }
+    // if (this.valueSlider > this.maxSlider) {
+    //   this.valueSlider = this.maxSlider;
+    // }
     // console.log(this.minSlider);
     // console.log(this.maxSlider);
   }

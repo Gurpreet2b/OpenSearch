@@ -225,22 +225,28 @@ export class FirewallDurationComponent implements OnInit {
         },
       },
       yAxis: {
-        title: {
-          text: 'Duration'
-        },
-        type: 'datetime',
-        dateTimeLabelFormats: {
-          millisecond: '%I:%M:%S.%L',
-          second: '%H:%M:%S',
-          minute: '%H:%M',
-          hour: '%H:%M',
-          // day: '%e. %b',
-          // week: '%e. %b',
-          // month: '%b \'%y',
-          // year: '%Y'
-
+        type: 'duration',
+        labels: {
+          format: '{value:%H:%M:%S}',
         }
       },
+      // yAxis: {
+      //   title: {
+      //     text: 'Duration'
+      //   },
+      //   type: 'datetime',
+      //   dateTimeLabelFormats: {
+      //     millisecond: '%I:%M:%S.%L',
+      //     second: '%H:%M:%S',
+      //     minute: '%H:%M',
+      //     hour: '%H:%M',
+      //     // day: '%e. %b',
+      //     // week: '%e. %b',
+      //     // month: '%b \'%y',
+      //     // year: '%Y'
+
+      //   }
+      // },
       tooltip: {
         formatter: function () {
           let a: any = this;
@@ -253,6 +259,7 @@ export class FirewallDurationComponent implements OnInit {
           hours = (hours < 10) ? 0 + hours : hours;
           minutes = (minutes < 10) ? 0 + minutes : minutes;
           seconds = (seconds < 10) ? 0 + seconds : seconds;
+          
 
           if (hours < 10) {
             var str_hours = "0" + hours;
@@ -273,10 +280,16 @@ export class FirewallDurationComponent implements OnInit {
           }
           else {
             var str_seconds = seconds.toString();
+            // let thistime= new Date();
+            // thistime.setTime(a.x);
+            // return '<small>'+ thistime.toUTCString() +'</small><br>'+ a.series.name +':<b>' + duration + ' MB</b>';
           }
 
           var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
           var str_milliseconds = remaining_milliseconds.toString();
+          // let thistime= new Date();
+          // thistime.setTime(a.x);
+          // return '<small>'+ thistime.toUTCString() +'</small><br>'+ a.series.name +':<b>' + duration + '</b>';
           // if (milliseconds <10) {
           //     var str_milliseconds = "0" + milliseconds;
           // }
@@ -285,7 +298,8 @@ export class FirewallDurationComponent implements OnInit {
           // }
 
           // return  + ":" +  + ":" +  + "." + ;
-          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          return a.point.category +'<br>' +  a.series.name  + ':<b>' + '</b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          // return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
           // var milliseconds = Math.floor((duration % 1000) / 100),
           //   seconds = Math.floor((duration / 1000) % 60),
           //   minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -544,7 +558,8 @@ export class FirewallDurationComponent implements OnInit {
           // }
 
           // return  + ":" +  + ":" +  + "." + ;
-          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+           return a.point.category +'<br>' +  a.series.name  + ':<b>' + '</b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          // return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
           // var milliseconds = Math.floor((duration % 1000) / 100),
           //   seconds = Math.floor((duration / 1000) % 60),
           //   minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -725,7 +740,8 @@ export class FirewallDurationComponent implements OnInit {
           // }
 
           // return  + ":" +  + ":" +  + "." + ;
-          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
+          return a.point.name +'<br>' +  a.series.name  + ':<b>' + '</b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          // return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
           // var milliseconds = Math.floor((duration % 1000) / 100),
           //   seconds = Math.floor((duration / 1000) % 60),
           //   minutes = Math.floor((duration / (1000 * 60)) % 60),

@@ -327,9 +327,15 @@
                                 {{ report_view_title }}
                             </h2>
                             <h2 *ngIf="IsUserSelected === 'allusers'">
-                                {{ reportType }} Report from
-                                {{ fullStartDate | date : "medium" }} to
-                                {{ fullEndDate | date : "medium" }}
+                                {{ report_view_title }}
+                                <!-- {{ latestReportInfo.GeneratedDateISO | date : "medium" }}
+                                {{ startDateSetFormat | date : "medium" }} to
+                                {{ endDateSetFormat | date : "medium" }} -->
+
+                                
+                                <!-- {{ reportType }} Report from
+                                 {{ fullStartDate | date : "medium" }} to
+                                {{ fullEndDate | date : "medium" }} -->
                             </h2>
                         </div>
                         <div class="row padding-bottom-zero">
@@ -658,6 +664,96 @@
                                     </div>
                                 </div>
                             </div>
+
+                             <!-- Firewall -->
+
+                             <div class="row padding-bottom-zero">
+                                <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title">Firewall Rules</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table tablesorter" id="">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-left">Firewall Rule Name</th>
+                                                            <th class="text-left">Action</th>
+                                                            <th class="text-left">IAP</th>
+                                                            <th class="text-center">Count</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let filter of filterActionTableData.FirewallRules.Table">
+                    
+                                                            <td class="text-left">
+                                                                {{filter.name}}
+                                                            </td>
+                                                            <td class="text-left">
+                                                                {{filter.action}}
+                                                            </td>
+                                                            <td class="text-left">
+                                                                {{filter.iap}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{filter.count}}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bandwidth -->
+
+                            <div class="row padding-bottom-zero">
+                                <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title">Downloaded Files</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table tablesorter" id="">
+                                                    <thead class="text-primary">
+                                                        <tr>
+                                                            <th class="text-left">Download File Name</th>
+                                                            <th class="text-center">Users</th>
+                                                            <th class="text-center">Download File Type</th>
+                                                            <th class="text-center">Download Size(MBs)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let top of topDownloadTableData.DownloadedFiles.Table">
+                        
+                                                            <td class="text-left">
+                                                                {{ top.name | slice: 0:40 }}<span *ngIf="top.name.length > 40">...</span>
+                                                                <!-- {{top.name}} -->
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{top.user}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{top.type}}
+                                                            </td>
+                                                            <td class="text-center">
+                        
+                                                                {{top.size}}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Productivity -->
 
                             <div id="content-productivity" #content>
                                 <div class="row padding-bottom-zero">
@@ -1778,7 +1874,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration  | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1852,10 +1948,11 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.bandwidth }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
+
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.bandwidth }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -1919,7 +2016,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1988,7 +2085,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -2056,7 +2153,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -2071,7 +2168,98 @@
                                 </div>
                             </div>
 
-                            <!-- <hr> -->
+
+                            <!-- Firewall -->
+
+                            <div class="row padding-bottom-zero">
+                                <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title">Firewall Rules</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table tablesorter" id="">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-left">Firewall Rule Name</th>
+                                                            <th class="text-left">Action</th>
+                                                            <th class="text-left">IAP</th>
+                                                            <th class="text-center">Count</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let filter of filterActionTableData.FirewallRules.Table">
+                    
+                                                            <td class="text-left">
+                                                                {{filter.name}}
+                                                            </td>
+                                                            <td class="text-left">
+                                                                {{filter.action}}
+                                                            </td>
+                                                            <td class="text-left">
+                                                                {{filter.iap}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{filter.count}}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bandwidth -->
+
+                            <div class="row padding-bottom-zero">
+                                <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title">Downloaded Files</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table tablesorter" id="">
+                                                    <thead class="text-primary">
+                                                        <tr>
+                                                            <th class="text-left">Download File Name</th>
+                                                            <th class="text-center">Users</th>
+                                                            <th class="text-center">Download File Type</th>
+                                                            <th class="text-center">Download Size(MBs)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let top of topDownloadTableData.DownloadedFiles.Table">
+                        
+                                                            <td class="text-left">
+                                                                {{ top.name | slice: 0:40 }}<span *ngIf="top.name.length > 40">...</span>
+                                                                <!-- {{top.name}} -->
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{top.user}}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                {{top.type}}
+                                                            </td>
+                                                            <td class="text-center">
+                        
+                                                                {{top.size}}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Productivity -->
                             <h2 class="chart-heading">Productivity</h2>
                             <hr>
                             <div id="content-Allbrowsing-productivity" #content>
@@ -2162,7 +2350,7 @@
                                   ">
                                                                 <td class="text-left">{{ product.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ product.duration }}
+                                                                    {{ product.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ product.bandwidth }}
@@ -2229,11 +2417,13 @@
                                       .CategoriesByBrowsingTime.Table.data
                                   ">
                                                                 <td class="text-left">{{ product.name }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ product.duration | timeFormat}}
+                                                                </td>
+
                                                                 <td class="text-left">
                                                                     {{ product.bandwidth }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ product.duration }}
                                                                 </td>
 
                                                                 <td class="text-left">{{ product.type }}</td>
@@ -2301,7 +2491,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -2370,7 +2560,7 @@
                                       .TopUnacceptableUsers.Table.Data
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
-                                                                <td class="text-left">{{ rec.duration }}</td>
+                                                                <td class="text-left">{{ rec.duration | timeFormat }}</td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
                                                                 </td>
@@ -2448,7 +2638,7 @@
                                                                     {{ unaccept.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ unaccept.duration }}
+                                                                    {{ unaccept.duration | timeFormat}}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -2517,7 +2707,7 @@
                                   ">
                                                                 <td class="text-left">{{ unaccept.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ unaccept.duration }}
+                                                                    {{ unaccept.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ unaccept.total_mbs }}
@@ -2653,7 +2843,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -2728,7 +2918,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -2800,7 +2990,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -2939,7 +3129,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -3011,7 +3201,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -3080,7 +3270,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -3219,7 +3409,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -3291,7 +3481,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -3360,7 +3550,7 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -3502,7 +3692,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -3712,7 +3902,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -3998,7 +4188,7 @@
     <div class="modal-dialog">
         <div class="modal-content popup_success">
             <div class="modal-body">
-                
+
                 <h4>Do you want to see last Report?</h4>
                 <label>Details of the report are as follows:</label>
                 <hr>

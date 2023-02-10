@@ -196,3 +196,14 @@ label{
 .container{
   padding-left: 3px !important;
 }
+
+
+.popup-view-report {
+  /* margin-bottom: 10px; */
+  /* width: auto; */
+  height: auto;
+  margin: 0px 0px 0px 15rem;
+  /* width: 60vw;
+    height: 65vh;
+    margin: -4vw; */
+}

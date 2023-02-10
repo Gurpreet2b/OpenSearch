@@ -74,14 +74,14 @@ export class WindowAlertsComponent implements OnInit {
   }
 
   shrink() {
-    this.alertsData.setSize(window.innerWidth / 2.5, undefined)
+    this.alertsData.setSize(window.innerWidth / 2.55, undefined)
     // this.topUsersId2.setSize(window.innerWidth / 2.7, undefined)
     this.winlogData.setSize(window.innerWidth / 2.5, undefined)
     // this.topAlerts.setSize(window.innerWidth / 2.7, undefined)
   }
 
   expand() {
-    this.alertsData.setSize(window.innerWidth / 2.05, undefined)
+    this.alertsData.setSize(window.innerWidth / 2.1, undefined)
     // this.topUsersId2.setSize(window.innerWidth / 2.2, undefined)
     this.winlogData.setSize(window.innerWidth / 2.05, undefined)
     // this.topAlerts.setSize(window.innerWidth / 2.2, undefined)
@@ -95,7 +95,7 @@ export class WindowAlertsComponent implements OnInit {
   }
 
   overviewDurationDashboard() {
-    const target = "#durationChart";
+    const target = "#alertChart";
     $(target).show();
     if (
       new Date(this.startDate).getTime() >=
@@ -138,10 +138,10 @@ export class WindowAlertsComponent implements OnInit {
           this.winlogEventChartData = res.data.TopUsers;
           this.alertTimeChartData = res.data.TopAlertNames;
           // this.topUserChartData = res.data.TopUsers;
-          this.topAlertEventChartData  = res.data.TopCategories;
+          this.topAlertEventChartData = res.data.TopCategories;
 
-          this.chartDuration();
-          this.createDurationCharts();
+          this.chartAlert();
+          this.createAlertCharts();
           this.IsOverviewCard = true;
         } else {
           this.loading = false;
@@ -162,7 +162,7 @@ export class WindowAlertsComponent implements OnInit {
     );
   }
   onDismiss() {
-    const target = "#durationChart";
+    const target = "#alertChart";
     $(target).hide();
     $('.modal-backdrop').remove();
     $("body").removeClass("modal-open");
@@ -172,6 +172,101 @@ export class WindowAlertsComponent implements OnInit {
   //trafic chart
   setColumnChartData(widget: string, bytes: string = 'ms', type: string = 'Chart') {
     let self = this;
+    // let WinlogChartData = {
+    //   accessibility: {
+    //     description: "Site"
+    //   },
+    //   chart: {
+    //     zoomType: 'x',
+    //     backgroundColor: 'snow',
+    //     type: 'column',
+    //     height: 380,
+
+    //   },
+    //   title: {
+    //     text: type
+    //   },
+    //   xAxis: {
+    //     // title: {
+    //     //   text: 'date',
+    //     // },
+    //     type: 'datetime',
+    //     dateTimeLabelFormats: {
+    //       millisecond: '%I:%M:%S.%L %p',
+    //       second: '%I:%M:%S %p',
+    //       minute: '%I:%M %p',
+    //       hour: '%I:%M %p',
+    //     },
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Count'
+    //     },
+    //     // type: 'datetime',
+    //     // dateTimeLabelFormats: {
+    //     //   millisecond: '%I:%M:%S.%L',
+    //     //   second: '%H:%M:%S',
+    //     //   minute: '%H:%M',
+    //     //   hour: '%H:%M',
+    //     // }
+    //   },
+    //   tooltip: {
+    //     pointFormat: '{series.name}: <b>{point.y} ' + '</b>',
+    //     // formatter: function () {
+    //     //   let a: any = this;
+    //     //   var duration = a.y;
+    //     //   var milliseconds = Math.floor((duration % 1000) / 100),
+    //     //     seconds = Math.floor((duration / 1000) % 60),
+    //     //     minutes = Math.floor((duration / (1000 * 60)) % 60),
+    //     //     hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+    //     //   hours = (hours < 10) ? 0 + hours : hours;
+    //     //   minutes = (minutes < 10) ? 0 + minutes : minutes;
+    //     //   seconds = (seconds < 10) ? 0 + seconds : seconds;
+
+    //     //   if (hours < 10) {
+    //     //     var str_hours = "0" + hours;
+    //     //   }
+    //     //   else {
+    //     //     var str_hours = hours.toString();
+    //     //   }
+
+    //     //   if (minutes < 10) {
+    //     //     var str_minutes = "0" + minutes;
+    //     //   }
+    //     //   else {
+    //     //     var str_minutes = minutes.toString();
+    //     //   }
+
+    //     //   if (seconds < 10) {
+    //     //     var str_seconds = "0" + seconds;
+    //     //   }
+    //     //   else {
+    //     //     var str_seconds = seconds.toString();
+    //     //   }
+
+    //     //   var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
+    //     //   var str_milliseconds = remaining_milliseconds.toString();
+    //     //   return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+    //     // },
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       pointWidth: 40,
+    //       events: {
+    //         click: function (event) {
+    //           self.filterTypeDurationChart(event, this);
+    //           return false;
+    //         }
+    //       }
+    //     },
+    //   },
+    //   credits: {
+    //     enabled: false
+    //   },
+    //   series: []
+    // }
+
     let WinlogChartData = {
       accessibility: {
         description: "Site"
@@ -180,16 +275,18 @@ export class WindowAlertsComponent implements OnInit {
         zoomType: 'x',
         backgroundColor: 'snow',
         type: 'column',
-        height: 380,
-
+        height: 380
       },
       title: {
-        text: type
+        // useHTML: true,
+        // text: `<span style="font-family:Nunito;">`+title +`</span>`
+        text: type,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+        }
       },
       xAxis: {
-        // title: {
-        //   text: 'date',
-        // },
         type: 'datetime',
         dateTimeLabelFormats: {
           millisecond: '%I:%M:%S.%L %p',
@@ -201,69 +298,44 @@ export class WindowAlertsComponent implements OnInit {
       yAxis: {
         title: {
           text: 'Count'
-        },
-        // type: 'datetime',
-        // dateTimeLabelFormats: {
-        //   millisecond: '%I:%M:%S.%L',
-        //   second: '%H:%M:%S',
-        //   minute: '%H:%M',
-        //   hour: '%H:%M',
-        // }
+        }
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.y} ' + '</b>',
-        // formatter: function () {
-        //   let a: any = this;
-        //   var duration = a.y;
-        //   var milliseconds = Math.floor((duration % 1000) / 100),
-        //     seconds = Math.floor((duration / 1000) % 60),
-        //     minutes = Math.floor((duration / (1000 * 60)) % 60),
-        //     hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
-
-        //   hours = (hours < 10) ? 0 + hours : hours;
-        //   minutes = (minutes < 10) ? 0 + minutes : minutes;
-        //   seconds = (seconds < 10) ? 0 + seconds : seconds;
-
-        //   if (hours < 10) {
-        //     var str_hours = "0" + hours;
-        //   }
-        //   else {
-        //     var str_hours = hours.toString();
-        //   }
-
-        //   if (minutes < 10) {
-        //     var str_minutes = "0" + minutes;
-        //   }
-        //   else {
-        //     var str_minutes = minutes.toString();
-        //   }
-
-        //   if (seconds < 10) {
-        //     var str_seconds = "0" + seconds;
-        //   }
-        //   else {
-        //     var str_seconds = seconds.toString();
-        //   }
-
-        //   var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
-        //   var str_milliseconds = remaining_milliseconds.toString();
-        //   return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
-        // },
+        pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',
       },
       plotOptions: {
         series: {
-          pointWidth: 40,
+          stacking: 'normal',
+
           events: {
             click: function (event) {
               self.filterTypeDurationChart(event, this);
               return false;
             }
+            // clicking: this.filterTypeBarChart(),
           }
         },
+        // line:{
+        // custom:"Protocol",
+        // accessibility:{
+        //   description: "dsahgh",
+        //   enabled: true
+        // }
+
+        // }
       },
+      // plotOptions: {
+      //   bar: {
+      //     dataLabels: {
+      //       enabled: false
+      //     }
+      //   }
+      // },
+
       credits: {
         enabled: false
       },
+      // series: this.topColumnChartData
       series: []
     }
     if (widget === 'alerts-data') {
@@ -284,7 +356,11 @@ export class WindowAlertsComponent implements OnInit {
         height: 380
       },
       title: {
-        text: type
+        text: type,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '16'
+        }
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.y} ' + '</b>',
@@ -326,7 +402,7 @@ export class WindowAlertsComponent implements OnInit {
         //   return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
         // },
       },
-      
+
       plotOptions: {
         series: {
         },
@@ -392,7 +468,7 @@ export class WindowAlertsComponent implements OnInit {
   }
 
 
-  public chartDuration() {
+  public chartAlert() {
 
     this.setColumnChartData('alerts-data', 'ms', 'Alerts');
     this.alertsChartData['series'] = this.alertTimeChartData.chart.Series;
@@ -405,7 +481,7 @@ export class WindowAlertsComponent implements OnInit {
     // this.TopAlertChartData['series'] = this.topAlertEventChartData.chart.Series;
   }
 
-  createDurationCharts() {
+  createAlertCharts() {
     this.alertsData = Highcharts.chart('alertsData', this.alertsChartData);
     this.winlogData = Highcharts.chart('winlogData', this.WinlogChartData);
     // this.topAlerts = Highcharts.chart('topAlerts', this.TopAlertChartData);
@@ -424,7 +500,7 @@ export class WindowAlertsComponent implements OnInit {
     this.overviewDurationDashboard();
     // throw new Error('Function not implemented.');
   }
-  filterTypePieChart(event: any, data:any){
+  filterTypePieChart(event: any, data: any) {
     this.filterFieldName = event.point.name;
     this.filterFieldValue = data.chart.options.accessibility.description;
     this.useFilter = true;

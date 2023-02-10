@@ -9,13 +9,42 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ReportlistComponent } from './report-list/report-list.component';
 import { CreateReportComponent } from './create-report/create-report.component';
+// import { timeChangeFormatPipe } from '../date-pipe';
 // import { MatFormFieldModule } from '@angular/material/form-field';
+import { Pipe, PipeTransform } from '@angular/core';
+/*
+ * Raise the value exponentially
+ * Takes an exponent argument that defaults to 1.
+ * Usage:
+ *   value | exponentialStrength:exponent
+ * Example:
+ *   {{ 2 | exponentialStrength:10 }}
+ *   formats to: 1024
+*/
+@Pipe({ name: 'timeFormat' })
+export class timeChangeFormatPipe implements PipeTransform {
+  transform(seconds: number): string {
+    var hours = Math.floor(seconds / 3600);
+    var minutes = Math.floor((seconds - (hours * 3600)) / 60);
+    var seconds = seconds - (hours * 3600) - (minutes * 60);
+
+    var time = "";
+    if (hours != 0) {
+      time = hours + ":";
+    }
+    time += minutes + ":";
+    if (seconds < 10) { time += "0"; }
+    time += seconds;
+    return time;
+
+  }
+}
 
 export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
-  declarations: [ReportingComponent, CreateReportComponent, ReportlistComponent],
+  declarations: [ReportingComponent, CreateReportComponent, ReportlistComponent, timeChangeFormatPipe],
   imports: [
     CommonModule,
     ReportingRoutingModule,
@@ -24,6 +53,7 @@ export function translateHttpLoaderFactory() {
     ReactiveFormsModule,
     NgxPaginationModule,
     HighchartsChartModule,
+
     // MatFormFieldModule,
   ],
 })

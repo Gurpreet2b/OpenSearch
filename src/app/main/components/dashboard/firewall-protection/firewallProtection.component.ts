@@ -243,8 +243,9 @@ export class FirewallProtectionComponent implements OnInit {
       },
 
       tooltip: {
+        // {series.name}: 
         pointFormat:
-          '{series.name}: <b>{point.y} ' +
+          '<b>{point.y} ' +
           bytes +
           ' ({point.percentage:.1f}%) </b>',
       },
@@ -387,7 +388,7 @@ export class FirewallProtectionComponent implements OnInit {
   public chartProtection() {
     console.log('initializing charts');
 
-    this.setPieChartData('top-blocked-chart', 'MB', 'Top Applications Accessing Blocked Content', 'Application');
+    this.setPieChartData('top-blocked-chart', 'MBs', 'Top Applications Accessing Blocked Content', 'Application');
     this.TopBlockedPieChartData['series'] = this.topBlockedApplicationsChartData.chart.Series;
 
     this.setPieChartData('top-user-ips-chart', 'MB', 'Top Blocked Sites', 'Site');

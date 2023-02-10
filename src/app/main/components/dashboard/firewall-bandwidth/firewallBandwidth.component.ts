@@ -255,7 +255,7 @@ export class FirewallBandwidthComponent implements OnInit {
 
 
   //trafic chart
-  setPieChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart', filterName: string = 'Filter') {
+  setPieChartApplications(widget: string, bytes: string = 'MBs', title: string = 'Chart', filterName: string = 'Filter') {
     let self = this;
     let TopApplicationsChartData = {
       accessibility: {
@@ -276,7 +276,7 @@ export class FirewallBandwidthComponent implements OnInit {
       },
       tooltip: {
         pointFormat:
-          '{series.name}: <b>{point.y} ' +
+          '<b>{point.y} ' +
           bytes +
           ' ({point.percentage:.1f}%) </b>',
       },
@@ -506,7 +506,7 @@ export class FirewallBandwidthComponent implements OnInit {
         },
       },
       tooltip: {
-        valueSuffix: ' MB',
+        valueSuffix: ' MBs',
       },
       plotOptions: {
         series: {
@@ -677,18 +677,18 @@ export class FirewallBandwidthComponent implements OnInit {
   public chartBandwidth() {
     console.log('initializing charts');
 
-    this.setPieChartApplications('top-applications', 'MB', 'Top Applications', 'Application');
+    this.setPieChartApplications('top-applications', 'MBs', 'Top Applications', 'Application');
     this.TopApplications['series'] = this.topApplicationPieChartData.chart.Series;
     // this.TopTrafficCategoriesPieChart['series'] = this.topPieChartData;
 
-    this.setPieChartApplications('top-traffic-applications', 'MB', 'Top Traffic Categories', 'Category');
+    this.setPieChartApplications('top-traffic-applications', 'MBs', 'Top Traffic Categories', 'Category');
     this.TopTrafficCategoriesPieChart['series'] = this.toptrafficCategoriesChartData.chart.Series;
 
-    this.setBarChartApplications('top-bar-chart', 'MB', 'Top Users Ips');
+    this.setBarChartApplications('top-bar-chart', 'MBs', 'Top Users Ips');
     this.TopUsersIpsBar['xAxis']['categories'] = this.topUsersIpBarChartData.Labels;
     this.TopUsersIpsBar['series'] = this.topUsersIpBarChartData.Series;
 
-    this.setColumnChartApplications('top-sites-applications', 'MB', 'Top Sites');
+    this.setColumnChartApplications('top-sites-applications', 'MBs', 'Top Sites');
     this.TopSitesColumnChart['xAxis']['categories'] = this.topsitesColumnChartData.chart.Labels;
     this.TopSitesColumnChart['series'] = this.topsitesColumnChartData.chart.Series;
 

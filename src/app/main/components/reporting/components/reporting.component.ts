@@ -39,6 +39,7 @@ export class ReportingComponent implements OnInit {
   private fetchReportID: any = '';
   private routeState: any;
   public showControls = true;
+  
 
   @ViewChild('dialogRef')
   dialogRef!: TemplateRef<any>;
@@ -114,6 +115,8 @@ export class ReportingComponent implements OnInit {
   public reportUser = '';
   public reportData_Overview: any;
   public reportData_Bandwidth: any;
+  public filterActionTableData: any;
+  public topDownloadTableData: any;
   public reportData_Blocked: any;
   public reportData_Warned: any;
   public reportData_Productivity: any;
@@ -233,7 +236,9 @@ export class ReportingComponent implements OnInit {
   public fullStartDate: any = new Date();
   public fullEndDate: any = new Date();
   windowScrolled: boolean = false;
-
+//dateFormat
+public endDateSetFormat: any;
+public startDateSetFormat: any;
 
   subject: Subject<any> = new Subject();
 
@@ -271,6 +276,22 @@ export class ReportingComponent implements OnInit {
     });
     this.addFilter();
   }
+
+  transform(seconds: number): string {
+    var hours = Math.floor(seconds / 3600);
+    var minutes = Math.floor((seconds - (hours * 3600)) / 60);
+    var seconds = seconds - (hours * 3600) - (minutes * 60);
+
+    var time = "";
+    if (hours != 0) {
+        time = hours + ":";
+    }
+    time += minutes + ":";
+    if (seconds < 10) { time += "0"; }
+    time += seconds;
+    return time;
+
+}
 
   openDialog() {
 
@@ -339,6 +360,8 @@ export class ReportingComponent implements OnInit {
       (res) => {
         if (res.status) {
           this.latestReportInfo = res.data;
+          this.endDateSetFormat = res.data.Report.EndDateISO;
+          this.startDateSetFormat = res.data.Report.StartDateISO;
           if (this.latestReportInfo.UserType === 'singleuser') {
             this.latestReportInfo.UserType = 'Single User';
           } else if (this.latestReportInfo.UserType === 'allusers') {
@@ -588,9 +611,14 @@ export class ReportingComponent implements OnInit {
         if (res.status) {
           this.loading = false;
           // alert('Success');
+
+          // dateFormat
+          
           this.IsUserSelected = this.userType;
           this.reportData_Overview = res.data.Data.Widgets.Overview;
           this.reportData_Bandwidth = res.data.Data.Widgets.Bandwidth;
+          this.filterActionTableData = res.data.Data.Widgets.Bandwidth;
+          this.topDownloadTableData =  res.data.Data.Widgets.Bandwidth;
           this.reportData_Blocked = res.data.Data.Widgets.Blocked;
           this.reportData_Warned = res.data.Data.Widgets.Warned;
           this.reportData_Productivity = res.data.Data.Widgets.Productivity;
@@ -632,6 +660,7 @@ export class ReportingComponent implements OnInit {
     );
   }
   fetchThisReport(report_id: any) {
+    
     this._http.get('eql/reportsinfo/' + report_id).subscribe(
       async (res) => {
         if (res.status) {
@@ -650,12 +679,15 @@ export class ReportingComponent implements OnInit {
             ' for User ' +
             rep.UserBasisValue;
             
+            
           // alert('Success');
           let dat = res.data.Data.Widgets;
           this.IsUserSelected = rep.UserType;
           this.reportData_Overview = dat.Overview;
           this.reportData_Bandwidth = dat.Bandwidth;
           this.reportData_Blocked = dat.Blocked;
+          this.filterActionTableData = dat.Bandwidth;
+          this.topDownloadTableData =  dat.Bandwidth;
           this.reportData_Warned = dat.Warned;
           this.reportData_Productivity = dat.Productivity;
           this.reportData_Unacceptable = dat.Unacceptable;
@@ -979,11 +1011,15 @@ export class ReportingComponent implements OnInit {
           },
           // maxPointWidth: 15,
         },
+       
         series: {
           stacking: 'normal',
           groupPadding: 0,
           pointPadding: 0,
         },
+      },
+      credits: {
+        enabled: false,
       },
       series: [],
     };
@@ -1334,6 +1370,7 @@ export class ReportingComponent implements OnInit {
       this.setPieChartBaseDataStructure('all-categories-by-size');
       this.AllCategoriesBySizeChartOptions['series'][0]['data'] =
         this.reportData_Bandwidth.CategoriesBySize.Chart.Series[0].data;
+        
 
       // //set departments by size pie chart
       // this.setPieChartBaseDataStructure('all-department-by-size');
