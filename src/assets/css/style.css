@@ -2429,7 +2429,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
 }
 
 .container {
-    max-width: 1500px;
+    max-width: 100%;
     width: 100%;
 }
 

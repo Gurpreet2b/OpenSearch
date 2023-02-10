@@ -18,6 +18,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import domToPdf from 'dom-to-pdf';
+import $ from 'jquery';
 
 @Component({
   selector: 'app-report-list',
@@ -77,6 +78,35 @@ export class ReportlistComponent implements OnInit {
     this.loading = false;
     // this._auth.reportingIsActive();
     this.getReportList(true, 0);
+  }
+
+  getDownloadPDf(reportId: any) {
+    this._http.get(`eql/download_report?report_id=${reportId}`).subscribe(
+      (res) => {
+        this.onDismiss();
+        if (res.status) {
+          window.open(res.data, '_blank'); 
+        }
+      },
+      async (error) => {
+        if (error.error.code === 'token_not_valid') {
+          this._auth.logout();
+          this.router.navigate(['/signin']);
+          this.onDismiss();
+        } else {
+          await new Promise((f) => setTimeout(f, 2000));
+          this.onDismiss();
+        }
+      }
+    );
+  }
+
+  onDismiss() {
+    const target = "#PDFGenerateReport";
+    $(target).hide();
+    $('.modal-backdrop').remove();
+    $("body").removeClass("modal-open");
+    $("body").addClass("modal-overflow");
   }
 
   getCurrentDateStr() {
