@@ -29,7 +29,8 @@
 
                         <div style="display: flex; padding: 0px 20px;">
                             <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
-                                <div style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
                                     <p style="color: #fff;">Total <br> Bandwidth</p>
                                 </div>
                                 <div>
@@ -39,7 +40,8 @@
                                 </div>
                             </div>
                             <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
-                                <div style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
                                     <p style="color: #fff;">Top <br> Site</p>
                                 </div>
                                 <div>
@@ -49,7 +51,8 @@
                                 </div>
                             </div>
                             <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
-                                <div style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
                                     <p style="color: #fff;">Top <br> Application</p>
                                 </div>
                                 <div>
@@ -59,7 +62,8 @@
                                 </div>
                             </div>
                             <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
-                                <div style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
                                     <p style="color: #fff;">Top <br> Category</p>
                                 </div>
                                 <div>
@@ -69,7 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
 
 
                         <div class="row padding-bottom-zero">
@@ -310,6 +314,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div style="page-break-after: always;"></div>
 
                                 <div id="content-application-bandwidth" #content>
                                     <div class="row padding-bottom-zero">
@@ -342,6 +347,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div style="page-break-after: always;"></div>
 
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -363,14 +369,17 @@
                                                             <tbody>
                                                                 <tr *ngFor="
                                       let rec of reportData_Bandwidth
-                                        .ApplicationsBySize.Table.Data
+                                        .ApplicationsBySize.Table.Data; let i=index
                                     ">
-                                                                    <td>{{ rec.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ rec.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ rec.bandwidth }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -382,6 +391,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -402,6 +412,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div id="content-sites-bandwidth" #content>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -434,6 +445,7 @@
                                         </div>
                                     </div>
 
+                                    <div style="page-break-after: always;"></div>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
                                             <div class="card card-chart">
@@ -454,14 +466,17 @@
                                                             <tbody>
                                                                 <tr *ngFor="
                                       let rec of reportData_Bandwidth.SitesBySize
-                                        .Table.Data
+                                        .Table.Data; let i=index;
                                     ">
-                                                                    <td>{{ rec.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ rec.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ rec.total_mbs }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -474,6 +489,7 @@
                                 </div>
                             </div>
 
+                            <div style="page-break-after: always;"></div>
                             <div id="content-productivity" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -505,6 +521,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div id="content-browsing-productivity" #content>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -537,6 +554,7 @@
                                         </div>
                                     </div>
 
+                                    <div style="page-break-after: always;"></div>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
                                             <div class="card">
@@ -558,14 +576,17 @@
                                                             <tbody>
                                                                 <tr *ngFor="
                                       let product of reportData_Productivity
-                                        .ProductivityByBrowsingTime.Table.data
+                                        .ProductivityByBrowsingTime.Table.data; let i=index;
                                     ">
-                                                                    <td>{{ product.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ product.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ product.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ product.bandwidth }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -577,6 +598,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div id="content-unAcceptable-application-productivity" #content>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -612,6 +634,7 @@
                                         </div>
                                     </div>
 
+                                    <div style="page-break-after: always;"></div>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
                                             <div class="card">
@@ -632,14 +655,17 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr *ngFor="
-                                      let unaccept of ApplicationsTableData.Unacceptable
+                                      let unaccept of ApplicationsTableData.Unacceptable; let i=index;
                                     ">
-                                                                    <td>{{ unaccept.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ unaccept.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ unaccept.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ unaccept.bandwidth }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -651,6 +677,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div id="content-unProductive-application-productivity" #content>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -685,6 +712,7 @@
                                         </div>
                                     </div>
 
+                                    <div style="page-break-after: always;"></div>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
                                             <div class="card">
@@ -705,14 +733,17 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr *ngFor="
-                                      let unproductive of ApplicationsTableData.Unproductive
+                                      let unproductive of ApplicationsTableData.Unproductive; let i=index;
                                     ">
-                                                                    <td>{{ unproductive.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ unproductive.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ unproductive.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ unproductive.bandwidth }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -724,6 +755,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div id="content-acceptable-application-productivity" #content>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -758,6 +790,7 @@
                                         </div>
                                     </div>
 
+                                    <div style="page-break-after: always;"></div>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
                                             <div class="card">
@@ -778,14 +811,17 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr *ngFor="
-                                      let accept of ApplicationsTableData.Acceptable
+                                      let accept of ApplicationsTableData.Acceptable; let i=index;
                                     ">
-                                                                    <td>{{ accept.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ accept.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ accept.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ accept.bandwidth }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -797,6 +833,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div id="content-productive-application-productivity" #content>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -831,6 +868,7 @@
                                         </div>
                                     </div>
 
+                                    <div style="page-break-after: always;"></div>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
                                             <div class="card">
@@ -851,14 +889,17 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr *ngFor="
-                                      let productive of ApplicationsTableData.Productive
+                                      let productive of ApplicationsTableData.Productive; let i=index
                                     ">
-                                                                    <td>{{ productive.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ productive.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ productive.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ productive.bandwidth }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -870,6 +911,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div id="content-unAcceptable-sites-productivity" #content>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -904,6 +946,7 @@
                                         </div>
                                     </div>
 
+                                    <div style="page-break-after: always;"></div>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
                                             <div class="card">
@@ -924,14 +967,17 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr *ngFor="
-                                      let unaccept of SitesTableData.Unacceptable
+                                      let unaccept of SitesTableData.Unacceptable; let i=index
                                     ">
-                                                                    <td>{{ unaccept.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ unaccept.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ unaccept.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ unaccept.total_mbs }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -943,6 +989,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div id="content-unProductive-sites-productivity" #content>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -977,6 +1024,7 @@
                                         </div>
                                     </div>
 
+                                    <div style="page-break-after: always;"></div>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
                                             <div class="card">
@@ -997,14 +1045,17 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr *ngFor="
-                                      let unproductive of SitesTableData.Unproductive
+                                      let unproductive of SitesTableData.Unproductive; let i=index
                                     ">
-                                                                    <td>{{ unproductive.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ unproductive.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ unproductive.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ unproductive.total_mbs }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -1016,6 +1067,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div id="content-acceptable-sites-productivity" #content>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -1050,6 +1102,7 @@
                                         </div>
                                     </div>
 
+                                    <div style="page-break-after: always;"></div>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
                                             <div class="card">
@@ -1070,14 +1123,17 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr *ngFor="
-                                      let accept of SitesTableData.Acceptable
+                                      let accept of SitesTableData.Acceptable; let i=index;
                                     ">
-                                                                    <td>{{ accept.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ accept.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ accept.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ accept.total_mbs }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -1089,6 +1145,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div id="content-productive-sites-productivity" #content>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -1123,6 +1180,7 @@
                                         </div>
                                     </div>
 
+                                    <div style="page-break-after: always;"></div>
                                     <div class="row padding-bottom-zero">
                                         <div class="col-xs-12 col-sm-12 col-lg-12">
                                             <div class="card">
@@ -1143,14 +1201,17 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr *ngFor="
-                                      let productive of SitesTableData.Productive
+                                      let productive of SitesTableData.Productive; let i=index
                                     ">
-                                                                    <td>{{ productive.name }}</td>
-                                                                    <td class="text-center">
+                                                                    <td *ngIf="i %30 !== 0">{{ productive.name }}</td>
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ productive.duration }}
                                                                     </td>
-                                                                    <td class="text-center">
+                                                                    <td class="text-center" *ngIf="i %30 !== 0">
                                                                         {{ productive.total_mbs }}
+                                                                    </td>
+                                                                    <td *ngIf="i %30 === 0 && i !== 0">
+                                                                        <div style="page-break-after: always;"></div>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -1163,6 +1224,7 @@
                                 </div>
                             </div>
 
+                            <div style="page-break-after: always;"></div>
                             <div id="content-blocked-categories" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -1193,6 +1255,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
@@ -1213,15 +1276,19 @@
                                                         <tbody>
                                                             <tr *ngFor="
                                     let rec of reportData_Blocked.Categories.Table
-                                      .data
+                                      .data; let i=index
                                   ">
-                                                                <td>{{ rec.category }}</td>
-                                                                <td class="text-center">
+                                                                <td *ngIf="i %30 !== 0">{{ rec.category }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">
                                                                     {{ rec.productivity }}
                                                                 </td>
-                                                                <td class="text-center">{{ rec.hits }}</td>
-                                                                <td class="text-center">
+                                                                <td class="text-center" *ngIf="i %30 !== 0">{{ rec.hits
+                                                                    }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">
                                                                     {{ rec.size }}
+                                                                </td>
+                                                                <td *ngIf="i %30 === 0 && i !== 0">
+                                                                    <div style="page-break-after: always;"></div>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -1233,6 +1300,7 @@
                                 </div>
                             </div>
 
+                            <div style="page-break-after: always;"></div>
                             <div id="content-blocked-sites" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -1263,6 +1331,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
@@ -1283,14 +1352,20 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of reportData_Blocked.Sites.Table.data
+                                    let rec of reportData_Blocked.Sites.Table.data; let i=index;
                                   ">
-                                                                <td>{{ rec.domain }}</td>
-                                                                <td class="text-center">{{ rec.duration }}</td>
-                                                                <td class="text-center">{{ rec.category }}</td>
-                                                                <td class="text-center">{{ rec.hits }}</td>
-                                                                <td class="text-center">
+                                                                <td *ngIf="i %30 !== 0">{{ rec.domain }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">{{
+                                                                    rec.duration }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">{{
+                                                                    rec.category }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">{{ rec.hits
+                                                                    }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">
                                                                     {{ rec.size }}
+                                                                </td>
+                                                                <td *ngIf="i %30 === 0 && i !== 0">
+                                                                    <div style="page-break-after: always;"></div>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -1302,6 +1377,7 @@
                                 </div>
                             </div>
 
+                            <div style="page-break-after: always;"></div>
                             <div id="content-blocked-application" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -1332,6 +1408,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
@@ -1351,12 +1428,16 @@
                                                         <tbody>
                                                             <tr *ngFor="
                                     let rec of reportData_Blocked.Applications
-                                      .Table.data
+                                      .Table.data; let i=index;
                                   ">
-                                                                <td>{{ rec.app }}</td>
-                                                                <td class="text-center">{{ rec.size }}</td>
-                                                                <td class="text-center">
+                                                                <td *ngIf="i %30 !== 0">{{ rec.app }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">{{ rec.size
+                                                                    }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">
                                                                     {{ rec.hits }}
+                                                                </td>
+                                                                <td *ngIf="i %30 === 0 && i !== 0">
+                                                                    <div style="page-break-after: always;"></div>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -1368,6 +1449,7 @@
                                 </div>
                             </div>
 
+                            <div style="page-break-after: always;"></div>
                             <div id="content-warned-proceeded" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -1398,6 +1480,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
@@ -1420,12 +1503,16 @@
                                                         <tbody>
                                                             <tr *ngFor="
                                     let rec of reportData_Warned
-                                      .WarnedAndProceeded.Table.data
+                                      .WarnedAndProceeded.Table.data; let i=index;
                                   ">
-                                                                <td>{{ rec.domain }}</td>
-                                                                <td class="text-center">{{ rec.category }}</td>
-                                                                <td class="text-center">{{ rec.hits }}</td>
-                                                                <!-- <td class="text-center">{{ rec.size }}</td> -->
+                                                                <td *ngIf="i %30 !== 0">{{ rec.domain }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">{{
+                                                                    rec.category }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">{{ rec.hits
+                                                                    }}</td>
+                                                                <td *ngIf="i %30 === 0 && i !== 0">
+                                                                    <div style="page-break-after: always;"></div>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1436,6 +1523,7 @@
                                 </div>
                             </div>
 
+                            <div style="page-break-after: always;"></div>
                             <div id="content-warned-categories" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -1467,6 +1555,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
@@ -1487,14 +1576,17 @@
                                                         <tbody>
                                                             <tr *ngFor="
                                     let rec of reportData_Warned.Categories.Table
-                                      .data
+                                      .data; let i=index;
                                   ">
-                                                                <td>{{ rec.category }}</td>
-                                                                <td class="text-center">
+                                                                <td *ngIf="i %30 !== 0">{{ rec.category }}</td>
+                                                                <td class="text-center" *ngIf="i %30 !== 0">
                                                                     {{ rec.productivity }}
                                                                 </td>
-                                                                <td class="text-center">{{ rec.hits }}</td>
-                                                                <!-- <td class="text-center">{{ rec.size }}</td> -->
+                                                                <td class="text-center" *ngIf="i %30 !== 0">{{ rec.hits
+                                                                    }}</td>
+                                                                <td *ngIf="i %30 === 0 && i !== 0">
+                                                                    <div style="page-break-after: always;"></div>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1589,8 +1681,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Bandwidth.UsersBySize.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Bandwidth.UsersBySize.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
                                                                 </td>
@@ -1658,7 +1752,8 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of [{name: 'devel', duration: 45, bandwidth: 0.2 }]">
+                                                            <tr
+                                                                *ngFor="let rec of [{name: 'devel', duration: 45, bandwidth: 0.2 }]">
                                                                 <td class="text-left">{{ rec.name }}</td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1762,7 +1857,8 @@
                                                     </h3>
                                                 </div>
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-applications-by-size')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-applications-by-size')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -1779,7 +1875,7 @@
                                     </div>
                                 </div>
 
-                            <div style="page-break-before: always;"></div>
+                                <div style="page-break-before: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
@@ -1797,8 +1893,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Bandwidth.ApplicationsBySize.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Bandwidth.ApplicationsBySize.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
                                                                 </td>
@@ -1867,8 +1965,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Bandwidth.CategoriesBySize.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Bandwidth.CategoriesBySize.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
                                                                 </td>
@@ -1905,7 +2005,8 @@
                                                 </div>
 
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="DownloadPDF('content-Allbrowsing-productivity')">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-Allbrowsing-productivity')">
                                                         <u>Export PDF All Productivity</u>
                                                     </h3>
                                                 </div>
@@ -1934,16 +2035,17 @@
                                                     </h3>
                                                 </div>
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-Allbrowsing-productivity')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-Allbrowsing-productivity')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
                                             </div>
                                             <div class="card-body">
                                                 <div class="chart-area">
-                                                    <highcharts-chart [Highcharts]="Highcharts" 
-                                                    [options]="AllProductivityByBrowsingTimeChartOptions"
-                                                     style="width: 100%; height: 100%">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [options]="AllProductivityByBrowsingTimeChartOptions"
+                                                        style="width: 100%; height: 100%">
                                                     </highcharts-chart>
                                                 </div>
                                             </div>
@@ -1970,7 +2072,8 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let product of reportData_Productivity.ProductivityByBrowsingTime.Table.data">
+                                                            <tr
+                                                                *ngFor="let product of reportData_Productivity.ProductivityByBrowsingTime.Table.data">
                                                                 <td class="text-left">{{ product.name }}</td>
                                                                 <td class="text-left">
                                                                     {{ product.duration }}
@@ -1999,7 +2102,8 @@
                                                     </h3>
                                                 </div>
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-Allbrowsing-productivity')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-Allbrowsing-productivity')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -2035,8 +2139,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let product of reportData_Productivity.CategoriesByBrowsingTime.Table.data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ product.name }}</td>
+                                                            <tr
+                                                                *ngFor="let product of reportData_Productivity.CategoriesByBrowsingTime.Table.data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{
+                                                                    product.name }}</td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ product.bandwidth }}
                                                                 </td>
@@ -2044,7 +2150,8 @@
                                                                     {{ product.duration }}
                                                                 </td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ product.type }}</td>
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{
+                                                                    product.type }}</td>
                                                                 <td *ngIf="i %30 === 0 && i !== 0">
                                                                     <div style="page-break-after: always;"></div>
                                                                 </td>
@@ -2108,8 +2215,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Productivity.TopUsersByBrowsingTime.Table.data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Productivity.TopUsersByBrowsingTime.Table.data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
                                                                 </td>
@@ -2180,9 +2289,12 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Unacceptable.TopUnacceptableUsers.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.duration }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Unacceptable.TopUnacceptableUsers.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{
+                                                                    rec.duration }}</td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
                                                                 </td>
@@ -2213,7 +2325,8 @@
                                                 </div>
 
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-allunAcceptable-application-productivity')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-allunAcceptable-application-productivity')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -2251,8 +2364,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let unaccept of AllTopProductivityTables.Apps.Table.Unacceptable; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ unaccept.name }}</td>
+                                                            <tr
+                                                                *ngFor="let unaccept of AllTopProductivityTables.Apps.Table.Unacceptable; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{
+                                                                    unaccept.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ unaccept.bandwidth }}
@@ -2286,7 +2401,8 @@
                                                     </h3>
                                                 </div>
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-Allunacceptable-sites-productivity')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-Allunacceptable-sites-productivity')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -2322,8 +2438,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let unaccept of reportData_Unacceptable.TopUnacceptableApplications.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ unaccept.name }}</td>
+                                                            <tr
+                                                                *ngFor="let unaccept of reportData_Unacceptable.TopUnacceptableApplications.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{
+                                                                    unaccept.name }}</td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ unaccept.duration }}
                                                                 </td>
@@ -2359,7 +2477,8 @@
                                                 </div>
 
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-AllUnproductive-bandwidth')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-AllUnproductive-bandwidth')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -2394,8 +2513,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Unproductive.TopUnproductiveApplications.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Unproductive.TopUnproductiveApplications.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
                                                                 </td>
@@ -2471,8 +2592,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of AllTopProductivityTables.Apps.Table.Unproductive; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of AllTopProductivityTables.Apps.Table.Unproductive; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
                                                                 </td>
@@ -2506,7 +2629,8 @@
                                                 </div>
 
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-AllTopUnProductiveSites-bandwidth')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-AllTopUnProductiveSites-bandwidth')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -2541,8 +2665,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Unproductive.TopUnproductiveSites.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Unproductive.TopUnproductiveSites.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
                                                                 </td>
@@ -2614,8 +2740,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Acceptable.TopAcceptableUsers.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Acceptable.TopAcceptableUsers.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
                                                                 </td>
@@ -2649,7 +2777,8 @@
                                                 </div>
 
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-AllAcceptable-Applications')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-AllAcceptable-Applications')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -2685,8 +2814,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of AllTopProductivityTables.Apps.Table.Acceptable; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of AllTopProductivityTables.Apps.Table.Acceptable; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
@@ -2757,8 +2888,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Acceptable.TopAcceptableSites.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Acceptable.TopAcceptableSites.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
                                                                 </td>
@@ -2830,8 +2963,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Productive.TopProductiveUsers.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Productive.TopProductiveUsers.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
@@ -2866,7 +3001,8 @@
                                                 </div>
 
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-AllProductive-Application')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-AllProductive-Application')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -2902,8 +3038,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of AllTopProductivityTables.Apps.Table.Productive; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of AllTopProductivityTables.Apps.Table.Productive; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
@@ -2974,8 +3112,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Productive.TopProductiveSites.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Productive.TopProductiveSites.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
                                                                 </td>
@@ -3048,9 +3188,12 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Blocked.BlockedEvents.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Blocked.BlockedEvents.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
@@ -3120,8 +3263,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Blocked.Users.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Blocked.Users.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.total_mbs }}
@@ -3170,7 +3315,7 @@
                                     </div>
                                 </div>
 
-                            <div style="page-break-after: always;"></div>
+                                <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
@@ -3189,8 +3334,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let allBlockedCat of reportData_Blocked.Categories.Table.data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ allBlockedCat.category }}</td>
+                                                            <tr
+                                                                *ngFor="let allBlockedCat of reportData_Blocked.Categories.Table.data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{
+                                                                    allBlockedCat.category }}</td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ allBlockedCat.productivity }}
                                                                 </td>
@@ -3265,9 +3412,12 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Warned.WarnedEvents.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Warned.WarnedEvents.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.duration }}
@@ -3301,7 +3451,8 @@
                                                     </h3>
                                                 </div>
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-AllWarnedProcceded-sites')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-AllWarnedProcceded-sites')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -3339,9 +3490,12 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Warned.WarnedAndProceeded.Table.data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.domain }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.category }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Warned.WarnedAndProceeded.Table.data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.domain
+                                                                    }}</td>
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{
+                                                                    rec.category }}</td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.hits }}
                                                                 </td>
@@ -3406,8 +3560,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Warned.Users.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Warned.Users.Table.Data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}
+                                                                </td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.total_mbs }}
@@ -3438,7 +3594,8 @@
                                                     </h3>
                                                 </div>
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="generatePdf('content-AllWarned-Categories')">
+                                                    <h3 class="card-title"
+                                                        (click)="generatePdf('content-AllWarned-Categories')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -3473,8 +3630,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of reportData_Warned.Categories.Table.data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.category }}</td>
+                                                            <tr
+                                                                *ngFor="let rec of reportData_Warned.Categories.Table.data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{
+                                                                    rec.category }}</td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.productivity }}
                                                                 </td>
