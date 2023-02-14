@@ -153,10 +153,10 @@ export class FirewallBandwidthComponent implements OnInit {
   expand() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.3);
-    this.topApplicationId.setSize(window.innerWidth / 3.2, undefined)
-    this.topUsersIpBarId.setSize(window.innerWidth / 1.56, undefined)
-    this.topTrafficCategoryId.setSize(window.innerWidth / 3.2, undefined)
-    this.topSitesColumnChartId.setSize(window.innerWidth / 1.56, undefined)
+    this.topApplicationId.setSize(window.innerWidth / 3.165, undefined)
+    this.topUsersIpBarId.setSize(window.innerWidth / 1.52, undefined)
+    this.topTrafficCategoryId.setSize(window.innerWidth / 3.16, undefined)
+    this.topSitesColumnChartId.setSize(window.innerWidth / 1.52, undefined)
   }
 
   dateTimeFilter() {

@@ -81,7 +81,7 @@ export class WindowAlertsComponent implements OnInit {
   }
 
   expand() {
-    this.alertsData.setSize(window.innerWidth / 2.1, undefined)
+    this.alertsData.setSize(window.innerWidth / 2.05, undefined)
     // this.topUsersId2.setSize(window.innerWidth / 2.2, undefined)
     this.winlogData.setSize(window.innerWidth / 2.05, undefined)
     // this.topAlerts.setSize(window.innerWidth / 2.2, undefined)

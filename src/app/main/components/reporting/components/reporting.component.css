@@ -173,6 +173,10 @@ th {
   color: #fff !important;
 }
 
+.cardx:hover .icon-fa-2x{
+  color: #fff !important;
+}
+
 .p-t-color{
   font-size: 16px !important;
   color: #000 !important;
@@ -231,15 +235,20 @@ th {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid white;
+  /* border: 1px solid white;
   border-radius: 100%;
-  background-color: antiquewhite;
-  padding: inherit;
+  background-color: antiquewhite; */
+  padding: 10px;
   max-height: 66px;
   max-width: 66px;
   height: 50px;
   width: 50px;
 }
+/* 
+.stat-icon.icon-fa-2x:hover{
+  color: #fff;
+} */
+
 
 .cuspadding {
   padding: 5px 15px !important;

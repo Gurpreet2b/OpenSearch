@@ -39,7 +39,7 @@ export class ReportingComponent implements OnInit {
   private fetchReportID: any = '';
   private routeState: any;
   public showControls = true;
-  
+
 
   @ViewChild('dialogRef')
   dialogRef!: TemplateRef<any>;
@@ -236,9 +236,9 @@ export class ReportingComponent implements OnInit {
   public fullStartDate: any = new Date();
   public fullEndDate: any = new Date();
   windowScrolled: boolean = false;
-//dateFormat
-public endDateSetFormat: any;
-public startDateSetFormat: any;
+  //dateFormat
+  public endDateSetFormat: any;
+  public startDateSetFormat: any;
 
   subject: Subject<any> = new Subject();
 
@@ -284,14 +284,14 @@ public startDateSetFormat: any;
 
     var time = "";
     if (hours != 0) {
-        time = hours + ":";
+      time = hours + ":";
     }
     time += minutes + ":";
     if (seconds < 10) { time += "0"; }
     time += seconds;
     return time;
 
-}
+  }
 
   openDialog() {
 
@@ -326,7 +326,7 @@ public startDateSetFormat: any;
     });
   };
 
-  test(){
+  test() {
     // debugger;
     const target = "#loadLatestReport";
     // $(target).hide();
@@ -360,8 +360,8 @@ public startDateSetFormat: any;
       (res) => {
         if (res.status) {
           this.latestReportInfo = res.data;
-          this.endDateSetFormat = res.data.Report.EndDateISO;
-          this.startDateSetFormat = res.data.Report.StartDateISO;
+          // this.endDateSetFormat = res.data.Report.EndDateISO;
+          // this.startDateSetFormat = res.data.Report.StartDateISO;
           if (this.latestReportInfo.UserType === 'singleuser') {
             this.latestReportInfo.UserType = 'Single User';
           } else if (this.latestReportInfo.UserType === 'allusers') {
@@ -613,12 +613,12 @@ public startDateSetFormat: any;
           // alert('Success');
 
           // dateFormat
-          
+
           this.IsUserSelected = this.userType;
           this.reportData_Overview = res.data.Data.Widgets.Overview;
           this.reportData_Bandwidth = res.data.Data.Widgets.Bandwidth;
           this.filterActionTableData = res.data.Data.Widgets.Bandwidth;
-          this.topDownloadTableData =  res.data.Data.Widgets.Bandwidth;
+          this.topDownloadTableData = res.data.Data.Widgets.Bandwidth;
           this.reportData_Blocked = res.data.Data.Widgets.Blocked;
           this.reportData_Warned = res.data.Data.Widgets.Warned;
           this.reportData_Productivity = res.data.Data.Widgets.Productivity;
@@ -660,7 +660,7 @@ public startDateSetFormat: any;
     );
   }
   fetchThisReport(report_id: any) {
-    
+
     this._http.get('eql/reportsinfo/' + report_id).subscribe(
       async (res) => {
         if (res.status) {
@@ -668,7 +668,7 @@ public startDateSetFormat: any;
           console.log('Fetched Report with an ID');
           // console.log(res)
           let rep = res.data.Report;
-          
+
           // debugger;
           this.report_view_title =
             rep.ReportType +
@@ -678,8 +678,8 @@ public startDateSetFormat: any;
             this.dtPipe.transform(rep.EndDateISO, 'medium') +
             ' for User ' +
             rep.UserBasisValue;
-            
-            
+
+
           // alert('Success');
           let dat = res.data.Data.Widgets;
           this.IsUserSelected = rep.UserType;
@@ -687,7 +687,7 @@ public startDateSetFormat: any;
           this.reportData_Bandwidth = dat.Bandwidth;
           this.reportData_Blocked = dat.Blocked;
           this.filterActionTableData = dat.Bandwidth;
-          this.topDownloadTableData =  dat.Bandwidth;
+          this.topDownloadTableData = dat.Bandwidth;
           this.reportData_Warned = dat.Warned;
           this.reportData_Productivity = dat.Productivity;
           this.reportData_Unacceptable = dat.Unacceptable;
@@ -712,7 +712,7 @@ public startDateSetFormat: any;
           this.onDismiss();
           alert('something is wrong');
         }
-        
+
       },
       (error) => {
         if (error.error.code === 'token_not_valid') {
@@ -740,12 +740,12 @@ public startDateSetFormat: any;
     $("body").removeClass("modal-open");
     $("body").addClass("modal-overflow");
     // const ele =  $('#viewGenerateReport');
-    
+
     // $('#viewGenerateReport').modal('toggle')
     // ele.modal('toggle')
   }
 
-  
+
 
   setLineChartBaseDataStructure(widget: string, bytes: string = '') {
     let baseData = {
@@ -825,10 +825,10 @@ public startDateSetFormat: any;
         // },
       },
       series: [
-        {
-          name: 'Year 1990',
-          data: [631, 727, 3202, 72],
-        },
+        // {
+        //   name: 'Year 1990',
+        //   data: [631, 727, 3202, 72],
+        // },
       ],
     };
     if (widget === 'bandwidth-overtime') {
@@ -851,21 +851,21 @@ public startDateSetFormat: any;
     let baseData = {
       chart: {
         type: 'bar',
-        events: {
-          redraw: (chart: any) => {
-            console.log('bar callback event');
-            console.log(chart);
-            let categoryHeight = 20;
-            chart.update({
-              chart: {
-                height:
-                  categoryHeight * chart.pointCount +
-                  (chart.chartHeight - chart.plotHeight),
-              },
-            });
-            // chart.target.callback(this);
-          },
-        },
+        // events: {
+        //   redraw: (chart: any) => {
+        //     console.log('bar callback event');
+        //     console.log(chart);
+        //     let categoryHeight = 20;
+        //     chart.update({
+        //       chart: {
+        //         height:
+        //           categoryHeight * chart.pointCount +
+        //           (chart.chartHeight - chart.plotHeight),
+        //       },
+        //     });
+        //     // chart.target.callback(this);
+        //   },
+        // },
       },
       title: {
         text: '',
@@ -1011,7 +1011,7 @@ public startDateSetFormat: any;
           },
           // maxPointWidth: 15,
         },
-       
+
         series: {
           stacking: 'normal',
           groupPadding: 0,
@@ -1231,14 +1231,17 @@ public startDateSetFormat: any;
     console.log('initializing charts');
     if (userType === 'singleuser') {
       //set bandwidth applicatios by size pie chart
-      this.setPieChartBaseDataStructure('bandwidth-applications');
-      this.ApplicationsBySizeChartOptions['series'][0]['data'] =
-        this.reportData_Bandwidth.ApplicationsBySize.Chart.Series[0].data;
+
+      // this.ApplicationsBySizeChartOptions['series'] = this.reportData_Bandwidth.ApplicationsBySize.Chart.Series;
 
       //set Productive By Browsing Time pie chart
       this.setPieChartBaseDataStructure('Productive-Browsing-Time');
       this.ProductivityByBrowsingTimeChartOptions['series'][0]['data'] =
         this.reportData_Productivity.ProductivityByBrowsingTime.Chart.Series[0].data;
+
+      this.setPieChartBaseDataStructure('bandwidth-applications');
+      this.ApplicationsBySizeChartOptions['series'][0]['data'] =
+        this.reportData_Bandwidth.ApplicationsBySize.Chart.Series[0].data;
 
       // set bandwidth categories by size pie chartOptionsLine
       this.setPieChartBaseDataStructure('bandwidth-categories');
@@ -1281,8 +1284,12 @@ public startDateSetFormat: any;
         this.reportData_Bandwidth.SitesBySize.Chart.Series;
 
       this.setLineChartBaseDataStructure('bandwidth-overtime', 'MB');
+      // this.BandwidthOverTimeChartOptions['series'][0]['data']=
+      //   this.reportData_Bandwidth.BandwidthOverTime.Chart.Series[0].data;
+
       this.BandwidthOverTimeChartOptions['series'] =
         this.reportData_Bandwidth.BandwidthOverTime.Chart.Series;
+
       // this.BandwidthOveTimeChartOptions['xAxis']['categories'] =
       // this.reportData_Bandwidth.BandwidthOverTime.Chart.Labels;
 
@@ -1370,7 +1377,7 @@ public startDateSetFormat: any;
       this.setPieChartBaseDataStructure('all-categories-by-size');
       this.AllCategoriesBySizeChartOptions['series'][0]['data'] =
         this.reportData_Bandwidth.CategoriesBySize.Chart.Series[0].data;
-        
+
 
       // //set departments by size pie chart
       // this.setPieChartBaseDataStructure('all-department-by-size');
@@ -1540,7 +1547,7 @@ public startDateSetFormat: any;
     else {
       alert('An Error has occured while preparing charts')
     }
-    
+
     // }
     // openDialog() {
     //   const myTempDialog = this.dialog.open(this.dialogRef, {
@@ -1570,6 +1577,6 @@ public startDateSetFormat: any;
   }
 
   adsghs() {
-    
+
   }
 }

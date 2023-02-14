@@ -114,10 +114,10 @@ export class FirewallProtectionComponent implements OnInit {
   expand() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.3);
-    this.topBlockedChartId.setSize(window.innerWidth / 3.2, undefined)
-    this.topCategoryId.setSize(window.innerWidth / 3.18, undefined)
-    this.topBlockedContentId.setSize(window.innerWidth / 3.12, undefined)
-    this.topAccessingBlockedId.setSize(window.innerWidth / 3.12, undefined)
+    this.topBlockedChartId.setSize(window.innerWidth / 3.16, undefined)
+    this.topCategoryId.setSize(window.innerWidth / 3.16, undefined)
+    this.topBlockedContentId.setSize(window.innerWidth / 3.05, undefined)
+    this.topAccessingBlockedId.setSize(window.innerWidth / 3.05, undefined)
   }
 
 
