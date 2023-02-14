@@ -102,11 +102,11 @@ export class DashboardComponent implements OnInit {
   expand() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.3);
-    this.bandwidthOvertime1.setSize(window.innerWidth / 1.25, undefined)
-    this.productivityPieChart.setSize(window.innerWidth / 3.2, undefined)
-    this.productivityOvertime1.setSize(window.innerWidth / 1.55, undefined)
-    this.trafficActionOvertime1.setSize(window.innerWidth / 1.55, undefined)
-    this.trafficPieChart1.setSize(window.innerWidth / 3.2, undefined)
+    this.bandwidthOvertime1.setSize(window.innerWidth / 1.23, undefined)
+    this.productivityPieChart.setSize(window.innerWidth / 3.18, undefined)
+    this.productivityOvertime1.setSize(window.innerWidth / 1.53, undefined)
+    this.trafficActionOvertime1.setSize(window.innerWidth / 1.53, undefined)
+    this.trafficPieChart1.setSize(window.innerWidth / 3.18, undefined)
   }
 
   printpre() {

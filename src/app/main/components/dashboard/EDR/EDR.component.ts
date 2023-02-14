@@ -13,11 +13,11 @@ import $ from "jquery";
 export class EDRComponent implements OnInit {
   public loading = false;
   highcharts = Highcharts;
-  public multidatachart: any = {};
-  public BandwidthOverTimeChart: any = {};
-  public TrafficActionsOverTime: any = {};
+  // public multidatachart: any = {};
+  // public BandwidthOverTimeChart: any = {};
+  // public TrafficActionsOverTime: any = {};
   public TopAllowSites: any = {};
-  public TopApplicationsBarChartData: any = {};
+  // public TopApplicationsBarChartData: any = {};
   public TopBypassedWebsiteChart: any = {};
   public TopBlockedChart: any = {};
   public TopCategoriesPieChartData: any = {};
@@ -27,12 +27,13 @@ export class EDRComponent implements OnInit {
   public endDate: any = new Date();
   public localSavedState: boolean = true;
   public IsOverviewCard: any = false;
-
+  public showIt = true;
   public filterFieldValue: any;
   public useFilter: boolean = false;
   public filterFieldName: string;
-  public pieChartName: string;
-  public pieChartDescription: string;
+  // public pieChartName: string;
+  // public pieChartDescription: string;
+
   //ids of chart expand
   public topAllowedSiteId: any;
   public topBypassedChartId: any;
@@ -44,12 +45,16 @@ export class EDRComponent implements OnInit {
 
   //chart Data
   public topAllowSitesPieChartData: any;
-  public toptrafficCategoriesChartData: any;
+  // public toptrafficCategoriesChartData: any;
   public topBlockedChartData: any;
   public topUsersColumnChartData: any;
   public topSurfedColumnChartData: any;
   public topCategoriesChartData: any;
   public topBypassedChartData: any;
+
+  public toggleshowIt() {
+    this.showIt = !this.showIt;
+  }
 
   //table data
   // public topDownloadTableData: any = [];
@@ -84,7 +89,7 @@ export class EDRComponent implements OnInit {
   }
 
   ngDoCheck(): void {
-    // console.log('btn')
+    console.log('btn')
     if (this.authService.getSidebarState() == this.localSavedState) {
       return;
     }
@@ -98,21 +103,25 @@ export class EDRComponent implements OnInit {
   }
 
   shrink() {
-    this.topAllowedSiteId.setSize(window.innerWidth / 3.85, undefined)
-    this.topUsersColumnChartId.setSize(window.innerWidth / 1.88, undefined)
+    console.log(window.innerWidth);
+    console.log(window.innerWidth / 1.6);
+    this.topAllowedSiteId.setSize(window.innerWidth / 3.9, undefined)
+    this.topUsersColumnChartId.setSize(window.innerWidth / 1.86, undefined)
     this.topCategoriesChartId.setSize(window.innerWidth / 3.9, undefined)
-    this.topSurfedColumnChartId.setSize(window.innerWidth / 1.9, undefined)
+    this.topSurfedColumnChartId.setSize(window.innerWidth / 1.86, undefined)
     this.topBypassedChartId.setSize(window.innerWidth / 3.9, undefined)
-    this.topBlockedChartId.setSize(window.innerWidth / 1.85, undefined)
+    this.topBlockedChartId.setSize(window.innerWidth / 1.86, undefined)
   }
 
   expand() {
-    this.topAllowedSiteId.setSize(window.innerWidth / 3.1, undefined)
-    this.topUsersColumnChartId.setSize(window.innerWidth / 1.58, undefined)
-    this.topCategoriesChartId.setSize(window.innerWidth / 3.2, undefined)
-    this.topSurfedColumnChartId.setSize(window.innerWidth / 1.58, undefined)
-    this.topBypassedChartId.setSize(window.innerWidth / 3.2, undefined)
-    this.topBlockedChartId.setSize(window.innerWidth / 1.56, undefined)
+    console.log(window.innerWidth);
+    console.log(window.innerWidth / 1.3);
+    this.topAllowedSiteId.setSize(window.innerWidth / 3.16, undefined)
+    this.topUsersColumnChartId.setSize(window.innerWidth / 1.53, undefined)
+    this.topCategoriesChartId.setSize(window.innerWidth / 3.16, undefined)
+    this.topSurfedColumnChartId.setSize(window.innerWidth / 1.53, undefined)
+    this.topBypassedChartId.setSize(window.innerWidth / 3.16, undefined)
+    this.topBlockedChartId.setSize(window.innerWidth / 1.53, undefined)
   }
 
   dateTimeFilter() {
@@ -146,7 +155,6 @@ export class EDRComponent implements OnInit {
       return;
     }
     this.loading = true;
-
     let request: any = {
       start: new Date(this.startDate).toISOString(),
       end: new Date(this.endDate).toISOString(),
@@ -162,7 +170,6 @@ export class EDRComponent implements OnInit {
       }
     }
 
-
     this._http.post('eql/edr', request).subscribe(
       async (res) => {
         if (res.status) {
@@ -171,7 +178,7 @@ export class EDRComponent implements OnInit {
           console.log(res)
 
           this.topAllowSitesPieChartData = res.data.TopAllowedSites;
-          this.toptrafficCategoriesChartData = res.data.TopAllowedSites;
+          // this.toptrafficCategoriesChartData = res.data.TopAllowedSites;
           this.topBlockedChartData = res.data.TopBlockedSites;
           this.topBypassedChartData = res.data.TopBypassedSites;
           this.topUsersColumnChartData = res.data.TopUsers;
@@ -201,16 +208,13 @@ export class EDRComponent implements OnInit {
     );
   }
 
-
   onDismiss() {
     const target = "#EDRChart";
     $(target).hide();
     $('.modal-backdrop').remove();
     $("body").removeClass("modal-open");
     $("body").addClass("modal-overflow");
-
   }
-
 
   //trafic chart
   setPieChartApplications(widget: string, bytes: string = 'MB', title: string = 'Chart', filterName: string = 'Filter') {
@@ -230,7 +234,7 @@ export class EDRComponent implements OnInit {
         style: {
           fontWeight: 'bold',
           fontSize: '16'
-      }
+        }
       },
       tooltip: {
         pointFormat:
@@ -245,7 +249,7 @@ export class EDRComponent implements OnInit {
       // },
       plotOptions: {
         series: {
-        
+
         },
         pie: {
           innerSize: 40,
@@ -305,7 +309,7 @@ export class EDRComponent implements OnInit {
       series: []
 
     }
-  
+
     if (widget === 'top-allowed-sites') {
       this.TopAllowSites = TopApplicationsChartData;
     }
@@ -321,20 +325,20 @@ export class EDRComponent implements OnInit {
         type: 'bar',
         backgroundColor: 'snow',
         events: {
-          redraw: (chart: any) => {
-            console.log('bar callback event stacked');
-            console.log(chart);
-            let categoryHeight = 20;
-            // console.log(chart.xAxis[0].categories.length);
-            chart.update({
-              chart: {
-                height:
-                  categoryHeight * chart.xAxis[0].categories.length +
-                  (chart.chartHeight - chart.plotHeight),
-              },
-            });
-            // chart.target.callback(this);
-          },
+          // redraw: (chart: any) => {
+          //   console.log('bar callback event stacked');
+          //   console.log(chart);
+          //   let categoryHeight = 20;
+          //   // console.log(chart.xAxis[0].categories.length);
+          //   chart.update({
+          //     chart: {
+          //       height:
+          //         categoryHeight * chart.xAxis[0].categories.length +
+          //         (chart.chartHeight - chart.plotHeight),
+          //     },
+          //   });
+          //   // chart.target.callback(this);
+          // },
         },
       },
       title: {
@@ -342,7 +346,7 @@ export class EDRComponent implements OnInit {
         style: {
           fontWeight: 'bold',
           fontSize: '16'
-      }
+        }
       },
       xAxis: {
         categories: [],
@@ -427,7 +431,7 @@ export class EDRComponent implements OnInit {
     //           self.filterTypeBarChart(event, this);
     //           return false;
     //       },
-          
+
     //       }
     //     },
     //   },
@@ -461,7 +465,7 @@ export class EDRComponent implements OnInit {
         style: {
           fontWeight: 'bold',
           fontSize: '16'
-      }
+        }
       },
       xAxis: {
         categories: [],
@@ -474,7 +478,7 @@ export class EDRComponent implements OnInit {
         // },
       },
 
-      
+
       yAxis: {
         min: 0,
         // title: {
@@ -530,7 +534,7 @@ export class EDRComponent implements OnInit {
           // }
 
           // return  + ":" +  + ":" +  + "." + ;
-          return a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+          return a.point.category + '<br>' + a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
           // var milliseconds = Math.floor((duration % 1000) / 100),
           //   seconds = Math.floor((duration / 1000) % 60),
           //   minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -560,7 +564,7 @@ export class EDRComponent implements OnInit {
               console.log(this);
               // self.filterTypeDurationChart(event, this);
               return false;
-          },
+            },
             // click: function (event) {
             //   self.filterTypeDurationChart(event, this);
             //   return false;
@@ -702,16 +706,16 @@ export class EDRComponent implements OnInit {
         style: {
           fontWeight: 'bold',
           fontSize: '16'
-      }
+        }
       },
       xAxis: {
         type: 'datetime',
-          dateTimeLabelFormats: {
-            millisecond: '%I:%M:%S.%L %p',
-            second: '%I:%M:%S %p',
-            minute: '%I:%M %p',
-            hour: '%I:%M %p',
-          },
+        dateTimeLabelFormats: {
+          millisecond: '%I:%M:%S.%L %p',
+          second: '%I:%M:%S %p',
+          minute: '%I:%M %p',
+          hour: '%I:%M %p',
+        },
       },
       yAxis: {
         title: {
@@ -809,7 +813,7 @@ export class EDRComponent implements OnInit {
     // this.filterFieldValue = event.point.series.name;
 
     //legend click
-    
+
     this.filterFieldValue = event.point.category;
     this.filterFieldName = data.chart.options.accessibility.description;
     let lk = data.options.custom;
@@ -817,9 +821,9 @@ export class EDRComponent implements OnInit {
     this.EDRDashboard();
     // throw new Error('Function not implemented.');
   }
-  filterTypePieChart(event: any, data:any){
+  filterTypePieChart(event: any, data: any) {
     this.filterFieldName = data.chart.options.accessibility.description;
-    this.filterFieldValue = event.point.name; 
+    this.filterFieldValue = event.point.name;
     this.useFilter = true;
     this.EDRDashboard();
   }

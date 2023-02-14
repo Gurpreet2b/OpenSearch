@@ -233,7 +233,7 @@ th {
   justify-content: center;
   border: 1px solid white;
   border-radius: 100%;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   padding: inherit;
   max-height: 66px;
   max-width: 66px;

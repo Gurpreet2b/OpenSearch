@@ -218,16 +218,18 @@
                                 <!-- <label>Start Date</label> -->
 
                                 <div class="">
-                                    <input class="datepicker-input" type="time" class="form-control date_picker"
-                                        [(ngModel)]="fullStartDate" [ngModelOptions]="{ standalone: true }" />
+                                    <input class="form-control date_picker" id="appt-time" type="time" name="appt-time" value="12:00" />
+                                    <!-- <input class="datepicker-input" type="time" class="form-control date_picker"
+                                        [(ngModel)]="fullStartDate" [ngModelOptions]="{ standalone: true }" value="13:30"/> -->
                                 </div>
                             </div>
                             <div class="col-md-4 p-l-indent">
                                 <!-- <label>End Date</label> -->
 
                                 <div class="">
-                                    <input type="time" class="datepicker-input" class="form-control date_picker"
-                                        [(ngModel)]="fullEndDate" [ngModelOptions]="{ standalone: true }" />
+                                    <input class="form-control date_picker" id="app-time" type="time" name="app-time" value="11:59" />
+                                    <!-- <input type="time" class="datepicker-input" class="form-control date_picker"
+                                        [(ngModel)]="fullEndDate" [ngModelOptions]="{ standalone: true }" /> -->
                                 </div>
                             </div>
 

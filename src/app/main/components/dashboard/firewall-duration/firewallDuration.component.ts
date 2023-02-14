@@ -88,10 +88,10 @@ export class FirewallDurationComponent implements OnInit {
   expand() {
     console.log(window.innerWidth);
     console.log(window.innerWidth / 1.3);
-    this.fwTopSitesId2.setSize(window.innerWidth / 2.1, undefined)
-    this.topUsersId2.setSize(window.innerWidth / 2.08, undefined)
-    this.topApplicationId2.setSize(window.innerWidth / 2.1, undefined)
-    this.topCategories.setSize(window.innerWidth / 2.08, undefined)
+    this.fwTopSitesId2.setSize(window.innerWidth / 2.05, undefined)
+    this.topUsersId2.setSize(window.innerWidth / 2.03, undefined)
+    this.topApplicationId2.setSize(window.innerWidth / 2.05, undefined)
+    this.topCategories.setSize(window.innerWidth / 2.03, undefined)
   }
 
   dateTimeFilter() {
@@ -504,13 +504,14 @@ export class FirewallDurationComponent implements OnInit {
 
       
       yAxis: {
+
         min: 0,
         title: {
-          text: 'Bandwidth',
+          text: 'duration',
           align: 'high',
         },
         labels: {
-          overflow: 'justify',
+          format: '{value:%H:%M:%S}',
         },
       },
       tooltip: {
