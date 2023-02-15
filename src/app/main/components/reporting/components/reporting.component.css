@@ -860,7 +860,7 @@ input:checked+.slider:before {
   border-left: 1px solid #ededed;
   border-right: 1px solid #ededed;
   border-bottom: 1px solid #ededed;
-  margin: 0px 2rem;
+  /* margin: 0px 2rem; */
   border-radius: 0px 0px 10px 10px;
 }
 

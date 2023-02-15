@@ -491,9 +491,7 @@
                                                     </h3>
                                                 </div>
                                                 <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title" (click)="
-                                  generatePdf('content-application-bandwidth')
-                                ">
+                                                    <h3 class="card-title" (click)="generatePdf('content-application-bandwidth')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -2828,7 +2826,7 @@
                                                                     {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.bandwidth }}
+                                                                    {{ rec.total_mbs }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -3114,7 +3112,7 @@
                                                                     {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.bandwidth }}
+                                                                    {{ rec.total_mbs }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
