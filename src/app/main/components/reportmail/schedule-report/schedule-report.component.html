@@ -218,7 +218,8 @@
                                 <!-- <label>Start Date</label> -->
 
                                 <div class="">
-                                    <input class="form-control date_picker" id="appt-time" type="time" name="appt-time" value="12:00" />
+                                    <input class="form-control date_picker" id="appt-time" type="time" name="appt-time"
+                                        value="01:00" />
                                     <!-- <input class="datepicker-input" type="time" class="form-control date_picker"
                                         [(ngModel)]="fullStartDate" [ngModelOptions]="{ standalone: true }" value="13:30"/> -->
                                 </div>
@@ -227,7 +228,8 @@
                                 <!-- <label>End Date</label> -->
 
                                 <div class="">
-                                    <input class="form-control date_picker" id="app-time" type="time" name="app-time" value="11:59" />
+                                    <input class="form-control date_picker" id="app-time" type="time" name="app-time"
+                                        value="12:59" />
                                     <!-- <input type="time" class="datepicker-input" class="form-control date_picker"
                                         [(ngModel)]="fullEndDate" [ngModelOptions]="{ standalone: true }" /> -->
                                 </div>
@@ -390,24 +392,24 @@
                         <b>Mail Settings</b> <br>
                         <label>Sophos Reporter likes to email you from time to time. How should it fo this? (You can
                             also see this later in Settings / Email).</label>
-                            <!-- <hr> -->
+                        <!-- <hr> -->
                     </div>
                 </div>
-                
+
                 <!-- <div class="row"> -->
-                    <div class="col-md-12">
-                        <div class="col-lg-8">
-                            <label> Email Server </label>
-                            <input type="text" class="form-control box_security" /> <br>
-                            <hr>
-                        </div>
-                        <div class="col-lg-4">
-                            <label> Port </label>
-                            <input type="text" class="form-control box_security" /> <br>
-                            <hr>
-                        </div>
+                <div class="col-md-12">
+                    <div class="col-lg-8">
+                        <label> Email Server </label>
+                        <input type="text" class="form-control box_security" /> <br>
+                        <hr>
                     </div>
-                   
+                    <div class="col-lg-4">
+                        <label> Port </label>
+                        <input type="text" class="form-control box_security" /> <br>
+                        <hr>
+                    </div>
+                </div>
+
                 <!-- </div> -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -431,13 +433,8 @@
                     </div>
                 </div>
 
-
-
-
-
                 <div class="col-md-12 text-right">
-
-                    <button class="popup-thm-btn">Close</button>
+                    <button class="popup-thm-btn" data-dismiss="modal">Close</button>
                     <button class="popup-thm-btn ml-2">Save</button>
                 </div>
             </div>

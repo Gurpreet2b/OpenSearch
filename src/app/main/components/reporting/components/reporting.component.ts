@@ -665,6 +665,8 @@ export class ReportingComponent implements OnInit {
       async (res) => {
         if (res.status) {
           this.loading = false;
+         
+          this.onDismiss();
           console.log('Fetched Report with an ID');
           // console.log(res)
           let rep = res.data.Report;
@@ -703,9 +705,8 @@ export class ReportingComponent implements OnInit {
           this.reportDataReady = true;
           this.IsDisabledReport = true;
           await new Promise((f) => setTimeout(f, 3000));
-          this.onDismiss();
           this.scroll(this.content.nativeElement);
-          this.onDismiss();
+          
           // this.scroll(this.document.getElementById('content'))
         } else {
           this.loading = false;
