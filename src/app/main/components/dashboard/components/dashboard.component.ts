@@ -393,72 +393,72 @@ export class DashboardComponent implements OnInit {
         // bytes +
         // ' ({point.percentage:.1f}%) </b>',
 
-        formatter: function () {
-          let a: any = this;
-          var duration = a.y;
+        // formatter: function () {
+        //   let a: any = this;
+        //   var duration = a.y;
 
-          // msToTime(duration: any) {
-          var milliseconds = Math.floor((duration % 1000) / 100),
-            seconds = Math.floor((duration / 1000) % 60),
-            minutes = Math.floor((duration / (1000 * 60)) % 60),
-            hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+        //   // msToTime(duration: any) {
+        //   var milliseconds = Math.floor((duration % 1000) / 100),
+        //     seconds = Math.floor((duration / 1000) % 60),
+        //     minutes = Math.floor((duration / (1000 * 60)) % 60),
+        //     hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-          hours = (hours < 10) ? 0 + hours : hours;
-          minutes = (minutes < 10) ? 0 + minutes : minutes;
-          seconds = (seconds < 10) ? 0 + seconds : seconds;
+        //   hours = (hours < 10) ? 0 + hours : hours;
+        //   minutes = (minutes < 10) ? 0 + minutes : minutes;
+        //   seconds = (seconds < 10) ? 0 + seconds : seconds;
 
-          if (hours < 10) {
-            var str_hours = "0" + hours;
-          }
-          else {
-            var str_hours = hours.toString();
-          }
+        //   if (hours < 10) {
+        //     var str_hours = "0" + hours;
+        //   }
+        //   else {
+        //     var str_hours = hours.toString();
+        //   }
 
-          if (minutes < 10) {
-            var str_minutes = "0" + minutes;
-          }
-          else {
-            var str_minutes = minutes.toString();
-          }
+        //   if (minutes < 10) {
+        //     var str_minutes = "0" + minutes;
+        //   }
+        //   else {
+        //     var str_minutes = minutes.toString();
+        //   }
 
-          if (seconds < 10) {
-            var str_seconds = "0" + seconds;
-          }
-          else {
-            var str_seconds = seconds.toString();
-          }
+        //   if (seconds < 10) {
+        //     var str_seconds = "0" + seconds;
+        //   }
+        //   else {
+        //     var str_seconds = seconds.toString();
+        //   }
 
-          // else {
-          //   let thistime= new Date();
-          //   thistime.setTime(bandwidthMB.x);
-          //   return '<small>'+ thistime.toUTCString() +'</small><br>'+ bandwidthMB.series.name +':<b>' + text + ' MB</b>';
-          // }
+        //   // else {
+        //   //   let thistime= new Date();
+        //   //   thistime.setTime(bandwidthMB.x);
+        //   //   return '<small>'+ thistime.toUTCString() +'</small><br>'+ bandwidthMB.series.name +':<b>' + text + ' MB</b>';
+        //   // }
 
-          var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
-          var str_milliseconds = remaining_milliseconds.toString();
-          // if (milliseconds <10) {
-          //     var str_milliseconds = "0" + milliseconds;
-          // }
-          // else {
-          //     var str_milliseconds = milliseconds.toString();
-          // }
+        //   var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
+        //   var str_milliseconds = remaining_milliseconds.toString();
+        //   // if (milliseconds <10) {
+        //   //     var str_milliseconds = "0" + milliseconds;
+        //   // }
+        //   // else {
+        //   //     var str_milliseconds = milliseconds.toString();
+        //   // }
 
-          // return  + ":" +  + ":" +  + "." + ;
-          return a.point.name + '<br>' + a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
-          // }
+        //   // return  + ":" +  + ":" +  + "." + ;
+        //   return a.point.name + '<br>' + a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + ' (' + a.point.percentage.toFixed([3]) + ' % ) ' + '</b>'
+        //   // }
 
-          // var milliseconds = Math.floor((duration % 1000) / 100),
-          //   seconds = Math.floor((duration / 1000) % 60),
-          //   minutes = Math.floor((duration / (1000 * 60)) % 60),
-          //   hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+        //   // var milliseconds = Math.floor((duration % 1000) / 100),
+        //   //   seconds = Math.floor((duration / 1000) % 60),
+        //   //   minutes = Math.floor((duration / (1000 * 60)) % 60),
+        //   //   hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-          // hours = (hours < 10) ? 0 + hours : hours;
-          // minutes = (minutes < 10) ? 0 + minutes : minutes;
-          // seconds = (seconds < 10) ? 0 + seconds : seconds;
+        //   // hours = (hours < 10) ? 0 + hours : hours;
+        //   // minutes = (minutes < 10) ? 0 + minutes : minutes;
+        //   // seconds = (seconds < 10) ? 0 + seconds : seconds;
 
 
 
-        },
+        // },
       },
       credits: {
         enabled: false,
@@ -663,79 +663,79 @@ export class DashboardComponent implements OnInit {
           fontSize: '16'
         }
       },
-      tooltip: {
-        formatter: function () {
-          let a: any = this;
-          var duration = a.y;
-          var milliseconds = Math.floor((duration % 1000) / 100),
-            seconds = Math.floor((duration / 1000) % 60),
-            minutes = Math.floor((duration / (1000 * 60)) % 60),
-            hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+      // tooltip: {
+      //   formatter: function () {
+      //     let a: any = this;
+      //     var duration = a.y;
+      //     var milliseconds = Math.floor((duration % 1000) / 100),
+      //       seconds = Math.floor((duration / 1000) % 60),
+      //       minutes = Math.floor((duration / (1000 * 60)) % 60),
+      //       hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-          hours = (hours < 10) ? 0 + hours : hours;
-          minutes = (minutes < 10) ? 0 + minutes : minutes;
-          seconds = (seconds < 10) ? 0 + seconds : seconds;
+      //     hours = (hours < 10) ? 0 + hours : hours;
+      //     minutes = (minutes < 10) ? 0 + minutes : minutes;
+      //     seconds = (seconds < 10) ? 0 + seconds : seconds;
 
-          if (hours < 10) {
-            var str_hours = "0" + hours;
-          }
-          else {
-            var str_hours = hours.toString();
-          }
+      //     if (hours < 10) {
+      //       var str_hours = "0" + hours;
+      //     }
+      //     else {
+      //       var str_hours = hours.toString();
+      //     }
 
-          if (minutes < 10) {
-            var str_minutes = "0" + minutes;
-          }
-          else {
-            var str_minutes = minutes.toString();
-          }
+      //     if (minutes < 10) {
+      //       var str_minutes = "0" + minutes;
+      //     }
+      //     else {
+      //       var str_minutes = minutes.toString();
+      //     }
 
-          if (seconds < 10) {
-            var str_seconds = "0" + seconds;
-          }
-          else {
-            var str_seconds = seconds.toString();
-          }
+      //     if (seconds < 10) {
+      //       var str_seconds = "0" + seconds;
+      //     }
+      //     else {
+      //       var str_seconds = seconds.toString();
+      //     }
 
-          var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
-          var str_milliseconds = remaining_milliseconds.toString();
+      //     var remaining_milliseconds = duration - ((hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000));
+      //     var str_milliseconds = remaining_milliseconds.toString();
 
-          let thistime = new Date();
-          thistime.setTime(a.x);
+      //     let thistime = new Date();
+      //     thistime.setTime(a.x);
 
-          // else {
-          //   let thistime = new Date();
-          //   thistime.setTime(bandwidthMB.x);
-          //   return '<small>' + thistime.toUTCString() + '</small><br>' + bandwidthMB.series.name + ':<b>' + text + ' MB</b>';
-          // }
-          // return '<small>'+ thistime.toUTCString() +'</small><br>'+ a.series.name +':<b>' + duration + ' MB</b>';
-          // if (milliseconds <10) {
-          //     var str_milliseconds = "0" + milliseconds;
-          // }
-          // else {
-          //     var str_milliseconds = milliseconds.toString();
-          // }
+      //     // else {
+      //     //   let thistime = new Date();
+      //     //   thistime.setTime(bandwidthMB.x);
+      //     //   return '<small>' + thistime.toUTCString() + '</small><br>' + bandwidthMB.series.name + ':<b>' + text + ' MB</b>';
+      //     // }
+      //     // return '<small>'+ thistime.toUTCString() +'</small><br>'+ a.series.name +':<b>' + duration + ' MB</b>';
+      //     // if (milliseconds <10) {
+      //     //     var str_milliseconds = "0" + milliseconds;
+      //     // }
+      //     // else {
+      //     //     var str_milliseconds = milliseconds.toString();
+      //     // }
 
-          // return  + ":" +  + ":" +  + "." + ;
-          return  '<small>' + thistime.toUTCString() + '</small><br>' + a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
-          // var milliseconds = Math.floor((duration % 1000) / 100),
-          //   seconds = Math.floor((duration / 1000) % 60),
-          //   minutes = Math.floor((duration / (1000 * 60)) % 60),
-          //   hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+      //     // return  + ":" +  + ":" +  + "." + ;
+      //     return  '<small>' + thistime.toUTCString() + '</small><br>' + a.series.name + ' : <b>' + str_hours + ":" + str_minutes + ":" + str_seconds + '.' + str_milliseconds + '</b>'
+      //     // var milliseconds = Math.floor((duration % 1000) / 100),
+      //     //   seconds = Math.floor((duration / 1000) % 60),
+      //     //   minutes = Math.floor((duration / (1000 * 60)) % 60),
+      //     //   hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-          // hours = (hours < 10) ? 0 + hours : hours;
-          // minutes = (minutes < 10) ? 0 + minutes : minutes;
-          // seconds = (seconds < 10) ? 0 + seconds : seconds;
+      //     // hours = (hours < 10) ? 0 + hours : hours;
+      //     // minutes = (minutes < 10) ? 0 + minutes : minutes;
+      //     // seconds = (seconds < 10) ? 0 + seconds : seconds;
 
-          // return a.series.name + ' : <b>' + hours + ":" + minutes + ":" + seconds + '</b>'
-          // return hours + ":" + minutes + ":" + seconds;
-          // // return
-          // // return 'The value for <b>' + x +
-          // //     '</b> is <b>' + this.y + '</b>';
-          // return a.y;
-        },
-        // shared: true
-      },
+      //     // return a.series.name + ' : <b>' + hours + ":" + minutes + ":" + seconds + '</b>'
+      //     // return hours + ":" + minutes + ":" + seconds;
+      //     // // return
+      //     // // return 'The value for <b>' + x +
+      //     // //     '</b> is <b>' + this.y + '</b>';
+      //     // return a.y;
+      //   },
+      //   // shared: true
+      // },
       // tooltip: {
       //   // pointFormat: 
       //   pointFormat: '{series.name}: <b>{point.y} ' + bytes + '</b>',

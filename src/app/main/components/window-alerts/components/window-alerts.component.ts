@@ -470,7 +470,7 @@ export class WindowAlertsComponent implements OnInit {
 
   public chartAlert() {
 
-    this.setColumnChartData('alerts-data', 'ms', 'Alerts');
+    this.setColumnChartData('alerts-data', 'Alerts');
     this.alertsChartData['series'] = this.alertTimeChartData.chart.Series;
     // this.alertsChartData['xAxis']['categories'] = this.alertTimeChartData.chart.Labels;
 

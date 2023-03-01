@@ -12,6 +12,9 @@ import { CreateReportComponent } from './create-report/create-report.component';
 // import { timeChangeFormatPipe } from '../date-pipe';
 // import { MatFormFieldModule } from '@angular/material/form-field';
 import { Pipe, PipeTransform } from '@angular/core';
+import { NASReportComponent } from './NAS-Report/NAS-Report.component';
+import { NASSingleReportComponent } from './NASSingle-Report/NASSingle-Report.component';
+import { AllActivityReportComponent } from './AllActivity-Report/AllActivity-Report.component';
 /*
  * Raise the value exponentially
  * Takes an exponent argument that defaults to 1.
@@ -44,7 +47,7 @@ export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
-  declarations: [ReportingComponent, CreateReportComponent, ReportlistComponent, timeChangeFormatPipe],
+  declarations: [ReportingComponent, CreateReportComponent, ReportlistComponent, timeChangeFormatPipe, NASReportComponent, NASSingleReportComponent, AllActivityReportComponent],
   imports: [
     CommonModule,
     ReportingRoutingModule,

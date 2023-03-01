@@ -34,7 +34,7 @@
                                 <div class="rad-container">
                                     <label class="rad-label" [ngClass]="{ active: isActivityRadio === 'allActivity' }">
                                         <input type="radio" class="rad-input" name="all" id="allActivity"
-                                            value="All Activity" checked (change)="allActivityRadio('allActivity')" />
+                                            value="AA" checked (change)="allActivityRadio('allActivity')" />
                                         <div class="rad-design"></div>
                                         <div class="rad-text">All Activity</div>
                                     </label>
@@ -52,7 +52,7 @@
                                     <label class="rad-label"
                                         [ngClass]="{active: isActivityRadio === 'securityNetwork'}">
                                         <input type="radio" class="rad-input" name="all" id="securityNetwork"
-                                            value="Internet Security and Network" [(ngModel)]="reportType"
+                                            value="NAS" [(ngModel)]="reportType"
                                             [ngModelOptions]="{ standalone: true }"
                                             (change)="allActivityRadio('securityNetwork')" />
                                         <div class="rad-design"></div>

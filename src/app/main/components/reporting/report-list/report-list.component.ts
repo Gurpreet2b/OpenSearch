@@ -85,7 +85,7 @@ export class ReportlistComponent implements OnInit {
       (res) => {
         this.onDismiss();
         if (res.status) {
-          window.open(res.data, '_blank'); 
+          window.open(res.data, '_blank');
         }
       },
       async (error) => {
@@ -169,16 +169,44 @@ export class ReportlistComponent implements OnInit {
   //   // this.router.navigate(['main/dashboard/rule-detail',ruleID])
   //   this.router.navigate(['main/dashboard/rule-view', ruleID]);
   // }
-  viewThisReport(reportID: string) {
-    // this.router.navigate(['main/dashboard/reporting'])
-    this.router.navigate(['/reporting'], {
-      state: {
-        id: reportID,
-        frontEnd: JSON.stringify({ framwork: 'Angular', version: '14' }),
-        site: 'edupala.com',
-      },
-    });
+
+  // viewThisReport(reportID: string) {
+  //   // this.router.navigate(['main/dashboard/reporting'])
+  //   this.router.navigate(['/reporting'], {
+  //     state: {
+  //       id: reportID,
+  //       frontEnd: JSON.stringify({ framwork: 'Angular', version: '14' }),
+  //       site: 'edupala.com',
+  //     },
+  //   });
+  // }
+
+  viewThisReport(report: any) {
+    // debugger;
+    if (report.ReportType === 'NAS') {
+      if (report.UserType === 'Single') {
+        this.router.navigate(['/reporting/NASSingle-Report/' + report.ID])
+      }
+      else if (report.UserType === 'All') {
+        this.router.navigate(['/reporting/NAS-Report/' + report.ID])
+      } else {
+        this.router.navigate(['/reporting'])
+      }
+    } else {
+      this.router.navigate(['/reporting'])
+    }
+
+    if (report.ReportType === 'AA') {
+
+      if (report.UserType === 'All') {
+        this.router.navigate(['/reporting/AllActivity-Report/' + report.ID])
+      } else {
+        this.router.navigate(['/reporting'])
+      }
+    }
   }
+
+
   PageJump: any = 10;
   PageTotalNumber: any = [];
   getReportList(reset: boolean = true, page: number) {
@@ -260,7 +288,7 @@ export class ReportlistComponent implements OnInit {
   onPageChange(event: any, data: any) {
     if (data === '1') {
       this.currentPage = event;
-      this.getReportList(true, this.currentPage)
+      this.getReportList(true, this.currentPage);
     } else {
       this.currentPage = Number(event.target.value);
       this.getReportList(true, this.currentPage)

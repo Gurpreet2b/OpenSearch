@@ -142,6 +142,8 @@ a.theme-btn:hover {
   padding-top: 1rem;
   padding-bottom: 0rem;
   border-bottom: 1px solid rgb(200, 200, 200);
+  /* opacity: 0.5;
+  pointer-events: none; */
 }
 
 .rule-row {
@@ -411,4 +413,8 @@ span {
 .popup-view-report {
   margin-left: 11rem;
   width: 75%;
+}
+.opacity-table{
+  /* pointer-events: none; */
+  opacity: 0.5;
 }

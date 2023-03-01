@@ -21,7 +21,7 @@
                                     class='fas fa-tv icon_device'></i>Firewall-Protection</a>
                         </li>
                         <li><a routerLink="/dashboard/EDR" routerLinkActive="active"><i
-                            class='fas fa-tv icon_device'></i>Sophos EDR</a>
+                                    class='fas fa-tv icon_device'></i>Sophos EDR</a>
                         </li>
                     </ul>
                 </div>
@@ -84,7 +84,7 @@
                 </div>
                 <hr>
             </li> -->
-         
+
             <li>
                 <a class="has-arrow" data-toggle="collapse" href="#ui-reporting" aria-expanded="false"
                     aria-controls="ui-basic">
@@ -93,11 +93,15 @@
                 </a>
                 <div class="collapse" id="ui-reporting">
                     <ul class="nav_content">
-                        <li><a routerLink="/reporting/create-report" [ngClass]="{'active': authService.TitleName === 'Reporting'}"><i
+                        <li><a routerLink="/reporting/create-report"
+                                [ngClass]="{'active': authService.TitleName === 'Reporting'}"><i
                                     class='fas fa-tv icon_device'></i>Report</a></li>
                         <li><a routerLink="/reporting/report-list" routerLinkActive="active"><i
                                     class='fas fa-tv icon_device'></i>Report-list</a>
                         </li>
+                        <!-- <li><a routerLink="/reporting/NAS-Report" routerLinkActive="active"><i
+                                    class='fas fa-tv icon_device'></i>NAS-Report</a>
+                        </li> -->
 
                     </ul>
                 </div>
