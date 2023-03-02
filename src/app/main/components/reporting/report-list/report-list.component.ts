@@ -180,9 +180,7 @@ export class ReportlistComponent implements OnInit {
   //     },
   //   });
   // }
-
   viewThisReport(report: any) {
-    // debugger;
     if (report.ReportType === 'NAS') {
       if (report.UserType === 'Single') {
         this.router.navigate(['/reporting/NASSingle-Report/' + report.ID])
@@ -192,17 +190,16 @@ export class ReportlistComponent implements OnInit {
       } else {
         this.router.navigate(['/reporting'])
       }
-    } else {
-      this.router.navigate(['/reporting'])
-    }
-
-    if (report.ReportType === 'AA') {
-
+    } 
+    else if (report.ReportType === 'AA') {
       if (report.UserType === 'All') {
         this.router.navigate(['/reporting/AllActivity-Report/' + report.ID])
       } else {
         this.router.navigate(['/reporting'])
       }
+    } 
+    else {
+      this.router.navigate(['/reporting'])
     }
   }
 

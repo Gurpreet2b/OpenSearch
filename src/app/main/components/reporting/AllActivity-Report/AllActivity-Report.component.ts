@@ -246,103 +246,6 @@ export class AllActivityReportComponent implements OnInit {
   public applicationsPieChart: any;
   // public CategoriesBySizePieChart: any;
 
-  //NAS-REPORT ALL CHART DATA
-  // public AllFirewallActionsPieChartId: any = {};
-  // public AllFirewallPieChartData: any = {};
-  // public firewallActions_data: any;
-  // public AllFirewallActionOverTimeData: any = {};
-  // public firewallOvertime_data: any;
-  // public AllThreatsDetectedChartData: any = {};
-  // public threatsDetected_data: any;
-  // public AllNetworkConnectionChartData: any = {};
-  // public networkConnection_data: any;
-  // public AllNetworkCountriesChartData: any = {};
-  // public networkCountries_data: any;
-  // public AllDestinationIpChartData: any = {};
-  // public destinationIp_data: any;
-  // public AllInterfaceNetworkChartData: any = {};
-  // public interfaceNetwork_data: any;
-  // public AllSourceHostsAndMAcsChartData: any = {};
-  // public sourceHost_macs_data: any;
-  // public AllSourceIpChartData: any = {};
-  // public sourceIp_data: any;
-  // public AllUsersChartData: any = {};
-  // public networkUsers_data: any;
-  // public AllZoneNetworkChartData: any = {};
-  // public networkZone_data: any;
-  // public AllExceptionFirewallChartData: any = {};
-  // public firewallException_Data: any;
-  // public AllFirewallsChartData: any;
-  // public firewalls_data: any;
-
-  // public AllFilterActionsChartData: any = {};
-  // public filterAction_data: any;
-  // public AllRulesFirewallChartData: any = {};
-  // public firewallRules_data: any;
-  // public AllTopExcludedSitesChartData: any = {};
-  // public topExcludedSites_data: any;
-  // public AllAgentUserChartData: any = {};
-  // public userAgent_data: any;
-  // public AllUncategorizedChartData: any = {};
-  // public uncategorySites_data: any;
-  // // public AllUncategorizedSitesChartData: any = {};
-  // // public uncategorizedSite_data: any;
-  // public AllAcceptableSitesChartData: any = {};
-  // public acceptableSites_data: any;
-  // public AllBlockedApplicationsChartData: any = {};
-  // public blockedapplications_data: any;
-  // public AllBlockedCategoriesChartData: any = {};
-  // public blockedCategories_data: any;
-  // public AllBlockedPoliciesChartData: any = {};
-  // public blockedPolicies_data: any;
-  // public AllProductiveSitesChartData: any = {};
-  // public productiveSites_data: any;
-  // public AllUnacceptableSitesChartData: any = {};
-  // public unacceptableSites_data: any;
-  // public AllUnproductiveSitesChartData: any = {};
-  // public unproductiveSites_data: any;
-  // public AllBlockedUserAgentChartData: any = {};
-  // public blockedUserAgent_data: any;
-  // public AllBlockedUsersChartData: any = {};
-  // public blockedUser_data: any;
-  // public AllBlockedTrafficChartData: any = {};
-  // public blockedTraffic_data: any;
-  // public AllBlockedEventChartData: any = {};
-  // public blockedEvent_data: any;
-  // public AllWarnedAndProccededChartData: any = {};
-  // public warnedProcceded_data: any;
-  // public AllWarnedTrafficChartData: any = {};
-  // public warnedTraffic_data: any;
-  // public AllWarnedAndProccededEventChartData: any = {};
-  // public warnedProccededEvent_data: any;
-  // public AllWarnRulesChartData: any;
-  // public warnRules_data: any;
-  // public AllWarnedCategoriesChartData: any = {};
-  // public warnedCategories_data: any;
-  // public AllWarnedUserAgentChartData: any = {};
-  // public warnedUserAgent_data: any;
-  // public AllWarnedUsersChartData: any = {};
-  // public warnedUsers_data: any;
-  // public AllUnacceptableAppChartData: any;
-  // public unacceptableApp_data: any;
-  // public AllAllowedUnacceptableSitesChartData: any;
-  // public allowedUnacceptableSites_data: any;
-  // public AllAllowedUnacceptableUsersChartData: any;
-  // public allowedUnacceptableUsers_data: any;
-  // public AllAllowedUnproductiveApplicationsChartData: any = {};
-  // public unproductiveApplications_data: any;
-  // public AllAllowedUnproductiveUsersChartData: any;
-  // public unproductiveUsers_data: any;
-  // public AllAllowedUnproductiveSitesChartData: any;
-  // public unrpoductiveSites_data: any;
-  // public AllVPNFailedPieChartData: any;
-  // public VpnChart_data: any;
-  // public AllVPNSessionTypeChartData: any;
-  // public VpnSessionType_data: any;
-  // public AllVPNSessionsChartData: any;
-  // public VpnSessions_data: any;
-  // public AllVPNUsersChartData: any;
-  // public VPNUsers_data: any;
 
   //All Activity Chart Data
 
@@ -369,6 +272,142 @@ export class AllActivityReportComponent implements OnInit {
   public UnacceptableAppChartData: any = {};
   public unacceptableApp_data: any;
   public unacceptableAppTable_data: any;
+  public UnacceptableSitesChartData: any = {};
+  public unacceptableSites_data: any;
+  public unacceptableSitesTable_data: any;
+  public UnacceptableUsersChartData: any = {};
+  public unacceptableUsers_data: any;
+  public unacceptableUsersTable_data: any;
+  public UnproductiveAppChartData: any = {};
+  public unproductiveApp_data: any;
+  public unproductiveAppTable_data: any;
+  public UnproductiveSitesChartData: any = {};
+  public unproductiveSites_data: any;
+  public unproductiveSitesTable_data: any;
+  public UnproductiveUsersChartData: any = {};
+  public unproductiveUsersTable_data: any;
+  public ApplicationBySizeChartData: any = {};
+  public applicationSize_data: any;
+  public BandwidthOverTimeChartData: any = {};
+  public bandwidthOvertime_data: any;
+  public BlockedApplicationChartData: any = {};
+  public blockedApp_data: any;
+  public BlockedCategoriesChartData: any = {};
+  public blockedCategories_data: any;
+  public BlockedSitesChartData: any = {};
+  public blockedSites_data: any;
+  public CategoriesBrowsingTimeChartData: any = {};
+  public categoriesBrowsingTime_data: any;
+  public CategoriesBySizeChartData: any = {};
+  public categoriesSize_data: any;
+  public ProductivityByBrowsingTimeChartData: any = {};
+  public productivityBrowsing_data: any;
+  public ProductivityOverTimeChartData: any = {};
+  public productivityOverTime_data: any;
+  public SitesBySizeChartData: any = {};
+  public sitesBySize_data: any;
+  public TopUsersBrowsingTimeChartData: any = {};
+  public usersBrowsingTime_data: any;
+  public TopUsersBySizeChartData: any = {};
+  public userBySize_data: any;
+  public warnedCategoriesChartData: any = {};
+  public warnedCategories_data: any;
+  public warnedProceededChartData: any = {};
+  public warnedProceeded_data: any;
+  public downloadedFiles_data: any;
+  public firewallRulesTable_data: any;
+  public UnacceptableApplicationsChartData: any = {};
+  public unacceptableApplication_data: any;
+  public AllowedUnacceptableSitesChartData: any;
+  public allowedUnacceptableSites_data: any;
+  public AllowedUnacceptableUsersChartData: any = {};
+  public allowedUnacceptableUsers_data: any;
+  public AllowedUnproductiveApplicationsChartData: any = {};
+  public unproductiveApplications_data: any;
+  public AllowedUnproductiveSitesChartData: any;
+  public allowedUnproductiveSites_data: any;
+  public AllowedUnproductiveUsersChartData: any = {};
+  public allowedUnproductiveUsers_data: any;
+  public BlockedAcceptableSitesChartData: any = {};
+  public acceptableSites_data: any;
+  public BlockedApplicationsChartData: any = {};
+  public blockedApplications_data: any;
+  public NASBlockedCategoriesChartData: any = {};
+  public NASBlockedCategory_data: any;
+  public BlockedPoliciesChartData: any = {};
+  public blockedPolicies_data: any;
+  public BlockedProductiveSitesChartData: any = {};
+  public NASproductiveSites_data: any;
+  public BlockedUnacceptableSitesChartData: any = {};
+  public NASunacceptableSites_data: any;
+  public BlockedUnproductiveSitesChartData: any = {};
+  public NASunproductiveSites_data: any;
+  public BlockedUserAgentChartData: any = {};
+  public NASUserAgent_data: any;
+  public BlockedUsersChartData: any = {};
+  public blockedUser_data: any;
+  public BlockedTrafficChartData: any = {};
+  public blockedTraffic_data: any;
+  public BlockedEventsChartData: any = {};
+  public blockedEvents_data: any;
+  public NetworkConnectionsChartData: any = {};
+  public networkConnection_data: any;
+  public NetworkCountriesChartData: any = {};
+  public networkCountries_data: any;
+  public NetworkDestinationIpChartData: any = {};
+  public networkDestinationIp_data: any;
+  public NetworkInterfacesChartData: any = {};
+  public networkInterfaces_data: any;
+  public SourceHostandMacsChartData: any = {};
+  public sourceHostMacs_data: any;
+  public SourceIpsChartData: any = {};
+  public sourceIp_data: any;
+  public NetworkUsersChartData: any = {};
+  public networkUsers_data: any;
+  public NetworkZonesChartData: any = {};
+  public networkZones_data: any;
+  public FirewallExceptionChartData: any = {};
+  public firewallException_data: any;
+  public FilterActionChartData: any = {};
+  public filterActions_data: any;
+  public FirewallsChartData: any = {};
+  public firewalls_data: any;
+  public FirewallRulesChartData: any = {};
+  public firewallRules_data: any;
+  public TopExcludedSitesChartData: any = {};
+  public excludedSites_data: any;
+  public TopUserAgentChartData: any = {};
+  public userAgent_data: any;
+  public UncategorizedSitesChartData: any = {};
+  public uncategorizedSites_data: any;
+  public FirewallActionsChartData: any = {};
+  public firewallActions_data: any;
+  public FirewallActionOvertimeChartData: any = {};
+  public firewallOvertime_data: any;
+  public ThreatsDetectedChartData: any = {};
+  public threatsDetected_data: any;
+  public VPNLoginsChartData: any = {};
+  public vpnLogins_data: any;
+  public VPNSessionTypeChartData: any = {};
+  public vpnSessionType_data: any;
+  public VPNSessionsChartData: any = {};
+  public vpnSessions_data: any;
+  public VPNUsersChartData: any = {};
+  public vpnUsers_data: any;
+  public CategoriesWarnedProceededChartData: any = {};
+  public WarnedProceeded_data: any;
+  public warnedTrafficChartData: any = {};
+  public warnedTraffic_data: any;
+  public warnedProceededEventChartData: any = {};
+  public warnedProceededEvent_data: any;
+  public warnedRulesChartData: any = {};
+  public warnRules_data: any;
+  public WarnCategoriesChartData: any = {};
+  public WarnCategories_data: any;
+  public WarnedUserAgentChartData: any = {};
+  public warnedUserAgent_data: any;
+  public WarnedUsersChartData: any= {};
+  public warnedUsers_data: any;
 
   subject: Subject<any> = new Subject();
 
@@ -759,74 +798,81 @@ export class AllActivityReportComponent implements OnInit {
           this.acceptableUsersTable_data = res.data.Data.IU['Users-table'];
           this.productiveAppTable_data = res.data.Data.IU['Application-table'];
           this.productiveSitesTable_data = res.data.Data.IU['Sites-table'];
-          this.productiveUsersTable_data = res.data.Data.IU['Users-table']; 
+          this.productiveUsersTable_data = res.data.Data.IU['Users-table'];
           this.unacceptableApp_data = res.data.Data.IU.Unacceptable;
-          this.unacceptableAppTable_data = res.data.Data.IU['Application-table']; 
-          // this.reportData_Overview = res.data.Data.Widgets.Overview;
-          // // this.reportData_Bandwidth = res.data.Data.Widgets.Bandwidth;
-          // this.firewallActions_data = res.data.Data.Widgets.Overview;
-          // this.firewallOvertime_data = res.data.Data.Widgets.Overview;
-          // this.threatsDetected_data = res.data.Data.Widgets.Threats;
-          // this.networkConnection_data = res.data.Data.Widgets.Network;
-          // this.networkCountries_data = res.data.Data.Widgets.Network;
-          // this.destinationIp_data = res.data.Data.Widgets.Network;
-          // this.interfaceNetwork_data = res.data.Data.Widgets.Network;
-          // this.sourceHost_macs_data = res.data.Data.Widgets.Network;
-          // this.sourceIp_data = res.data.Data.Widgets.Network;
-          // this.networkUsers_data = res.data.Data.Widgets.Network;
-          // this.networkZone_data = res.data.Data.Widgets.Network;
-          // this.firewallException_Data = res.data.Data.Widgets.Firewall;
-          // this.firewalls_data = res.data.Data.Widgets.Firewall;
-          // this.filterAction_data = res.data.Data.Widgets.Firewall;
-          // this.firewallRules_data = res.data.Data.Widgets.Firewall;
-          // this.topExcludedSites_data = res.data.Data.Widgets.Firewall;
-          // this.userAgent_data = res.data.Data.Widgets.Firewall;
-          // this.uncategorySites_data = res.data.Data.Widgets.Firewall;
-          // // this.uncategorizedSite_data = res.data.Data.Widgets.Firewall;
-          // this.acceptableSites_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.blockedapplications_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.blockedCategories_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.blockedPolicies_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.productiveSites_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.unacceptableSites_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.unproductiveSites_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.blockedUserAgent_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.blockedUser_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.blockedTraffic_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.blockedEvent_data = res.data.Data.Widgets.BlockedTraffic;
-          // this.warnedProcceded_data = res.data.Data.Widgets.WarnedTraffic;
-          // this.warnedTraffic_data = res.data.Data.Widgets.WarnedTraffic;
-          // this.warnedProccededEvent_data = res.data.Data.Widgets.WarnedTraffic;
-          // this.warnRules_data = res.data.Data.Widgets.WarnedTraffic;
-          // this.warnedCategories_data = res.data.Data.Widgets.WarnedTraffic;
-          // this.warnedUserAgent_data = res.data.Data.Widgets.WarnedTraffic;
-          // this.warnedUsers_data = res.data.Data.Widgets.WarnedTraffic;
-          // this.unacceptableApp_data = res.data.Data.Widgets.AllowedTraffic;
-          // this.allowedUnacceptableSites_data = res.data.Data.Widgets.AllowedTraffic;
-          // this.allowedUnacceptableUsers_data = res.data.Data.Widgets.AllowedTraffic;
-          // this.unproductiveApplications_data = res.data.Data.Widgets.AllowedTraffic;
-          // this.unproductiveUsers_data = res.data.Data.Widgets.AllowedTraffic;
-          // this.unrpoductiveSites_data = res.data.Data.Widgets.AllowedTraffic;
-          // this.VpnChart_data = res.data.Data.Widgets.VPN;
-          // this.VpnSessionType_data = res.data.Data.Widgets.VPN;
-          // this.VpnSessions_data = res.data.Data.Widgets.VPN;
-          // this.VPNUsers_data = res.data.Data.Widgets.VPN;
-          // this.filterActionTableData = res.data.Data.Widgets.Bandwidth;
-          // this.topDownloadTableData = res.data.Data.Widgets.Bandwidth;
-          // this.reportData_Blocked = res.data.Data.Widgets.Blocked;
-          // this.reportData_Warned = res.data.Data.Widgets.Warned;
-          // this.reportData_Productivity = res.data.Data.Widgets.Productivity;
-          // this.reportData_Unacceptable = res.data.Data.Widgets.Unacceptable;
-          // this.reportData_Unproductive = res.data.Data.Widgets.Unproductive;
-          // this.reportData_Productive = res.data.Data.Widgets.Productive;
-          // this.reportData_Acceptable = res.data.Data.Widgets.Acceptable;
+          this.unacceptableAppTable_data = res.data.Data.IU['Application-table'];
+          this.unacceptableSites_data = res.data.Data.IU.Unacceptable;
+          this.unacceptableSitesTable_data = res.data.Data.IU['Sites-table'];
+          this.unacceptableUsers_data = res.data.Data.IU.Unacceptable;
+          this.unacceptableUsersTable_data = res.data.Data.IU['Users-table'];
+          this.unproductiveApp_data = res.data.Data.IU.Unproductive;
+          this.unproductiveAppTable_data = res.data.Data.IU['Application-table'];
+          this.unproductiveSites_data = res.data.Data.IU.Unproductive;
+          this.unproductiveSitesTable_data = res.data.Data.IU['Sites-table'];
+          this.unproductiveUsersTable_data = res.data.Data.IU['Users-table'];
+          this.applicationSize_data = res.data.Data.IU.applications_by_size;
+          this.bandwidthOvertime_data = res.data.Data.IU.bandwidth_over_time;
+          this.blockedApp_data = res.data.Data.IU.blocked;
+          this.blockedCategories_data = res.data.Data.IU.blocked;
+          this.blockedSites_data = res.data.Data.IU.blocked;
+          this.categoriesBrowsingTime_data = res.data.Data.IU.categories_by_browsing_time;
+          this.categoriesSize_data = res.data.Data.IU.categories_by_size;
+          this.productivityBrowsing_data = res.data.Data.IU.productivity_by_browsing_time;
+          this.productivityOverTime_data = res.data.Data.IU.productivity_over_time;
+          this.sitesBySize_data = res.data.Data.IU.sites_by_size;
+          this.usersBrowsingTime_data = res.data.Data.IU.top_users_by_browsing_time;
+          this.userBySize_data = res.data.Data.IU.users_by_size;
+          this.warnedCategories_data = res.data.Data.IU.warned;
+          this.warnedProceeded_data = res.data.Data.IU.warned;
+          this.downloadedFiles_data = res.data.Data.IU.downloaded_files;
+          this.firewallRulesTable_data = res.data.Data.IU.firewall_rules;
+          this.unacceptableApplication_data = res.data.Data.NAS.AllowedTraffic;
+          this.allowedUnacceptableSites_data = res.data.Data.NAS.AllowedTraffic;
+          this.allowedUnacceptableUsers_data = res.data.Data.NAS.AllowedTraffic;
+          this.unproductiveApplications_data = res.data.Data.NAS.AllowedTraffic;
+          this.allowedUnproductiveSites_data = res.data.Data.NAS.AllowedTraffic;
+          this.allowedUnproductiveUsers_data = res.data.Data.NAS.AllowedTraffic;
+          this.acceptableSites_data = res.data.Data.NAS.BlockedTraffic;
+          this.blockedApplications_data = res.data.Data.NAS.BlockedTraffic;
+          this.NASBlockedCategory_data = res.data.Data.NAS.BlockedTraffic;
+          this.blockedPolicies_data = res.data.Data.NAS.BlockedTraffic;
+          this.NASproductiveSites_data = res.data.Data.NAS.BlockedTraffic;
+          this.NASunacceptableSites_data = res.data.Data.NAS.BlockedTraffic;
+          this.NASunproductiveSites_data = res.data.Data.NAS.BlockedTraffic;
+          this.NASUserAgent_data = res.data.Data.NAS.BlockedTraffic;
+          this.blockedUser_data = res.data.Data.NAS.BlockedTraffic;
+          this.blockedTraffic_data = res.data.Data.NAS.BlockedTraffic;
+          this.blockedEvents_data = res.data.Data.NAS.BlockedTraffic;
+          this.networkConnection_data = res.data.Data.NAS.Network;
+          this.networkCountries_data = res.data.Data.NAS.Network;
+          this.networkDestinationIp_data = res.data.Data.NAS.Network;
+          this.networkInterfaces_data = res.data.Data.NAS.Network;
+          this.sourceHostMacs_data = res.data.Data.NAS.Network;
+          this.sourceIp_data = res.data.Data.NAS.Network;
+          this.networkUsers_data = res.data.Data.NAS.Network;
+          this.networkZones_data = res.data.Data.NAS.Network;
+          this.firewallException_data = res.data.Data.NAS.Firewall;
+          this.filterActions_data = res.data.Data.NAS.Firewall;
+          this.firewalls_data = res.data.Data.NAS.Firewall;
+          this.firewallRules_data = res.data.Data.NAS.Firewall;
+          this.excludedSites_data = res.data.Data.NAS.Firewall;
+          this.userAgent_data = res.data.Data.NAS.Firewall;
+          this.uncategorizedSites_data = res.data.Data.NAS.Firewall;
+          this.firewallActions_data = res.data.Data.NAS.Overview;
+          this.firewallOvertime_data = res.data.Data.NAS.Overview;
+          this.threatsDetected_data = res.data.Data.NAS.Threats;
+          this.vpnLogins_data = res.data.Data.NAS.VPN;
+          this.vpnSessionType_data = res.data.Data.NAS.VPN;
+          this.vpnSessions_data = res.data.Data.NAS.VPN;
+          this.vpnUsers_data = res.data.Data.NAS.VPN;
+          this.WarnedProceeded_data = res.data.Data.NAS.WarnedTraffic;
+          this.warnedTraffic_data = res.data.Data.NAS.WarnedTraffic;
+          this.warnedProceededEvent_data = res.data.Data.NAS.WarnedTraffic;
+          this.warnRules_data = res.data.Data.NAS.WarnedTraffic;
+          this.WarnCategories_data = res.data.Data.NAS.WarnedTraffic;
+          this.warnedUserAgent_data = res.data.Data.NAS.WarnedTraffic;
+          this.warnedUsers_data = res.data.Data.NAS.WarnedTraffic;
 
-          // this.ApplicationsTableData =
-          //   res.data.Data.Widgets.Productivity.ApplicationsTableData;
-          // this.SitesTableData =
-          //   res.data.Data.Widgets.Productivity.SitesTableData;
-          // this.AllTopProductivityTables =
-          //   res.data.Data.Widgets['Productivity-Tables'];
 
           this.chartintialize(request.type);
           // this.reportingCharts();
@@ -879,6 +925,7 @@ export class AllActivityReportComponent implements OnInit {
           // alert('Success');
           // debugger;
           let dat = res.data.Data.IU;
+          let nas = res.data.Data.NAS;
           this.IsUserSelected = rep.UserType;
           this.acceptableApp_data = dat.Acceptable;
           this.acceptable_sites = dat.Acceptable;
@@ -895,68 +942,78 @@ export class AllActivityReportComponent implements OnInit {
           this.productiveUsersTable_data = dat['Users-table'];
           this.unacceptableApp_data = dat.Unacceptable;
           this.unacceptableAppTable_data = dat['Application-table'];
-          // this.reportData_Bandwidth = dat.Bandwidth;
-          // this.firewallActions_data = dat.Overview;
-          // this.firewallOvertime_data = dat.Overview;
-          // this.threatsDetected_data = dat.Threats;
-          // this.networkConnection_data = dat.Network;
+          this.unacceptableSites_data = dat.Unacceptable;
+          this.unacceptableSitesTable_data = dat['Sites-table'];
+          this.unacceptableUsers_data = dat.Unacceptable;
+          this.unacceptableUsersTable_data = dat['Users-table'];
+          this.unproductiveApp_data = dat.Unproductive;
+          this.unproductiveAppTable_data = dat['Application-table'];
+          this.unproductiveSites_data = dat.Unproductive;
+          this.unproductiveSitesTable_data = dat['Sites-table'];
+          this.unproductiveUsersTable_data = dat['Users-table'];
+          this.applicationSize_data = dat.applications_by_size;
+          this.bandwidthOvertime_data = dat.bandwidth_over_time;
+          this.blockedApp_data = dat.blocked;
+          this.blockedCategories_data = dat.blocked;
+          this.blockedSites_data = dat.blocked;
+          this.categoriesBrowsingTime_data = dat.categories_by_browsing_time;
+          this.categoriesSize_data = dat.categories_by_size;
+          this.productivityBrowsing_data = dat.productivity_by_browsing_time;
+          this.productivityOverTime_data = dat.productivity_over_time;
+          this.sitesBySize_data = dat.sites_by_size;
+          this.usersBrowsingTime_data = dat.top_users_by_browsing_time;
+          this.userBySize_data = dat.users_by_size;
+          this.warnedCategories_data = dat.warned;
+          this.warnedProceeded_data = dat.warned;
+          this.downloadedFiles_data = dat.downloaded_files;
+          this.firewallRulesTable_data = dat.firewall_rules;
+          this.unacceptableApplication_data = nas.AllowedTraffic;
+          this.allowedUnacceptableSites_data = nas.AllowedTraffic;
+          this.allowedUnacceptableUsers_data = nas.AllowedTraffic;
+          this.unproductiveApplications_data = nas.AllowedTraffic;
+          this.allowedUnproductiveSites_data = nas.AllowedTraffic;
+          this.allowedUnproductiveUsers_data = nas.AllowedTraffic;
+          this.acceptableSites_data = nas.BlockedTraffic;
+          this.blockedApplications_data = nas.BlockedTraffic;
+          this.NASBlockedCategory_data = nas.BlockedTraffic;
+          this.blockedPolicies_data = nas.BlockedTraffic;
+          this.NASproductiveSites_data = nas.BlockedTraffic;
+          this.NASunacceptableSites_data = nas.BlockedTraffic;
+          this.NASunproductiveSites_data = nas.BlockedTraffic;
+          this.NASUserAgent_data = nas.BlockedTraffic;
+          this.blockedUser_data = nas.BlockedTraffic;
+          this.blockedTraffic_data = nas.BlockedTraffic;
+          this.blockedEvents_data = nas.BlockedTraffic;
+          this.networkConnection_data = nas.Network;
+          this.networkCountries_data = nas.Network;
+          this.networkDestinationIp_data = nas.Network;
+          this.networkInterfaces_data = nas.Network;
+          this.sourceHostMacs_data = nas.Network;
+          this.sourceIp_data = nas.Network;
+          this.networkUsers_data = nas.Network;
+          this.networkZones_data = nas.Network;
+          this.firewallException_data = nas.Firewall;
+          this.filterActions_data = nas.Firewall;
+          this.firewalls_data = nas.Firewall;
+          this.firewallRules_data = nas.Firewall;
+          this.excludedSites_data = nas.Firewall;
+          this.userAgent_data = nas.Firewall;
+          this.uncategorizedSites_data = nas.Firewall;
+          this.firewallActions_data = nas.Overview;
+          this.firewallOvertime_data = nas.Overview;
+          this.threatsDetected_data = nas.Threats;
+          this.vpnLogins_data = nas.VPN;
+          this.vpnSessionType_data = nas.VPN;
+          this.vpnSessions_data = nas.VPN;
+          this.vpnUsers_data = nas.VPN;
+          this.WarnedProceeded_data = nas.WarnedTraffic;
+          this.warnedTraffic_data = nas.WarnedTraffic;
+          this.warnedProceededEvent_data = nas.WarnedTraffic;
+          this.warnRules_data = nas.WarnedTraffic;
+          this.WarnCategories_data = nas.WarnedTraffic;
+          this.warnedUserAgent_data = nas.WarnedTraffic;
+          this.warnedUsers_data = nas.WarnedTraffic;
 
-          // this.destinationIp_data = dat.Network;
-          // this.interfaceNetwork_data = dat.Network;
-          // this.sourceHost_macs_data = dat.Network;
-          // this.sourceIp_data = dat.Network;
-          // this.networkUsers_data = dat.Network;
-          // this.networkZone_data = dat.Network;
-          // this.firewallException_Data = dat.Firewall;
-          // this.firewalls_data = dat.Firewall;
-          // this.filterAction_data = dat.Firewall;
-          // this.firewallRules_data = dat.Firewall;
-          // this.topExcludedSites_data = dat.Firewall;
-          // this.userAgent_data = dat.Firewall;
-          // this.uncategorySites_data = dat.Firewall;
-          // // this.uncategorizedSite_data = dat.Firewall;
-          // this.acceptableSites_data = dat.BlockedTraffic;
-          // this.blockedapplications_data = dat.BlockedTraffic;
-          // this.blockedCategories_data = dat.BlockedTraffic;
-          // this.blockedPolicies_data = dat.BlockedTraffic;
-          // this.productiveSites_data = dat.BlockedTraffic;
-          // this.unacceptableSites_data = dat.BlockedTraffic;
-          // this.unproductiveSites_data = dat.BlockedTraffic;
-          // this.blockedUserAgent_data = dat.BlockedTraffic;
-          // this.blockedUser_data = dat.BlockedTraffic;
-          // this.blockedTraffic_data = dat.BlockedTraffic;
-          // this.blockedEvent_data = dat.BlockedTraffic;
-          // this.warnedProcceded_data = dat.WarnedTraffic;
-          // this.warnedTraffic_data = dat.WarnedTraffic;
-          // this.warnedProccededEvent_data = dat.WarnedTraffic;
-          // this.warnRules_data = dat.WarnedTraffic;
-          // this.warnedCategories_data = dat.WarnedTraffic;
-          // this.warnedUserAgent_data = dat.WarnedTraffic;
-          // this.warnedUsers_data = dat.WarnedTraffic;
-          // this.unacceptableApp_data = dat.AllowedTraffic;
-          // this.allowedUnacceptableSites_data = dat.AllowedTraffic;
-          // this.allowedUnacceptableUsers_data = dat.AllowedTraffic;
-          // this.unproductiveApplications_data = dat.AllowedTraffic;
-          // this.unproductiveUsers_data = dat.AllowedTraffic;
-          // this.unrpoductiveSites_data = dat.AllowedTraffic;
-          // this.VpnChart_data = dat.VPN;
-          // this.VpnSessionType_data = dat.VPN;
-          // this.VpnSessions_data = dat.VPN;
-          // this.VPNUsers_data = dat.VPN;
-          // this.reportData_Overview = dat.Overview;
-          // this.reportData_Blocked = dat.Blocked;
-          // this.filterActionTableData = dat.Bandwidth;
-          // this.topDownloadTableData = dat.Bandwidth;
-          // this.reportData_Warned = dat.Warned;
-          // this.reportData_Productivity = dat.Productivity;
-          // this.reportData_Unacceptable = dat.Unacceptable;
-          // this.reportData_Unproductive = dat.Unproductive;
-          // this.reportData_Productive = dat.Productive;
-          // this.reportData_Acceptable = dat.Acceptable;
-
-          // this.ApplicationsTableData = dat.Productivity.ApplicationsTableData;
-          // this.SitesTableData = dat.Productivity.SitesTableData;
-          // this.AllTopProductivityTables = dat['Productivity-Tables'];
           this.chartintialize(rep.UserType);
           // this.reportingCharts();
           // await new Promise((f) => setTimeout(f, 2000));
@@ -1183,14 +1240,26 @@ export class AllActivityReportComponent implements OnInit {
       ],
     };
 
-    if (widget === 'productivity-overtime') {
-      this.ProductivityOverTimeChartOptions = baseData;
+    if (widget === 'bandwidth-overtime') {
+      this.BandwidthOverTimeChartData = baseData;
+    }
+    if (widget === 'blocked-application') {
+      this.BlockedApplicationChartData = baseData;
+    }
+    if (widget === 'productivity-over-time') {
+      this.ProductivityOverTimeChartData = baseData;
+    }
+    if (widget === 'warned-proceeded') {
+      this.warnedProceededChartData = baseData;
+    }
+    if (widget === 'firewall-action-overtime') {
+      this.FirewallActionOvertimeChartData = baseData;
+    }
+    if (widget === 'vpn-sessions') {
+      this.VPNSessionsChartData = baseData;
     }
 
-    //allUsers 
-    if (widget === 'all-productivity-overtime') {
-      this.AllProductivityOverTimeChartOptions = baseData;
-    }
+
 
   }
 
@@ -2034,9 +2103,63 @@ export class AllActivityReportComponent implements OnInit {
     if (widget === 'unacceptable-app') {
       this.UnacceptableAppChartData = baseData;
     }
-    // if (widget === 'all-network-countries') {
-    //   this.AllNetworkCountriesChartData = baseData;
-    // }
+    if (widget === 'unacceptable-sites') {
+      this.UnacceptableSitesChartData = baseData;
+    }
+    if (widget === 'unacceptable-users') {
+      this.UnacceptableUsersChartData = baseData;
+    }
+    if (widget === 'unproductive-app') {
+      this.UnproductiveAppChartData = baseData;
+    }
+    if (widget === 'unproductive-sites') {
+      this.UnproductiveSitesChartData = baseData;
+    }
+    if (widget === 'unproductive-users') {
+      this.UnproductiveUsersChartData = baseData;
+    }
+    if (widget === 'sites-by-size') {
+      this.SitesBySizeChartData = baseData;
+    }
+    if (widget === 'users-browsing-time') {
+      this.TopUsersBrowsingTimeChartData = baseData;
+    }
+    if (widget === 'users-size') {
+      this.TopUsersBySizeChartData = baseData;
+    }
+    if (widget === 'network-connections') {
+      this.NetworkConnectionsChartData = baseData;
+    }
+    if (widget === 'network-countries') {
+      this.NetworkCountriesChartData = baseData;
+    }
+    if (widget === 'network-destination-ip') {
+      this.NetworkDestinationIpChartData = baseData;
+    }
+    if (widget === 'network-interfaces') {
+      this.NetworkInterfacesChartData = baseData;
+    }
+    if (widget === 'network-source-macs') {
+      this.SourceHostandMacsChartData = baseData;
+    }
+    if (widget === 'network-source-ips') {
+      this.SourceIpsChartData = baseData;
+    }
+    if (widget === 'network-users') {
+      this.NetworkUsersChartData = baseData;
+    }
+    if (widget === 'network-zones') {
+      this.NetworkZonesChartData = baseData;
+    }
+    if (widget === 'threats-detected') {
+      this.ThreatsDetectedChartData = baseData;
+    }
+    if (widget === 'vpn-session-types') {
+      this.VPNSessionTypeChartData = baseData;
+    }
+    if (widget === 'vpn-users') {
+      this.VPNUsersChartData = baseData;
+    }
 
     // if (widget === 'all-destination-ip') {
     //   this.AllDestinationIpChartData = baseData;
@@ -2274,6 +2397,7 @@ export class AllActivityReportComponent implements OnInit {
       },
       plotOptions: {
         pie: {
+          // innerSize: 10,
           allowPointSelect: true,
           cursor: 'pointer',
 
@@ -2318,19 +2442,127 @@ export class AllActivityReportComponent implements OnInit {
       ],
     };
 
-    if (widget === 'Productive-Browsing-Time') {
-      this.ProductivityByBrowsingTimeChartOptions = baseData;
+    if (widget === 'applications-size') {
+      this.ApplicationBySizeChartData = baseData;
+    }
+    if (widget === 'blocked-categories') {
+      this.BlockedCategoriesChartData = baseData;
+    }
+    if (widget === 'blocked-sites') {
+      this.BlockedSitesChartData = baseData;
+    }
+    if (widget === 'categories-browsing-time') {
+      this.CategoriesBrowsingTimeChartData = baseData;
+    }
+    if (widget === 'categories-size') {
+      this.CategoriesBySizeChartData = baseData;
+    }
+    if (widget === 'productivity-browsing-time') {
+      this.ProductivityByBrowsingTimeChartData = baseData;
+    }
+    if (widget === 'warned-categories') {
+      this.warnedCategoriesChartData = baseData;
+    }
+    if (widget === 'unacceptable-application') {
+      this.UnacceptableApplicationsChartData = baseData;
+    }
+    if (widget === 'unacceptable-sites') {
+      this.AllowedUnacceptableSitesChartData = baseData;
+    }
+    if (widget === 'unacceptable-users') {
+      this.AllowedUnacceptableUsersChartData = baseData;
+    }
+    if (widget === 'unproductive-applications') {
+      this.AllowedUnproductiveApplicationsChartData = baseData;
+    }
+    if (widget === 'unproductive-sites') {
+      this.AllowedUnproductiveSitesChartData = baseData;
+    }
+    if (widget === 'unproductive-users') {
+      this.AllowedUnproductiveUsersChartData = baseData;
+    }
+    if (widget === 'blocked-acceptable-sites') {
+      this.BlockedAcceptableSitesChartData = baseData;
+    }
+    if (widget === 'blocked-applications') {
+      this.BlockedApplicationsChartData = baseData;
+    }
+    if (widget === 'blocked-category') {
+      this.NASBlockedCategoriesChartData = baseData;
+    }
+    if (widget === 'blocked-policies') {
+      this.BlockedPoliciesChartData = baseData;
+    }
+    if (widget === 'blocked-productive-sites') {
+      this.BlockedProductiveSitesChartData = baseData;
+    }
+    if (widget === 'blocked-unacceptable-sites') {
+      this.BlockedUnacceptableSitesChartData = baseData;
+    }
+    if (widget === 'blocked-unproductive-sites') {
+      this.BlockedUnproductiveSitesChartData = baseData;
+    }
+    if (widget === 'blocked-user-agent') {
+      this.BlockedUserAgentChartData = baseData;
+    }
+    if (widget === 'blocked-users') {
+      this.BlockedUsersChartData = baseData;
+    }
+    if (widget === 'blocked-traffic') {
+      this.BlockedTrafficChartData = baseData;
+    }
+    if (widget === 'blocked-events') {
+      this.BlockedEventsChartData = baseData;
+    }
+    if (widget === 'firewall-exception') {
+      this.FirewallExceptionChartData = baseData;
+    }
+    if (widget === 'filter-actions') {
+      this.FilterActionChartData = baseData;
+    }
+    if (widget === 'firewalls') {
+      this.FirewallsChartData = baseData;
+    }
+    if (widget === 'firewall-rules') {
+      this.FirewallRulesChartData = baseData;
+    }
+    if (widget === 'excluded-sites') {
+      this.TopExcludedSitesChartData = baseData;
+    }
+    if (widget === 'user-agent') {
+      this.TopUserAgentChartData = baseData;
+    }
+    if (widget === 'uncategorized-sites') {
+      this.UncategorizedSitesChartData = baseData;
+    }
+    if (widget === 'firewall-actions') {
+      this.FirewallActionsChartData = baseData;
+    }
+    if (widget === 'vpn-logins') {
+      this.VPNLoginsChartData = baseData;
+    }
+    if (widget === 'warned-proceeded') {
+      this.CategoriesWarnedProceededChartData = baseData;
+    }
+    if (widget === 'warned-traffic') {
+      this.warnedTrafficChartData = baseData;
+    }
+    if (widget === 'warned-proceeded-event') {
+      this.warnedProceededEventChartData = baseData;
+    }
+    if (widget === 'warned-rules') {
+      this.warnedRulesChartData = baseData;
+    }
+    if (widget === 'warn-categories') {
+      this.WarnCategoriesChartData = baseData;
+    }
+    if (widget === 'warn-user-agent') {
+      this.WarnedUserAgentChartData = baseData;
+    }
+    if (widget === 'warn-users') {
+      this.WarnedUsersChartData = baseData;
     }
 
-    //allUsers
-
-    if (widget === 'AllProductive-Browsing-Time') {
-      this.AllProductivityByBrowsingTimeChartOptions = baseData;
-    }
-
-    if (widget === 'all-categories-by-browsing-time') {
-      this.AllCategoriesByBrowsingTimeChartOptions = baseData;
-    }
 
   }
 
@@ -2405,9 +2637,7 @@ export class AllActivityReportComponent implements OnInit {
         },
       ],
     };
-    // if (widget === 'applications-bandwidth') {
-    //   this.ApplicationsBySizeChartOptions = baseData;
-    // }
+
     // // if (widget === 'Productive-Browsing-Time') {
     // //   this.ProductivityByBrowsingTimeChartOptions = baseData;
     // // }
@@ -2568,10 +2798,7 @@ export class AllActivityReportComponent implements OnInit {
       //   this.reportData_Productivity.ProductivityOverTime.Chart.Series;
       // // this.ApplicationsBySizeChartOptions['series'] = this.reportData_Bandwidth.ApplicationsBySize.Chart.Series;
 
-      // //set Productive By Browsing Time pie chart
-      // this.setProductivityByBrowsingTimePieChartDataStructure('Productive-Browsing-Time');
-      // this.ProductivityByBrowsingTimeChartOptions['series'][0]['data'] =
-      //   this.reportData_Productivity.ProductivityByBrowsingTime.Chart.Series[0].data;
+
 
       // this.setPieChartBaseDataStructure('applications-bandwidth');
       // this.ApplicationsBySizeChartOptions['series'] =
@@ -2713,421 +2940,310 @@ export class AllActivityReportComponent implements OnInit {
       this.UnacceptableAppChartData['series'] =
         this.unacceptableApp_data['Unacceptable-apps'].chart.Series;
 
-      //   this.setStackedBarChartBaseDataStructure('acceptable-table');
-      // this.AcceptableChartData['xAxis']['categories'] =
-      //   this.acceptableTable_data.Acceptable;
-      // this.AcceptableChartData['series'] =
-      //   this.acceptableTable_data.Acceptable;
-      // // //All Users Graph chart Start
-
-      //set Bandwidth Section Charts
-      // this.setLineChartBaseDataStructure('all-bandwidth-overtime', 'MB');
-      // this.AllBandwidthOverTimeChartOptions['series'] =
-      //   this.reportData_Bandwidth.BandwidthOverTime.Chart.Series;
-
-
-
-      // this.setStackedBarChartBaseDataStructure('all-sites-by-size');
-      // this.AllSitesBySizeChartOptions['xAxis']['categories'] =
-      //   this.reportData_Bandwidth.SitesBySize.Chart.Labels;
-      // this.AllSitesBySizeChartOptions['series'] =
-      //   this.reportData_Bandwidth.SitesBySize.Chart.Series;
-      // console.log(this.AllSitesBySizeChartOptions);
-      // // //set applications by size pie chart
-      // this.setPieChartBaseDataStructure('all-application-by-size');
-      // this.AllApplicationsBySizeChartOptions['series'][0]['data'] =
-      //   this.reportData_Bandwidth.ApplicationsBySize.Chart.Series[0].data;
-
-      // // //set categories by size pie chart
-      // this.setPieChartBaseDataStructure('all-categories-by-size');
-      // this.AllCategoriesBySizeChartOptions['series'][0]['data'] =
-      //   this.reportData_Bandwidth.CategoriesBySize.Chart.Series[0].data;
-
-
-      // // //set departments by size pie chart
-      // // this.setPieChartBaseDataStructure('all-department-by-size');
-      // // this.AllDepartmentsBySizeChartOptions['series'][0]['data'] = this.reportData_Bandwidth.CategoriesBySize.Chart.Series[0].data;
-
-      // // // //set Productivity Section Charts
-      // this.setProductivityOverTimeChartDataStructure('all-productivity-overtime');
-      // this.AllProductivityOverTimeChartOptions['series'] =
-      //   this.reportData_Productivity.ProductivityOverTime.Chart.Series;
-
-      // this.setProductivityByBrowsingTimePieChartDataStructure('AllProductive-Browsing-Time');
-      // this.AllProductivityByBrowsingTimeChartOptions['series'][0]['data'] =
-      //   this.reportData_Productivity.ProductivityByBrowsingTime.Chart.Series[0].data;
-
-      // this.setProductivityByBrowsingTimePieChartDataStructure('all-categories-by-browsing-time');
-      // this.AllCategoriesByBrowsingTimeChartOptions['series'][0]['data'] =
-      //   this.reportData_Productivity.CategoriesByBrowsingTime.Chart.Series[0].data;
-
-      // this.setUnproductiveSitesBarChartDataStructure('AllUsers-Browsing-Time');
-      // this.AllUsersBrowsingTime['xAxis']['categories'] =
-      //   this.reportData_Productivity.TopUsersByBrowsingTime.Chart.Labels;
-      // this.AllUsersBrowsingTime['series'] =
-      //   this.reportData_Productivity.TopUsersByBrowsingTime.Chart.Series;
-
-      // // set Unacceptable Section charts data
-
-      // this.setStackedBarChartBaseDataStructure(
-      //   'Allproductivity-unacceptable-users'
-      // );
-      // this.AllTopUnacceptableUsers['xAxis']['categories'] =
-      //   this.reportData_Unacceptable.TopUnacceptableUsers.Chart.Labels;
-      // this.AllTopUnacceptableUsers['series'] =
-      //   this.reportData_Unacceptable.TopUnacceptableUsers.Chart.Series;
-
-      // this.setStackedBarChartBaseDataStructure(
-      //   'Allproductivity-unacceptable-applications'
-      // );
-      // this.AllUnAcceptableApplicationsChartOptions['xAxis']['categories'] =
-      //   this.reportData_Unacceptable.TopUnacceptableApplications.Chart.Labels;
-      // this.AllUnAcceptableApplicationsChartOptions['series'] =
-      //   this.reportData_Unacceptable.TopUnacceptableApplications.Chart.Series;
-
-      // this.setStackedBarChartBaseDataStructure(
-      //   'Allproductivity-unacceptable-sites'
-      // );
-      // this.AllTopUnacceptableSitesChartOptions['xAxis']['categories'] =
-      //   this.reportData_Unacceptable.TopUnacceptableSites.Chart.Labels;
-      // this.AllTopUnacceptableSitesChartOptions['series'] =
-      //   this.reportData_Unacceptable.TopUnacceptableSites.Chart.Series;
-
-      // //unproductive
-      // this.setUnproductiveSitesBarChartDataStructure('AllUnproductive-Users');
-      // this.AllTopUnproductiveUsers['xAxis']['categories'] =
-      //   this.reportData_Unproductive.TopUnproductiveUsers.Chart.Labels;
-      // this.AllTopUnproductiveUsers['series'] =
-      //   this.reportData_Unproductive.TopUnproductiveUsers.Chart.Series;
-
-      // this.setUnproductiveSitesBarChartDataStructure('AllUnproductive-Applications');
-      // this.AllTopUnproductiveApplications['xAxis']['categories'] =
-      //   this.reportData_Unproductive.TopUnproductiveApplications.Chart.Labels;
-      // this.AllTopUnproductiveApplications['series'] =
-      //   this.reportData_Unproductive.TopUnproductiveApplications.Chart.Series;
-
-      // this.setStackedBarChartBaseDataStructure('AllUnproductive-Sites');
-      // this.AllTopUnproductiveSites['xAxis']['categories'] =
-      //   this.reportData_Unproductive.TopUnproductiveSites.Chart.Labels;
-      // this.AllTopUnproductiveSites['series'] =
-      //   this.reportData_Unproductive.TopUnproductiveSites.Chart.Series;
-
-      // // this.setStackedBarChartBaseDataStructure('AllUnproductive-Sites-CleanOn');
-      // // this.AllTopUnproductiveSitesCleanOn['xAxis']['categories'] = this.reportData_Unproductive.TopUnproductiveUsers.Chart.Labels;
-      // // this.AllTopUnproductiveSitesCleanOn['series'] = this.reportData_Unproductive.TopUnproductiveUsers.Chart.Series;
-
-      // //Acceptable
-
-      // this.setUnproductiveSitesBarChartDataStructure('AllAcceptable-Users');
-      // this.AllTopAcceptableUsers['xAxis']['categories'] =
-      //   this.reportData_Acceptable.TopAcceptableUsers.Chart.Labels;
-      // this.AllTopAcceptableUsers['series'] =
-      //   this.reportData_Acceptable.TopAcceptableUsers.Chart.Series;
-
-      // this.setUnproductiveSitesBarChartDataStructure('AllAcceptable-Applications');
-      // this.AllTopAcceptableApplications['xAxis']['categories'] =
-      //   this.reportData_Acceptable.TopAcceptableApplications.Chart.Labels;
-      // this.AllTopAcceptableApplications['series'] =
-      //   this.reportData_Acceptable.TopAcceptableApplications.Chart.Series;
-
-      // this.setStackedBarChartBaseDataStructure('AllAcceptable-Sites');
-      // this.AllTopAcceptableSites['xAxis']['categories'] =
-      //   this.reportData_Acceptable.TopAcceptableSites.Chart.Labels;
-      // this.AllTopAcceptableSites['series'] =
-      //   this.reportData_Acceptable.TopAcceptableSites.Chart.Series;
-
-      // // this.setStackedBarChartBaseDataStructure('AllAcceptable-Sites-CleanOn');
-      // // this.AllTopAcceptableSiteCleanOn['xAxis']['categories'] =
-      // //   this.reportData_Bandwidth.SitesBySize.Chart.Labels;
-      // // this.AllTopAcceptableSiteCleanOn['series'] =
-      // //   this.reportData_Bandwidth.SitesBySize.Chart.Series;
-
-      // //productive
-      // this.setStackedBarChartBaseDataStructure('AllProductive-Users');
-      // this.AllTopProductiveUsers['xAxis']['categories'] =
-      //   this.reportData_Productive.TopProductiveUsers.Chart.Labels;
-      // this.AllTopProductiveUsers['series'] =
-      //   this.reportData_Productive.TopProductiveUsers.Chart.Series;
-
-      // this.setStackedBarChartBaseDataStructure('AllProductive-Applications');
-      // this.AllTopProductiveApplications['xAxis']['categories'] =
-      //   this.reportData_Productive.TopProductiveApplications.Chart.Labels;
-      // this.AllTopProductiveApplications['series'] =
-      //   this.reportData_Productive.TopProductiveApplications.Chart.Series;
-
-      // this.setStackedBarChartBaseDataStructure('AllProductive-Sites');
-      // this.AllTopProductiveSites['xAxis']['categories'] =
-      //   this.reportData_Productive.TopProductiveSites.Chart.Labels;
-      // this.AllTopProductiveSites['series'] =
-      //   this.reportData_Productive.TopProductiveSites.Chart.Series;
-
-      // // this.setStackedBarChartBaseDataStructure('AllProductive-Sites-CleanOn');
-      // // this.AllTopProductiveSitesOn['xAxis']['categories'] =
-      // //   this.reportData_Bandwidth.SitesBySize.Chart.Labels;
-      // // this.AllTopProductiveSitesOn['series'] =
-      // //   this.reportData_Bandwidth.SitesBySize.Chart.Series;
-
-      // //Blocked
-
-      // this.setBarChartBaseDataStructure('AllBlocked-Events');
-      // this.AllBlockedEvents['xAxis']['categories'] =
-      //   this.reportData_Blocked.BlockedEvents.Chart.Labels;
-      // this.AllBlockedEvents['series'] =
-      //   this.reportData_Blocked.BlockedEvents.Chart.Series;
-
-      // this.setStackedBarChartBaseDataStructure('AllBlocked-Users');
-      // this.AllTopBlockedUsers['xAxis']['categories'] =
-      //   this.reportData_Blocked.Users.Chart.Labels;
-      // this.AllTopBlockedUsers['series'] =
-      //   this.reportData_Blocked.Users.Chart.Series;
-
-      // this.setPieChartBaseDataStructure('AllBlocked-Categories');
-      // this.AllBlockedCategories['series'][0]['data'] =
-      //   this.reportData_Blocked.Categories.Chart.Series[0].data;
-
-      // //Warned and Proceeded
-
-      // this.setBarChartBaseDataStructure('AllWarned-Events');
-      // this.AllWarnedEvent['xAxis']['categories'] =
-      //   this.reportData_Warned.WarnedEvents.Chart.Labels;
-      // this.AllWarnedEvent['series'] =
-      //   this.reportData_Warned.WarnedEvents.Chart.Series;
-
-      // this.setPieChartBaseDataStructure('AllWarned-Procceded');
-      // this.AllWarnedAndProcceded['series'][0]['data'] =
-      //   this.reportData_Warned.WarnedAndProceeded.Chart.Series[0].data;
-
-      // this.setBarChartBaseDataStructure('AllWarned-Users');
-      // this.AllWarnedUsers['xAxis']['categories'] =
-      //   this.reportData_Warned.Users.Chart.Labels;
-      // this.AllWarnedUsers['series'] = this.reportData_Warned.Users.Chart.Series;
-
-      // this.setPieChartBaseDataStructure('AllWarned-Categories');
-      // this.AllWarnedCategoriesPieChartOption['series'][0]['data'] =
-      //   this.reportData_Warned.Categories.Chart.Series[0].data;
-
-      // this.setPieChartBaseDataStructure('Allblocked-sites');
-      // this.AllBlockedSitesChartOptions['series'][0]['data'] = this.reportData_Blocked.Categories.Chart.Series[0].data;
-
-      //NAS REPORT ALL USERS CHART DATA
-      //   this.setPieChartBaseDataStructure('all-firewall-actions');
-      //   this.AllFirewallPieChartData['series'] =
-      //     this.firewallActions_data.FirewallActions.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-Vpn');
-      //   this.AllVPNFailedPieChartData['series'] =
-      //     this.VpnChart_data.FailedVPNLogins.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-Vpn-session-type');
-      //   this.AllVPNSessionTypeChartData['xAxis']['categories'] =
-      //   this.VpnSessionType_data.VPNSessionTypes.Chart.Labels;
-      // this.AllVPNSessionTypeChartData['series'] =
-      //   this.VpnSessionType_data.VPNSessionTypes.Chart.Series;
-
-      //   this.setLineChartBaseDataStructure('all-Vpn-sessions');
-      //   this.AllVPNSessionsChartData['series'] =
-      //     this.VpnSessions_data.VPNSessions.Chart.Series;
-
-      //     this.setStackedBarChartBaseDataStructure('all-Vpn-users');
-      //     this.AllVPNUsersChartData['xAxis']['categories'] =
-      //     this.VPNUsers_data.VPNUsers.Chart.Labels;
-      //   this.AllVPNUsersChartData['series'] =
-      //     this.VPNUsers_data.VPNUsers.Chart.Series;
-
-      //   this.setLineChartBaseDataStructure('all-firewall-overtime', 'MB');
-      //   this.AllFirewallActionOverTimeData['series'] =
-      //     this.firewallOvertime_data.FirewallActionsOverTime.Chart.Series;
-
-      //   this.setUnproductiveBarChartBaseDataStructure('all-threats-detected');
-      //   this.AllThreatsDetectedChartData['xAxis']['categories'] =
-      //     this.threatsDetected_data.ThreatsDetected.Chart.Labels;
-      //   this.AllThreatsDetectedChartData['series'] =
-      //     this.threatsDetected_data.ThreatsDetected.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-network-connection');
-      //   this.AllNetworkConnectionChartData['xAxis']['categories'] =
-      //     this.networkConnection_data.Connections.Chart.Labels;
-      //   this.AllNetworkConnectionChartData['series'] =
-      //     this.networkConnection_data.Connections.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-network-countries');
-      //   this.AllNetworkCountriesChartData['xAxis']['categories'] =
-      //     this.networkCountries_data.Countries.Chart.Labels;
-      //   this.AllNetworkCountriesChartData['series'] =
-      //     this.networkCountries_data.Countries.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-destination-ip');
-      //   this.AllDestinationIpChartData['xAxis']['categories'] =
-      //     this.destinationIp_data.DestinationIPs.Chart.Labels;
-      //   this.AllDestinationIpChartData['series'] =
-      //     this.destinationIp_data.DestinationIPs.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-interface-network');
-      //   this.AllInterfaceNetworkChartData['xAxis']['categories'] =
-      //     this.interfaceNetwork_data.Interfaces.Chart.Labels;
-      //   this.AllInterfaceNetworkChartData['series'] =
-      //     this.interfaceNetwork_data.Interfaces.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-sourceHost-Macs-network');
-      //   this.AllSourceHostsAndMAcsChartData['xAxis']['categories'] =
-      //     this.sourceHost_macs_data.SourceHostsAndMACs.Chart.Labels;
-      //   this.AllSourceHostsAndMAcsChartData['series'] =
-      //     this.sourceHost_macs_data.SourceHostsAndMACs.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-source-ip');
-      //   this.AllSourceIpChartData['xAxis']['categories'] =
-      //     this.sourceIp_data.SourceIPs.Chart.Labels;
-      //   this.AllSourceIpChartData['series'] =
-      //     this.sourceIp_data.SourceIPs.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-user-network');
-      //   this.AllUsersChartData['xAxis']['categories'] =
-      //     this.networkUsers_data.Users.Chart.Labels;
-      //   this.AllUsersChartData['series'] =
-      //     this.networkUsers_data.Users.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-zone-network');
-      //   this.AllZoneNetworkChartData['xAxis']['categories'] =
-      //     this.networkZone_data.Zones.Chart.Labels;
-      //   this.AllZoneNetworkChartData['series'] =
-      //     this.networkZone_data.Zones.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-unacceptable-application');
-      //   this.AllUnacceptableAppChartData['xAxis']['categories'] =
-      //     this.unacceptableApp_data.AllowedUnacceptableApplications.Chart.Labels;
-      //   this.AllUnacceptableAppChartData['series'] =
-      //     this.unacceptableApp_data.AllowedUnacceptableApplications.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-unacceptable-sites');
-      //   this.AllAllowedUnacceptableSitesChartData['xAxis']['categories'] =
-      //     this.allowedUnacceptableSites_data.AllowedUnacceptableSites.Chart.Labels;
-      //   this.AllAllowedUnacceptableSitesChartData['series'] =
-      //     this.allowedUnacceptableSites_data.AllowedUnacceptableSites.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-unacceptable-users');
-      //   this.AllAllowedUnacceptableUsersChartData['xAxis']['categories'] =
-      //     this.allowedUnacceptableUsers_data.AllowedUnacceptableUsers.Chart.Labels;
-      //   this.AllAllowedUnacceptableUsersChartData['series'] =
-      //     this.allowedUnacceptableUsers_data.AllowedUnacceptableUsers.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-unproductive-applications');
-      //   this.AllAllowedUnproductiveApplicationsChartData['xAxis']['categories'] =
-      //     this.unproductiveApplications_data.AllowedUnproductiveApplications.Chart.Labels;
-      //   this.AllAllowedUnproductiveApplicationsChartData['series'] =
-      //     this.unproductiveApplications_data.AllowedUnproductiveApplications.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-unproductive-users');
-      //   this.AllAllowedUnproductiveUsersChartData['xAxis']['categories'] =
-      //     this.unproductiveUsers_data.AllowedUnproductiveUsers.Chart.Labels;
-      //   this.AllAllowedUnproductiveUsersChartData['series'] =
-      //     this.unproductiveUsers_data.AllowedUnproductiveUsers.Chart.Series;
-
-      //   this.setStackedBarChartBaseDataStructure('all-unproductive-sites');
-      //   this.AllAllowedUnproductiveSitesChartData['xAxis']['categories'] =
-      //     this.unrpoductiveSites_data.AllowedUnproductiveSites.Chart.Labels;
-      //   this.AllAllowedUnproductiveSitesChartData['series'] =
-      //     this.unrpoductiveSites_data.AllowedUnproductiveSites.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-exception-firewall');
-      //   this.AllExceptionFirewallChartData['series'] =
-      //     this.firewallException_Data.Exceptions.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-firewalls');
-      //   this.AllFirewallsChartData['series'] =
-      //     this.firewalls_data.Firewalls.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-filterAction-firewall');
-      //   this.AllFilterActionsChartData['series'] =
-      //     this.filterAction_data.FilterActions.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-rules-firewall');
-      //   this.AllRulesFirewallChartData['series'] =
-      //     this.firewallRules_data.Rules.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-excluded-sites');
-      //   this.AllTopExcludedSitesChartData['series'] =
-      //     this.topExcludedSites_data.TopExcludedSites.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-agent-user');
-      //   this.AllAgentUserChartData['series'] =
-      //     this.userAgent_data.TopUserAgents.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-sites-uncategory');
-      //   this.AllUncategorizedChartData['series'] =
-      //     this.uncategorySites_data.UncategorizedSites.Chart.Series;
-
-
-      //   this.setPieChartBaseDataStructure('all-acceptable-sites');
-      //   this.AllAcceptableSitesChartData['series'] =
-      //     this.acceptableSites_data.BlockedAcceptableSites.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-blocked-applications');
-      //   this.AllBlockedApplicationsChartData['series'] =
-      //     this.blockedapplications_data.BlockedApplications.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-blocked-categories');
-      //   this.AllBlockedCategoriesChartData['series'] =
-      //     this.blockedCategories_data.BlockedCategories.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-blocked-policies');
-      //   this.AllBlockedPoliciesChartData['series'] =
-      //     this.blockedPolicies_data.BlockedPolicies.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-blocked-productive');
-      //   this.AllProductiveSitesChartData['series'] =
-      //     this.productiveSites_data.BlockedProductiveSites.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-blocked-unacceptable');
-      //   this.AllUnacceptableSitesChartData['series'] =
-      //     this.unacceptableSites_data.BlockedUnacceptableSites.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-blocked-unproductive');
-      //   this.AllUnproductiveSitesChartData['series'] =
-      //     this.unproductiveSites_data.BlockedUnproductiveSites.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-blocked-user-agent');
-      //   this.AllBlockedUserAgentChartData['series'] =
-      //     this.blockedUserAgent_data.BlockedUserAgents.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-blocked-user');
-      //   this.AllBlockedUsersChartData['series'] =
-      //     this.blockedUser_data.BlockedUsers.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-blocked-traffic');
-      //   this.AllBlockedTrafficChartData['series'] =
-      //     this.blockedTraffic_data.MostBlockedTraffic.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-blocked-event');
-      //   this.AllBlockedEventChartData['series'] =
-      //     this.blockedEvent_data.OtherBlockedEvents.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-warned-procceded');
-      //   this.AllWarnedAndProccededChartData['series'] =
-      //     this.warnedProcceded_data.CategoriesWarnedAndProceeded.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-warned-traffic');
-      //   this.AllWarnedTrafficChartData['series'] =
-      //     this.warnedTraffic_data.MostWarnedTraffic.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-warned-procceded-event');
-      //   this.AllWarnedAndProccededEventChartData['series'] =
-      //     this.warnedProccededEvent_data.OtherWarnedAndProceededEvents.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-warned-rules');
-      //   this.AllWarnRulesChartData['series'] =
-      //     this.warnRules_data.WarnRules.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-warned-categories');
-      //   this.AllWarnedCategoriesChartData['series'] =
-      //     this.warnedCategories_data.WarnedCategories.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-warned-user-agent');
-      //   this.AllWarnedUserAgentChartData['series'] =
-      //     this.warnedUserAgent_data.WarnedUserAgents.Chart.Series;
-
-      //   this.setPieChartBaseDataStructure('all-warned-users');
-      //   this.AllWarnedUsersChartData['series'] =
-      //     this.warnedUsers_data.WarnedUsers.Chart.Series;
+      this.setStackedBarChartBaseDataStructure('unacceptable-sites');
+      this.UnacceptableSitesChartData['xAxis']['categories'] =
+        this.unacceptableSites_data['Unacceptable-sites'].chart.Labels;
+      this.UnacceptableSitesChartData['series'] =
+        this.unacceptableSites_data['Unacceptable-sites'].chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('unacceptable-users');
+      this.UnacceptableUsersChartData['xAxis']['categories'] =
+        this.unacceptableUsers_data['Unacceptable-users'].chart.Labels;
+      this.UnacceptableUsersChartData['series'] =
+        this.unacceptableUsers_data['Unacceptable-users'].chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('unproductive-app');
+      this.UnproductiveAppChartData['xAxis']['categories'] =
+        this.unproductiveApp_data['Unproductive-apps'].chart.Labels;
+      this.UnproductiveAppChartData['series'] =
+        this.unproductiveApp_data['Unproductive-apps'].chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('unproductive-sites');
+      this.UnproductiveSitesChartData['xAxis']['categories'] =
+        this.unproductiveSites_data['Unproductive-sites'].chart.Labels;
+      this.UnproductiveSitesChartData['series'] =
+        this.unproductiveSites_data['Unproductive-sites'].chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('unproductive-users');
+      this.UnproductiveUsersChartData['xAxis']['categories'] =
+        this.unproductiveSites_data['Unproductive-sites'].chart.Labels;
+      this.UnproductiveUsersChartData['series'] =
+        this.unproductiveSites_data['Unproductive-sites'].chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('sites-by-size');
+      this.SitesBySizeChartData['xAxis']['categories'] =
+        this.sitesBySize_data.chart.Labels;
+      this.SitesBySizeChartData['series'] =
+        this.sitesBySize_data.chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('users-browsing-time');
+      this.TopUsersBrowsingTimeChartData['xAxis']['categories'] =
+        this.usersBrowsingTime_data.chart.Labels;
+      this.TopUsersBrowsingTimeChartData['series'] =
+        this.usersBrowsingTime_data.chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('users-size');
+      this.TopUsersBySizeChartData['xAxis']['categories'] =
+        this.userBySize_data.chart.Labels;
+      this.TopUsersBySizeChartData['series'] =
+        this.userBySize_data.chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('network-connections');
+      this.NetworkConnectionsChartData['xAxis']['categories'] =
+        this.networkConnection_data.Connections.Chart.Labels;
+      this.NetworkConnectionsChartData['series'] =
+        this.networkConnection_data.Connections.Chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('network-countries');
+      this.NetworkCountriesChartData['xAxis']['categories'] =
+        this.networkCountries_data.Countries.Chart.Labels;
+      this.NetworkCountriesChartData['series'] =
+        this.networkCountries_data.Countries.Chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('network-destination-ip');
+      this.NetworkDestinationIpChartData['xAxis']['categories'] =
+        this.networkDestinationIp_data.DestinationIPs.Chart.Labels;
+      this.NetworkDestinationIpChartData['series'] =
+        this.networkDestinationIp_data.DestinationIPs.Chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('network-interfaces');
+      this.NetworkInterfacesChartData['xAxis']['categories'] =
+        this.networkInterfaces_data.Interfaces.Chart.Labels;
+      this.NetworkInterfacesChartData['series'] =
+        this.networkInterfaces_data.Interfaces.Chart.Series;
+
+
+      this.setStackedBarChartBaseDataStructure('network-source-macs');
+      this.SourceHostandMacsChartData['xAxis']['categories'] =
+        this.sourceHostMacs_data.SourceHostsAndMACs.Chart.Labels;
+      this.SourceHostandMacsChartData['series'] =
+        this.sourceHostMacs_data.SourceHostsAndMACs.Chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('network-source-ips');
+      this.SourceIpsChartData['xAxis']['categories'] =
+        this.sourceIp_data.SourceIPs.Chart.Labels;
+      this.SourceIpsChartData['series'] =
+        this.sourceIp_data.SourceIPs.Chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('network-users');
+      this.NetworkUsersChartData['xAxis']['categories'] =
+        this.networkUsers_data.Users.Chart.Labels;
+      this.NetworkUsersChartData['series'] =
+        this.networkUsers_data.Users.Chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('network-zones');
+      this.NetworkZonesChartData['xAxis']['categories'] =
+        this.networkZones_data.Zones.Chart.Labels;
+      this.NetworkZonesChartData['series'] =
+        this.networkZones_data.Zones.Chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('threats-detected');
+      this.ThreatsDetectedChartData['xAxis']['categories'] =
+        this.threatsDetected_data.ThreatsDetected.Chart.Labels;
+      this.ThreatsDetectedChartData['series'] =
+        this.threatsDetected_data.ThreatsDetected.Chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('vpn-session-types');
+      this.VPNSessionTypeChartData['xAxis']['categories'] =
+        this.vpnSessionType_data.VPNSessionTypes.Chart.Labels;
+      this.VPNSessionTypeChartData['series'] =
+        this.vpnSessionType_data.VPNSessionTypes.Chart.Series;
+
+      this.setStackedBarChartBaseDataStructure('vpn-users');
+      this.VPNUsersChartData['xAxis']['categories'] =
+        this.vpnUsers_data.VPNUsers.Chart.Labels;
+      this.VPNUsersChartData['series'] =
+        this.vpnUsers_data.VPNUsers.Chart.Series;
+
+      //Pie Chart Data
+      this.setProductivityByBrowsingTimePieChartDataStructure('applications-size');
+      this.ApplicationBySizeChartData['series'] =
+        this.applicationSize_data.chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-categories');
+      this.BlockedCategoriesChartData['series'] =
+        this.blockedCategories_data.categories.chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-sites');
+      this.BlockedSitesChartData['series'] =
+        this.blockedSites_data.sites.chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('categories-browsing-time');
+      this.CategoriesBrowsingTimeChartData['series'] =
+        this.categoriesBrowsingTime_data.chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('categories-size');
+      this.CategoriesBySizeChartData['series'] =
+        this.categoriesSize_data.chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('productivity-browsing-time');
+      this.ProductivityByBrowsingTimeChartData['series'] =
+        this.productivityBrowsing_data.chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('warned-categories');
+      this.warnedCategoriesChartData['series'] =
+        this.warnedCategories_data.categories.chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('unacceptable-application');
+      this.UnacceptableApplicationsChartData['series'] =
+        this.unacceptableApplication_data.AllowedUnacceptableApplications.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('unacceptable-sites');
+      this.AllowedUnacceptableSitesChartData['series'] =
+        this.allowedUnacceptableSites_data.AllowedUnacceptableSites.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('unacceptable-users');
+      this.AllowedUnacceptableUsersChartData['series'] =
+        this.allowedUnacceptableUsers_data.AllowedUnacceptableUsers.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('unproductive-applications');
+      this.AllowedUnproductiveApplicationsChartData['series'] =
+        this.unproductiveApplications_data.AllowedUnproductiveApplications.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('unproductive-sites');
+      this.AllowedUnproductiveSitesChartData['series'] =
+        this.allowedUnproductiveSites_data.AllowedUnproductiveSites.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('unproductive-users');
+      this.AllowedUnproductiveUsersChartData['series'] =
+        this.allowedUnproductiveUsers_data.AllowedUnproductiveUsers.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-acceptable-sites');
+      this.BlockedAcceptableSitesChartData['series'] =
+        this.acceptableSites_data.BlockedAcceptableSites.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-applications');
+      this.BlockedApplicationsChartData['series'] =
+        this.blockedApplications_data.BlockedApplications.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-category');
+      this.NASBlockedCategoriesChartData['series'] =
+        this.NASBlockedCategory_data.BlockedCategories.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-policies');
+      this.BlockedPoliciesChartData['series'] =
+        this.blockedPolicies_data.BlockedPolicies.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-productive-sites');
+      this.BlockedProductiveSitesChartData['series'] =
+        this.NASproductiveSites_data.BlockedProductiveSites.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-unacceptable-sites');
+      this.BlockedUnacceptableSitesChartData['series'] =
+        this.NASunacceptableSites_data.BlockedUnacceptableSites.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-unproductive-sites');
+      this.BlockedUnproductiveSitesChartData['series'] =
+        this.NASunproductiveSites_data.BlockedUnproductiveSites.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-user-agent');
+      this.BlockedUserAgentChartData['series'] =
+        this.NASUserAgent_data.BlockedUserAgents.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-users');
+      this.BlockedUsersChartData['series'] =
+        this.blockedUser_data.BlockedUsers.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-traffic');
+      this.BlockedTrafficChartData['series'] =
+        this.blockedTraffic_data.MostBlockedTraffic.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('blocked-events');
+      this.BlockedEventsChartData['series'] =
+        this.blockedEvents_data.OtherBlockedEvents.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('firewall-exception');
+      this.FirewallExceptionChartData['series'] =
+        this.firewallException_data.Exceptions.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('filter-actions');
+      this.FilterActionChartData['series'] =
+        this.filterActions_data.FilterActions.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('firewalls');
+      this.FirewallsChartData['series'] =
+        this.firewalls_data.Firewalls.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('firewall-rules');
+      this.FirewallRulesChartData['series'] =
+        this.firewallRules_data.Rules.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('excluded-sites');
+      this.TopExcludedSitesChartData['series'] =
+        this.excludedSites_data.TopExcludedSites.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('user-agent');
+      this.TopUserAgentChartData['series'] =
+        this.userAgent_data.TopUserAgents.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('uncategorized-sites');
+      this.UncategorizedSitesChartData['series'] =
+        this.uncategorizedSites_data.UncategorizedSites.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('firewall-actions');
+      this.FirewallActionsChartData['series'] =
+        this.firewallActions_data.FirewallActions.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('vpn-logins');
+      this.VPNLoginsChartData['series'] =
+        this.vpnLogins_data.FailedVPNLogins.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('warned-proceeded');
+      this.CategoriesWarnedProceededChartData['series'] =
+        this.WarnedProceeded_data.CategoriesWarnedAndProceeded.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('warned-traffic');
+      this.warnedTrafficChartData['series'] =
+        this.warnedTraffic_data.MostWarnedTraffic.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('warned-proceeded-event');
+      this.warnedProceededEventChartData['series'] =
+        this.warnedProceededEvent_data.OtherWarnedAndProceededEvents.Chart.Series;
+
+      this.setProductivityByBrowsingTimePieChartDataStructure('warned-rules');
+      this.warnedRulesChartData['series'] =
+        this.warnRules_data.WarnRules.Chart.Series;
+
+        this.setProductivityByBrowsingTimePieChartDataStructure('warn-categories');
+      this.WarnCategoriesChartData['series'] =
+        this.WarnCategories_data.WarnedCategories.Chart.Series;
+
+        this.setProductivityByBrowsingTimePieChartDataStructure('warn-user-agent');
+      this.WarnedUserAgentChartData['series'] =
+        this.warnedUserAgent_data.WarnedUserAgents.Chart.Series;
+
+        this.setProductivityByBrowsingTimePieChartDataStructure('warn-users');
+      this.WarnedUsersChartData['series'] =
+        this.warnedUsers_data.WarnedUsers.Chart.Series;
+
+      //Line Chart Data
+
+      this.setProductivityOverTimeChartDataStructure('bandwidth-overtime');
+      this.BandwidthOverTimeChartData['series'] =
+        this.bandwidthOvertime_data.chart.Series;
+
+      this.setProductivityOverTimeChartDataStructure('blocked-application');
+      this.BlockedApplicationChartData['series'] =
+        this.blockedApp_data.applications.chart.Series;
+
+      this.setProductivityOverTimeChartDataStructure('productivity-over-time');
+      this.ProductivityOverTimeChartData['series'] =
+        this.productivityOverTime_data.chart.Series;
+
+      this.setProductivityOverTimeChartDataStructure('warned-proceeded');
+      this.warnedProceededChartData['series'] =
+        this.warnedProceeded_data.warnedAndProceeded.chart.Series;
+
+      this.setProductivityOverTimeChartDataStructure('firewall-action-overtime');
+      this.FirewallActionOvertimeChartData['series'] =
+        this.firewallOvertime_data.FirewallActionsOverTime.Chart.Series;
+
+
+      this.setProductivityOverTimeChartDataStructure('vpn-sessions');
+      this.VPNSessionsChartData['series'] =
+        this.vpnSessions_data.VPNSessions.Chart.Series;
+
+
 
 
     }
