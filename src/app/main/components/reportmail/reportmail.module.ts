@@ -9,6 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ScheduleReportComponent } from './schedule-report/schedule-report.component';
 import { NASReportMailComponent } from './NAS-Report-mail/NAS-Report.component';
+import { NASSingleReportMailComponent } from './NASSingle-Report-mail/NASSingle-Report.component';
 
 @Pipe({ name: 'timeFormat' })
 export class timeChangeFormatPipe implements PipeTransform {
@@ -33,7 +34,7 @@ export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
-  declarations: [ReportmailComponent, ScheduleReportComponent, NASReportMailComponent],
+  declarations: [ReportmailComponent, ScheduleReportComponent, NASReportMailComponent, NASSingleReportMailComponent],
   imports: [
     CommonModule,
     ReportingRoutingModule,
