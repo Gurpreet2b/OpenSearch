@@ -194,7 +194,10 @@ export class ReportlistComponent implements OnInit {
     else if (report.ReportType === 'AA') {
       if (report.UserType === 'All') {
         this.router.navigate(['/reporting/AllActivity-Report/' + report.ID])
-      } else {
+      } else if (report.UserType === 'Single') {
+        this.router.navigate(['/reporting/AllActivitySingle-Report/' + report.ID])
+      }
+       else {
         this.router.navigate(['/reporting'])
       }
     } 

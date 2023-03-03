@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AllActivityReportMailComponent } from './AllActivity-Report-mail/AllActivity-Report.component';
 import { ReportmailComponent } from './components/reportmail.component';
 import { NASReportMailComponent } from './NAS-Report-mail/NAS-Report.component';
 import { NASSingleReportMailComponent } from './NASSingle-Report-mail/NASSingle-Report.component';
@@ -9,6 +10,7 @@ const routes: Routes = [
   { path: ':id', component: ReportmailComponent },
   { path: 'NASAll/:id', component: NASReportMailComponent },
   { path: 'NASSingle/:id', component: NASSingleReportMailComponent },
+  { path: 'AllActivity/:id', component: AllActivityReportMailComponent },
   { path: 'schedule-report/create', component: ScheduleReportComponent },
 ];
 

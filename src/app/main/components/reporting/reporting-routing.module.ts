@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllActivityReportComponent } from './AllActivity-Report/AllActivity-Report.component';
+import { AllActivitySingleReportComponent } from './AllActivitySingle-Report/AllActivitySingle-Report.component';
 import { ReportingComponent } from './components/reporting.component';
 import { CreateReportComponent } from './create-report/create-report.component';
 import { NASReportComponent } from './NAS-Report/NAS-Report.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'NAS-Report/:id', component: NASReportComponent },
   { path: 'NASSingle-Report/:id', component: NASSingleReportComponent },
   { path: 'AllActivity-Report/:id', component: AllActivityReportComponent },
+  { path: 'AllActivitySingle-Report/:id', component: AllActivitySingleReportComponent },
 ];
 
 @NgModule({
