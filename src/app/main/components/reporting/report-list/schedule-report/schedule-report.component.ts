@@ -115,12 +115,13 @@ export class ScheduleReportComponent implements OnInit {
   public IsDisabledReport = false;
 
   public additionalFiltersEnabled: boolean = true;
-  public additionalFilterArray: any = [];
+  public AddEmailListArray: any = [];
   public internetActivityArray: any = [];
   public securityNetworkArray: any = [];
 
   public IsUserSelected: any = 'singleuser';
   public isActivityRadio: any = 'allActivity';
+  public isSchduleTypeRadio: any = 'daily';
   public IsDropdownSelected: any;
 
   public chlabel: any;
@@ -140,19 +141,22 @@ export class ScheduleReportComponent implements OnInit {
   windowScrolled: boolean = false;
 
   subject: Subject<any> = new Subject();
+  public scheduleType: any = "daily";
+  public AddEmailForm: FormGroup;
+  public submitted = false;
 
 
   ngOnInit(): void {
     this.authService.SetHeaderTitleName(`Schedule Report`);
     console.log(this.showControls);
-    if (this.fetchReportID != '') {
-      this.showControls = false;
-      console.log('Fetching report with id', this.fetchReportID);
-      this.fetchThisReport(this.fetchReportID);
-    } else {
-      console.log('No ID Specified');
-    }
-    this.getLatestReportInfo();
+    // if (this.fetchReportID != '') {
+    //   this.showControls = false;
+    //   console.log('Fetching report with id', this.fetchReportID);
+    //   this.fetchThisReport(this.fetchReportID);
+    // } else {
+    //   console.log('No ID Specified');
+    // }
+    // this.getLatestReportInfo();
     this.fullStartDate = this.dtPipe.transform(
       '2022-10-24T18:00',
       'yyyy-MM-ddTHH:mm'
@@ -173,8 +177,117 @@ export class ScheduleReportComponent implements OnInit {
         timezone: 'Asia/Calcutta',
       },
     });
-    this.addFilter();
+    // this.AddEmailListArray.push({});
+
+    this.AddEmailForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+    });
+  }  
+
+  // convenience getter for easy access to form fields
+  get f() { return this.AddEmailForm.controls; }
+
+  addEmailSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.AddEmailForm.invalid) {
+        return;
+    }
+    this.AddEmailListArray.push(this.AddEmailForm.value.email);
+    // this.AddEmailForm.reset();
   }
+
+  removeAdditionalFilter(i: number) {
+    this.AddEmailListArray.splice(i, 1);
+  }
+
+  generateOverallReport() {
+    // <option>10.10.217.95</option>
+    // <option>10.10.217.39</option>
+    if (this.userType === 'singleuser' && !this.useFirewallID) {
+      let ipformat =
+        /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+      if (this.reportUser.trim() == '') {
+        alert('Please Enter an IP for Report Generation');
+        return;
+      }
+      if (!this.reportUser.match(ipformat)) {
+        alert('Please Enter a Valid IP for Report Generation');
+        return;
+      }
+    }
+    if (this.useFirewallID && this.reportUser.trim() == '') {
+      alert('Please Enter an ID for Report Generation');
+      return;
+    }
+
+    this.loading = true;
+    let request: any = {
+      // start: new Date(this.fullStartDate).toISOString(),
+      // end: new Date(this.fullEndDate).toISOString(),
+      user_type: this.userType,
+      report_type: this.reportType,
+      schedule_type: this.scheduleType,
+      recievers_list: JSON.stringify(this.AddEmailListArray)
+    };
+    if (this.useFirewallID) {
+      request.user_id = this.reportUser;
+    } else {
+      if (this.userType == 'singleuser') {
+        request.report_user = this.reportUser;
+      } else {
+        request.report_user = '';
+      }
+    }
+    // this.openInfoDialog();
+    this._http.post('eql/schedule_report/', request).subscribe(
+      async (res) => {
+        if (res.status) {
+          this.ShowReportPopup();
+          this.loading = false;
+          // alert('Success');
+          this.IsUserSelected = this.userType;
+          this.reportDataReady = true;
+          this.IsDisabledReport = true;
+          await new Promise((f) => setTimeout(f, 3000));
+          this.onDismiss();
+          this.scroll(this.content.nativeElement);
+          // this.scroll(this.document.getElementById('content'))
+        } else {
+          this.loading = false;
+          alert(res.message);
+        }
+      },
+      (error) => {
+        if (error.error.code === 'token_not_valid') {
+          this._auth.logout();
+          this.router.navigate(['/signin']);
+          this.loading = false;
+          // alert(error.error.error);
+        } else {
+          this.loading = false;
+          alert(error.error.error);
+        }
+      }
+    );
+  }
+  
+  ShowReportPopup(){
+    const target = "#generateReport";
+    $(target).show();
+    $('modal-backdrop').add();
+    $("body").addClass("modal-open");
+  }
+
+  DismissReport(){
+    const target = "#generateReport";
+    $(target).hide();
+    $('.modal-backdrop').remove();
+    $("body").removeClass("modal-open");
+    $("body").addClass("modal-overflow");
+  }
+
 
   loadLatestReport(reportID: any) {
     this.router.navigate(['/reporting'], {
@@ -267,121 +380,12 @@ export class ScheduleReportComponent implements OnInit {
   allActivityRadio(event: any) {
     this.isActivityRadio = event;
   }
-  addFilter() {
-    this.additionalFilterArray.push({});
+  ScheduleTypeRadio(event: any) {
+    this.isSchduleTypeRadio = event;
   }
 
-  removeAdditionalFilter(i: number) {
-    this.additionalFilterArray.splice(i, 1);
-  }
   OpenPopup() {
     this.loading = true;
-  }
-
-  generateOverallReport() {
-    // <option>10.10.217.95</option>
-    // <option>10.10.217.39</option>
-    if (this.userType === 'singleuser' && !this.useFirewallID) {
-      let ipformat =
-        /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-      if (this.reportUser.trim() == '') {
-        alert('Please Enter an IP for Report Generation');
-        return;
-      }
-      if (!this.reportUser.match(ipformat)) {
-        alert('Please Enter a Valid IP for Report Generation');
-        return;
-      }
-    }
-    if (this.useFirewallID && this.reportUser.trim() == '') {
-      alert('Please Enter an ID for Report Generation');
-      return;
-    }
-
-    if (
-      new Date(this.fullStartDate).getTime() >=
-      new Date(this.fullEndDate).getTime()
-    ) {
-      alert(
-        'The Starting Date-Time should be greater than the ending Date-Time. Please Use Appropriate Data and Time Values'
-      );
-      return;
-    }
-    if (
-      new Date(this.fullEndDate).getTime() -
-      new Date(this.fullStartDate).getTime() <
-      300000
-    ) {
-      alert(
-        'The difference in Starting and Ending time must be atleast 10 minutes'
-      );
-      return;
-    }
-    this.loading = true;
-    // this.fullStartDate.setHours(this.fromHours, this.fromMinutes, 0);
-    // this.fullEndDate.setHours(this.toHours, this.toMinutes, 0);
-    let request: any = {
-      start: new Date(this.fullStartDate).toISOString(),
-      end: new Date(this.fullEndDate).toISOString(),
-      type: this.userType,
-      reporttype: this.reportType,
-      // user: '',
-    };
-    if (this.useFirewallID) {
-      request.user_id = this.reportUser;
-    } else {
-      if (this.userType == 'singleuser') {
-        request.user = this.reportUser;
-      } else {
-        request.user = '';
-      }
-    }
-    // this.openInfoDialog();
-    this._http.post('eql/report', request).subscribe(
-      async (res) => {
-        if (res.status) {
-          this.ShowReportPopup();
-          this.loading = false;
-          // alert('Success');
-          this.IsUserSelected = this.userType;
-          this.reportDataReady = true;
-          this.IsDisabledReport = true;
-          await new Promise((f) => setTimeout(f, 3000));
-          this.onDismiss();
-          this.scroll(this.content.nativeElement);
-          // this.scroll(this.document.getElementById('content'))
-        } else {
-          this.loading = false;
-          alert('something is wrong');
-        }
-      },
-      (error) => {
-        if (error.error.code === 'token_not_valid') {
-          this._auth.logout();
-          this.router.navigate(['/signin']);
-          this.loading = false;
-          // alert(error.error.error);
-        } else {
-          this.loading = false;
-          alert(error.error.error);
-        }
-      }
-    );
-  }
-  
-  ShowReportPopup(){
-    const target = "#generateReport";
-    $(target).show();
-    $('modal-backdrop').add();
-    $("body").addClass("modal-open");
-  }
-
-  DismissReport(){
-    const target = "#generateReport";
-    $(target).hide();
-    $('.modal-backdrop').remove();
-    $("body").removeClass("modal-open");
-    $("body").addClass("modal-overflow");
   }
 
   fetchThisReport(report_id: any) {

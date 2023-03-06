@@ -21,11 +21,11 @@ import domToPdf from 'dom-to-pdf';
 import $ from 'jquery';
 
 @Component({
-  selector: 'app-report-list',
-  templateUrl: './report-list.component.html',
-  styleUrls: ['./report-list.component.css'],
+  selector: 'app-mail-report-list',
+  templateUrl: './mail-report-list.component.html',
+  styleUrls: ['./mail-report-list.component.css'],
 })
-export class ReportlistComponent implements OnInit {
+export class MailReportlistComponent implements OnInit {
   @ViewChild('dialogRef')
   dialogRef!: TemplateRef<any>;
 
@@ -50,7 +50,6 @@ export class ReportlistComponent implements OnInit {
 
   reportActiveStatus: boolean = false;
   selectedReport = 'Hello';
-  public reportTypePdf: any = 'all/IU';
 
   myFooList = [
     'Some Item',
@@ -75,29 +74,14 @@ export class ReportlistComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.authService.SetHeaderTitleName(`Reporting List`);
+    this.authService.SetHeaderTitleName(`Schedule Reporting List`);
     this.loading = false;
     // this._auth.reportingIsActive();
     this.getReportList(true, 0);
   }
 
-  getDownloadPDf(reportData: any) {
-    if (reportData.ReportType === "AA") {
-      if (reportData.UserType === 'singleuser') {
-        this.reportTypePdf = 'single/AA'
-      } else {
-        this.reportTypePdf = 'all/AA'
-      }
-    } else if (reportData.ReportType === "Internet Usage") {
-      this.reportTypePdf = 'all/IU'
-    } else if (reportData.ReportType === "NAS") {
-      if (reportData.UserType === 'singleuser') {
-        this.reportTypePdf = 'single/NAS'
-      } else {
-        this.reportTypePdf = 'all/NAS'
-      }
-    }
-    this._http.get(`eql/download_report?report_id=${reportData.ID}&url=${this.reportTypePdf}/`).subscribe(
+  getDownloadPDf(reportId: any) {
+    this._http.get(`eql/download_report?report_id=${reportId}`).subscribe(
       (res) => {
         this.onDismiss();
         if (res.status) {

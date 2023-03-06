@@ -141,7 +141,7 @@
                      <!-- (click)="viewThisReport(rep.Report.ID)"   [routerLink]="['/reporting/NASSingle-Report', rep.Report.ID]" -->
                     View
                   </button>
-                  <button type="button" class="PDFButton" title="Save As PDF" (click)="getDownloadPDf(rep.Report)"
+                  <button type="button" class="PDFButton" title="Save As PDF" (click)="getDownloadPDf(rep.Report.ID)"
                     data-toggle="modal" data-target="#PDFGenerateReport">
                     <img src="https://img.icons8.com/material-outlined/17/null/downloading-updates.png" />
                   </button>

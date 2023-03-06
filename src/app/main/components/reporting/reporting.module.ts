@@ -16,6 +16,8 @@ import { NASReportComponent } from './NAS-Report/NAS-Report.component';
 import { NASSingleReportComponent } from './NASSingle-Report/NASSingle-Report.component';
 import { AllActivityReportComponent } from './AllActivity-Report/AllActivity-Report.component';
 import { AllActivitySingleReportComponent } from './AllActivitySingle-Report/AllActivitySingle-Report.component';
+import { MailReportlistComponent } from './mail-report-list/mail-report-list.component';
+import { ScheduleReportComponent } from './report-list/schedule-report/schedule-report.component';
 /*
  * Raise the value exponentially
  * Takes an exponent argument that defaults to 1.
@@ -48,7 +50,9 @@ export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
-  declarations: [ReportingComponent, CreateReportComponent, ReportlistComponent, timeChangeFormatPipe, NASReportComponent, NASSingleReportComponent, AllActivityReportComponent, AllActivitySingleReportComponent],
+  declarations: [ReportingComponent, CreateReportComponent, ReportlistComponent, ScheduleReportComponent,
+    timeChangeFormatPipe, NASReportComponent, NASSingleReportComponent, AllActivityReportComponent, 
+    AllActivitySingleReportComponent, MailReportlistComponent],
   imports: [
     CommonModule,
     ReportingRoutingModule,

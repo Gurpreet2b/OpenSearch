@@ -7,11 +7,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { ScheduleReportComponent } from './schedule-report/schedule-report.component';
 import { NASReportMailComponent } from './NAS-Report-mail/NAS-Report.component';
 import { NASSingleReportMailComponent } from './NASSingle-Report-mail/NASSingle-Report.component';
 import { AllActivityReportMailComponent } from './AllActivity-Report-mail/AllActivity-Report.component';
 import { AllActivitySingleReportMailComponent } from './AllActivitySingle-Report-mail/AllActivitySingle-Report.component';
+import { MailReportlistComponent } from '../reporting/mail-report-list/mail-report-list.component';
 
 @Pipe({ name: 'timeFormat' })
 export class timeChangeFormatPipe implements PipeTransform {
@@ -36,7 +36,9 @@ export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
-  declarations: [ReportmailComponent, ScheduleReportComponent, NASReportMailComponent, NASSingleReportMailComponent, AllActivityReportMailComponent, AllActivitySingleReportMailComponent],
+  declarations: [ReportmailComponent, NASReportMailComponent,
+    NASSingleReportMailComponent, AllActivityReportMailComponent, AllActivitySingleReportMailComponent
+  ],
   imports: [
     CommonModule,
     ReportingRoutingModule,

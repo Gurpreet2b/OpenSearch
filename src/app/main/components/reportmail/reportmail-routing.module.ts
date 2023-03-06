@@ -5,15 +5,13 @@ import { AllActivitySingleReportMailComponent } from './AllActivitySingle-Report
 import { ReportmailComponent } from './components/reportmail.component';
 import { NASReportMailComponent } from './NAS-Report-mail/NAS-Report.component';
 import { NASSingleReportMailComponent } from './NASSingle-Report-mail/NASSingle-Report.component';
-import { ScheduleReportComponent } from './schedule-report/schedule-report.component';
 
 const routes: Routes = [
-  { path: ':id', component: ReportmailComponent },
-  { path: 'NASAll/:id', component: NASReportMailComponent },
-  { path: 'NASSingle/:id', component: NASSingleReportMailComponent },
-  { path: 'AllActivity/:id', component: AllActivityReportMailComponent },
-  { path: 'AllActivitySingle/:id', component: AllActivitySingleReportMailComponent },
-  { path: 'schedule-report/create', component: ScheduleReportComponent },
+  { path: 'all/IU:id', component: ReportmailComponent },
+  { path: 'all/NAS/:id', component: NASReportMailComponent },
+  { path: 'single/NAS/:id', component: NASSingleReportMailComponent },
+  { path: 'all/AA/:id', component: AllActivityReportMailComponent },
+  { path: 'single/AA/:id', component: AllActivitySingleReportMailComponent },
 ];
 
 @NgModule({
