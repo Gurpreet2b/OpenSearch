@@ -106,7 +106,7 @@ export class CreateReportComponent implements OnInit {
   public latestReportInfo: any = {};
   public active: boolean = false;
   public report_view_title = '';
-  public reportType = 'Internet Usage';
+  public reportType = 'AA';
   public userType = 'singleuser';
   public reportSource = 'Sophos Firewall';
   public reportUser = '';

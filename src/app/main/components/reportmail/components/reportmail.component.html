@@ -2023,6 +2023,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -2053,6 +2054,7 @@
                                     </div>
                                 </div>
 
+                                <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
@@ -2073,12 +2075,12 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let product of reportData_Productivity.ProductivityByBrowsingTime.Table.data">
-                                                                <td class="text-left">{{ product.name }}</td>
-                                                                <td class="text-left">
+                                                                *ngFor="let product of reportData_Productivity.ProductivityByBrowsingTime.Table.data; let i=index">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ product.name }}</td>
+                                                                <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ product.duration }}
                                                                 </td>
-                                                                <td class="text-left">
+                                                                <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ product.bandwidth }}
                                                                 </td>
                                                             </tr>
@@ -2089,7 +2091,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div style="page-break-before: always;"></div>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">

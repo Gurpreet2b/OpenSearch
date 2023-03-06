@@ -11,6 +11,7 @@ import { ScheduleReportComponent } from './schedule-report/schedule-report.compo
 import { NASReportMailComponent } from './NAS-Report-mail/NAS-Report.component';
 import { NASSingleReportMailComponent } from './NASSingle-Report-mail/NASSingle-Report.component';
 import { AllActivityReportMailComponent } from './AllActivity-Report-mail/AllActivity-Report.component';
+import { AllActivitySingleReportMailComponent } from './AllActivitySingle-Report-mail/AllActivitySingle-Report.component';
 
 @Pipe({ name: 'timeFormat' })
 export class timeChangeFormatPipe implements PipeTransform {
@@ -35,7 +36,7 @@ export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
-  declarations: [ReportmailComponent, ScheduleReportComponent, NASReportMailComponent, NASSingleReportMailComponent, AllActivityReportMailComponent],
+  declarations: [ReportmailComponent, ScheduleReportComponent, NASReportMailComponent, NASSingleReportMailComponent, AllActivityReportMailComponent, AllActivitySingleReportMailComponent],
   imports: [
     CommonModule,
     ReportingRoutingModule,
