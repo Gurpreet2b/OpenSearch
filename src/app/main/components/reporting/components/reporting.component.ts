@@ -250,6 +250,7 @@ export class ReportingComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.SetHeaderTitleName(`Reporting`);
+    this.fetchReportID = this.activatedroute.snapshot.params['id'] || 0;
     console.log(this.showControls);
     if (this.fetchReportID != '') {
       this.showControls = false;

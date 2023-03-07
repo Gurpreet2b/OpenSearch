@@ -11,7 +11,8 @@ import { ReportlistComponent } from './report-list/report-list.component';
 import { ScheduleReportComponent } from './schedule-report/schedule-report.component';
 
 const routes: Routes = [
-  { path: '', component: ReportingComponent },
+  // { path: '', component: ReportingComponent },
+  { path: 'IU-Report/:id', component: ReportingComponent },
   { path: 'create-report', component: CreateReportComponent },
   { path: 'report-list', component: ReportlistComponent },
   { path: 'NAS-Report/:id', component: NASReportComponent },

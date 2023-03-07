@@ -36,7 +36,7 @@ export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
-  declarations: [ReportmailComponent, NASReportMailComponent,
+  declarations: [ReportmailComponent, NASReportMailComponent, timeChangeFormatPipe,
     NASSingleReportMailComponent, AllActivityReportMailComponent, AllActivitySingleReportMailComponent
   ],
   imports: [

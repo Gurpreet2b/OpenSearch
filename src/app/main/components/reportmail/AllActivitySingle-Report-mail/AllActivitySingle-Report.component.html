@@ -506,7 +506,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -612,7 +612,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.total_mbs }}
@@ -776,7 +776,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.total_mbs }}
@@ -852,7 +852,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -924,7 +924,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -996,7 +996,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -1072,7 +1072,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -1140,7 +1140,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -1221,7 +1221,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td *ngIf="i %30 === 0 && i !== 0">
                                                                     <div style="page-break-after: always;"></div>
@@ -1291,7 +1291,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.total_mbs }}
@@ -1367,7 +1367,7 @@
                                                                     {{ rec.type }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -1443,7 +1443,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td *ngIf="i %30 === 0 && i !== 0">
                                                                     <div style="page-break-after: always;"></div>
@@ -1516,7 +1516,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td *ngIf="i %30 === 0 && i !== 0">
                                                                     <div style="page-break-after: always;"></div>
@@ -1586,7 +1586,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -1695,7 +1695,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -1769,7 +1769,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.total_mbs }}
@@ -1843,7 +1843,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -1916,7 +1916,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.total_mbs }}
@@ -2081,7 +2081,7 @@
                                                                     {{ rec.count }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -3392,7 +3392,7 @@
                                                                 <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -3479,7 +3479,7 @@
                                                                     {{ rec.action }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -3648,7 +3648,7 @@
                                                                     {{ rec.action }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -4167,7 +4167,7 @@
                                                                 </td>
 
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -4253,7 +4253,7 @@
                                                                     {{ rec.count }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left" *ngIf="i %30 !== 0">
                                                                     {{ rec.bandwidth }}
@@ -4930,7 +4930,7 @@
                                                                     {{ rec.count }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration  }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}

@@ -217,6 +217,16 @@ export class ReportlistComponent implements OnInit {
         this.router.navigate(['/reporting'])
       }
     } 
+    else if (report.ReportType === 'Internet Usage') {
+      if (report.UserType === 'All') {
+        this.router.navigate(['/reporting/IU-Report/' + report.ID])
+      } else if (report.UserType === 'Single') {
+        this.router.navigate(['/reporting/IU-Report/' + report.ID])
+      }
+       else {
+        this.router.navigate(['/reporting'])
+      }
+    } 
     else {
       this.router.navigate(['/reporting'])
     }
