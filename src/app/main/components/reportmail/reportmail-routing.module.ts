@@ -7,7 +7,7 @@ import { NASReportMailComponent } from './NAS-Report-mail/NAS-Report.component';
 import { NASSingleReportMailComponent } from './NASSingle-Report-mail/NASSingle-Report.component';
 
 const routes: Routes = [
-  { path: 'all/IU:id', component: ReportmailComponent },
+  { path: 'all/IU/:id', component: ReportmailComponent },
   { path: 'all/NAS/:id', component: NASReportMailComponent },
   { path: 'single/NAS/:id', component: NASSingleReportMailComponent },
   { path: 'all/AA/:id', component: AllActivityReportMailComponent },

@@ -301,6 +301,7 @@ export class ScheduleReportComponent implements OnInit {
     $('.modal-backdrop').remove();
     $("body").removeClass("modal-open");
     $("body").addClass("modal-overflow");
+    this.router.navigate(['/reporting/schedule-report-list']);
   }
 
 

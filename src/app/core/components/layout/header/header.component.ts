@@ -65,6 +65,7 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.http.post('eql/smtp_details/', formData).subscribe((res: any) => {
       if (res.status === true) {
         const responseData = res.data;
+        alert("SMTP Settings Detail Data Successfully !!")
         this.DismissSMTPEmail();
         this.loading = false;
       } else {

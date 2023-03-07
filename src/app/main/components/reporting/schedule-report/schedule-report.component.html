@@ -200,7 +200,7 @@
                             </button>
                         </div> -->
                         <div class="col-md-12 text-right">
-                            <div *ngIf="loading" id="loading"></div>
+                            <div *ngIf="loading" id="loading" class="mr-2"></div>
                             <button type="button" class="btn theme-btn" (click)="generateOverallReport()">
                                 Schedule Report
                             </button>
@@ -246,3 +246,34 @@
     </div>
 </div>
 
+<div class="modal in" id="generateReport">
+    <div class="modal-dialog">
+        <div class="modal-content popup_success">
+            <div class="modal-body">
+                <h4>Info</h4>
+                <!-- <label>Details of the report are as follows:</label> -->
+                <hr>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="bold-text p-0">Schedule Report Genertion has Started!</div>
+                        <label>We are processing your request. Schedule Report Generation will take some
+                            time.</label>
+                        <label>Please take a seat.</label>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="logo">
+                            <div id="sudarshanloading">
+                                <img src="./assets/img/sdlogo.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 text-right">
+
+                    <button class="popup-thm-btn ml-2" (click)="DismissReport()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
