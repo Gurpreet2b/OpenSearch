@@ -538,7 +538,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat}}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -604,9 +604,9 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
-                                                               
+
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -628,7 +628,9 @@
                                             <div class="card-header">
                                                 <div class="col-lg-6">
                                                     <h3 class="card-title">
-                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Departments by Size 
+                                                        <i
+                                                            class="tim-icons icon-delivery-fast text-info"></i>Departments
+                                                        by Size
                                                     </h3>
                                                 </div>
                                                 <div class="col-lg-6 text-right">
@@ -671,9 +673,9 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
-                                                               
+
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -711,7 +713,7 @@
                                                             <td class="text-left">
                                                                 {{ rec.name | slice: 0:40 }}<span
                                                                     *ngIf="rec.name.length > 40">...</span>
-                                                               
+
                                                             </td>
 
 
@@ -775,7 +777,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
 
                             <div id="content-sitesBySize" #content>
                                 <div class="row padding-bottom-zero">
@@ -828,7 +830,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -895,7 +897,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -910,7 +912,253 @@
                                 </div>
                             </div>
 
-                             <!-- Unacceptable  -->
+                            <!-- Productivity  -->
+
+                            <h2 class="chart-heading">Productivity</h2>
+                            <hr>
+
+                            <div id="content-productivity-categories-time" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Categories
+                                                        by Browsing Time
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-productivity-categories-time')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [options]="CategoriesByBrowsingTimeChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Categories by Browsing Time</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Type</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of categoriesTime_data.CategoriesByBrowsingTime.Table.data
+                                  ">
+                                                                <td class="text-left">{{ rec.name }}</td>
+
+                                                                <td class="text-left">{{ rec.type }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="content-productivity-browsing-time" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i
+                                                            class="tim-icons icon-delivery-fast text-info"></i>Productivity
+                                                        by Browsing Time
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-productivity-browsing-time')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [options]="ProductivityByBrowsingTimeChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Productivity by Browsing Time</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of productivityBrowsing_data.Table.data
+                                  ">
+                                                                <td class="text-left">{{ rec.name }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="content-productivity-over-time" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i
+                                                            class="tim-icons icon-delivery-fast text-info"></i>Productivity
+                                                        Over Time
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-productivity-over-time')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [options]="ProductivityOverTimeChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="content-productive-users-time" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Top Users
+                                                        by Browsing Time
+
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-productive-users-time')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [callbackFunction]="chartCallbackStacked"
+                                                        [options]="ProductiveUsersBrowsingTimeChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Top Users by Browsing Time</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of productiveApp_data.TopUsersByBrowsingTime.Table.data
+                                  ">
+                                                                <td class="text-left">{{ rec.name }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Unacceptable  -->
 
                             <h2 class="chart-heading">Unacceptable</h2>
                             <hr>
@@ -968,7 +1216,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1037,7 +1285,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -1106,7 +1354,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1121,7 +1369,7 @@
                                 </div>
                             </div>
 
-                             <!-- Unproductive -->
+                            <!-- Unproductive -->
 
                             <h2 class="chart-heading">Unproductive</h2>
                             <hr>
@@ -1179,7 +1427,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1248,7 +1496,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -1317,7 +1565,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1353,7 +1601,7 @@
                                                     </h3>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
@@ -1391,7 +1639,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -1401,7 +1649,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
 
                             <div id="content-acceptable-sites" #content>
                                 <div class="row padding-bottom-zero">
@@ -1455,7 +1703,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.total_mbs }}
@@ -1488,7 +1736,7 @@
                                                     </h3>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
@@ -1523,7 +1771,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1537,6 +1785,426 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- productive  -->
+
+                            <h2 class="chart-heading">Productive</h2>
+                            <hr>
+
+                            <div id="content-productive-applications" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Productive
+                                                        Applications
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-productive-applications')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [callbackFunction]="chartCallbackStacked"
+                                                        [options]="ProductiveApplicationsChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Productive Applications</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of productiveUsers_data.TopProductiveApplications.Table.Data
+                                   ">
+                                                                <td class="text-left">{{ rec.name }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="content-productive-sites" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Productive
+                                                        Sites
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-productive-sites')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [callbackFunction]="chartCallbackStacked"
+                                                        [options]="ProductiveSitesChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Productive Sites</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of productiveSites_data.TopProductiveSites.Table.Data
+                                   ">
+                                                                <td class="text-left">{{ rec.name }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="content-productive-users" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Productive
+                                                        Users
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-productive-users')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [callbackFunction]="chartCallbackStacked"
+                                                        [options]="ProductiveUsersChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Productive Users</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of productiveUsers_data.TopProductiveUsers.Table.Data
+                                   ">
+                                                                <td class="text-left">{{ rec.name }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Blocked  -->
+
+                            <h2 class="chart-heading">Blocked</h2>
+                            <hr>
+                            <div id="content-blocked-events" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Blocked Events 
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-blocked-events')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [options]="BlockedEventChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Blocked Events</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of blockedEvent_data.BlockedEvents.Table.Data
+                                  ">
+                                                                <td class="text-left">{{ rec.name }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.total_mbs }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="content-blocked-categories" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Categories
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-blocked-categories')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [options]="BlockedCategoriesChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Categories</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Category</th>
+                                                                <th class="text-left">Productivity</th>
+                                                                <th class="text-left">Hits</th>
+                                                                <th class="text-left">Size</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of blockedCategories_data.Categories.Table.data
+                                  ">
+                                                                <td class="text-left">{{ rec.category }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ rec.productivity }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.hits }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.size }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="content-blocked-users" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Blocked Users
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-blocked-users')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [options]="IUBlockedUsersChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Blocked Users</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Category</th>
+                                                                <th class="text-left">Productivity</th>
+                                                                <th class="text-left">Hits</th>
+                                                                <th class="text-left">Size</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of blockUser_data.Users.Table.data
+                                  ">
+                                                                <td class="text-left">{{ rec.category }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ rec.productivity }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.hits }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.size }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <!-- Warned  -->
                             <h2 class="chart-heading">Warned</h2>
@@ -1563,7 +2231,6 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
-                                                        [callbackFunction]="chartCallbackStacked"
                                                         [options]="warnedCategoriesChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -1594,7 +2261,74 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="content-warned-users" #content>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <div class="card card-chart">
+                                            <div class="card-header">
+                                                <div class="col-lg-6">
+                                                    <h3 class="card-title">
+                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Warned
+                                                        Users
+                                                    </h3>
+                                                </div>
+                                                <div class="col-lg-6 text-right">
+                                                    <h3 class="card-title"
+                                                        (click)="DownloadPDF('content-warned-users')">
+                                                        <u>Export PDF</u>
+                                                    </h3>
+                                                </div>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="chart-area">
+                                                    <highcharts-chart [Highcharts]="Highcharts"
+                                                        [options]="warnedUsersChartData"
+                                                        style="width: 100%; height: 100%">
+                                                    </highcharts-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Warned Users</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of warnedUser_data.Users.Table.Data
+                                  ">
+                                                                <td class="text-left">{{ rec.name }}</td>
+
+                                                                <td class="text-left">
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1631,7 +2365,6 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
-                                                        [callbackFunction]="chartCallbackStacked"
                                                         [options]="warnedProceededChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -1662,7 +2395,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1677,21 +2410,20 @@
                                 </div>
                             </div>
 
-                         
-                            <!-- <div id="content-categories-size" #content>
+                            <div id="content-warned-events" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <div class="col-lg-6">
                                                     <h3 class="card-title">
-                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Categories
-                                                        by Size
+                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Warned
+                                                        Events
                                                     </h3>
                                                 </div>
                                                 <div class="col-lg-6 text-right">
                                                     <h3 class="card-title"
-                                                        (click)="DownloadPDF('content-categories-size')">
+                                                        (click)="DownloadPDF('content-warned-events')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
@@ -1700,7 +2432,7 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
-                                                        [options]="CategoriesBySizeChartData"
+                                                        [options]="warnedEventsChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
                                                 </div>
@@ -1712,7 +2444,7 @@
                                     <div class="col-xs-6 col-sm-6 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5 class="card-title">Categories by Size</h5>
+                                                <h5 class="card-title">Warned Events</h5>
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -1721,19 +2453,19 @@
                                                             <tr>
                                                                 <th class="text-left">Name</th>
                                                                 <th class="text-left">Duration</th>
-                                                                <th class="text-left">Total</th>
+                                                                <th class="text-left">Bandwidth</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of categoriesSize_data.table.Data
+                                                            <tr *ngFor="let rec of warnedEvents_data.WarnedEvents.Table.Data
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.total_mbs }}
+                                                                    {{ rec.bandwidth }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -1743,7 +2475,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
+
+
+                            <!--  -->
 
 
 
@@ -1802,7 +2537,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -1891,76 +2626,7 @@
                             </div>
 
 
-                            <div id="content-blocked-categories" #content>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-12 col-sm-12 col-lg-12">
-                                        <div class="card card-chart">
-                                            <div class="card-header">
-                                                <div class="col-lg-6">
-                                                    <h3 class="card-title">
-                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Categories
-                                                    </h3>
-                                                </div>
-                                                <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title"
-                                                        (click)="DownloadPDF('content-blocked-categories')">
-                                                        <u>Export PDF</u>
-                                                    </h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body">
-                                                <div class="chart-area">
-                                                    <highcharts-chart [Highcharts]="Highcharts"
-                                                        [options]="BlockedCategoriesChartData"
-                                                        style="width: 100%; height: 100%">
-                                                    </highcharts-chart>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">Categories</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table tablesorter" id="">
-                                                        <thead class="text-primary">
-                                                            <tr>
-                                                                <th class="text-left">Category</th>
-                                                                <th class="text-left">Productivity</th>
-                                                                <th class="text-left">Hits</th>
-                                                                <th class="text-left">Size</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let rec of blockedCategories_data.categories.table.data
-                                  ">
-                                                                <td class="text-left">{{ rec.category }}</td>
-
-                                                                <td class="text-left">
-                                                                    {{ rec.productivity }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.hits }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.size }}
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            
                             <div id="content-blocked-sites" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -2034,327 +2700,6 @@
                            
 
                            -->
-
-
-
-
-                            <!-- productivity  -->
-                            <!-- <h2 class="chart-heading">Productivity</h2>
-                            <hr>
-                            <div id="content-productivity-browsing-time" #content>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-12 col-sm-12 col-lg-12">
-                                        <div class="card card-chart">
-                                            <div class="card-header">
-                                                <div class="col-lg-6">
-                                                    <h3 class="card-title">
-                                                        <i
-                                                            class="tim-icons icon-delivery-fast text-info"></i>Productivity
-                                                        by Browsing Time
-                                                    </h3>
-                                                </div>
-                                                <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title"
-                                                        (click)="DownloadPDF('content-productivity-browsing-time')">
-                                                        <u>Export PDF</u>
-                                                    </h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body">
-                                                <div class="chart-area">
-                                                    <highcharts-chart [Highcharts]="Highcharts"
-                                                        [options]="ProductivityByBrowsingTimeChartData"
-                                                        style="width: 100%; height: 100%">
-                                                    </highcharts-chart>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">Productivity by Browsing Time</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table tablesorter" id="">
-                                                        <thead class="text-primary">
-                                                            <tr>
-                                                                <th class="text-left">Name</th>
-                                                                <th class="text-left">Duration</th>
-                                                                <th class="text-left">Bandwidth</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let rec of productivityBrowsing_data.table.data
-                                  ">
-                                                                <td class="text-left">{{ rec.name }}</td>
-
-                                                                <td class="text-left">
-                                                                    {{ rec.duration }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.bandwidth }}
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <!-- <div id="content-productivity-over-time" #content>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-12 col-sm-12 col-lg-12">
-                                        <div class="card card-chart">
-                                            <div class="card-header">
-                                                <div class="col-lg-6">
-                                                    <h3 class="card-title">
-                                                        <i
-                                                            class="tim-icons icon-delivery-fast text-info"></i>Productivity
-                                                        Over Time
-                                                    </h3>
-                                                </div>
-                                                <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title"
-                                                        (click)="DownloadPDF('content-productivity-over-time')">
-                                                        <u>Export PDF</u>
-                                                    </h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body">
-                                                <div class="chart-area">
-                                                    <highcharts-chart [Highcharts]="Highcharts"
-                                                        [options]="ProductivityOverTimeChartData"
-                                                        style="width: 100%; height: 100%">
-                                                    </highcharts-chart>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div id="content-productive-apps" #content>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-12 col-sm-12 col-lg-12">
-                                        <div class="card card-chart">
-                                            <div class="card-header">
-                                                <div class="col-lg-6">
-                                                    <h3 class="card-title">
-                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Productive
-                                                        Applications
-                                                    </h3>
-                                                </div>
-                                                <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title"
-                                                        (click)="DownloadPDF('content-productive-apps')">
-                                                        <u>Export PDF</u>
-                                                    </h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body">
-                                                <div class="chart-area">
-                                                    <highcharts-chart [Highcharts]="Highcharts"
-                                                        [callbackFunction]="chartCallbackStacked"
-                                                        [options]="ProductiveAppsChartData"
-                                                        style="width: 100%; height: 100%">
-                                                    </highcharts-chart>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">Productive Applications</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table tablesorter" id="">
-                                                        <thead class="text-primary">
-                                                            <tr>
-                                                                <th class="text-left">Name</th>
-                                                                <th class="text-left">Duration</th>
-                                                                <th class="text-left">Bandwidth</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let rec of productiveAppTable_data.Productive
-                                  ">
-                                                                <td class="text-left">{{ rec.name }}</td>
-
-                                                                <td class="text-left">
-                                                                    {{ rec.duration }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.bandwidth }}
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="content-productive-sites" #content>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-12 col-sm-12 col-lg-12">
-                                        <div class="card card-chart">
-                                            <div class="card-header">
-                                                <div class="col-lg-6">
-                                                    <h3 class="card-title">
-                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Productive
-                                                        Sites
-                                                    </h3>
-                                                </div>
-                                                <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title"
-                                                        (click)="DownloadPDF('content-productive-sites')">
-                                                        <u>Export PDF</u>
-                                                    </h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body">
-                                                <div class="chart-area">
-                                                    <highcharts-chart [Highcharts]="Highcharts"
-                                                        [callbackFunction]="chartCallbackStacked"
-                                                        [options]="ProductiveSitesChartData"
-                                                        style="width: 100%; height: 100%">
-                                                    </highcharts-chart>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">Productive Sites</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table tablesorter" id="">
-                                                        <thead class="text-primary">
-                                                            <tr>
-                                                                <th class="text-left">Name</th>
-                                                                <th class="text-left">Duration</th>
-                                                                <th class="text-left">Bandwidth</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let rec of productiveSitesTable_data.Productive
-                                  ">
-                                                                <td class="text-left">{{ rec.name }}</td>
-
-                                                                <td class="text-left">
-                                                                    {{ rec.duration }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.bandwidth }}
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="content-productive-users" #content>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-12 col-sm-12 col-lg-12">
-                                        <div class="card card-chart">
-                                            <div class="card-header">
-                                                <div class="col-lg-6">
-                                                    <h3 class="card-title">
-                                                        <i class="tim-icons icon-delivery-fast text-info"></i>Productive
-                                                        Users
-                                                    </h3>
-                                                </div>
-                                                <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title"
-                                                        (click)="DownloadPDF('content-productive-users')">
-                                                        <u>Export PDF</u>
-                                                    </h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body">
-                                                <div class="chart-area">
-                                                    <highcharts-chart [Highcharts]="Highcharts"
-                                                        [callbackFunction]="chartCallbackStacked"
-                                                        [options]="ProductiveUsersChartData"
-                                                        style="width: 100%; height: 100%">
-                                                    </highcharts-chart>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">Productive Users</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table tablesorter" id="">
-                                                        <thead class="text-primary">
-                                                            <tr>
-                                                                <th class="text-left">Name</th>
-                                                                <th class="text-left">Duration</th>
-                                                                <th class="text-left">Bandwidth</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let rec of productiveUsersTable_data.Productive
-                                  ">
-                                                                <td class="text-left">{{ rec.name }}</td>
-
-                                                                <td class="text-left">
-                                                                    {{ rec.duration }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.bandwidth }}
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            
-
-
-                           
-
-                           
-
-                         <!--  -->
 
 
                             <!-- NAS -->
@@ -2504,7 +2849,7 @@
                                                                     {{ rec.count }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -2525,7 +2870,7 @@
 
                             <!-- Blocked Traffic  -->
 
-                         <h2 class="chart-heading">Blocked Traffic</h2>
+                            <h2 class="chart-heading">Blocked Traffic</h2>
                             <hr>
                             <div id="content-acceptable-sites" #content>
                                 <div class="row padding-bottom-zero">
@@ -2839,7 +3184,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div id="content-blocked-productive-sites" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -3289,7 +3634,7 @@
                                 </div>
                             </div>
 
-                          - 
+                            -
 
                             <div id="content-blocked-events" #content>
                                 <div class="row padding-bottom-zero">
@@ -3404,7 +3749,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">VPN Users</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -3445,7 +3790,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- 
 
                             <div id="content-warned-traffic" #content>
                                 <div class="row padding-bottom-zero">
@@ -3482,7 +3826,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Most Warned Traffic</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -3559,7 +3903,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Other Warned and Proceeded Event</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -3632,7 +3976,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Warn Rules</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -3706,7 +4050,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Warned Categories</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -3783,7 +4127,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Warned User Agents</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -3825,6 +4169,7 @@
                                 </div>
                             </div>
 
+
                             <div id="content-warned-user-agents" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -3859,7 +4204,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Warned Users</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -3896,10 +4241,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <!-- Allowed Traffic  -->
-                            <!-- <h2 class="chart-heading">Allowed Traffic</h2>
+
+                            <h2 class="chart-heading">Allowed Traffic</h2>
                             <hr>
                             <div id="content-unacceptable-application" #content>
                                 <div class="row padding-bottom-zero">
@@ -3954,7 +4300,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -4037,7 +4383,7 @@
                                                                     {{ rec.action }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -4119,7 +4465,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.hits }}
@@ -4273,7 +4619,7 @@
                                                                     {{ rec.action }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -4296,6 +4642,8 @@
                                     </div>
                                 </div>
                             </div>
+
+
 
                             <div id="content-unproductive-users" #content>
                                 <div class="row padding-bottom-zero">
@@ -4354,7 +4702,7 @@
 
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -4372,11 +4720,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <!-- Firewall  -->
 
-                            <!-- <h2 class="chart-heading">Firewall</h2>
+                            <h2 class="chart-heading">Firewall</h2>
                             <hr>
 
                             <div id="content-firewall-exception" #content>
@@ -4414,7 +4762,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Exception</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -4457,7 +4805,6 @@
                                 </div>
                             </div>
 
-
                             <div id="content-filter-actions" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -4493,7 +4840,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Filter Actions</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -4546,7 +4893,6 @@
                                 </div>
                             </div>
 
-
                             <div id="content-firewalls" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -4581,7 +4927,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Firewalls</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -4669,7 +5015,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Rules</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -4759,7 +5105,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Top Excluded Sites</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -4812,7 +5158,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div id="content-user-agent" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -4847,7 +5192,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Top User Agent</h5>
-                                                <p class="card-category">Line Chart withPoints</p>
+                                                <!-- <p class="card-category">Line Chart withPoints</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -4871,11 +5216,11 @@
                                                                 <td class="text-left">
                                                                     {{ rec.name | slice: 0:60 }}<span
                                                                         *ngIf="rec.name.length > 60">...</span>
-                                                                   
+
                                                                 </td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -4894,6 +5239,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                             <div id="content-uncategorized-sites" #content>
                                 <div class="row padding-bottom-zero">
@@ -4931,7 +5277,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Uncategorized sites</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -4969,7 +5315,7 @@
                                                                     {{ rec.count }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -4985,14 +5331,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
 
 
 
                             <!-- Network -->
 
-                            <!-- <h2 class="chart-heading">Network</h2>
+                            <h2 class="chart-heading">Network</h2>
                             <hr>
 
                             <div id="content-network-connections" #content>
@@ -5031,7 +5377,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Connections</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5112,7 +5458,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Countries</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5157,6 +5503,8 @@
                                 </div>
                             </div>
 
+
+
                             <div id="content-network-destination-ip" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -5193,7 +5541,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Destination Ips</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5234,9 +5582,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div id="content-network-interfaces" #content>
+                            <div id="content-network-interfaces" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -5272,7 +5620,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Interfaces</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5316,9 +5664,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div id="content-network-source-host" #content>
+                            <div id="content-network-source-host" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -5355,7 +5703,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Source Hosts and MACs</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5396,9 +5744,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div id="content-network-source-Ips" #content>
+                            <div id="content-network-source-Ips" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -5434,7 +5782,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Source Ips</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5475,10 +5823,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
 
-                            <!-- <div id="content-network-users" #content>
+                            <div id="content-network-users" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -5514,7 +5862,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Users</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5552,9 +5900,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div id="content-network-zones" #content>
+                            <div id="content-network-zones" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -5590,7 +5938,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Zones</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5640,7 +5988,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
 
 
@@ -5648,7 +5996,7 @@
 
 
                             <!-- VPN  -->
-                            <!-- <h2 class="chart-heading">VPN</h2>
+                            <h2 class="chart-heading">VPN</h2>
                             <hr>
                             <div id="content-vpn-logins" #content>
                                 <div class="row padding-bottom-zero">
@@ -5685,7 +6033,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Failed VPN Logins</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5723,7 +6071,7 @@
                                                                     {{ rec.count }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.duration }}
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}
@@ -5739,9 +6087,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div id="content-vpn-session-types" #content>
+                            <div id="content-vpn-session-types" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -5777,7 +6125,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">VPN Session Types</h5>
-                                               
+
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5821,9 +6169,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
-                            <!-- <div id="content-vpn-sessions" #content>
+                            <div id="content-vpn-sessions" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -5858,7 +6206,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">VPN Sessions</h5>
-                                                
+
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5902,10 +6250,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
 
-                            <!-- <div id="content-vpn-users" #content>
+                            <div id="content-vpn-users" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -5938,7 +6286,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">VPN Users</h5>
-                                               
+
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5978,11 +6326,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
-
-
-
-
+                            </div>
 
 
                         </div>

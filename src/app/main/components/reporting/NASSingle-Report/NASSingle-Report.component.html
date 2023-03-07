@@ -1975,7 +1975,7 @@
                                                                 <td>
                                                                     {{ rec.domain}}
                                                                 </td>
-                                                                <td>{{ rec.duration }}</td>
+                                                                <td>{{ rec.duration | timeFormat}}</td>
 
                                                                 <td>{{ rec.hits }}</td>
                                                                 <td>{{ rec.action }}</td>
@@ -2549,7 +2549,7 @@
                                                                  </td>
                                                                  <!-- <td class="text-left">{{ rec.name }}</td> -->
                                                                  <td class="text-left">
-                                                                     {{ rec.duration }}
+                                                                     {{ rec.duration | timeFormat }}
                                                                  </td>
                                                                  <td class="text-left">
                                                                      {{ rec.bandwidth }}

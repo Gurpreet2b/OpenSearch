@@ -652,171 +652,171 @@ export class NASReportComponent implements OnInit {
     this.loading = true;
   }
 
-  generateOverallReport() {
-    // <option>10.10.217.95</option>
-    // <option>10.10.217.39</option>
-    if (this.userType === 'singleuser' && !this.useFirewallID) {
-      let ipformat =
-        /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-      if (this.reportUser.trim() == '') {
-        alert('Please Enter an IP for Report Generation');
-        return;
-      }
-      if (!this.reportUser.match(ipformat)) {
-        alert('Please Enter a Valid IP for Report Generation');
-        return;
-      }
-    }
-    if (this.useFirewallID && this.reportUser.trim() == '') {
-      alert('Please Enter an ID for Report Generation');
-      return;
-    }
+  // generateOverallReport() {
+  //   // <option>10.10.217.95</option>
+  //   // <option>10.10.217.39</option>
+  //   if (this.userType === 'singleuser' && !this.useFirewallID) {
+  //     let ipformat =
+  //       /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+  //     if (this.reportUser.trim() == '') {
+  //       alert('Please Enter an IP for Report Generation');
+  //       return;
+  //     }
+  //     if (!this.reportUser.match(ipformat)) {
+  //       alert('Please Enter a Valid IP for Report Generation');
+  //       return;
+  //     }
+  //   }
+  //   if (this.useFirewallID && this.reportUser.trim() == '') {
+  //     alert('Please Enter an ID for Report Generation');
+  //     return;
+  //   }
 
-    if (
-      new Date(this.fullStartDate).getTime() >=
-      new Date(this.fullEndDate).getTime()
-    ) {
-      alert(
-        'The Starting Date-Time should be greater than the ending Date-Time. Please Use Appropriate Data and Time Values'
-      );
-      return;
-    }
-    if (
-      new Date(this.fullEndDate).getTime() -
-      new Date(this.fullStartDate).getTime() <
-      300000
-    ) {
-      alert(
-        'The difference in Starting and Ending time must be atleast 10 minutes'
-      );
-      return;
-    }
-    this.loading = true;
-    // this.fullStartDate.setHours(this.fromHours, this.fromMinutes, 0);
-    // this.fullEndDate.setHours(this.toHours, this.toMinutes, 0);
-    let request: any = {
-      start: new Date(this.fullStartDate).toISOString(),
-      end: new Date(this.fullEndDate).toISOString(),
-      type: this.userType,
-      reporttype: this.reportType,
-      // user: '',
-    };
-    if (this.useFirewallID) {
-      request.user_id = this.reportUser;
+  //   if (
+  //     new Date(this.fullStartDate).getTime() >=
+  //     new Date(this.fullEndDate).getTime()
+  //   ) {
+  //     alert(
+  //       'The Starting Date-Time should be greater than the ending Date-Time. Please Use Appropriate Data and Time Values'
+  //     );
+  //     return;
+  //   }
+  //   if (
+  //     new Date(this.fullEndDate).getTime() -
+  //     new Date(this.fullStartDate).getTime() <
+  //     300000
+  //   ) {
+  //     alert(
+  //       'The difference in Starting and Ending time must be atleast 10 minutes'
+  //     );
+  //     return;
+  //   }
+  //   this.loading = true;
+  //   // this.fullStartDate.setHours(this.fromHours, this.fromMinutes, 0);
+  //   // this.fullEndDate.setHours(this.toHours, this.toMinutes, 0);
+  //   let request: any = {
+  //     start: new Date(this.fullStartDate).toISOString(),
+  //     end: new Date(this.fullEndDate).toISOString(),
+  //     type: this.userType,
+  //     reporttype: this.reportType,
+  //     // user: '',
+  //   };
+  //   if (this.useFirewallID) {
+  //     request.user_id = this.reportUser;
 
 
       
-    } else {
-      if (this.userType == 'singleuser') {
-        request.user = this.reportUser;
-      } else {
-        request.user = '';
-      }
-    }
-    // this.openInfoDialog();
-    this._http.post('eql/report', request).subscribe(
-      async (res) => {
-        if (res.status) {
-          // this.onDismiss();
-          this.loading = false;
-          // alert('Success');
+  //   } else {
+  //     if (this.userType == 'singleuser') {
+  //       request.user = this.reportUser;
+  //     } else {
+  //       request.user = '';
+  //     }
+  //   }
+  //   // this.openInfoDialog();
+  //   this._http.post('eql/report', request).subscribe(
+  //     async (res) => {
+  //       if (res.status) {
+  //         // this.onDismiss();
+  //         this.loading = false;
+  //         // alert('Success');
 
-          // dateFormat
+  //         // dateFormat
 
-          this.IsUserSelected = this.userType;
-          // this.reportData_Overview = res.data.Data.Widgets.Overview;
-          // this.reportData_Bandwidth = res.data.Data.Widgets.Bandwidth;
-          this.firewallActions_data = res.data.Data.Widgets.Overview;
-          this.firewallOvertime_data = res.data.Data.Widgets.Overview;
-          this.threatsDetected_data = res.data.Data.Widgets.Threats;
-          this.networkConnection_data = res.data.Data.Widgets.Network;
-          this.networkCountries_data = res.data.Data.Widgets.Network;
-          this.destinationIp_data = res.data.Data.Widgets.Network;
-          this.interfaceNetwork_data = res.data.Data.Widgets.Network;
-          this.sourceHost_macs_data = res.data.Data.Widgets.Network;
-          this.sourceIp_data = res.data.Data.Widgets.Network;
-          this.networkUsers_data = res.data.Data.Widgets.Network;
-          this.networkZone_data = res.data.Data.Widgets.Network;
-          this.firewallException_Data = res.data.Data.Widgets.Firewall;
-          this.firewalls_data = res.data.Data.Widgets.Firewall;
-          this.filterAction_data = res.data.Data.Widgets.Firewall;
-          this.firewallRules_data = res.data.Data.Widgets.Firewall;
-          this.topExcludedSites_data = res.data.Data.Widgets.Firewall;
-          this.userAgent_data = res.data.Data.Widgets.Firewall;
-          this.uncategorySites_data = res.data.Data.Widgets.Firewall;
-          // this.uncategorizedSite_data = res.data.Data.Widgets.Firewall;
-          this.acceptableSites_data = res.data.Data.Widgets.BlockedTraffic;
-          this.blockedapplications_data = res.data.Data.Widgets.BlockedTraffic;
-          this.blockedCategories_data = res.data.Data.Widgets.BlockedTraffic;
-          this.blockedPolicies_data = res.data.Data.Widgets.BlockedTraffic;
-          this.productiveSites_data = res.data.Data.Widgets.BlockedTraffic;
-          this.unacceptableSites_data = res.data.Data.Widgets.BlockedTraffic;
-          this.unproductiveSites_data = res.data.Data.Widgets.BlockedTraffic;
-          this.blockedUserAgent_data = res.data.Data.Widgets.BlockedTraffic;
-          this.blockedUser_data = res.data.Data.Widgets.BlockedTraffic;
-          this.blockedTraffic_data = res.data.Data.Widgets.BlockedTraffic;
-          this.blockedEvent_data = res.data.Data.Widgets.BlockedTraffic;
-          this.warnedProcceded_data = res.data.Data.Widgets.WarnedTraffic;
-          this.warnedTraffic_data = res.data.Data.Widgets.WarnedTraffic;
-          this.warnedProccededEvent_data = res.data.Data.Widgets.WarnedTraffic;
-          this.warnRules_data = res.data.Data.Widgets.WarnedTraffic;
-          this.warnedCategories_data = res.data.Data.Widgets.WarnedTraffic;
-          this.warnedUserAgent_data = res.data.Data.Widgets.WarnedTraffic;
-          this.warnedUsers_data = res.data.Data.Widgets.WarnedTraffic;
-          this.unacceptableApp_data = res.data.Data.Widgets.AllowedTraffic;
-          this.allowedUnacceptableSites_data = res.data.Data.Widgets.AllowedTraffic;
-          this.allowedUnacceptableUsers_data = res.data.Data.Widgets.AllowedTraffic;
-          this.unproductiveApplications_data = res.data.Data.Widgets.AllowedTraffic;
-          this.unproductiveUsers_data = res.data.Data.Widgets.AllowedTraffic;
-          this.unrpoductiveSites_data = res.data.Data.Widgets.AllowedTraffic;
-          this.VpnChart_data = res.data.Data.Widgets.VPN;
-          this.VpnSessionType_data = res.data.Data.Widgets.VPN;
-          this.VpnSessions_data = res.data.Data.Widgets.VPN;
-          this.VPNUsers_data = res.data.Data.Widgets.VPN;
-          // this.filterActionTableData = res.data.Data.Widgets.Bandwidth;
-          // this.topDownloadTableData = res.data.Data.Widgets.Bandwidth;
-          // this.reportData_Blocked = res.data.Data.Widgets.Blocked;
-          // this.reportData_Warned = res.data.Data.Widgets.Warned;
-          // this.reportData_Productivity = res.data.Data.Widgets.Productivity;
-          // this.reportData_Unacceptable = res.data.Data.Widgets.Unacceptable;
-          // this.reportData_Unproductive = res.data.Data.Widgets.Unproductive;
-          // this.reportData_Productive = res.data.Data.Widgets.Productive;
-          // this.reportData_Acceptable = res.data.Data.Widgets.Acceptable;
+  //         this.IsUserSelected = this.userType;
+  //         // this.reportData_Overview = res.data.Data.Widgets.Overview;
+  //         // this.reportData_Bandwidth = res.data.Data.Widgets.Bandwidth;
+  //         this.firewallActions_data = res.data.Data.Widgets.Overview;
+  //         this.firewallOvertime_data = res.data.Data.Widgets.Overview;
+  //         this.threatsDetected_data = res.data.Data.Widgets.Threats;
+  //         this.networkConnection_data = res.data.Data.Widgets.Network;
+  //         this.networkCountries_data = res.data.Data.Widgets.Network;
+  //         this.destinationIp_data = res.data.Data.Widgets.Network;
+  //         this.interfaceNetwork_data = res.data.Data.Widgets.Network;
+  //         this.sourceHost_macs_data = res.data.Data.Widgets.Network;
+  //         this.sourceIp_data = res.data.Data.Widgets.Network;
+  //         this.networkUsers_data = res.data.Data.Widgets.Network;
+  //         this.networkZone_data = res.data.Data.Widgets.Network;
+  //         this.firewallException_Data = res.data.Data.Widgets.Firewall;
+  //         this.firewalls_data = res.data.Data.Widgets.Firewall;
+  //         this.filterAction_data = res.data.Data.Widgets.Firewall;
+  //         this.firewallRules_data = res.data.Data.Widgets.Firewall;
+  //         this.topExcludedSites_data = res.data.Data.Widgets.Firewall;
+  //         this.userAgent_data = res.data.Data.Widgets.Firewall;
+  //         this.uncategorySites_data = res.data.Data.Widgets.Firewall;
+  //         // this.uncategorizedSite_data = res.data.Data.Widgets.Firewall;
+  //         this.acceptableSites_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.blockedapplications_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.blockedCategories_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.blockedPolicies_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.productiveSites_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.unacceptableSites_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.unproductiveSites_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.blockedUserAgent_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.blockedUser_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.blockedTraffic_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.blockedEvent_data = res.data.Data.Widgets.BlockedTraffic;
+  //         this.warnedProcceded_data = res.data.Data.Widgets.WarnedTraffic;
+  //         this.warnedTraffic_data = res.data.Data.Widgets.WarnedTraffic;
+  //         this.warnedProccededEvent_data = res.data.Data.Widgets.WarnedTraffic;
+  //         this.warnRules_data = res.data.Data.Widgets.WarnedTraffic;
+  //         this.warnedCategories_data = res.data.Data.Widgets.WarnedTraffic;
+  //         this.warnedUserAgent_data = res.data.Data.Widgets.WarnedTraffic;
+  //         this.warnedUsers_data = res.data.Data.Widgets.WarnedTraffic;
+  //         this.unacceptableApp_data = res.data.Data.Widgets.AllowedTraffic;
+  //         this.allowedUnacceptableSites_data = res.data.Data.Widgets.AllowedTraffic;
+  //         this.allowedUnacceptableUsers_data = res.data.Data.Widgets.AllowedTraffic;
+  //         this.unproductiveApplications_data = res.data.Data.Widgets.AllowedTraffic;
+  //         this.unproductiveUsers_data = res.data.Data.Widgets.AllowedTraffic;
+  //         this.unrpoductiveSites_data = res.data.Data.Widgets.AllowedTraffic;
+  //         this.VpnChart_data = res.data.Data.Widgets.VPN;
+  //         this.VpnSessionType_data = res.data.Data.Widgets.VPN;
+  //         this.VpnSessions_data = res.data.Data.Widgets.VPN;
+  //         this.VPNUsers_data = res.data.Data.Widgets.VPN;
+  //         // this.filterActionTableData = res.data.Data.Widgets.Bandwidth;
+  //         // this.topDownloadTableData = res.data.Data.Widgets.Bandwidth;
+  //         // this.reportData_Blocked = res.data.Data.Widgets.Blocked;
+  //         // this.reportData_Warned = res.data.Data.Widgets.Warned;
+  //         // this.reportData_Productivity = res.data.Data.Widgets.Productivity;
+  //         // this.reportData_Unacceptable = res.data.Data.Widgets.Unacceptable;
+  //         // this.reportData_Unproductive = res.data.Data.Widgets.Unproductive;
+  //         // this.reportData_Productive = res.data.Data.Widgets.Productive;
+  //         // this.reportData_Acceptable = res.data.Data.Widgets.Acceptable;
 
-          // this.ApplicationsTableData =
-          //   res.data.Data.Widgets.Productivity.ApplicationsTableData;
-          // this.SitesTableData =
-          //   res.data.Data.Widgets.Productivity.SitesTableData;
-          // this.AllTopProductivityTables =
-          //   res.data.Data.Widgets['Productivity-Tables'];
+  //         // this.ApplicationsTableData =
+  //         //   res.data.Data.Widgets.Productivity.ApplicationsTableData;
+  //         // this.SitesTableData =
+  //         //   res.data.Data.Widgets.Productivity.SitesTableData;
+  //         // this.AllTopProductivityTables =
+  //         //   res.data.Data.Widgets['Productivity-Tables'];
 
-          this.chartintialize(request.type);
-          // this.reportingCharts();
-          this.reportDataReady = true;
-          this.IsDisabledReport = true;
-          await new Promise((f) => setTimeout(f, 3000));
-          this.onDismiss();
-          this.scroll(this.content.nativeElement);
-          // this.scroll(this.document.getElementById('content'))
-        } else {
-          this.loading = false;
-          alert('something is wrong');
-          // this.onDismiss();
-        }
-      },
-      (error) => {
-        if (error.error.code === 'token_not_valid') {
-          this._auth.logout();
-          this.router.navigate(['/signin']);
-          this.loading = false;
-          // alert(error.error.error);
-        } else {
-          this.loading = false;
-          alert(error.error.error);
-        }
-      }
-    );
-  }
+  //         this.chartintialize(request.type);
+  //         // this.reportingCharts();
+  //         this.reportDataReady = true;
+  //         this.IsDisabledReport = true;
+  //         await new Promise((f) => setTimeout(f, 3000));
+  //         this.onDismiss();
+  //         this.scroll(this.content.nativeElement);
+  //         // this.scroll(this.document.getElementById('content'))
+  //       } else {
+  //         this.loading = false;
+  //         alert('something is wrong');
+  //         // this.onDismiss();
+  //       }
+  //     },
+  //     (error) => {
+  //       if (error.error.code === 'token_not_valid') {
+  //         this._auth.logout();
+  //         this.router.navigate(['/signin']);
+  //         this.loading = false;
+  //         // alert(error.error.error);
+  //       } else {
+  //         this.loading = false;
+  //         alert(error.error.error);
+  //       }
+  //     }
+  //   );
+  // }
   fetchThisReport(report_id: any) {
     this._http.get('eql/reportsinfo/' + report_id).subscribe(
       async (res) => {
@@ -911,7 +911,7 @@ export class NASReportComponent implements OnInit {
           this.IsDisabledReport = true;
           await new Promise((f) => setTimeout(f, 2000));
           this.scroll(this.content.nativeElement);
-          // this.onDismiss();
+          this.onDismiss();
           // this.scroll(this.document.getElementById('content'))
         } else {
           this.loading = false;
