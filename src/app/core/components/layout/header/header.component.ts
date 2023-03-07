@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   ngOnInit(): void {
     let UserName = this.authService.getUserName();
     this.name = UserName;
+    this.GetSMTPSettings();
 
     this.SMTPSettingsForm = this.fb.group({
       smtp_server: ['', [Validators.required]],
@@ -90,6 +91,42 @@ export class HeaderComponent implements OnInit, DoCheck {
     $('.modal-backdrop').remove();
     $("body").removeClass("modal-open");
     $("body").addClass("modal-overflow");
+  }
+
+
+  GetSMTPSettings() {
+    this.loading = true;
+    this.http.get('eql/smtp_details/', null).subscribe((res: any) => {
+      if (res.status === true) {
+        const responseData = res.data;
+        this.SMTPSettingsForm.setValue({
+          smtp_server: res.data.smtp_server,
+          smtp_port: res.data.smtp_port,
+          smtp_use_ssl: res.data.smtp_use_ssl,
+          smtp_use_tls: res.data.smtp_use_tls,
+          smtp_use_authentication: res.data.smtp_use_authentication,
+          smtp_username: res.data.smtp_username,
+          smtp_password: res.data.smtp_password,
+          smtp_from_address: res.data.smtp_from_address,
+        });
+
+        this.loading = false;
+      } else {
+        alert(res.message);
+        this.loading = false;
+      }
+    }, error => {
+      if (error.error.code === 'token_not_valid') {
+        this.authService.logout();
+        this.router.navigate(['/signin']);
+        this.loading = false;
+        // alert(error.error.error);
+      } else {
+        this.loading = false;
+        alert(error.error.error);
+      }
+    });
+
   }
 
 

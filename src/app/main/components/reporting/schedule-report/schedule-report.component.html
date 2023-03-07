@@ -80,14 +80,14 @@
                     <div class="row pad-b-0">
                         <div class="col-md-12">
 
-                            <div class="col-md-8">
+                            <div class="col-md-5">
                                 <label>Report Schedule</label>
                                 <hr>
                             </div>
-                            <!-- <div class="col-md-4">
-                                <label>End Date</label>
+                            <div class="col-md-3">
+                                <label>Schedule Time</label>
                                 <hr>
-                            </div> -->
+                            </div>
                             <div class="col-md-4 userParent" *ngIf="IsHideAllUsers">
                                 <div class="flexclass">
                                     <div class="userChild1">
@@ -113,7 +113,7 @@
                         <div class="col-md-12">
 
                             <!-- <hr class="hr_datetime"> -->
-                            <div class="col-md-8 p-l-indent">
+                            <div class="col-md-5 p-l-indent">
                                 <!-- <label>Start Date</label> -->
 
                                 <div class="rad-container">
@@ -133,19 +133,14 @@
                                         <div class="rad-design"></div>
                                         <div class="rad-text">Weekly</div>
                                     </label>
-
-                                    <!-- <label class="rad-label weekly-label"
-                                        [ngClass]="{ active: isSchduleTypeRadio === 'Monthly' }">
-                                        <input type="radio" class="rad-input" name="all" id="Monthly"
-                                            value="monthly" checked (change)="ScheduleTypeRadio('Monthly')"
-                                            [(ngModel)]="scheduleType" [ngModelOptions]="{ standalone: true }" />
-                                        <div class="rad-design"></div>
-                                        <div class="rad-text">Monthly</div>
-                                    </label> -->
                                 </div>
 
                             </div>
-                            <div class="col-md-4 p-l-indent">
+                            <div class="col-md-3 p-l-indent">
+                                <div class="form-group">
+                                    <input type="time" class="form-control box_security"
+                                    [(ngModel)]="scheduleTime" [ngModelOptions]="{ standalone: true }" />
+                                </div>
                             </div>
 
                             <div class="col-md-4 p-l-indent" *ngIf="IsHideAllUsers">
@@ -158,7 +153,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <div *ngIf="additionalFiltersEnabled" class="row pad-b-0">
                     <div class="row pad-b-0">
@@ -177,17 +171,6 @@
                                         <div class="form-control box_security">
                                             {{obj}}
                                         </div>
-                                        <!-- <input type="text" class="form-control box_security" placeholder="Please Enter Email"
-                                        [(ngModel)]="obj" [ngModelOptions]="{ standalone: true }" name="reportUser" 
-                                        disabled /> -->
-                                    
-                                        <!-- <input type="text" formControlName="email" class="form-control box_security" 
-                                        placeholder="Please Enter Email"
-                                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                                        <div *ngIf="submitted && f.email.errors && i === AddEmailListArray.length - 1" class="invalid-feedback">
-                                            <div *ngIf="f.email.errors.required">Email is required</div>
-                                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                                        </div> -->
                                     </div>
 
                                 </div>

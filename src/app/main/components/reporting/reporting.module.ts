@@ -17,7 +17,8 @@ import { NASSingleReportComponent } from './NASSingle-Report/NASSingle-Report.co
 import { AllActivityReportComponent } from './AllActivity-Report/AllActivity-Report.component';
 import { AllActivitySingleReportComponent } from './AllActivitySingle-Report/AllActivitySingle-Report.component';
 import { MailReportlistComponent } from './mail-report-list/mail-report-list.component';
-import { ScheduleReportComponent } from './report-list/schedule-report/schedule-report.component';
+import { ScheduleReportComponent } from './schedule-report/schedule-report.component';
+// import { ScheduleReportComponent } from './schedule-report/schedule-report.component';
 /*
  * Raise the value exponentially
  * Takes an exponent argument that defaults to 1.

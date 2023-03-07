@@ -1,6 +1,6 @@
 <div class="container-fluid header_iner">
     <div class="row" style="margin-top: 5px;">
-        <div class="col-md-10 pr-0" style="display: inline-flex; padding-left: 10px;">
+        <div class="col-md-9 pr-0" style="display: inline-flex; padding-left: 10px;">
             <a href="dashboard">
                 <h6 class="header-title-logo logo" style="width: 260px; margin-bottom: 3px;">
                     <img src="/assets/img/sudarshan.jpg" alt="company logo">
@@ -12,11 +12,14 @@
             </button>
             <h3 class="header-title fontSize_title">{{authService.TitleName}}</h3>
         </div>
-        <div class="col-md-2 text-center dashboard_headerTitle">
+        <div class="col-md-3 text-center dashboard_headerTitle">
             <li>
                 <button type="button" class="btn btn-light mr-3"
                 data-toggle="modal" data-target="#scheduleMail">
-                    <a> <i class="fa fa-cog text-center icon_setting"></i> </a>
+                    <a> 
+                        <!-- <i class="fa fa-cog text-center icon_setting"></i>  -->
+                    SMTP Details
+                    </a>
                 </button>
                 <a href="#" data-toggle="dropdown" id="profileDropdown">
                     <span style="color: #676b84;">
@@ -44,15 +47,14 @@
             <div class="modal-body">
                 <h4>Email Settings</h4>
                 <hr>
-                <form [formGroup]="SMTPSettingsForm" (ngSubmit)="onSubmitSMTP()">
-                    <div class="row">
+                <form class="mt-3" [formGroup]="SMTPSettingsForm" (ngSubmit)="onSubmitSMTP()">
+                    <!-- <div class="row">
                         <div class="col-md-12">
                             <b>Mail Settings</b> <br>
                             <label>Sophos Reporter likes to email you from time to time. How should it fo this? (You can
                                 also see this later in Settings / Email).</label>
-                            <!-- <hr> -->
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="col-md-12">
@@ -108,7 +110,7 @@
                         <div class="col-md-12">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label> Email </label>
+                                    <label>From Email </label>
                                     <input type="text" class="form-control box_security" formControlName="smtp_from_address"
                                     [ngClass]="{ 'is-invalid': submitted && f.smtp_from_address.errors }"/>
                                     <div *ngIf="submitted && f.smtp_from_address.errors" class="invalid-feedback">
@@ -119,7 +121,7 @@
                             </div>
                             <div class="col-lg-4 mt-3">
                                 <input type="checkbox" formControlName="smtp_use_authentication"/>
-                                SMTP authentication
+                                SMTP Authentication
                             </div>
                         </div>
                     </div>
@@ -128,11 +130,11 @@
                         <div class="col-md-12">
                             <div class="col-lg-4">
                                 <input type="checkbox" formControlName="smtp_use_ssl"/>
-                                SMTP ssl
+                                SMTP SSL
                             </div>
                             <div class="col-lg-4">
                                 <input type="checkbox" formControlName="smtp_use_tls"/>
-                                SMTP tls
+                                SMTP TLS
                             </div>
                         </div>
                     </div>

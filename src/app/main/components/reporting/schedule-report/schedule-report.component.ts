@@ -110,6 +110,7 @@ export class ScheduleReportComponent implements OnInit {
   public userType = 'singleuser';
   public reportSource = 'Sophos Firewall';
   public reportUser = '';
+  public scheduleTime: any = '01:00';
   
   public reportDataReady = false;
   public IsDisabledReport = false;
@@ -242,7 +243,8 @@ export class ScheduleReportComponent implements OnInit {
       user_type: this.userType,
       report_type: this.reportType,
       schedule_type: this.scheduleType,
-      recievers_list: JSON.stringify(this.AddEmailListArray)
+      recievers_list: JSON.stringify(this.AddEmailListArray),
+      schedule_time: this.scheduleTime
     };
     if (this.useFirewallID) {
       request.user_id = this.reportUser;
