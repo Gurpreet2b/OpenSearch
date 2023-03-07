@@ -82,8 +82,8 @@
 
   .user-image {
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
   .user-image-icon {
     height: 18px;
@@ -92,4 +92,45 @@
   .logout_nav{
     padding: 10px;
     height: 40px;
+  }
+
+  .popup_success {
+    margin-bottom: 10px;
+    width: auto;
+    height: auto;
+  }
+
+  .popup-thm-btn {
+    background-color: #ff9900;
+    border: 1px solid #ff9900;
+  }
+  
+  .popup-thm-btn:hover {
+    color: #ff9900;
+    background-color: white;
+    border: 1px solid #ff9900;
+  }
+  .popup-thm-btn{
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+    border-radius: 4px;
+    overflow: visible;
+    color: #fff;
   }

@@ -14,6 +14,10 @@
         </div>
         <div class="col-md-2 text-center dashboard_headerTitle">
             <li>
+                <button type="button" class="btn btn-light mr-3"
+                data-toggle="modal" data-target="#scheduleMail">
+                    <a> <i class="fa fa-cog text-center icon_setting"></i> </a>
+                </button>
                 <a href="#" data-toggle="dropdown" id="profileDropdown">
                     <span style="color: #676b84;">
                         <img src="/assets/img/user.png" alt="user" class="user-image mr-2" />
@@ -30,6 +34,116 @@
                 </div>
             </li>
 
+        </div>
+    </div>
+</div>
+
+<div class="modal in" id="scheduleMail">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content popup_success">
+            <div class="modal-body">
+                <h4>Email Settings</h4>
+                <hr>
+                <form [formGroup]="SMTPSettingsForm" (ngSubmit)="onSubmitSMTP()">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <b>Mail Settings</b> <br>
+                            <label>Sophos Reporter likes to email you from time to time. How should it fo this? (You can
+                                also see this later in Settings / Email).</label>
+                            <!-- <hr> -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label> SMTP Server </label>
+                                    <input type="text" class="form-control box_security" formControlName="smtp_server"
+                                    [ngClass]="{ 'is-invalid': submitted && f.smtp_server.errors }"/>
+                                    <div *ngIf="submitted && f.smtp_server.errors" class="invalid-feedback">
+                                        <div *ngIf="f.smtp_server.errors.required">SMTP Server is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label> Port </label>
+                                    <input type="number" class="form-control box_security" formControlName="smtp_port"
+                                    [ngClass]="{ 'is-invalid': submitted && f.smtp_port.errors }"/>
+                                    <div *ngIf="submitted && f.smtp_port.errors" class="invalid-feedback">
+                                        <div *ngIf="f.smtp_port.errors.required">SMTP Port is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label> SMTP Username </label>
+                                    <input type="text" class="form-control box_security" formControlName="smtp_username"
+                                    [ngClass]="{ 'is-invalid': submitted && f.smtp_username.errors }"/>
+                                    <div *ngIf="submitted && f.smtp_username.errors" class="invalid-feedback">
+                                        <div *ngIf="f.smtp_username.errors.required">SMTP Username is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label> Password </label>
+                                    <input type="text" class="form-control box_security" formControlName="smtp_password"
+                                    [ngClass]="{ 'is-invalid': submitted && f.smtp_password.errors }"/>
+                                    <div *ngIf="submitted && f.smtp_password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.smtp_password.errors.required">SMTP Password is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label> Email </label>
+                                    <input type="text" class="form-control box_security" formControlName="smtp_from_address"
+                                    [ngClass]="{ 'is-invalid': submitted && f.smtp_from_address.errors }"/>
+                                    <div *ngIf="submitted && f.smtp_from_address.errors" class="invalid-feedback">
+                                        <div *ngIf="f.smtp_from_address.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mt-3">
+                                <input type="checkbox" formControlName="smtp_use_authentication"/>
+                                SMTP authentication
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-lg-4">
+                                <input type="checkbox" formControlName="smtp_use_ssl"/>
+                                SMTP ssl
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="checkbox" formControlName="smtp_use_tls"/>
+                                SMTP tls
+                            </div>
+                        </div>
+                    </div>
+                   
+
+                    <div class="col-md-12 text-right">
+                        <button class="popup-thm-btn" data-dismiss="modal">Close</button>
+                        <button class="popup-thm-btn ml-2" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

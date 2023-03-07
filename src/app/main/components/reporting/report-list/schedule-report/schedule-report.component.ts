@@ -195,7 +195,15 @@ export class ScheduleReportComponent implements OnInit {
         return;
     }
     this.AddEmailListArray.push(this.AddEmailForm.value.email);
-    // this.AddEmailForm.reset();
+    this.DismissEmail();
+  }
+
+  DismissEmail(){
+    const target = "#scheduleAddMailModal";
+    $(target).hide();
+    $('.modal-backdrop').remove();
+    $("body").removeClass("modal-open");
+    $("body").addClass("modal-overflow");
   }
 
   removeAdditionalFilter(i: number) {
@@ -219,6 +227,11 @@ export class ScheduleReportComponent implements OnInit {
     }
     if (this.useFirewallID && this.reportUser.trim() == '') {
       alert('Please Enter an ID for Report Generation');
+      return;
+    }
+
+    if (this.AddEmailListArray.length === 0) {
+      alert('Please Enter Email');
       return;
     }
 
