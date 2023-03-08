@@ -954,6 +954,7 @@ public blockUser_data: any;
           this.acceptableApp_data = dat.Acceptable;
           this.acceptable_sites = dat.Acceptable;
           this.acceptable_users = dat.Acceptable;
+          this.reportData_Overview = dat.Overview;
           this.acceptableTable_data = dat['Application-table'];
           this.unproductiveTable_data = dat['Application-table'];
           this.productiveApp_data = dat.Productivity;

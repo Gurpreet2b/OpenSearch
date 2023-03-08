@@ -673,6 +673,7 @@ export class AllActivitySingleReportMailComponent implements OnInit {
           let dat = res.data.Data.IU.Data.Widgets;
           let nas = res.data.Data.NAS.Data.Widgets;
           this.IsUserSelected = rep.UserType;
+          this.reportData_Overview = dat.Overview;
           this.applicationSize_data = dat.Bandwidth.ApplicationsBySize;
           this.acceptableApp_data = dat.Productivity;
           this.acceptableAppTable_data = dat.Productivity.ApplicationsTableData;

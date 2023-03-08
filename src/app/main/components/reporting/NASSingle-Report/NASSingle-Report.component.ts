@@ -282,8 +282,8 @@ export class NASSingleReportComponent implements OnInit {
   public uncategorizedSites_data: any;
   public SingleAcceptableSitesChartData: any;
   public acceptableSites_data: any;
-  public SingleThreatsDetectedChartData: any;
-  public threatDetected_data: any;
+  // public SingleThreatsDetectedChartData: any;
+  // public threatDetected_data: any;
   public SingleBlockedApplicationsChartData: any;
   public blockedApplication_data: any;
   public SingleBlockedCategoriesChartData: any;
@@ -322,18 +322,18 @@ export class NASSingleReportComponent implements OnInit {
   public warnedCategories_data: any;
   public SingleWarnedUserAgentChartData: any;
   public warnedUserAgent_data: any;
-  public SingleVPNLoginChartData: any;
-  public vpnFailedLogin_data: any;
-  public SingleVPNSessionTypeChartData: any;
-  public vpnSessionType_data: any;
-  public SingleVPNSessionChartData: any;
-  public vpnSession_data: any;
+  // public SingleVPNLoginChartData: any;
+  // public vpnFailedLogin_data: any;
+  // public SingleVPNSessionTypeChartData: any;
+  // public vpnSessionType_data: any;
+  // public SingleVPNSessionChartData: any;
+  // public vpnSession_data: any;
 
   subject: Subject<any> = new Subject();
 
 
   ngOnInit(): void {
-    this.authService.SetHeaderTitleName(`NAS Single Reporting`);
+    this.authService.SetHeaderTitleName(`Report: Network and Security - Single User`);
     this.fetchReportID = this.activatedroute.snapshot.params['id'] || 0;
     console.log(this.showControls);
     if (this.fetchReportID != '') {
@@ -826,7 +826,7 @@ export class NASSingleReportComponent implements OnInit {
           this.excludedSites_data = dat.Firewall;
           this.userAgent_data = dat.Firewall;
           this.uncategorizedSites_data = dat.Firewall;
-          this.threatDetected_data = dat.Threats;
+          // this.threatDetected_data = dat.Threats;
           this.acceptableSites_data = dat.BlockedTraffic;
           this.blockedApplication_data = dat.BlockedTraffic;
           this.blockedCategories_data = dat.BlockedTraffic;
@@ -847,10 +847,10 @@ export class NASSingleReportComponent implements OnInit {
           this.warnRules_data = dat.WarnedTraffic;
           this.warnedCategories_data = dat.WarnedTraffic;
           this.warnedUserAgent_data = dat.WarnedTraffic;
-          this.vpnFailedLogin_data = dat.VPN;
-          this.vpnSessionType_data = dat.VPN;
-          this.vpnSession_data = dat.VPN;
-          // this.reportData_Overview = dat.Overview;
+          // this.vpnFailedLogin_data = dat.VPN;
+          // this.vpnSessionType_data = dat.VPN;
+          // this.vpnSession_data = dat.VPN;
+          this.reportData_Overview = dat.Overview;
           // this.reportData_Blocked = dat.Blocked;
           // this.filterActionTableData = dat.Bandwidth;
           // this.topDownloadTableData = dat.Bandwidth;
@@ -1914,9 +1914,9 @@ export class NASSingleReportComponent implements OnInit {
     //   },
     // },
 
-    if (widget === 'threat-detected') {
-      this.SingleThreatsDetectedChartData = baseData;
-    }
+    // if (widget === 'threat-detected') {
+    //   this.SingleThreatsDetectedChartData = baseData;
+    // }
 
     if (widget === 'all-network-connection') {
       this.SingleNetworkConnectionChartData = baseData;
@@ -2370,15 +2370,15 @@ export class NASSingleReportComponent implements OnInit {
     if (widget === 'warned-user-agent') {
       this.SingleWarnedUserAgentChartData = baseData;
     }
-    if (widget === 'vpn-login') {
-      this.SingleVPNLoginChartData = baseData;
-    }
-    if (widget === 'vpn-session-type') {
-      this.SingleVPNSessionTypeChartData = baseData;
-    }
-    if (widget === 'vpn-session') {
-      this.SingleVPNSessionChartData = baseData;
-    }
+    // if (widget === 'vpn-login') {
+    //   this.SingleVPNLoginChartData = baseData;
+    // }
+    // if (widget === 'vpn-session-type') {
+    //   this.SingleVPNSessionTypeChartData = baseData;
+    // }
+    // if (widget === 'vpn-session') {
+    //   this.SingleVPNSessionChartData = baseData;
+    // }
 
 
 
@@ -2486,17 +2486,17 @@ export class NASSingleReportComponent implements OnInit {
       this.SingleWarnedUserAgentChartData['series'] =
         this.warnedUserAgent_data.WarnedUserAgents.Chart.Series;
 
-      this.setPieChartBaseDataStructure('vpn-login');
-      this.SingleVPNLoginChartData['series'] =
-        this.vpnFailedLogin_data.FailedVPNLogins.Chart.Series;
+      // this.setPieChartBaseDataStructure('vpn-login');
+      // this.SingleVPNLoginChartData['series'] =
+      //   this.vpnFailedLogin_data.FailedVPNLogins.Chart.Series;
 
-        this.setPieChartBaseDataStructure('vpn-session-type');
-        this.SingleVPNSessionTypeChartData['series'] =
-          this.vpnSessionType_data.VPNSessionTypes.Chart.Series;
+      //   this.setPieChartBaseDataStructure('vpn-session-type');
+      //   this.SingleVPNSessionTypeChartData['series'] =
+      //     this.vpnSessionType_data.VPNSessionTypes.Chart.Series;
 
-          this.setPieChartBaseDataStructure('vpn-session');
-          this.SingleVPNSessionChartData['series'] =
-            this.vpnSession_data.VPNSessions.Chart.Series;
+      //     this.setPieChartBaseDataStructure('vpn-session');
+      //     this.SingleVPNSessionChartData['series'] =
+      //       this.vpnSession_data.VPNSessions.Chart.Series;
 
       //LINE CHARTS
       this.setLineChartBaseDataStructure('all-firewall-overtime', 'MB');
@@ -2546,11 +2546,11 @@ export class NASSingleReportComponent implements OnInit {
       this.SingleNetworkZoneChartData['series'] =
         this.networkZone_data.Zones.Chart.Series;
 
-      this.setStackedBarChartBaseDataStructure('threat-detected');
-      this.SingleThreatsDetectedChartData['xAxis']['categories'] =
-        this.threatDetected_data.ThreatsDetected.Chart.Labels;
-      this.SingleThreatsDetectedChartData['series'] =
-        this.threatDetected_data.ThreatsDetected.Chart.Series;
+      // this.setStackedBarChartBaseDataStructure('threat-detected');
+      // this.SingleThreatsDetectedChartData['xAxis']['categories'] =
+      //   this.threatDetected_data.ThreatsDetected.Chart.Labels;
+      // this.SingleThreatsDetectedChartData['series'] =
+      //   this.threatDetected_data.ThreatsDetected.Chart.Series;
 
       this.setStackedBarChartBaseDataStructure('allowed-unacceptable-applications');
       this.SingleAllowedUnacceptableApplicationsChartData['xAxis']['categories'] =

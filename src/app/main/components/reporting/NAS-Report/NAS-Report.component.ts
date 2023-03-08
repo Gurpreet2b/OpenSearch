@@ -252,8 +252,8 @@ export class NASReportComponent implements OnInit {
   public firewallActions_data: any;
   public AllFirewallActionOverTimeData: any = {};
   public firewallOvertime_data: any;
-  public AllThreatsDetectedChartData: any = {};
-  public threatsDetected_data: any;
+  // public AllThreatsDetectedChartData: any = {};
+  // public threatsDetected_data: any;
   public AllNetworkConnectionChartData: any = {};
   public networkConnection_data: any;
   public AllNetworkCountriesChartData: any = {};
@@ -336,19 +336,19 @@ export class NASReportComponent implements OnInit {
   public AllAllowedUnproductiveSitesChartData: any;
   public unrpoductiveSites_data: any;
   public AllVPNFailedPieChartData: any;
-  public VpnChart_data: any;
-  public AllVPNSessionTypeChartData: any;
-  public VpnSessionType_data: any;
-  public AllVPNSessionsChartData: any;
-  public VpnSessions_data: any;
-  public AllVPNUsersChartData: any;
-  public VPNUsers_data: any;
+  // public VpnChart_data: any;
+  // public AllVPNSessionTypeChartData: any;
+  // public VpnSessionType_data: any;
+  // public AllVPNSessionsChartData: any;
+  // public VpnSessions_data: any;
+  // public AllVPNUsersChartData: any;
+  // public VPNUsers_data: any;
 
   subject: Subject<any> = new Subject();
 
 
   ngOnInit(): void {
-    this.authService.SetHeaderTitleName(`NAS Reporting`);
+    this.authService.SetHeaderTitleName(`Report: Network and Security - All Users`);
     this.fetchReportID = this.activatedroute.snapshot.params['id'] || 0;
     console.log(this.showControls);
     if (this.fetchReportID != '') {
@@ -845,7 +845,7 @@ export class NASReportComponent implements OnInit {
           // this.reportData_Bandwidth = dat.Bandwidth;
           this.firewallActions_data = dat.Overview;
           this.firewallOvertime_data = dat.Overview;
-          this.threatsDetected_data = dat.Threats;
+          // this.threatsDetected_data = dat.Threats;
           this.networkConnection_data = dat.Network;
           this.networkCountries_data = dat.Network;
           this.destinationIp_data = dat.Network;
@@ -886,11 +886,11 @@ export class NASReportComponent implements OnInit {
           this.unproductiveApplications_data = dat.AllowedTraffic;
           this.unproductiveUsers_data = dat.AllowedTraffic;
           this.unrpoductiveSites_data = dat.AllowedTraffic;
-          this.VpnChart_data = dat.VPN;
-          this.VpnSessionType_data = dat.VPN;
-          this.VpnSessions_data = dat.VPN;
-          this.VPNUsers_data = dat.VPN;
-          // this.reportData_Overview = dat.Overview;
+          // this.VpnChart_data = dat.VPN;
+          // this.VpnSessionType_data = dat.VPN;
+          // this.VpnSessions_data = dat.VPN;
+          // this.VPNUsers_data = dat.VPN;
+          this.reportData_Overview = dat.Overview;
           // this.reportData_Blocked = dat.Blocked;
           // this.filterActionTableData = dat.Bandwidth;
           // this.topDownloadTableData = dat.Bandwidth;
@@ -1265,9 +1265,9 @@ export class NASReportComponent implements OnInit {
     if (widget === 'all-firewall-overtime') {
       this.AllFirewallActionOverTimeData = baseData;
     }
-    if (widget === 'all-Vpn-sessions') {
-      this.AllVPNSessionsChartData = baseData;
-    }
+    // if (widget === 'all-Vpn-sessions') {
+    //   this.AllVPNSessionsChartData = baseData;
+    // }
     // if (widget === 'all-productivity-overtime') {
     //   this.AllProductivityOverTimeChartOptions = baseData;
     // }
@@ -1419,9 +1419,9 @@ export class NASReportComponent implements OnInit {
       series: [],
     };
 
-    if (widget === 'all-threats-detected') {
-      this.AllThreatsDetectedChartData = baseData;
-    }
+    // if (widget === 'all-threats-detected') {
+    //   this.AllThreatsDetectedChartData = baseData;
+    // }
 
   }
 
@@ -2001,12 +2001,12 @@ export class NASReportComponent implements OnInit {
     if (widget === 'all-unproductive-sites') {
       this.AllAllowedUnproductiveSitesChartData = baseData;
     }
-    if (widget === 'all-Vpn-session-type') {
-      this.AllVPNSessionTypeChartData = baseData;
-    }
-    if (widget === 'all-Vpn-users') {
-      this.AllVPNUsersChartData = baseData;
-    }
+    // if (widget === 'all-Vpn-session-type') {
+    //   this.AllVPNSessionTypeChartData = baseData;
+    // }
+    // if (widget === 'all-Vpn-users') {
+    //   this.AllVPNUsersChartData = baseData;
+    // }
 
 
 
@@ -2440,9 +2440,9 @@ export class NASReportComponent implements OnInit {
     if (widget === 'all-warned-users') {
       this.AllWarnedUsersChartData = baseData;
     }
-    if (widget === 'all-Vpn') {
-      this.AllVPNFailedPieChartData = baseData;
-    }
+    // if (widget === 'all-Vpn') {
+    //   this.AllVPNFailedPieChartData = baseData;
+    // }
  
    
    
@@ -2792,35 +2792,35 @@ export class NASReportComponent implements OnInit {
       this.AllFirewallPieChartData['series'] =
         this.firewallActions_data.FirewallActions.Chart.Series;
 
-      this.setPieChartBaseDataStructure('all-Vpn');
-      this.AllVPNFailedPieChartData['series'] =
-        this.VpnChart_data.FailedVPNLogins.Chart.Series;
+    //   this.setPieChartBaseDataStructure('all-Vpn');
+    //   this.AllVPNFailedPieChartData['series'] =
+    //     this.VpnChart_data.FailedVPNLogins.Chart.Series;
 
-      this.setStackedBarChartBaseDataStructure('all-Vpn-session-type');
-      this.AllVPNSessionTypeChartData['xAxis']['categories'] =
-      this.VpnSessionType_data.VPNSessionTypes.Chart.Labels;
-    this.AllVPNSessionTypeChartData['series'] =
-      this.VpnSessionType_data.VPNSessionTypes.Chart.Series;
+    //   this.setStackedBarChartBaseDataStructure('all-Vpn-session-type');
+    //   this.AllVPNSessionTypeChartData['xAxis']['categories'] =
+    //   this.VpnSessionType_data.VPNSessionTypes.Chart.Labels;
+    // this.AllVPNSessionTypeChartData['series'] =
+    //   this.VpnSessionType_data.VPNSessionTypes.Chart.Series;
 
-      this.setLineChartBaseDataStructure('all-Vpn-sessions');
-      this.AllVPNSessionsChartData['series'] =
-        this.VpnSessions_data.VPNSessions.Chart.Series;
+    //   this.setLineChartBaseDataStructure('all-Vpn-sessions');
+    //   this.AllVPNSessionsChartData['series'] =
+    //     this.VpnSessions_data.VPNSessions.Chart.Series;
 
-        this.setStackedBarChartBaseDataStructure('all-Vpn-users');
-        this.AllVPNUsersChartData['xAxis']['categories'] =
-        this.VPNUsers_data.VPNUsers.Chart.Labels;
-      this.AllVPNUsersChartData['series'] =
-        this.VPNUsers_data.VPNUsers.Chart.Series;
+    //     this.setStackedBarChartBaseDataStructure('all-Vpn-users');
+    //     this.AllVPNUsersChartData['xAxis']['categories'] =
+    //     this.VPNUsers_data.VPNUsers.Chart.Labels;
+    //   this.AllVPNUsersChartData['series'] =
+    //     this.VPNUsers_data.VPNUsers.Chart.Series;
 
       this.setLineChartBaseDataStructure('all-firewall-overtime', 'MB');
       this.AllFirewallActionOverTimeData['series'] =
         this.firewallOvertime_data.FirewallActionsOverTime.Chart.Series;
 
-      this.setUnproductiveBarChartBaseDataStructure('all-threats-detected');
-      this.AllThreatsDetectedChartData['xAxis']['categories'] =
-        this.threatsDetected_data.ThreatsDetected.Chart.Labels;
-      this.AllThreatsDetectedChartData['series'] =
-        this.threatsDetected_data.ThreatsDetected.Chart.Series;
+      // this.setUnproductiveBarChartBaseDataStructure('all-threats-detected');
+      // this.AllThreatsDetectedChartData['xAxis']['categories'] =
+      //   this.threatsDetected_data.ThreatsDetected.Chart.Labels;
+      // this.AllThreatsDetectedChartData['series'] =
+      //   this.threatsDetected_data.ThreatsDetected.Chart.Series;
 
       this.setStackedBarChartBaseDataStructure('all-network-connection');
       this.AllNetworkConnectionChartData['xAxis']['categories'] =

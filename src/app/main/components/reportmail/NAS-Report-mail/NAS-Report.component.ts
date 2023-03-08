@@ -890,7 +890,7 @@ export class NASReportMailComponent implements OnInit {
           this.VpnSessionType_data = dat.VPN;
           this.VpnSessions_data = dat.VPN;
           this.VPNUsers_data = dat.VPN;
-          // this.reportData_Overview = dat.Overview;
+          this.reportData_Overview = dat.Overview;
           // this.reportData_Blocked = dat.Blocked;
           // this.filterActionTableData = dat.Bandwidth;
           // this.topDownloadTableData = dat.Bandwidth;

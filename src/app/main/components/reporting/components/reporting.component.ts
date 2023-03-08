@@ -673,7 +673,7 @@ export class ReportingComponent implements OnInit {
       async (res) => {
         if (res.status) {
           this.loading = false;
-          // this.onDismiss();
+          this.onDismiss();
           console.log('Fetched Report with an ID');
           // console.log(res)
           let rep = res.data.Report;
@@ -715,7 +715,7 @@ export class ReportingComponent implements OnInit {
           this.IsDisabledReport = true;
           await new Promise((f) => setTimeout(f, 2000));
           this.scroll(this.content.nativeElement);
-          this.onDismiss();
+          
           // this.scroll(this.document.getElementById('content'))
         } else {
           this.loading = false;
@@ -2259,8 +2259,8 @@ export class ReportingComponent implements OnInit {
 
 
       // //set departments by size pie chart
-      // this.setPieChartBaseDataStructure('all-department-by-size');
-      // this.AllDepartmentsBySizeChartOptions['series'][0]['data'] = this.reportData_Bandwidth.CategoriesBySize.Chart.Series[0].data;
+      this.setPieChartBaseDataStructure('all-department-by-size');
+      this.AllDepartmentsBySizeChartOptions['series'] = this.reportData_Bandwidth.DepartmentsBySize.Chart.Series;
 
       // // //set Productivity Section Charts
       this.setProductivityOverTimeChartDataStructure('all-productivity-overtime');
