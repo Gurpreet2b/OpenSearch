@@ -471,14 +471,20 @@
                                                 </div>
                                             </div>
 
-                                            <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div id="ApplicationChartData"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
                                                         [options]="ApplicationBySizeChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -540,14 +546,20 @@
                                                 </div>
                                             </div>
 
-                                            <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div id="BandwidthChartData"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
                                                         [options]="BandwidthOverTimeChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -1860,7 +1872,7 @@
                             <h2 class="chart-heading">Overview</h2>
                             <hr>
 
-                            <div id="content-firewall-actions" #content>
+                            <div id="content-nas-firewall-action" #content>
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
@@ -1873,11 +1885,17 @@
 
                                                 <div class="col-lg-6 text-right">
                                                     <h3 class="card-title"
-                                                        (click)="generatePdf('content-firewall-actions')">
+                                                        (click)="generatePdf('content-nas-firewall-action')">
                                                         <u>Export PDF</u>
                                                     </h3>
                                                 </div>
                                             </div>
+
+                                            <!-- <div class="row">
+                                                <div class="col-md-12">
+                                                    <div id="FirewallChartData"></div>
+                                                </div>
+                                            </div> -->
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
@@ -1910,6 +1928,11 @@
                                                     </h3>
                                                 </div>
                                             </div>
+                                            <!-- <div class="row">
+                                                <div class="col-md-12">
+                                                    <div id="FirewallActionChartData"></div>
+                                                </div>
+                                            </div> -->
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"

@@ -2249,8 +2249,8 @@ export class ReportingComponent implements OnInit {
       console.log(this.AllSitesBySizeChartOptions);
       // //set applications by size pie chart
       this.setPieChartBaseDataStructure('all-application-by-size');
-      this.AllApplicationsBySizeChartOptions['series'][0]['data'] =
-        this.reportData_Bandwidth.ApplicationsBySize.Chart.Series[0].data;
+      this.AllApplicationsBySizeChartOptions['series'] =
+        this.reportData_Bandwidth.ApplicationsBySize.Chart.Series;
 
       // //set categories by size pie chart
       this.setPieChartBaseDataStructure('all-categories-by-size');
