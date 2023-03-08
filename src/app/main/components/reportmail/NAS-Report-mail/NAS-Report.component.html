@@ -13,10 +13,10 @@
                 </div>
             </div>
             <div id="report" class="widget-body collapse in show">
-                <div class="row pl-2 pr-2">
+                <div class="row" style="display: contents;">
                     <!-- here -->
 
-                    <div class="super-container">
+                    <div class="super-container" style="padding: 0;">
                         <div class="text-center">
                             <h2 *ngIf="IsUserSelected === 'singleuser'">
                                 {{ report_view_title }}
@@ -34,7 +34,7 @@
                             </h2>
                         </div>
 
-                        <div style="display: flex; padding: 0px 20px;">
+                        <div style="display: flex; padding: 0px 10px;">
                             <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
                                 <div
                                     style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
@@ -342,19 +342,21 @@
                                     let rec of threatsDetected_data.ThreatsDetected
                                       .Table.Data; let i=index
                                   ">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -424,22 +426,37 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of networkConnection_data.Connections
-                                      .Table.Data; let i=index
-                                  ">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                let rec of networkConnection_data.Connections
+                                                                .Table.Data; let i=index">
+                                                            <td class="text-left" >
+                                                                <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                {{ rec.destination }}
+                                                            </td>
+                                                            <td class="text-left" >
+                                                                <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                {{ rec.source }}
+                                                            </td>
+                                                            <td class="text-left" >
+                                                                <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                {{ rec.count }}
+                                                            </td>
+                                                            <td class="text-left">
+                                                                <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                {{ rec.bandwidth }}
+                                                            </td>
+                                                                <!-- <td class="text-left" *ngIf="i %38 !== 0">
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left" *ngIf="i %38 !== 0">
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left" *ngIf="i %38 !== 0">
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
+                                                                <td class="text-left" *ngIf="i %38 !== 0">{{ rec.bandwidth }}</td>
+                                                                <td *ngIf="i %38 === 0 && i !== 0">
                                                                     <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                </td> -->
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -485,7 +502,7 @@
 
                                 <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Countries</h5>
@@ -503,22 +520,24 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of networkCountries_data.Countries.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination}}
                                                                 </td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.source }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.source }}</td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count }}
                                                                 </td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -583,16 +602,17 @@
                                                             <tr *ngFor="
                                     let rec of destinationIp_data.DestinationIPs.Table.Data; let i=index;
                                   ">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -638,7 +658,7 @@
 
                                 <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Interfaces Network</h5>
@@ -656,19 +676,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of interfaceNetwork_data.Interfaces.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.source }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.source }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -732,16 +754,17 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of sourceHost_macs_data.SourceHostsAndMACs.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -788,7 +811,7 @@
 
                                 <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Source Ip</h5>
@@ -805,17 +828,18 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of sourceIp_data.SourceIPs.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -861,7 +885,7 @@
 
                                 <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Users</h5>
@@ -878,17 +902,18 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of networkUsers_data.Users.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -934,7 +959,7 @@
 
                                 <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Zones</h5>
@@ -956,27 +981,31 @@
                                                             <tr *ngFor="let rec of networkZone_data.Zones.Table.Data; let i=index;">
                                                                 <!-- <td class="text-left">{{ rec.name }}</td> -->
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.dstzonetype }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.srczonetype }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1047,19 +1076,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of firewallException_Data.Exceptions.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1105,7 +1136,7 @@
 
                                 <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Filter Actions</h5>
@@ -1126,22 +1157,25 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of filterAction_data.FilterActions.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.traffic }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.iap }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.action }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1210,23 +1244,27 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of firewalls_data.Firewalls.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.ip }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.rcvd_bytes}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.sent_bytes }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.sent_bytes }}</td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.traffic }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.traffic }}</td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.records }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.records }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1272,7 +1310,7 @@
 
                                 <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Rules</h5>
@@ -1293,22 +1331,25 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of firewallRules_data.Rules.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.traffic }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.iap }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.action }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1354,7 +1395,7 @@
 
                                 <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Top Excluded Sites</h5>
@@ -1373,22 +1414,25 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of topExcludedSites_data.TopExcludedSites.Table.Data; let i=index;">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.traffic }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.iap }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.action }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1434,7 +1478,7 @@
 
                                 <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Top User Agents</h5>
@@ -1453,23 +1497,25 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of userAgent_data.TopUserAgents.Table.Data; let i=index;">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name | slice: 0:50 }}<span
                                                                         *ngIf="rec.name.length > 40">...</span>
                                                                     <!-- {{top.name}} -->
                                                                 </td>
-                                                                <!-- <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td> -->
+                                                                <!-- <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td> -->
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.duration }}
                                                                 </td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1515,7 +1561,7 @@
 
                                 <div style="page-break-after: always;"></div>
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Uncategorized Sites</h5>
@@ -1535,25 +1581,29 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of uncategorySites_data.UncategorizedSites.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.name }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.duration }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.action }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1625,25 +1675,30 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of acceptableSites_data.BlockedAcceptableSites.Table.Data; let i=index;">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.type }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.domain}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.application }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.application }}</td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.hits }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.hits }}</td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.reason }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.reason }}</td>
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.size }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.size }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1708,19 +1763,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of blockedapplications_data.BlockedApplications.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1785,18 +1842,19 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of blockedCategories_data.BlockedCategories.Table.Data; let i=index;">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category_type }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1860,19 +1918,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of blockedPolicies_data.BlockedPolicies.Table.Data; let i=index;">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -1936,19 +1996,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of productiveSites_data.BlockedProductiveSites.Table.Data; let i=index;">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2013,19 +2075,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of unacceptableSites_data.BlockedUnacceptableSites.Table.Data; let i=index;">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2094,20 +2158,25 @@
                                                         <tbody>
                                                             <tr *ngFor="let rec of unproductiveSites_data.BlockedUnproductiveSites.Table.Data; let i=index">
 
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.type }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.domain }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.hits }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.size }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.reason }}</td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.application }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.hits }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.size }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.reason }}</td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.application }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2169,15 +2238,15 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of blockedUserAgent_data.BlockedUserAgents.Table.Data; let i=index;">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
 
                                                             </tr>
                                                         </tbody>
@@ -2240,15 +2309,15 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of blockedUser_data.BlockedUsers.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits }}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
 
                                                             </tr>
                                                         </tbody>
@@ -2313,19 +2382,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of blockedTraffic_data.MostBlockedTraffic.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2390,19 +2461,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of blockedEvent_data.OtherBlockedEvents.Table.Data; let i=index;">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2471,19 +2544,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of warnedProcceded_data.CategoriesWarnedAndProceeded.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2548,19 +2623,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of warnedTraffic_data.MostWarnedTraffic.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2625,19 +2702,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of warnedProccededEvent_data.OtherWarnedAndProceededEvents.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2701,19 +2780,21 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of warnRules_data.WarnRules.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.destination }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">{{ rec.bandwidth }}</td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2776,18 +2857,19 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of warnedCategories_data.WarnedCategories.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category_type }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2849,18 +2931,19 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of warnedUserAgent_data.WarnedUserAgents.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category_type }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2924,18 +3007,19 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of warnedUsers_data.WarnedUsers.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category_type }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3005,18 +3089,19 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of unacceptableApp_data.AllowedUnacceptableApplications.Table.Data; let i=index;">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category_type }}
                                                                 </td>
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.count}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3077,45 +3162,52 @@
                                                                 <th class="text-center">Domain</th>
                                                                 <th class="text-center">Category</th>
                                                                 <th class="text-center">Action</th>
-                                                                <th class="text-center">Application</th>
+                                                                <!-- <th class="text-center">Application</th> -->
                                                                 <th class="text-center">Duration</th>
-                                                                <th class="text-center">Size</th>
+                                                                <!-- <th class="text-center">Size</th> -->
                                                                 <th class="text-center">Hits</th>
-                                                                <th class="text-center">Reason</th>
+                                                                <!-- <th class="text-center">Reason</th> -->
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of allowedUnacceptableSites_data.AllowedUnacceptableSites.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.type }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.domain }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category}}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.action}}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <!-- <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.application}}
-                                                                </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                </td> -->
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.duration}}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <!-- <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.size}}
-                                                                </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                </td> -->
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits}}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <!-- <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.reason}}
-                                                                </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                </td> -->
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3180,21 +3272,23 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of allowedUnacceptableUsers_data.AllowedUnacceptableUsers.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits}}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.duration}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3258,18 +3352,19 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of unproductiveApplications_data.AllowedUnproductiveApplications.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3331,44 +3426,51 @@
                                                                 <th>Domain</th>
                                                                 <th>Duration</th>
                                                                 <th>Hits</th>
-                                                                <th>Size</th>
-                                                                <th>Reason</th>
-                                                                <th>Application</th>
-                                                                <th>Action</th>
+                                                                <!-- <th>Size</th> -->
+                                                                <!-- <th>Reason</th> -->
+                                                                <!-- <th>Application</th> -->
+                                                                <!-- <th>Action</th> -->
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of unrpoductiveSites_data.AllowedUnproductiveSites.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.type }}
                                                                 </td>
-                                                                <td *ngIf="i %30 !== 0">
+                                                                <td>
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category }}
                                                                 </td>
-                                                                <td *ngIf="i %30 !== 0">
+                                                                <td>
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.domain}}
                                                                 </td>
-                                                                <td *ngIf="i %30 !== 0">
+                                                                <td>
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.duration}}
                                                                 </td>
-                                                                <td *ngIf="i %30 !== 0">
+                                                                <td>
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits}}
                                                                 </td>
-                                                                <td *ngIf="i %30 !== 0">
+                                                                <!-- <td>
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.size}}
                                                                 </td>
-                                                                <td *ngIf="i %30 !== 0">
+                                                                <td>
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.reason}}
                                                                 </td>
-                                                                <td *ngIf="i %30 !== 0">
+                                                                <td>
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.application}}
                                                                 </td>
-                                                                <td *ngIf="i %30 !== 0">
+                                                                <td>
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.action}}
-                                                                </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                </td> -->
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3433,21 +3535,23 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of unproductiveUsers_data.AllowedUnproductiveUsers.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.duration }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth}}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3516,21 +3620,23 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of VpnChart_data.FailedVPNLogins.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.duration }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth}}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3595,21 +3701,23 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of VpnSessionType_data.VPNSessionTypes.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.duration }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth}}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3673,21 +3781,23 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of VpnSessions_data.VPNSessions.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.duration }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth}}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3750,21 +3860,23 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of VPNUsers_data.VPNUsers.Table.Data; let i=index">
-                                                                <td class="text-left" *ngIf="i %30 !== 0">
+                                                                <td class="text-left">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.duration }}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.bandwidth}}
                                                                 </td>
-                                                                <td class="text-center" *ngIf="i %30 !== 0">
+                                                                <td class="text-center">
+                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits}}
                                                                 </td>
-                                                                <td *ngIf="i %30 === 0 && i !== 0">
-                                                                    <div style="page-break-after: always;"></div>
-                                                                </td>
+                                                                
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3778,7 +3890,7 @@
                             <!-- Firewall -->
 
                             <!-- <div class="row padding-bottom-zero">
-                                <div class="col-xs-6 col-sm-6 col-lg-12">
+                                <div class="col-xs-12 col-sm-12 col-lg-12">
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="card-title">Firewall Rules</h5>
@@ -3822,7 +3934,7 @@
                             <!-- Bandwidth -->
 
                             <!-- <div class="row padding-bottom-zero">
-                                <div class="col-xs-6 col-sm-6 col-lg-12">
+                                <div class="col-xs-12 col-sm-12 col-lg-12">
                                     <div class="card">
                                         <div class="card-header">
                                             <h5 class="card-title">Downloaded Files</h5>
@@ -3876,7 +3988,7 @@
                                
 
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">
@@ -3945,7 +4057,7 @@
                                 </div>
 
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Categories by Browsing Time</h5>
@@ -4089,7 +4201,7 @@
 
 
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Top Unacceptable Users</h5>
@@ -4161,7 +4273,7 @@
                                 </div>
 
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">
@@ -4236,7 +4348,7 @@
                                 </div>
 
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Top Unacceptable Sites</h5>
@@ -4301,7 +4413,7 @@
                   </div>
   
                   <div class="row padding-bottom-zero">
-                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                    <div class="col-xs-12 col-sm-12 col-lg-12">
                       <div class="card">
                         <div class="card-header">
                           <h5 class="card-title">
@@ -5354,7 +5466,7 @@
                                 </div>
 
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Blocked Categories</h5>
@@ -5500,7 +5612,7 @@
                                 </div>
 
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Warned And Procceded</h5>
@@ -5637,7 +5749,7 @@
                                 </div>
 
                                 <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">Warned Categories</h5>
@@ -5709,9 +5821,9 @@
     <!-- <button class="floatingButton fB-left" title="Save As PDF" (click)="DownloadPDF('content')">
         <i class="far fa-file-pdf"></i>
     </button> -->
-    <button (click)="topFunction()" class="floatingButton" title="Go to top">
+    <!-- <button (click)="topFunction()" class="floatingButton" title="Go to top">
         <i class="fas fa-arrow-up"></i>
-    </button>
+    </button> -->
 </div>
 
 <!-- <div class="modal fade in" #generateReporting id="generateReporting">
