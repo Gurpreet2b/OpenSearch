@@ -11,13 +11,14 @@ import { FirewallBandwidthComponent } from './firewall-bandwidth/firewallBandwid
 import { FirewallDurationComponent } from './firewall-duration/firewallDuration.component';
 import { FirewallProtectionComponent } from './firewall-protection/firewallProtection.component';
 import { EDRComponent } from './EDR/EDR.component';
+import { FrameLinkComponent } from './frame-link/frame-link.component';
 
 export function translateHttpLoaderFactory() {
 }
 
 @NgModule({
   declarations: [DashboardComponent, FirewallBandwidthComponent, 
-    FirewallDurationComponent, FirewallProtectionComponent, EDRComponent],
+    FirewallDurationComponent, FirewallProtectionComponent, EDRComponent,FrameLinkComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
