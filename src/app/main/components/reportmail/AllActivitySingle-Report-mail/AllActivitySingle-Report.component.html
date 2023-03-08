@@ -310,7 +310,53 @@
                                 {{ fullEndDate | date : "medium" }} -->
                             </h2>
                         </div>
-                        <div class="row padding-bottom-zero">
+                        <div style="display: flex; padding: 0px 20px;">
+                            <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                    <p style="color: #fff;">Total <br> Data</p>
+                                </div>
+                                <div>
+                                    <p style="padding: 5px 10px; text-align: right; word-break: break-all;">
+                                        {{ reportData_Overview?.TotalData.Top }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                    <p style="color: #fff;">Top <br> Site</p>
+                                </div>
+                                <div>
+                                    <p style="padding: 5px 10px; text-align: right; word-break: break-all;">
+                                        {{ reportData_Overview?.TopSite.Top }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                    <p style="color: #fff;">Top <br> Application</p>
+                                </div>
+                                <div>
+                                    <p style="padding: 5px 10px; text-align: right; word-break: break-all;">
+                                        {{ reportData_Overview?.TopApplication.Top }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                    <p style="color: #fff;">Top <br> Category</p>
+                                </div>
+                                <div>
+                                    <p style="padding: 5px 10px; text-align: right; word-break: break-all;">
+                                        {{ reportData_Overview?.TopCategory.Top }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row padding-bottom-zero">
                             <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
@@ -333,7 +379,7 @@
                                         <div class="row pt-0">
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
-                                                    <!-- <p class="card-category">Total Bandwidth</p> -->
+                                                    <p class="card-category">Total Bandwidth</p>
                                                     <div class="p-t-color">
                                                         <p class="card-title">
                                                             {{ reportData_Overview?.TotalData.Top }}
@@ -366,7 +412,7 @@
                                         <div class="row pt-0">
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
-                                                    <!-- <p class="card-category">Total Bandwidth</p> -->
+                                                    <p class="card-category">Total Bandwidth</p>
                                                     <p class="card-title">
                                                         {{ reportData_Overview?.TopSite.Top }}
                                                     </p>
@@ -398,9 +444,9 @@
                                         <div class="row pt-0">
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
-                                                    <!-- <p class="card-category">Total Bandwidth</p> -->
+                                                    <p class="card-category">Total Bandwidth</p>
                                                     <p class="card-title">
-                                                        <!-- {{ reportData_Overview?.TopApplication.Top }} -->
+                                                        {{ reportData_Overview?.TopApplication.Top }}
                                                         {{ reportData_Overview?.TopApplication.Top }}
                                                     </p>
 
@@ -431,7 +477,7 @@
                                         <div class="row pt-0">
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
-                                                    <!-- <p class="card-category">Total Bandwidth</p> -->
+                                                    <p class="card-category">Total Bandwidth</p>
                                                     <p class="card-title">
                                                         {{ reportData_Overview?.TopCategory.Top }}
                                                     </p>
@@ -442,7 +488,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <!-- Bandwidth  -->
