@@ -785,7 +785,7 @@ export class NASSingleReportMailComponent implements OnInit {
     );
   }
   fetchThisReport(report_id: any) {
-    this._http.get('eql/reportsinfo/' + report_id).subscribe(
+    this._http.get('eql/auto_report_info/?report_id=' + report_id).subscribe(
       async (res) => {
         if (res.status) {
           this.loading = false;

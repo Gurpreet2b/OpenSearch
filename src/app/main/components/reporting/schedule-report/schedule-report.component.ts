@@ -259,7 +259,8 @@ export class ScheduleReportComponent implements OnInit {
     this._http.post('eql/schedule_report/', request).subscribe(
       async (res) => {
         if (res.status) {
-          this.ShowReportPopup();
+          // this.ShowReportPopup();
+          this.router.navigate(['/reporting/schedule-report-list']);
           this.loading = false;
           // alert('Success');
           this.IsUserSelected = this.userType;
@@ -301,7 +302,6 @@ export class ScheduleReportComponent implements OnInit {
     $('.modal-backdrop').remove();
     $("body").removeClass("modal-open");
     $("body").addClass("modal-overflow");
-    this.router.navigate(['/reporting/schedule-report-list']);
   }
 
 

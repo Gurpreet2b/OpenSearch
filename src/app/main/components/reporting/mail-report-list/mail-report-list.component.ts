@@ -96,4 +96,31 @@ export class MailReportlistComponent implements OnInit {
       this.getScheduleReportList(this.currentPage)
     }
   }
+
+  delete(id: number) {
+    if (confirm('Are you sure delete this record?')) {
+      this.onDeleteSchedule(id);
+    }
+  }
+  onDeleteSchedule(id: number) {
+    this.loading = true;
+    this._http.delete(`eql/schedule_report/${id}/`).subscribe((res: any) => {
+      if (res.status === true) {
+        alert("Schedule Report Deleted Successfully");
+        this.getScheduleReportList(this.currentPage);
+      } else {
+        alert(res.error);
+        this.loading = false;
+      }
+    }, error => {
+      if (error.error.code === 'token_not_valid') {
+        this.authService.logout();
+        this.router.navigate(['/signin']);
+        this.loading = false;
+      } else {
+        this.loading = false;
+      }
+    });
+  }
+
 }
