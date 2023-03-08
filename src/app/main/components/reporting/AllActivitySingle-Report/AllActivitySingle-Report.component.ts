@@ -321,8 +321,8 @@ public FirewallActionChartData: any;
   public firewallActions_data: any;
   public FirewallActionOvertimeChartData: any = {};
   public firewallOvertime_data: any;
-  public ThreatsDetectedChartData: any = {};
-  public threatsDetected_data: any;
+  // public ThreatsDetectedChartData: any = {};
+  // public threatsDetected_data: any;
   // public VPNLoginsChartData: any = {};
   // public vpnLogins_data: any;
   // public VPNSessionTypeChartData: any = {};
@@ -349,7 +349,7 @@ public FirewallActionChartData: any;
 
 
   ngOnInit(): void {
-    this.authService.SetHeaderTitleName(`All Activity Single Report`);
+    this.authService.SetHeaderTitleName(`Reprot: All Activity - Single User`);
     this.fetchReportID = this.activatedroute.snapshot.params['id'] || 0;
     console.log(this.showControls);
     if (this.fetchReportID != '') {
@@ -873,6 +873,7 @@ public FirewallActionChartData: any;
           this.acceptableApp_data = dat.Productivity;
           this.acceptableAppTable_data = dat.Productivity.ApplicationsTableData;
           this.acceptable_sites = dat.Productivity;
+          this.reportData_Overview = dat.Overview;
           // this.acceptable_users = dat.Acceptable;
           // this.acceptableTable_data = dat['Application-table'];
           // this.unproductiveTable_data = dat['Application-table'];
@@ -950,7 +951,7 @@ public FirewallActionChartData: any;
           this.uncategorizedSites_data = nas.Firewall;
           this.firewallActions_data = nas.Overview;
           this.firewallOvertime_data = nas.Overview;
-          this.threatsDetected_data = nas.Threats;
+          // this.threatsDetected_data = nas.Threats;
           // this.vpnLogins_data = nas.VPN;
           // this.vpnSessionType_data = nas.VPN;
           // this.vpnSessions_data = nas.VPN;
@@ -2094,9 +2095,9 @@ public FirewallActionChartData: any;
     if (widget === 'network-zones') {
       this.NetworkZonesChartData = baseData;
     }
-    if (widget === 'threats-detected') {
-      this.ThreatsDetectedChartData = baseData;
-    }
+    // if (widget === 'threats-detected') {
+    //   this.ThreatsDetectedChartData = baseData;
+    // }
     if (widget === 'unacceptable-sites') {
       this.AllowedUnacceptableSitesChartData = baseData;
     }
@@ -2977,11 +2978,11 @@ public FirewallActionChartData: any;
       this.UnproductiveSitesChartData['series'] =
         this.unproductiveSites_data.Chart.Series;
 
-      this.setStackedBarChartBaseDataStructure('threats-detected');
-      this.ThreatsDetectedChartData['xAxis']['categories'] =
-        this.threatsDetected_data.ThreatsDetected.Chart.Labels;
-      this.ThreatsDetectedChartData['series'] =
-        this.threatsDetected_data.ThreatsDetected.Chart.Series;
+      // this.setStackedBarChartBaseDataStructure('threats-detected');
+      // this.ThreatsDetectedChartData['xAxis']['categories'] =
+      //   this.threatsDetected_data.ThreatsDetected.Chart.Labels;
+      // this.ThreatsDetectedChartData['series'] =
+      //   this.threatsDetected_data.ThreatsDetected.Chart.Series;
 
       this.setStackedBarChartBaseDataStructure('network-connections');
       this.NetworkConnectionsChartData['xAxis']['categories'] =

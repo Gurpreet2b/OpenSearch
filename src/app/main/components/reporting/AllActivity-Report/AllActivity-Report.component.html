@@ -424,7 +424,7 @@
                                             </div>
                                             <div class="col-8 col-md-8">
                                                 <div class="numbers">
-                                                    <p class="card-category">Top Category</p>
+                                                    <p class="card-category">Top User</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -433,7 +433,7 @@
                                                 <div class="numbers">
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
                                                     <p class="card-title">
-                                                        {{ reportData_Overview?.TopCategory.Top }}
+                                                        {{ reportData_Overview?.TopUser.Top }}
                                                     </p>
                                                     <p></p>
                                                 </div>
@@ -533,7 +533,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of applicationSize_data.Table.Data
+                                                            <tr *ngFor="let rec of applicationSize_data.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -600,7 +600,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of categoriesBrowsingTime_data.Table.Data
+                                                            <tr *ngFor="let rec of categoriesBrowsingTime_data.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -753,7 +753,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let rec of firewallRulesTable_data.Table.Data
+                                                        <tr *ngFor="let rec of firewallRulesTable_data.Table
                               ">
                                                             <td class="text-left">
 
@@ -825,7 +825,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of sitesBySize_data.Table.Data
+                                                            <tr *ngFor="let rec of sitesBySize_data.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -892,7 +892,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of userBySize_data.Table.Data
+                                                            <tr *ngFor="let rec of userBySize_data.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -965,7 +965,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of categoriesTime_data.CategoriesByBrowsingTime.Table.data
+                                                            <tr *ngFor="let rec of categoriesTime_data.CategoriesByBrowsingTime.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1036,7 +1036,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of productivityBrowsing_data.Table.data
+                                                            <tr *ngFor="let rec of productivityBrowsing_data.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1138,7 +1138,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of productiveApp_data.TopUsersByBrowsingTime.Table.data
+                                                            <tr *ngFor="let rec of productiveApp_data.TopUsersByBrowsingTime.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1422,7 +1422,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of unproductiveApp_data.TopUnproductiveApplications.Table.Data
+                                                            <tr *ngFor="let rec of productivityApplicationTable
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1491,7 +1491,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of unproductiveSites_data.TopUnproductiveSites.Table.Data
+                                                            <tr *ngFor="let rec of unproductivitySitesTable
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1560,7 +1560,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of unproductiveUsers_data.TopUnproductiveUsers.Table.Data
+                                                            <tr *ngFor="let rec of unproductiveUsersTable
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1618,7 +1618,7 @@
                                     <div class="col-xs-6 col-sm-6 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5 class="card-title">Acceptable</h5>
+                                                <h5 class="card-title">Acceptable Applications</h5>
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -1631,7 +1631,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of acceptableApp_data.TopAcceptableApplications.Table.Data
+                                                            <tr *ngFor="let rec of acceptableApplicationsTable
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1698,7 +1698,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of acceptable_sites.TopAcceptableSites.Table.Data
+                                                            <tr *ngFor="let rec of acceptableSitesTable
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1766,7 +1766,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of acceptable_users.TopAcceptableUsers.Table.Data
+                                                            <tr *ngFor="let rec of acceptableUsersTable
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -2705,6 +2705,8 @@
                             <!-- NAS -->
 
                             <!-- Overview  -->
+                            <h2 class="chart-heading text-center">Network and Security</h2>
+                           
                             <h2 class="chart-heading">Overview</h2>
                             <hr>
 
@@ -2773,7 +2775,7 @@
 
                             <!-- Threats  -->
 
-                            <h2 class="chart-heading">Threats</h2>
+                            <!-- <h2 class="chart-heading">Threats</h2>
                             <hr>
 
                             <div id="content-uncategorized-sites" #content>
@@ -2811,7 +2813,6 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Threats Detected</h5>
-                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -2865,9 +2866,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-
+                            </div> -->
                             <!-- Blocked Traffic  -->
 
                             <h2 class="chart-heading">Blocked Traffic</h2>
@@ -3634,7 +3633,7 @@
                                 </div>
                             </div>
 
-                            -
+                            
 
                             <div id="content-blocked-events" #content>
                                 <div class="row padding-bottom-zero">
@@ -4270,6 +4269,7 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
+                                                    [callbackFunction]="chartCallbackStacked"
                                                         [options]="UnacceptableApplicationsChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -4338,6 +4338,7 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
+                                                    [callbackFunction]="chartCallbackStacked"
                                                         [options]="AllowedUnacceptableSitesChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -4430,6 +4431,7 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
+                                                    [callbackFunction]="chartCallbackStacked"
                                                         [options]="AllowedUnacceptableUsersChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -4503,6 +4505,7 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
+                                                    [callbackFunction]="chartCallbackStacked"
                                                         [options]="AllowedUnproductiveApplicationsChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -4574,6 +4577,7 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
+                                                    [callbackFunction]="chartCallbackStacked"
                                                         [options]="AllowedUnproductiveSitesChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -4667,6 +4671,7 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
+                                                    [callbackFunction]="chartCallbackStacked"
                                                         [options]="AllowedUnproductiveUsersChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -4947,7 +4952,7 @@
                                                         <tbody>
                                                             <tr *ngFor="
                                       let rec of firewalls_data.Firewalls
-                                        .Table.Data
+                                        .Table
                                     ">
                                                                 <td class="text-left">
                                                                     {{ rec.name }}
@@ -5996,7 +6001,7 @@
 
 
                             <!-- VPN  -->
-                            <h2 class="chart-heading">VPN</h2>
+                            <!-- <h2 class="chart-heading">VPN</h2>
                             <hr>
                             <div id="content-vpn-logins" #content>
                                 <div class="row padding-bottom-zero">
@@ -6033,7 +6038,6 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Failed VPN Logins</h5>
-                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -6326,7 +6330,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
 
                         </div>
