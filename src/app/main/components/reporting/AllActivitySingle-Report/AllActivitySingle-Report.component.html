@@ -506,7 +506,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of applicationSize_data.Table.Data
+                                                            <tr *ngFor="let rec of applicationSize_data.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -613,7 +613,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of categoriesSize_data.Table.Data
+                                                            <tr *ngFor="let rec of categoriesSize_data.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -770,7 +770,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of sitesBySize_data.Table.Data
+                                                            <tr *ngFor="let rec of sitesBySize_data.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -835,21 +835,21 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Name</th>
-                                                                <th class="text-left">Duration</th>
-                                                                <th class="text-left">Bandwidth</th>
+                                                                <th class="text-left">Category</th>
+                                                                <th class="text-left">Hits</th>
+                                                                <th class="text-left">Size</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of uiBlockedApplications_data.Table.data
+                                                            <tr *ngFor="let rec of uiBlockedApplications_data.Table
                                    ">
-                                                                <td class="text-left">{{ rec.name }}</td>
+                                                                <td class="text-left">{{ rec.category }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration | timeFormat }}
+                                                                    {{ rec.hits }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.bandwidth }}
+                                                                    {{ rec.size }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -904,21 +904,25 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Name</th>
-                                                                <th class="text-left">Duration</th>
-                                                                <th class="text-left">Bandwidth</th>
+                                                                <th class="text-left">Category</th>
+                                                                <th class="text-left">Hits</th>
+                                                                <th class="text-left">Productivity</th>
+                                                                <th class="text-left">Size</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of uiBlockedCategories_data.Table.data
+                                                            <tr *ngFor="let rec of uiBlockedCategories_data.Table
                                    ">
-                                                                <td class="text-left">{{ rec.name }}</td>
+                                                                <td class="text-left">{{ rec.category }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration | timeFormat }}
+                                                                    {{ rec.hits }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.bandwidth }}
+                                                                    {{ rec.productivity }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.size }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -971,21 +975,25 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Name</th>
-                                                                <th class="text-left">Duration</th>
-                                                                <th class="text-left">Bandwidth</th>
+                                                                <th class="text-left">Domain</th>
+                                                                <th class="text-left">Category</th>
+                                                                <th class="text-left">Hits</th>
+                                                                <th class="text-left">Size</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of uiBlockedSites_data.Table.data
+                                                            <tr *ngFor="let rec of uiBlockedSites_data.Table
                                    ">
-                                                                <td class="text-left">{{ rec.name }}</td>
+                                                                <td class="text-left">{{ rec.domain }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration | timeFormat }}
+                                                                    {{ rec.category }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.bandwidth }}
+                                                                    {{ rec.hits }}
+                                                                </td>
+                                                                <td class="text-left">
+                                                                    {{ rec.size }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -1326,7 +1334,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of uiCategoriesBrowsingTime_data.Table.data
+                                                            <tr *ngFor="let rec of uiCategoriesBrowsingTime_data.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1533,7 +1541,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of productivityBrowsing_data.Table.data
+                                                            <tr *ngFor="let rec of productivityBrowsing_data.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1845,7 +1853,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of unproductiveSites_data.Table
+                                                            <tr *ngFor="let rec of unproductiveSites_data.UnproductiveSitesByBrowsingTime.Table
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
@@ -1868,7 +1876,7 @@
                             <!-- NAS -->
 
                             <!-- Overview  -->
-                            <h2 class="chart-heading">Network and Security</h2>
+                            <h2 class="chart-heading text-center">Network and Security</h2>
                             <h2 class="chart-heading">Overview</h2>
                             <hr>
 
@@ -3529,6 +3537,7 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
+                                                    [callbackFunction]="chartCallbackStacked"
                                                         [options]="AllowedUnproductiveSitesChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -3827,7 +3836,7 @@
                                                         <tbody>
                                                             <tr *ngFor="
                                       let rec of firewalls_data.Firewalls
-                                        .Table.Data
+                                        .Table
                                     ">
                                                                 <td class="text-left">
                                                                     {{ rec.name }}

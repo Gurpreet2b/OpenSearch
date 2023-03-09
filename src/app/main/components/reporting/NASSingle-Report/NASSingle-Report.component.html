@@ -1808,7 +1808,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of allowedUnacceptableSites_data.AllowedUnacceptableApplications
+                                                            
+                                    let rec of allowedUnacceptableApplications_data.AllowedUnacceptableApplications
                                       .Table.Data
                                   ">
                                                                 <td class="text-left">
@@ -1874,28 +1875,35 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Destination</th>
-                                                                <th class="text-left">Source</th>
-                                                                <th class="text-left">Count</th>
+                                                                <th class="text-left">Type</th>
+                                                                <th class="text-left">Category</th>
+                                                                <!-- <th class="text-left">Application</th> -->
                                                                 <th class="text-left">Bandwidth</th>
+                                                                <th class="text-left">Domain</th>
+                                                                <th class="text-left">Hits</th>
+                                                                <th class="text-left">Duration</th>
 
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of allowedUnacceptableSites_data.AllowedUnacceptableApplications
+                                    let rec of allowedUnacceptableSites_data.AllowedUnacceptableSites
                                       .Table.Data
                                   ">
                                                                 <td class="text-left">
-                                                                    {{ rec.destination }}
+                                                                    {{ rec.type }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.source }}
+                                                                    {{ rec.category }}
                                                                 </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.count}}
-                                                                </td>
+                                                                <!-- <td class="text-left">
+                                                                    {{ rec.application}}
+                                                                </td> -->
                                                                 <td class="text-left">{{ rec.bandwidth }}</td>
+                                                                <td class="text-left">{{ rec.domain }}</td>
+                                                                <td class="text-left">{{ rec.hits }}</td>
+                                                                <td class="text-left">{{ rec.duration }}</td>
+                                                                
 
                                                             </tr>
                                                         </tbody>
@@ -1929,6 +1937,7 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
+                                                    [callbackFunction]="chartCallback"
                                                         [options]="SingleAllowedUnproductiveChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -1957,7 +1966,7 @@
                                                                 <th>Action</th>
                                                                 <th>Bandwidth</th>
                                                                 <th>Application</th>
-                                                                <th>Reason</th>
+                                                                <!-- <th>Reason</th> -->
 
                                                             </tr>
                                                         </thead>
@@ -1981,7 +1990,7 @@
                                                                 <td>{{ rec.action }}</td>
                                                                 <td>{{ rec.bandwidth }}</td>
                                                                 <td>{{ rec.application }}</td>
-                                                                <td>{{ rec.reason }}</td>
+                                                                <!-- <td>{{ rec.reason }}</td> -->
 
                                                             </tr>
                                                         </tbody>
@@ -2295,7 +2304,7 @@
                                                          </thead>
                                                          <tbody>
                                                              <tr *ngFor="
-                                                           let rec of firewalls_data.Firewalls.Table.Data">
+                                                           let rec of firewalls_data.Firewalls.Table">
  
                                                                  <td class="text-left">
                                                                      {{ rec.name }}
@@ -2610,8 +2619,9 @@
                                                          <thead class="text-primary">
                                                              <tr>
                                                                  <th class="text-left">Name</th>
-                                                                 <th class="text-left">Traffic</th>
-                                                                 <th class="text-left">IAP</th>
+                                                                 <th class="text-left">Category</th>
+                                                                 <th class="text-left">Bandwidth</th>
+                                                                 <th class="text-left">Duration</th>
                                                                  <th class="text-left">Count</th>
                                                                  <th class="text-left">Actions</th>
  
@@ -2623,11 +2633,14 @@
                                    ">
                                                                  <td class="text-left">{{ rec.name }}</td>
                                                                  <td class="text-left">
-                                                                     {{ rec.traffic }}
+                                                                     {{ rec.category }}
                                                                  </td>
                                                                  <td class="text-left">
-                                                                     {{ rec.iap }}
+                                                                     {{ rec.bandwidth }}
                                                                  </td>
+                                                                 <td class="text-left">
+                                                                    {{ rec.duration }}
+                                                                </td>
                                                                  <td class="text-left">
                                                                      {{ rec.count }}
                                                                  </td>
@@ -3004,30 +3017,28 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Destination</th>
-                                                                <th>Source</th>
-                                                                <th>Bandwidth</th>
+                                                                <th class="text-left">Name</th>
                                                                 <th>Count</th>
+                                                                <th>Bandwidth</th>
+                                                                <!-- <th>Count</th> -->
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
                                                           let rec of sourceHost_data.SourceHostsAndMACs.Table.Data">
-                                                                <td class="text-left">
-                                                                    {{ rec.destination}}
-                                                                </td>
-
+                                                          <td class="text-left">
+                                                            {{ rec.name }}
+                                                        </td>
                                                                 <td class="text-center">
-                                                                    {{ rec.source }}
+                                                                    {{ rec.count}}
                                                                 </td>
 
                                                                 <td class="text-center">
                                                                     {{ rec.bandwidth }}
                                                                 </td>
 
-                                                                <td class="text-center">
-                                                                    {{ rec.count }}
-                                                                </td>
+                                                                
+
                                                             </tr>
                                                         </tbody>
                                                     </table>

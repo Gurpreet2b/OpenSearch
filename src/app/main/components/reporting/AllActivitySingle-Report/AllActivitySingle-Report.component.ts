@@ -703,7 +703,7 @@ public FirewallActionChartData: any;
           // this.unacceptableUsersTable_data = dat['Users-table'];
           this.unproductiveApp_data = dat.Productivity.UnproductiveApplicationsByBrowsingTime;
           // this.unproductiveAppTable_data = dat['Application-table'];
-          this.unproductiveSites_data = dat.Productivity.UnproductiveSitesByBrowsingTime;
+          this.unproductiveSites_data = dat.Productivity;
           // this.unproductiveSitesTable_data = dat['Sites-table'];
           // this.unproductiveUsersTable_data = dat['Users-table'];
 
@@ -1869,7 +1869,7 @@ public FirewallActionChartData: any;
     if (widget === 'unproductive-app') {
       this.UnproductiveAppChartData = baseData;
     }
-    if (widget === 'unproductive-sites') {
+    if (widget === 'iu-unproductive-sites') {
       this.UnproductiveSitesChartData = baseData;
     }
     // if (widget === 'unproductive-users') {
@@ -1914,7 +1914,7 @@ public FirewallActionChartData: any;
     if (widget === 'unproductive-applications') {
       this.AllowedUnproductiveApplicationsChartData = baseData;
     }
-    if (widget === 'unproductive-sites') {
+    if (widget === 'nas-unproductive-sites') {
       this.AllowedUnproductiveSitesChartData = baseData;
     }
     if (widget === 'unacceptable-application') {
@@ -2527,9 +2527,6 @@ public FirewallActionChartData: any;
   //   // }
 
 
-
-
-
   //   // if (widget === 'all-department-by-size') {
   //   //   this.AllDepartmentsBySizeChartOptions = baseData;
   //   // }
@@ -2610,7 +2607,6 @@ public FirewallActionChartData: any;
       this.setProductivityByBrowsingTimePieChartDataStructure('firewall-actions');
       this.FirewallActionsChartData['series'] =
         this.firewallActions_data.FirewallActions.Chart.Series;
-
 
 
       this.setProductivityOverTimeChartDataStructure('productivity-over-time');
@@ -2774,11 +2770,11 @@ public FirewallActionChartData: any;
       this.UnproductiveAppChartData['series'] =
         this.unproductiveApp_data.Chart.Series;
 
-      this.setStackedBarChartBaseDataStructure('unproductive-sites');
+      this.setStackedBarChartBaseDataStructure('iu-unproductive-sites');
       this.UnproductiveSitesChartData['xAxis']['categories'] =
-        this.unproductiveSites_data.Chart.Labels;
+        this.unproductiveSites_data.UnproductiveSitesByBrowsingTime.Chart.Labels;
       this.UnproductiveSitesChartData['series'] =
-        this.unproductiveSites_data.Chart.Series;
+        this.unproductiveSites_data.UnproductiveSitesByBrowsingTime.Chart.Series;
 
       // this.setStackedBarChartBaseDataStructure('threats-detected');
       // this.ThreatsDetectedChartData['xAxis']['categories'] =
@@ -2841,7 +2837,7 @@ public FirewallActionChartData: any;
       this.AllowedUnproductiveApplicationsChartData['series'] =
         this.unproductiveApplications_data.AllowedUnproductiveApplications.Chart.Series;
 
-      this.setStackedBarChartBaseDataStructure('unproductive-sites');
+      this.setStackedBarChartBaseDataStructure('nas-unproductive-sites');
       this.AllowedUnproductiveSitesChartData['xAxis']['categories'] =
         this.allowedUnproductiveSites_data.AllowedUnproductiveSites.Chart.Labels;
       this.AllowedUnproductiveSitesChartData['series'] =

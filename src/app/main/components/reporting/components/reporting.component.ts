@@ -2140,8 +2140,8 @@ export class ReportingComponent implements OnInit {
 
       // set bandwidth categories by size pie chartOptionsLine
       this.setPieChartBaseDataStructure('bandwidth-categories');
-      this.CategoriesBySizeChartOptions['series'][0]['data'] =
-        this.reportData_Bandwidth.CategoriesBySize.Chart.Series[0].data;
+      this.CategoriesBySizeChartOptions['series'] =
+        this.reportData_Bandwidth.CategoriesBySize.Chart.Series;
 
       // set blocked categories by size pie chart
       this.setPieChartBaseDataStructure('blocked-categories');
@@ -2160,8 +2160,8 @@ export class ReportingComponent implements OnInit {
 
       // set Warned and Proceeded by size pie chart
       this.setPieChartBaseDataStructure('warned-proceeded');
-      this.WarnedAndProceededChartOptions['series'][0]['data'] =
-        this.reportData_Warned.WarnedAndProceeded.Chart.Series[0].data;
+      this.WarnedAndProceededChartOptions['series'] =
+        this.reportData_Warned.WarnedAndProceeded.Chart.Series;
 
       // set Warned Categories by size pie chart
       this.setPieChartBaseDataStructure('warned-categories');
@@ -2396,8 +2396,8 @@ export class ReportingComponent implements OnInit {
         this.reportData_Blocked.Users.Chart.Series;
 
       this.setPieChartBaseDataStructure('AllBlocked-Categories');
-      this.AllBlockedCategories['series'][0]['data'] =
-        this.reportData_Blocked.Categories.Chart.Series[0].data;
+      this.AllBlockedCategories['series'] =
+        this.reportData_Blocked.Categories.Chart.Series;
 
       //Warned and Proceeded
 
@@ -2408,8 +2408,8 @@ export class ReportingComponent implements OnInit {
         this.reportData_Warned.WarnedEvents.Chart.Series;
 
       this.setPieChartBaseDataStructure('AllWarned-Procceded');
-      this.AllWarnedAndProcceded['series'][0]['data'] =
-        this.reportData_Warned.WarnedAndProceeded.Chart.Series[0].data;
+      this.AllWarnedAndProcceded['series'] =
+        this.reportData_Warned.WarnedAndProceeded.Chart.Series;
 
       this.setBarChartBaseDataStructure('AllWarned-Users');
       this.AllWarnedUsers['xAxis']['categories'] =
@@ -2417,8 +2417,8 @@ export class ReportingComponent implements OnInit {
       this.AllWarnedUsers['series'] = this.reportData_Warned.Users.Chart.Series;
 
       this.setPieChartBaseDataStructure('AllWarned-Categories');
-      this.AllWarnedCategoriesPieChartOption['series'][0]['data'] =
-        this.reportData_Warned.Categories.Chart.Series[0].data;
+      this.AllWarnedCategoriesPieChartOption['series'] =
+        this.reportData_Warned.Categories.Chart.Series;
 
       // this.setPieChartBaseDataStructure('Allblocked-sites');
       // this.AllBlockedSitesChartOptions['series'][0]['data'] = this.reportData_Blocked.Categories.Chart.Series[0].data;
