@@ -168,7 +168,9 @@ export class AllActivitySingleReportMailComponent implements OnInit {
   public applicationsPieChart: any;
   // public CategoriesBySizePieChart: any;
 
-
+ //All Activity Chart Data
+ public ApplicationChartData: any;
+ public BandwidthChartData: any;
   //All Activity Chart Data
 
   public AcceptableAppChartData: any = {};
@@ -768,7 +770,7 @@ export class AllActivitySingleReportMailComponent implements OnInit {
           // this.warnedUsers_data = nas.WarnedTraffic;
 
           this.chartintialize(rep.UserType);
-          // this.reportingCharts();
+          this.reportingCharts();
           // await new Promise((f) => setTimeout(f, 2000));
           this.reportDataReady = true;
           this.IsDisabledReport = true;
@@ -2283,6 +2285,11 @@ export class AllActivitySingleReportMailComponent implements OnInit {
     //   });
     // }
 
+  }
+
+  reportingCharts() {
+    this.ApplicationChartData = Highcharts.chart('ApplicationChartData', this.ApplicationBySizeChartData);
+    this.BandwidthChartData = Highcharts.chart('BandwidthChartData', this.BandwidthOverTimeChartData);
   }
 
   // reportingCharts() {

@@ -363,7 +363,7 @@
                                                     <div class="p-t-color">
                                                         <p class="card-title-text-color">
 
-                                                            {{ reportData_Overview?.TopSite.Top | slice: 0:10 }} <span *ngIf="reportData_Overview?.TopSite.Top.length > 10">...</span>
+                                                            {{ reportData_Overview?.TopSite.Top | slice: 0:6 }} <span *ngIf="reportData_Overview?.TopSite.Top.length > 6">...</span>
                                                         </p>
                                                     </div>
                                                   
@@ -397,7 +397,7 @@
                                                 <div class="numbers">
                                                     <div class="p-t-color">
                                                         <p class="card-title-text-color">
-                                                            {{ reportData_Overview?.TopApplication.Top | slice: 0:8  }} <span *ngIf="reportData_Overview?.TopApplication.Top.length > 8">...</span>
+                                                            {{ reportData_Overview?.TopApplication.Top | slice: 0:6  }} <span *ngIf="reportData_Overview?.TopApplication.Top.length > 6">...</span>
                                                         </p>
                                                     </div>
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
@@ -433,7 +433,7 @@
                                                 <div class="numbers">
                                                     <div class="p-t-color">
                                                         <p class="card-title-text-color">
-                                                            {{ reportData_Overview?.TopCategory.Top | slice: 0:8 }} <span *ngIf="reportData_Overview?.TopCategory.Top.length > 8">...</span>
+                                                            {{ reportData_Overview?.TopCategory.Top | slice: 0:6 }} <span *ngIf="reportData_Overview?.TopCategory.Top.length > 6">...</span>
                                                         </p>
                                                     </div>
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
@@ -656,7 +656,7 @@
                                                     <thead class="text-primary">
                                                         <tr>
                                                             <th class="text-left">Name</th>
-                                                            <th class="text-left">Type</th>
+                                                            <!-- <th class="text-left">Type</th> -->
                                                             <th class="text-left">User</th>
                                                             <th class="text-left">Size</th>
                                                         </tr>
@@ -671,9 +671,9 @@
                                                             </td>
 
 
-                                                            <td class="text-left">
+                                                            <!-- <td class="text-left">
                                                                 {{ rec.type }}
-                                                            </td>
+                                                            </td> -->
                                                             <td class="text-left">
                                                                 {{ rec.user }}
                                                             </td>
@@ -1339,7 +1339,7 @@
                                                         <thead class="text-primary">
                                                             <tr>
                                                                 <th class="text-left">Name</th>
-                                                                <th class="text-left">Type</th>
+                                                                <!-- <th class="text-left">Type</th> -->
                                                                 <th class="text-left">Duration</th>
                                                                 <th class="text-left">Bandwidth</th>
                                                             </tr>
@@ -1349,9 +1349,9 @@
                                   ">
                                                                 <td class="text-left">{{ rec.name }}</td>
 
-                                                                <td class="text-left">
+                                                                <!-- <td class="text-left">
                                                                     {{ rec.type }}
-                                                                </td>
+                                                                </td> -->
                                                                 <td class="text-left">
                                                                     {{ rec.duration | timeFormat }}
                                                                 </td>
@@ -2108,7 +2108,7 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                                <!-- <th class="text-left">Type</th> -->
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Domain</th>
                                                                 <th class="text-left">Application</th>
@@ -2124,9 +2124,9 @@
                                       let rec of acceptableSites_data.BlockedAcceptableSites
                                         .Table.Data
                                     ">
-                                                                <td class="text-left">
+                                                                <!-- <td class="text-left">
                                                                     {{ rec.type }}
-                                                                </td>
+                                                                </td> -->
                                                                 <td class="text-left">
                                                                     {{ rec.category }}
                                                                 </td>
@@ -2193,7 +2193,7 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                                <!-- <th class="text-left">Type</th> -->
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Domain</th>
 
@@ -2205,9 +2205,9 @@
                                       let rec of blockedApplications_data.BlockedApplications
                                         .Table.Data
                                     ">
-                                                                <td class="text-left">
+                                                                <!-- <td class="text-left">
                                                                     {{ rec.type }}
-                                                                </td>
+                                                                </td> -->
                                                                 <td class="text-left">
                                                                     {{ rec.category }}
                                                                 </td>
@@ -3403,7 +3403,7 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                                <!-- <th class="text-left">Type</th> -->
                                                                 <th class="text-left">Domain</th>
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Action</th>
@@ -3417,7 +3417,7 @@
                                                         <tbody>
                                                             <tr *ngFor="let rec of allowedUnacceptableSites_data.AllowedUnacceptableSites.Table.Data
                                   ">
-                                                                <td class="text-left">{{ rec.type }}</td>
+                                                                <!-- <td class="text-left">{{ rec.type }}</td> -->
 
                                                                 <td class="text-left">
                                                                     {{ rec.domain }}
@@ -3568,7 +3568,7 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                                <!-- <th class="text-left">Type</th> -->
                                                                 <th class="text-left">Domain</th>
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Action</th>
@@ -3582,7 +3582,7 @@
                                                         <tbody>
                                                             <tr *ngFor="let rec of allowedUnproductiveSites_data.AllowedUnproductiveSites.Table.Data
                                   ">
-                                                                <td class="text-left">{{ rec.type }}</td>
+                                                                <!-- <td class="text-left">{{ rec.type }}</td> -->
 
                                                                 <td class="text-left">
                                                                     {{ rec.domain }}

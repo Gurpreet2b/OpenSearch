@@ -581,7 +581,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of applicationSize_data.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of applicationSize_data.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -651,7 +651,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of categoriesBrowsingTime_data.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of categoriesBrowsingTime_data.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -723,7 +723,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of departmentSize_data.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of departmentSize_data.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -890,7 +890,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of sitesBySize_data.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of sitesBySize_data.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -961,7 +961,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of userBySize_data.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of userBySize_data.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1037,7 +1037,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of categoriesTime_data.CategoriesByBrowsingTime.Table.data; let i=index
+                                                            <tr *ngFor="let rec of categoriesTime_data.CategoriesByBrowsingTime.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1111,7 +1111,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of productivityBrowsing_data.Table.data; let i=index
+                                                            <tr *ngFor="let rec of productivityBrowsing_data.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1217,7 +1217,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of productiveApp_data.TopUsersByBrowsingTime.Table.data; let i=index
+                                                            <tr *ngFor="let rec of productiveApp_data.TopUsersByBrowsingTime.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1293,7 +1293,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of unacceptableApp_data.TopUnacceptableApplications.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of unacceptableApp_data.TopUnacceptableApplications.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1365,7 +1365,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of unacceptableSites_data.TopUnacceptableSites.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of unacceptableSites_data.TopUnacceptableSites.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1437,7 +1437,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of unacceptableUsers_data.TopUnacceptableUsers.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of unacceptableUsers_data.TopUnacceptableUsers.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1496,6 +1496,41 @@
                                     </div>
                                 </div>
                                 <div style="page-break-after: always;"></div>
+                                <!-- <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Unproductive Applications</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of unproductiveApp_data.TopUnproductiveApplications.Table; let i=index
+                                  ">
+                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+
+                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                   {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
                                 <div class="row padding-bottom-zero">
                                     <div class="col-xs-6 col-sm-6 col-lg-12">
                                         <div class="card">
@@ -1513,14 +1548,14 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of unproductiveApp_data.TopUnproductiveApplications.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of productivityApplicationTable
                                   ">
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+                                                                <td class="text-left">{{ rec.name }}</td>
 
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                   {{ rec.duration | timeFormat }}
+                                                                <td class="text-left">
+                                                                    {{ rec.duration | timeFormat }}
                                                                 </td>
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                <td class="text-left">
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                             </tr>
@@ -1584,7 +1619,42 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of unproductiveSites_data.TopUnproductiveSites.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of unproductivitySitesTable; let i=index
+                                  ">
+                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+
+                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.total_mbs }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Unproductive Sites</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of unproductiveSites_data.TopUnproductiveSites.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1601,7 +1671,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <div style="page-break-after: always;"></div>
@@ -1655,7 +1725,42 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of unproductiveUsers_data.TopUnproductiveUsers.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of unproductiveUsersTable; let i=index
+                                  ">
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Unproductive Users</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of unproductiveUsers_data.TopUnproductiveUsers.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1673,7 +1778,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <!-- Acceptable  -->
@@ -1716,6 +1821,41 @@
                                     <div class="col-xs-6 col-sm-6 col-lg-12">
                                         <div class="card">
                                             <div class="card-header">
+                                                <h5 class="card-title">Acceptable Applications</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                                <th class="text-left">Duration</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of acceptableApplicationsTable; let i=index
+                                  ">
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
                                                 <h5 class="card-title">Acceptable</h5>
                                             </div>
                                             <div class="card-body">
@@ -1729,7 +1869,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of acceptableApp_data.TopAcceptableApplications.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of acceptableApp_data.TopAcceptableApplications.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1747,7 +1887,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <div style="page-break-after: always;"></div>
@@ -1799,7 +1939,42 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of acceptable_sites.TopAcceptableSites.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of acceptableSitesTable; let i=index
+                                  ">
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.total_mbs }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Acceptable Sites</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of acceptable_sites.TopAcceptableSites.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1817,7 +1992,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <div style="page-break-after: always;"></div>
@@ -1870,7 +2045,42 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of acceptable_users.TopAcceptableUsers.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of acceptableUsersTable; let i=index
+                                  ">
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
+
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.duration | timeFormat }}
+                                                                </td>
+                                                                <td class="text-left"> <div *ngIf="i === 49" style="min-height: 15px;" ></div>
+                                                                    {{ rec.bandwidth }}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row padding-bottom-zero">
+                                    <div class="col-xs-6 col-sm-6 col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Acceptable Users</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table tablesorter" id="">
+                                                        <thead class="text-primary">
+                                                            <tr>
+                                                                <th class="text-left">Name</th>
+                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Bandwidth</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let rec of acceptable_users.TopAcceptableUsers.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -1888,7 +2098,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <!-- productive  -->
@@ -1946,7 +2156,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of productiveUsers_data.TopProductiveApplications.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of productiveUsers_data.TopProductiveApplications.Table; let i=index
                                    ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -2017,7 +2227,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of productiveSites_data.TopProductiveSites.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of productiveSites_data.TopProductiveSites.Table; let i=index
                                    ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -2088,7 +2298,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of productiveUsers_data.TopProductiveUsers.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of productiveUsers_data.TopProductiveUsers.Table; let i=index
                                    ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -2161,7 +2371,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of blockedEvent_data.BlockedEvents.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of blockedEvent_data.BlockedEvents.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -2231,7 +2441,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of blockedCategories_data.Categories.Table.data; let i=index
+                                                            <tr *ngFor="let rec of blockedCategories_data.Categories.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.category }}</td>
 
@@ -2304,7 +2514,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of blockUser_data.Users.Table.data; let i=index
+                                                            <tr *ngFor="let rec of blockUser_data.Users.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.category }}</td>
 
@@ -2381,7 +2591,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of warnedCategories_data.Categories.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of warnedCategories_data.Categories.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -2451,7 +2661,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of warnedUser_data.Users.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of warnedUser_data.Users.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -2521,7 +2731,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of warnedProceeded_data.WarnedAndProceeded.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of warnedProceeded_data.WarnedAndProceeded.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -2591,7 +2801,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let rec of warnedEvents_data.WarnedEvents.Table.Data; let i=index
+                                                            <tr *ngFor="let rec of warnedEvents_data.WarnedEvents.Table; let i=index
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
@@ -2909,7 +3119,7 @@
 
                             <!-- Threats  -->
 
-                            <div style="page-break-after: always;"></div>
+                            <!-- <div style="page-break-after: always;"></div>
                             <h2 class="chart-heading">Threats</h2>
                             <hr>
 
@@ -2949,7 +3159,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Threats Detected</h5>
-                                                <!-- <p class="card-category">Line Chart with Points</p> -->
+                                                <p class="card-category">Line Chart with Points</p>
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -3000,7 +3210,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
 
                             <!-- Blocked Traffic  -->
@@ -3898,7 +4108,7 @@
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
                                             <div class="card-header">
-                                                <h5 class="card-title">VPN Users</h5>
+                                                <h5 class="card-title">Warned and Proceeded</h5>
                                                 <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
@@ -4122,7 +4332,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Warn Rules</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -4197,7 +4407,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Warned Categories</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5090,7 +5300,7 @@
                                         <div class="card card-chart">
                                             <div class="card-header">
                                                 <h5 class="card-title">Firewalls</h5>
-                                                <p class="card-category">Line Chart with Points</p>
+                                                <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
@@ -5108,7 +5318,7 @@
                                                         <tbody>
                                                             <tr *ngFor="
                                       let rec of firewalls_data.Firewalls
-                                        .Table.Data; let i=index
+                                        .Table; let i=index
                                     ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
@@ -6130,7 +6340,7 @@
                             </div>
 
                             <!-- VPN  -->
-                            <div style="page-break-after: always;"></div>
+                            <!-- <div style="page-break-after: always;"></div>
                             <h2 class="chart-heading">VPN</h2>
                             <hr>
                             <div id="content-vpn-logins" #content>
@@ -6440,7 +6650,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
 
                         </div>

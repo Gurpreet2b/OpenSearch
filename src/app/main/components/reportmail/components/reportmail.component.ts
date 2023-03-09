@@ -1090,8 +1090,8 @@ export class ReportmailComponent implements OnInit {
     if (userType === 'singleuser') {
       //set bandwidth applicatios by size pie chart
       this.setPieChartBaseDataStructure('bandwidth-applications');
-      this.ApplicationsBySizeChartOptions['series'][0]['data'] =
-        this.reportData_Bandwidth.ApplicationsBySize.Chart.Series[0].data;
+      this.ApplicationsBySizeChartOptions['series'] =
+        this.reportData_Bandwidth.ApplicationsBySize.Chart.Series;
 
       //set Productive By Browsing Time pie chart
       this.setPieChartBaseDataStructure('Productive-Browsing-Time');

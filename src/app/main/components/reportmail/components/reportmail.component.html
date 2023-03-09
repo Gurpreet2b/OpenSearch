@@ -27,7 +27,7 @@
                         </div>
 
 
-                        <div style="display: flex; padding: 0px 10px;">
+                        <div style="display: flex; padding: 0px 10px;" *ngIf="IsUserSelected === 'singleuser'">
                             <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
                                 <div
                                     style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
@@ -64,7 +64,54 @@
                             <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
                                 <div
                                     style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
-                                    <p style="color: #fff;">Top <br> Users</p>
+                                    <p style="color: #fff;">Top <br> Category</p>
+                                </div>
+                                <div>
+                                    <p style="padding: 5px 10px; text-align: right; word-break: break-all;">
+                                        {{ reportData_Overview?.TopCategory.Top }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; padding: 0px 10px;" *ngIf="IsUserSelected === 'allusers'">
+                            <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                    <p style="color: #fff;">Total <br> Data</p>
+                                </div>
+                                <div>
+                                    <p style="padding: 5px 10px; text-align: right; word-break: break-all;">
+                                        {{ reportData_Overview?.TotalData.Top }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                    <p style="color: #fff;">Top <br> Site</p>
+                                </div>
+                                <div>
+                                    <p style="padding: 5px 10px; text-align: right; word-break: break-all;">
+                                        {{ reportData_Overview?.TopSite.Top }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                    <p style="color: #fff;">Top <br> Application</p>
+                                </div>
+                                <div>
+                                    <p style="padding: 5px 10px; text-align: right; word-break: break-all;">
+                                        {{ reportData_Overview?.TopApplication.Top }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div style="width: 25%; border: 2px solid #ff550b; border-radius: 12px; margin: 5px;">
+                                <div
+                                    style="background: #ff550b; border-bottom: 1px solid white; padding: 5px 10px; border-radius: 10px 10px 0px 0px;">
+                                    <p style="color: #fff;">Top <br> User</p>
                                 </div>
                                 <div>
                                     <p style="padding: 5px 10px; text-align: right; word-break: break-all;">
@@ -369,7 +416,7 @@
                                                             <tbody>
                                                                 <tr *ngFor="
                                       let rec of reportData_Bandwidth
-                                        .ApplicationsBySize.Table.Data; let i=index
+                                        .ApplicationsBySize.Table; let i=index
                                     ">
                                                                     <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
                                                                     <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -464,7 +511,7 @@
                                                             <tbody>
                                                                 <tr *ngFor="
                                       let rec of reportData_Bandwidth.SitesBySize
-                                        .Table.Data; let i=index;
+                                        .Table; let i=index;
                                     ">
                                                                     <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
                                                                     <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -572,7 +619,7 @@
                                                             <tbody>
                                                                 <tr *ngFor="
                                       let product of reportData_Productivity
-                                        .ProductivityByBrowsingTime.Table.data; let i=index;
+                                        .ProductivityByBrowsingTime.Table; let i=index;
                                     ">
                                                                     <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ product.name }}</td>
                                                                     <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -1328,7 +1375,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of reportData_Blocked.Sites.Table.data; let i=index;
+                                    let rec of reportData_Blocked.Sites.Table; let i=index;
                                   ">
                                                                 <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
                                                                 <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
@@ -1402,7 +1449,7 @@
                                                         <tbody>
                                                             <tr *ngFor="
                                     let rec of reportData_Blocked.Applications
-                                      .Table.data; let i=index;
+                                      .Table; let i=index;
                                   ">
                                                                 <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.app }}</td>
                                                                 <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.size
@@ -1475,7 +1522,7 @@
                                                         <tbody>
                                                             <tr *ngFor="
                                     let rec of reportData_Warned
-                                      .WarnedAndProceeded.Table.data; let i=index;
+                                      .WarnedAndProceeded.Table; let i=index;
                                   ">
                                                                 <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
                                                                 <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
@@ -1650,7 +1697,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Bandwidth.UsersBySize.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Bandwidth.UsersBySize.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -1781,7 +1828,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Bandwidth.SitesBySize.Table.Data; let i=index;">
+                                                                *ngFor="let rec of reportData_Bandwidth.SitesBySize.Table; let i=index;">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -1852,7 +1899,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Bandwidth.ApplicationsBySize.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Bandwidth.ApplicationsBySize.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -1922,7 +1969,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Bandwidth.CategoriesBySize.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Bandwidth.CategoriesBySize.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -2029,7 +2076,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let product of reportData_Productivity.ProductivityByBrowsingTime.Table.data; let i=index">
+                                                                *ngFor="let product of reportData_Productivity.ProductivityByBrowsingTime.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ product.name }}</td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ product.duration }}
@@ -2095,7 +2142,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let product of reportData_Productivity.CategoriesByBrowsingTime.Table.data; let i=index">
+                                                                *ngFor="let product of reportData_Productivity.CategoriesByBrowsingTime.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
                                                                     product.name }}</td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -2169,7 +2216,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Productivity.TopUsersByBrowsingTime.Table.data; let i=index">
+                                                                *ngFor="let rec of reportData_Productivity.TopUsersByBrowsingTime.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -2241,7 +2288,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Unacceptable.TopUnacceptableUsers.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Unacceptable.TopUnacceptableUsers.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
@@ -2386,7 +2433,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let unaccept of reportData_Unacceptable.TopUnacceptableApplications.Table.Data; let i=index">
+                                                                *ngFor="let unaccept of reportData_Unacceptable.TopUnacceptableApplications.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
                                                                     unaccept.name }}</td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -2459,7 +2506,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Unproductive.TopUnproductiveApplications.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Unproductive.TopUnproductiveApplications.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -2607,7 +2654,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Unproductive.TopUnproductiveSites.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Unproductive.TopUnproductiveSites.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -2680,7 +2727,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Acceptable.TopAcceptableUsers.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Acceptable.TopAcceptableUsers.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -2824,7 +2871,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Acceptable.TopAcceptableSites.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Acceptable.TopAcceptableSites.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -2897,7 +2944,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Productive.TopProductiveUsers.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Productive.TopProductiveUsers.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
 
@@ -3042,7 +3089,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Productive.TopProductiveSites.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Productive.TopProductiveSites.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -3116,7 +3163,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Blocked.BlockedEvents.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Blocked.BlockedEvents.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
@@ -3189,7 +3236,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Blocked.Users.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Blocked.Users.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
 
@@ -3258,7 +3305,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let allBlockedCat of reportData_Blocked.Categories.Table.data; let i=index">
+                                                                *ngFor="let allBlockedCat of reportData_Blocked.Categories.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
                                                                     allBlockedCat.category }}</td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
@@ -3334,7 +3381,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Warned.WarnedEvents.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Warned.WarnedEvents.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
@@ -3410,7 +3457,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Warned.WarnedAndProceeded.Table.data; let i=index">
+                                                                *ngFor="let rec of reportData_Warned.WarnedAndProceeded.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain
                                                                     }}</td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
@@ -3478,7 +3525,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Warned.Users.Table.Data; let i=index">
+                                                                *ngFor="let rec of reportData_Warned.Users.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}
                                                                 </td>
 
@@ -3546,7 +3593,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of reportData_Warned.Categories.Table.data; let i=index">
+                                                                *ngFor="let rec of reportData_Warned.Categories.Table; let i=index">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
                                                                     rec.category }}</td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>

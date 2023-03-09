@@ -394,16 +394,16 @@ export class AllActivityReportMailComponent implements OnInit {
   public firewallActions_data: any;
   public FirewallActionOvertimeChartData: any = {};
   public firewallOvertime_data: any;
-  public ThreatsDetectedChartData: any = {};
-  public threatsDetected_data: any;
-  public VPNLoginsChartData: any = {};
-  public vpnLogins_data: any;
-  public VPNSessionTypeChartData: any = {};
-  public vpnSessionType_data: any;
-  public VPNSessionsChartData: any = {};
-  public vpnSessions_data: any;
-  public VPNUsersChartData: any = {};
-  public vpnUsers_data: any;
+  // public ThreatsDetectedChartData: any = {};
+  // public threatsDetected_data: any;
+  // public VPNLoginsChartData: any = {};
+  // public vpnLogins_data: any;
+  // public VPNSessionTypeChartData: any = {};
+  // public vpnSessionType_data: any;
+  // public VPNSessionsChartData: any = {};
+  // public vpnSessions_data: any;
+  // public VPNUsersChartData: any = {};
+  // public vpnUsers_data: any;
   public CategoriesWarnedProceededChartData: any = {};
   public WarnedProceeded_data: any;
   public warnedTrafficChartData: any = {};
@@ -424,6 +424,12 @@ export class AllActivityReportMailComponent implements OnInit {
 public warnedEvents_data: any;
 public IUBlockedUsersChartData: any ={};
 public blockUser_data: any;
+public productivityApplicationTable: any;
+  public unproductivitySitesTable: any;
+  public unproductiveUsersTable: any;
+  public acceptableApplicationsTable: any;
+  public acceptableSitesTable: any;
+  public acceptableUsersTable: any;
 
   subject: Subject<any> = new Subject();
 
@@ -734,199 +740,9 @@ public blockUser_data: any;
     this.loading = true;
   }
 
-  generateOverallReport() {
-    // <option>10.10.217.95</option>
-    // <option>10.10.217.39</option>
-    if (this.userType === 'singleuser' && !this.useFirewallID) {
-      let ipformat =
-        /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
-      if (this.reportUser.trim() == '') {
-        alert('Please Enter an IP for Report Generation');
-        return;
-      }
-      if (!this.reportUser.match(ipformat)) {
-        alert('Please Enter a Valid IP for Report Generation');
-        return;
-      }
-    }
-    if (this.useFirewallID && this.reportUser.trim() == '') {
-      alert('Please Enter an ID for Report Generation');
-      return;
-    }
-
-    if (
-      new Date(this.fullStartDate).getTime() >=
-      new Date(this.fullEndDate).getTime()
-    ) {
-      alert(
-        'The Starting Date-Time should be greater than the ending Date-Time. Please Use Appropriate Data and Time Values'
-      );
-      return;
-    }
-    if (
-      new Date(this.fullEndDate).getTime() -
-      new Date(this.fullStartDate).getTime() <
-      300000
-    ) {
-      alert(
-        'The difference in Starting and Ending time must be atleast 10 minutes'
-      );
-      return;
-    }
-    this.loading = true;
-    // this.fullStartDate.setHours(this.fromHours, this.fromMinutes, 0);
-    // this.fullEndDate.setHours(this.toHours, this.toMinutes, 0);
-    let request: any = {
-      start: new Date(this.fullStartDate).toISOString(),
-      end: new Date(this.fullEndDate).toISOString(),
-      type: this.userType,
-      reporttype: this.reportType,
-      // user: '',
-    };
-    if (this.useFirewallID) {
-      request.user_id = this.reportUser;
-    } else {
-      if (this.userType == 'singleuser') {
-        request.user = this.reportUser;
-      } else {
-        request.user = '';
-      }
-    }
-    // this.openInfoDialog();
-    this._http.post('eql/report', request).subscribe(
-      async (res) => {
-        if (res.status) {
-          // this.onDismiss();
-          this.loading = false;
-          // alert('Success');
-
-          // dateFormat
-
-          this.IsUserSelected = this.userType;
-          this.acceptableApp_data = res.data.Data.IU.Acceptable;
-          this.acceptable_sites = res.data.Data.IU.Acceptable;
-          this.acceptable_users = res.data.Data.IU.Acceptable;
-          this.acceptableTable_data = res.data.Data.IU['Application-table'];
-          this.unproductiveTable_data = res.data.Data.IU['Application-table'];
-          this.productiveApp_data = res.data.Data.IU.Productivity;
-          this.productiveSites_data = res.data.Data.IU.Productive;
-          this.productiveUsers_data = res.data.Data.IU.Productive;
-          this.acceptableSiteTable_data = res.data.Data.IU['Sites-table'];
-          this.acceptableUsersTable_data = res.data.Data.IU['Users-table'];
-          this.productiveAppTable_data = res.data.Data.IU['Application-table'];
-          this.productiveSitesTable_data = res.data.Data.IU['Sites-table'];
-          this.productiveUsersTable_data = res.data.Data.IU['Users-table'];
-          this.unacceptableApp_data = res.data.Data.IU.Unacceptable;
-          this.unacceptableAppTable_data = res.data.Data.IU['Application-table'];
-          this.unacceptableSites_data = res.data.Data.IU.Unacceptable;
-          this.unacceptableSitesTable_data = res.data.Data.IU['Sites-table'];
-          this.unacceptableUsers_data = res.data.Data.IU.Unacceptable;
-          this.unacceptableUsersTable_data = res.data.Data.IU['Users-table'];
-          this.unproductiveApp_data = res.data.Data.IU.Unproductive;
-          this.unproductiveAppTable_data = res.data.Data.IU['Application-table'];
-          this.unproductiveSites_data = res.data.Data.IU.Unproductive;
-          this.unproductiveUsers_data = res.data.Data.IU.Unproductive;
-          this.unproductiveSitesTable_data = res.data.Data.IU['Sites-table'];
-          this.unproductiveUsersTable_data = res.data.Data.IU['Users-table'];
-          this.applicationSize_data = res.data.Data.IU.Bandwidth.ApplicationsBySize;
-          this.bandwidthOvertime_data = res.data.Data.IU.Bandwidth.BandwidthOverTime;
-          this.blockedApp_data = res.data.Data.IU.blocked;
-          this.blockedCategories_data = res.data.Data.IU.Blocked;
-          this.blockUser_data = res.data.Data.IU.Blocked;
-          this.blockedSites_data = res.data.Data.IU.blocked;
-          this.categoriesBrowsingTime_data = res.data.Data.IU.Bandwidth.CategoriesBySize;
-          this.departmentSize_data = res.data.Data.IU.Bandwidth.DepartmentsBySize;
-          this.blockedEvent_data = res.data.Data.IU.Blocked;
-          this.productivityBrowsing_data = res.data.Data.IU.Productivity.ProductivityByBrowsingTime;
-          this.productivityOverTime_data = res.data.Data.IU.Productivity.ProductivityOverTime;
-          this.sitesBySize_data = res.data.Data.IU.Bandwidth.SitesBySize;
-          this.usersBrowsingTime_data = res.data.Data.IU.top_users_by_browsing_time;
-          this.userBySize_data = res.data.Data.IU.Bandwidth.UsersBySize;
-          this.warnedCategories_data = res.data.Data.IU.Warned;
-          this.warnedUser_data = res.data.Data.IU.Warned;
-          this.warnedProceeded_data = res.data.Data.IU.Warned;
-          this.warnedEvents_data = res.data.Data.IU.Warned;
-          // this.warnedEvents_data = res.data.Data.IU.Warned;
-          this.downloadedFiles_data = res.data.Data.IU.Bandwidth.DownloadedFiles;
-          this.firewallRulesTable_data = res.data.Data.IU.Bandwidth.FirewallRules;
-          this.unacceptableApplication_data = res.data.Data.NAS.AllowedTraffic;
-          this.allowedUnacceptableSites_data = res.data.Data.NAS.AllowedTraffic;
-          this.allowedUnacceptableUsers_data = res.data.Data.NAS.AllowedTraffic;
-          this.unproductiveApplications_data = res.data.Data.NAS.AllowedTraffic;
-          this.allowedUnproductiveSites_data = res.data.Data.NAS.AllowedTraffic;
-          this.allowedUnproductiveUsers_data = res.data.Data.NAS.AllowedTraffic;
-          this.acceptableSites_data = res.data.Data.NAS.BlockedTraffic;
-          this.blockedApplications_data = res.data.Data.NAS.BlockedTraffic;
-          this.NASBlockedCategory_data = res.data.Data.NAS.BlockedTraffic;
-          this.blockedPolicies_data = res.data.Data.NAS.BlockedTraffic;
-          this.NASproductiveSites_data = res.data.Data.NAS.BlockedTraffic;
-          this.NASunacceptableSites_data = res.data.Data.NAS.BlockedTraffic;
-          this.NASunproductiveSites_data = res.data.Data.NAS.BlockedTraffic;
-          this.NASUserAgent_data = res.data.Data.NAS.BlockedTraffic;
-          this.blockedUser_data = res.data.Data.NAS.BlockedTraffic;
-          this.blockedTraffic_data = res.data.Data.NAS.BlockedTraffic;
-          this.blockedEvents_data = res.data.Data.NAS.BlockedTraffic;
-          this.networkConnection_data = res.data.Data.NAS.Network;
-          this.networkCountries_data = res.data.Data.NAS.Network;
-          this.networkDestinationIp_data = res.data.Data.NAS.Network;
-          this.networkInterfaces_data = res.data.Data.NAS.Network;
-          this.sourceHostMacs_data = res.data.Data.NAS.Network;
-          this.sourceIp_data = res.data.Data.NAS.Network;
-          this.networkUsers_data = res.data.Data.NAS.Network;
-          this.networkZones_data = res.data.Data.NAS.Network;
-          this.firewallException_data = res.data.Data.NAS.Firewall;
-          this.filterActions_data = res.data.Data.NAS.Firewall;
-          this.firewalls_data = res.data.Data.NAS.Firewall;
-          this.firewallRules_data = res.data.Data.NAS.Firewall;
-          this.excludedSites_data = res.data.Data.NAS.Firewall;
-          this.userAgent_data = res.data.Data.NAS.Firewall;
-          this.uncategorizedSites_data = res.data.Data.NAS.Firewall;
-          this.firewallActions_data = res.data.Data.NAS.Overview;
-          this.firewallOvertime_data = res.data.Data.NAS.Overview;
-          this.threatsDetected_data = res.data.Data.NAS.Threats;
-          this.vpnLogins_data = res.data.Data.NAS.VPN;
-          this.vpnSessionType_data = res.data.Data.NAS.VPN;
-          this.vpnSessions_data = res.data.Data.NAS.VPN;
-          this.vpnUsers_data = res.data.Data.NAS.VPN;
-          this.WarnedProceeded_data = res.data.Data.NAS.WarnedTraffic;
-          this.warnedTraffic_data = res.data.Data.NAS.WarnedTraffic;
-          this.warnedProceededEvent_data = res.data.Data.NAS.WarnedTraffic;
-          this.warnRules_data = res.data.Data.NAS.WarnedTraffic;
-          this.WarnCategories_data = res.data.Data.NAS.WarnedTraffic;
-          this.warnedUserAgent_data = res.data.Data.NAS.WarnedTraffic;
-          this.warnedUsers_data = res.data.Data.NAS.WarnedTraffic;
-          this.AAReport_overview = res.data.Data.NAS.Overview;
-          this.categoriesTime_data = res.data.Data.IU.Productivity;
-
-          this.chartintialize(request.type);
-          // this.reportingCharts();
-          this.reportDataReady = true;
-          this.IsDisabledReport = true;
-          await new Promise((f) => setTimeout(f, 3000));
-          this.onDismiss();
-          this.scroll(this.content.nativeElement);
-          // this.scroll(this.document.getElementById('content'))
-        } else {
-          this.loading = false;
-          alert('something is wrong');
-          // this.onDismiss();
-        }
-      },
-      (error) => {
-        if (error.error.code === 'token_not_valid') {
-          this._auth.logout();
-          this.router.navigate(['/signin']);
-          this.loading = false;
-          // alert(error.error.error);
-        } else {
-          this.loading = false;
-          alert(error.error.error);
-        }
-      }
-    );
-  }
+ 
   fetchThisReport(report_id: any) {
-    this._http.get('eql/auto_report_info/?report_id=' + report_id).subscribe(
+    this._http.get('eql/reportsinfo/' + report_id).subscribe(
       async (res) => {
         if (res.status) {
           this.loading = false;
@@ -948,8 +764,14 @@ public blockUser_data: any;
 
           // alert('Success');
           // debugger;
-          let dat = res.data.Data.IU;
-          let nas = res.data.Data.NAS;
+          let dat: any = {}
+          let nas: any = {};
+          if (res.data.Data.IU != null) {
+            dat = res.data.Data.IU.Data.Widgets;
+          }
+          if (res.data.Data.NAS != null) {
+            nas = res.data.Data.NAS.Data.Widgets;
+          }
           this.IsUserSelected = rep.UserType;
           this.acceptableApp_data = dat.Acceptable;
           this.acceptable_sites = dat.Acceptable;
@@ -1031,11 +853,11 @@ public blockUser_data: any;
           this.uncategorizedSites_data = nas.Firewall;
           this.firewallActions_data = nas.Overview;
           this.firewallOvertime_data = nas.Overview;
-          this.threatsDetected_data = nas.Threats;
-          this.vpnLogins_data = nas.VPN;
-          this.vpnSessionType_data = nas.VPN;
-          this.vpnSessions_data = nas.VPN;
-          this.vpnUsers_data = nas.VPN;
+          // this.threatsDetected_data = nas.Threats;
+          // this.vpnLogins_data = nas.VPN;
+          // this.vpnSessionType_data = nas.VPN;
+          // this.vpnSessions_data = nas.VPN;
+          // this.vpnUsers_data = nas.VPN;
           this.WarnedProceeded_data = nas.WarnedTraffic;
           this.warnedTraffic_data = nas.WarnedTraffic;
           this.warnedProceededEvent_data = nas.WarnedTraffic;
@@ -1045,6 +867,13 @@ public blockUser_data: any;
           this.warnedUsers_data = nas.WarnedTraffic;
           this.AAReport_overview = nas.Overview;
           this.categoriesTime_data = dat.Productivity;
+          this.productivityApplicationTable = dat['Productivity-Tables'].Apps.Table.Unproductive;
+          this.unproductivitySitesTable = dat['Productivity-Tables'].Sites.Table.Unproductive;
+          this.unproductiveUsersTable = dat['Productivity-Tables'].Users.Table.Unproductive;
+          this.acceptableApplicationsTable = dat['Productivity-Tables'].Apps.Table.Acceptable;
+          this.acceptableSitesTable = dat['Productivity-Tables'].Sites.Table.Acceptable;
+          this.acceptableUsersTable = dat['Productivity-Tables'].Users.Table.Acceptable;
+
 
           this.chartintialize(rep.UserType);
           // this.reportingCharts();
@@ -1053,7 +882,7 @@ public blockUser_data: any;
           this.IsDisabledReport = true;
           await new Promise((f) => setTimeout(f, 2000));
           this.scroll(this.content.nativeElement);
-          // this.onDismiss();
+          this.onDismiss();
           // this.scroll(this.document.getElementById('content'))
         } else {
           this.loading = false;
@@ -1283,9 +1112,9 @@ public blockUser_data: any;
     if (widget === 'firewall-action-overtime') {
       this.FirewallActionOvertimeChartData = baseData;
     }
-    if (widget === 'vpn-sessions') {
-      this.VPNSessionsChartData = baseData;
-    }
+    // if (widget === 'vpn-sessions') {
+    //   this.VPNSessionsChartData = baseData;
+    // }
 
 
 
@@ -2182,15 +2011,15 @@ public blockUser_data: any;
     if (widget === 'network-zones') {
       this.NetworkZonesChartData = baseData;
     }
-    if (widget === 'threats-detected') {
-      this.ThreatsDetectedChartData = baseData;
-    }
-    if (widget === 'vpn-session-types') {
-      this.VPNSessionTypeChartData = baseData;
-    }
-    if (widget === 'vpn-users') {
-      this.VPNUsersChartData = baseData;
-    }
+    // if (widget === 'threats-detected') {
+    //   this.ThreatsDetectedChartData = baseData;
+    // }
+    // if (widget === 'vpn-session-types') {
+    //   this.VPNSessionTypeChartData = baseData;
+    // }
+    // if (widget === 'vpn-users') {
+    //   this.VPNUsersChartData = baseData;
+    // }
     if (widget === 'warned-events') {
       this.warnedEventsChartData = baseData;
     }
@@ -2579,10 +2408,10 @@ public blockUser_data: any;
     if (widget === 'firewallFilter-actions') {
       this.FirewallActionsChartData = baseData;
     }
-    if (widget === 'vpn-logins') {
-      this.VPNLoginsChartData = baseData;
-    }
-    if (widget === 'warned-proceeded') {
+    // if (widget === 'vpn-logins') {
+    //   this.VPNLoginsChartData = baseData;
+    // }
+    if (widget === 'iu-warned-proceeded') {
       this.CategoriesWarnedProceededChartData = baseData;
     }
     if (widget === 'warned-traffic') {
@@ -3094,23 +2923,23 @@ public blockUser_data: any;
       this.NetworkZonesChartData['series'] =
         this.networkZones_data.Zones.Chart.Series;
 
-      this.setStackedBarChartBaseDataStructure('threats-detected');
-      this.ThreatsDetectedChartData['xAxis']['categories'] =
-        this.threatsDetected_data.ThreatsDetected.Chart.Labels;
-      this.ThreatsDetectedChartData['series'] =
-        this.threatsDetected_data.ThreatsDetected.Chart.Series;
+      // this.setStackedBarChartBaseDataStructure('threats-detected');
+      // this.ThreatsDetectedChartData['xAxis']['categories'] =
+      //   this.threatsDetected_data.ThreatsDetected.Chart.Labels;
+      // this.ThreatsDetectedChartData['series'] =
+      //   this.threatsDetected_data.ThreatsDetected.Chart.Series;
 
-      this.setStackedBarChartBaseDataStructure('vpn-session-types');
-      this.VPNSessionTypeChartData['xAxis']['categories'] =
-        this.vpnSessionType_data.VPNSessionTypes.Chart.Labels;
-      this.VPNSessionTypeChartData['series'] =
-        this.vpnSessionType_data.VPNSessionTypes.Chart.Series;
+      // this.setStackedBarChartBaseDataStructure('vpn-session-types');
+      // this.VPNSessionTypeChartData['xAxis']['categories'] =
+      //   this.vpnSessionType_data.VPNSessionTypes.Chart.Labels;
+      // this.VPNSessionTypeChartData['series'] =
+      //   this.vpnSessionType_data.VPNSessionTypes.Chart.Series;
 
-      this.setStackedBarChartBaseDataStructure('vpn-users');
-      this.VPNUsersChartData['xAxis']['categories'] =
-        this.vpnUsers_data.VPNUsers.Chart.Labels;
-      this.VPNUsersChartData['series'] =
-        this.vpnUsers_data.VPNUsers.Chart.Series;
+      // this.setStackedBarChartBaseDataStructure('vpn-users');
+      // this.VPNUsersChartData['xAxis']['categories'] =
+      //   this.vpnUsers_data.VPNUsers.Chart.Labels;
+      // this.VPNUsersChartData['series'] =
+      //   this.vpnUsers_data.VPNUsers.Chart.Series;
 
         this.setStackedBarChartBaseDataStructure('warned-events');
         this.warnedEventsChartData['xAxis']['categories'] =
@@ -3255,11 +3084,11 @@ public blockUser_data: any;
       this.FirewallActionsChartData['series'] =
         this.firewallActions_data.FirewallActions.Chart.Series;
 
-      this.setProductivityByBrowsingTimePieChartDataStructure('vpn-logins');
-      this.VPNLoginsChartData['series'] =
-        this.vpnLogins_data.FailedVPNLogins.Chart.Series;
+      // this.setProductivityByBrowsingTimePieChartDataStructure('vpn-logins');
+      // this.VPNLoginsChartData['series'] =
+      //   this.vpnLogins_data.FailedVPNLogins.Chart.Series;
 
-      this.setProductivityByBrowsingTimePieChartDataStructure('warned-proceeded');
+      this.setProductivityByBrowsingTimePieChartDataStructure('iu-warned-proceeded');
       this.CategoriesWarnedProceededChartData['series'] =
         this.WarnedProceeded_data.CategoriesWarnedAndProceeded.Chart.Series;
 
@@ -3319,9 +3148,9 @@ public blockUser_data: any;
         this.firewallOvertime_data.FirewallActionsOverTime.Chart.Series;
 
 
-      this.setProductivityOverTimeChartDataStructure('vpn-sessions');
-      this.VPNSessionsChartData['series'] =
-        this.vpnSessions_data.VPNSessions.Chart.Series;
+      // this.setProductivityOverTimeChartDataStructure('vpn-sessions');
+      // this.VPNSessionsChartData['series'] =
+      //   this.vpnSessions_data.VPNSessions.Chart.Series;
 
 
 

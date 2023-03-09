@@ -625,7 +625,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr
-                                                                *ngFor="let rec of threatDetected_data.ThreatsDetected.Table; let i=index">
+                                                                *ngFor="let rec of threatDetected_data.ThreatsDetected.Table.Data; let i=index">
                                                                 <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.destination }}</td>
                                                                 <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.source }}
@@ -1504,7 +1504,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                     let rec of warnedProceeded_data.CategoriesWarnedAndProceeded.Table.data; let i=index
+                                     let rec of warnedProceeded_data.CategoriesWarnedAndProceeded.Table.Data; let i=index
                                    ">
                                                                 <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
                                                                 <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
@@ -1578,7 +1578,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                     let rec of warnedTraffic_data.MostWarnedTraffic.Table.data; let i=index
+                                     let rec of warnedTraffic_data.MostWarnedTraffic.Table.Data; let i=index
                                    ">
                                                                 <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
                                                                 <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
@@ -1650,7 +1650,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                     let rec of otherWarnedProceeded_data.OtherWarnedAndProceededEvents.Table.data; let i=index
+                                     let rec of otherWarnedProceeded_data.OtherWarnedAndProceededEvents.Table.Data; let i=index
                                    ">
                                                                 <td>{{ rec.domain }}</td>
                                                                 <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
@@ -1723,7 +1723,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                     let rec of warnRules_data.WarnRules.Table.data; let i=index
+                                     let rec of warnRules_data.WarnRules.Table.Data; let i=index
                                    ">
                                                                 <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
                                                                 <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
@@ -1797,7 +1797,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                     let rec of warnedCategories_data.WarnedCategories.Table.data; let i=index
+                                     let rec of warnedCategories_data.WarnedCategories.Table.Data; let i=index
                                    ">
                                                                 <td><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
                                                                 <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
@@ -1876,7 +1876,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                     let rec of warnedUserAgent_data.WarnedUserAgents.Table.data; let i=index
+                                     let rec of warnedUserAgent_data.WarnedUserAgents.Table.Data; let i=index
                                    ">
                                                                 <td ><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
                                                                 <td class="text-center"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{
@@ -2470,7 +2470,7 @@
                                                         <tbody>
                                                             <tr
                                                                 *ngFor="
-                                                           let rec of firewalls_data.Firewalls.Table.Data; let i=index">
+                                                           let rec of firewalls_data.Firewalls.Table; let i=index">
 
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.name }}
@@ -3472,7 +3472,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of vpnFailedLogin_data.FailedVPNLogins.Table.data; let i=index
+                                    let rec of vpnFailedLogin_data.FailedVPNLogins.Table.Data; let i=index
                                   ">
                                                                 <td ><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
                                                                 <td class="text-center" ><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.category }}</td>
@@ -3543,7 +3543,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of vpnSessionType_data.VPNSessionTypes.Table.data; let i=index
+                                    let rec of vpnSessionType_data.VPNSessionTypes.Table.Data; let i=index
                                   ">
                                                                 <td ><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
                                                                 <td class="text-center" ><div *ngIf="i === 49" style="min-height: 15px;" ></div> {{ rec.category }}</td>
@@ -3614,7 +3614,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="
-                                    let rec of vpnSession_data.VPNSessions.Table.data; let i=index
+                                    let rec of vpnSession_data.VPNSessions.Table.Data; let i=index
                                   ">
                                                                 <td ><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.domain }}</td>
                                                                 <td class="text-center" ><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.category }}</td>
