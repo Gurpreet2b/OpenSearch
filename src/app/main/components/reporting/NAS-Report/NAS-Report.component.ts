@@ -1923,7 +1923,7 @@ export class NASReportComponent implements OnInit {
         },
       },
       tooltip: {
-        valueSuffix: ' sMB',
+        valueSuffix: ' MB',
       },
       legend: {
         enabled: true,

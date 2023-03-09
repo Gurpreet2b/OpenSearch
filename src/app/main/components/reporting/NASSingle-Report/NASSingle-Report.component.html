@@ -314,28 +314,19 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-4 stat-icon">
+                                        <div class="r-card">
+                                            <!-- <div class="col-xs-4 col-md-4 stat-icon">
                                                 <div class="icon-big text-center icon-warning">
                                                     <i class="fa fa-layer-group fa-2x" aria-hidden="true">
                                                         <i class="fa fa-info-circle icon-fa-2x" aria-hidden="true"></i>
                                                     </i>
                                                 </div>
-                                            </div>
-                                            <div class="col-8 col-md-8">
-                                                <div class="numbers">
-                                                    <div class="p-t-color">
-                                                        <p class="card-category">Total Data</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pt-0">
+                                            </div> -->
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
                                                     <div class="p-t-color">
-                                                        <p class="card-title">
+                                                        <p class="card-title-text-color">
                                                             {{ reportData_Overview?.TotalData.Top }}
                                                         </p>
                                                     </div>
@@ -343,70 +334,93 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="r-card pt-0">
+                                            <div class="col-12 col-md-12">
+                                                <div class="numbers">
+                                                    <div class="p-t-color">
+                                                        <p class="card-text-color">TOTAL DATA</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-4 stat-icon">
+                                        <div class="r-card">
+                                            <!-- <div class="col-xs-4 col-md-4 stat-icon">
                                                 <div class="icon-big text-center icon-warning">
                                                     <i class="fa fa-layer-group fa-2x" aria-hidden="true">
                                                         <i class="fa fa-info-circle icon-fa-2x" aria-hidden="true"></i>
                                                     </i>
                                                 </div>
-                                            </div>
-                                            <div class="col-8 col-md-8">
-                                                <div class="numbers">
-                                                    <p class="card-category">Most Blocked Site</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pt-0">
+                                            </div> -->
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
-                                                    <p class="card-title">
-                                                        {{ reportData_Overview?.MostBlockedSite.Top }}
-                                                    </p>
+                                                    <div class="p-t-color">
+                                                        <p class="card-title-text-color">
+                                                            {{ reportData_Overview?.MostBlockedSite.Top }}
+                                                        </p>
+                                                    </div>
+                                                    
 
                                                     <p></p>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="r-card pt-0">
+                                            <div class="col-12 col-md-12">
+                                                <div class="numbers">
+                                                    <div class="p-t-color">
+
+                                                        <p class="card-text-color">MOST BLOCKED SITE</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-4 stat-icon">
+                                        <div class="r-card">
+                                            <!-- <div class="col-xs-4 col-md-4 stat-icon">
                                                 <div class="icon-big text-center icon-warning">
                                                     <i class="fa fa-layer-group fa-2x" aria-hidden="true">
                                                         <i class="fa fa-info-circle icon-fa-2x" aria-hidden="true"></i>
                                                     </i>
                                                 </div>
-                                            </div>
-                                            <div class="col-8 col-md-8">
-                                                <div class="numbers">
-                                                    <p class="card-category">Most Blocked Threats</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pt-0">
+                                            </div> -->
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
-                                                    <p class="card-title">
+                                                   
+                                                        <div class="p-t-color">
+                                                            <p class="card-text-color">
+                                                            {{ reportData_Overview?.MostBlockedThreat.Top }}
+                                                            </p>
                                                         <!-- {{ reportData_Overview?.TopApplication.Top }} -->
-                                                        {{ reportData_Overview?.MostBlockedThreat.Top }}
-                                                    </p>
-
+                                                        </div>
+                                                   
                                                     <p></p>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="r-card pt-0">
+                                            <div class="col-12 col-md-12">
+                                                <div class="numbers">
+                                                    <div class="p-t-color">
+                                                        <p class="card-text-color">MOST BLOCKED THREATS</p>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -414,30 +428,37 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-4 stat-icon">
+                                        <div class="r-card">
+                                            <!-- <div class="col-xs-4 col-md-4 stat-icon">
                                                 <div class="icon-big text-center icon-warning">
                                                     <i class="fa fa-layer-group fa-2x" aria-hidden="true">
                                                         <i class="fa fa-info-circle icon-fa-2x" aria-hidden="true"></i>
                                                     </i>
                                                 </div>
-                                            </div>
-                                            <div class="col-8 col-md-8">
-                                                <div class="numbers">
-                                                    <p class="card-category">Most Blocked Category</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pt-0">
+                                            </div> -->
                                             <div class="col-12 col-md-12">
                                                 <div class="numbers">
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
-                                                    <p class="card-title">
+                                                    <div class="p-t-color">
+                                                        <p class="card-text-color">
                                                         {{ reportData_Overview?.MostBlockedCategory.Top }}
-                                                    </p>
+                                                        </p>
+                                                    
+                                                    </div>
+                                                   
                                                     <p></p>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="r-card pt-0">
+                                            <div class="col-12 col-md-12">
+                                                <div class="numbers">
+                                                    <div class="p-t-color">
+                                                    <p class="card-text-color">MOST BLOCKED CATEGORY</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -1875,7 +1896,7 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                                <!-- <th class="text-left">Type</th> -->
                                                                 <th class="text-left">Category</th>
                                                                 <!-- <th class="text-left">Application</th> -->
                                                                 <th class="text-left">Bandwidth</th>
@@ -1890,9 +1911,6 @@
                                     let rec of allowedUnacceptableSites_data.AllowedUnacceptableSites
                                       .Table.Data
                                   ">
-                                                                <td class="text-left">
-                                                                    {{ rec.type }}
-                                                                </td>
                                                                 <td class="text-left">
                                                                     {{ rec.category }}
                                                                 </td>
@@ -1958,8 +1976,8 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th>Type</th>
-                                                                <th>Category</th>
+                                                               
+                                                                <th class="text-left">Category</th>
                                                                 <th>Domain</th>
                                                                 <th>Duration</th>
                                                                 <th>Hits</th>
@@ -1975,21 +1993,18 @@
                                     let rec of allowedUnproductiveSites_data.AllowedUnproductiveSites
                                       .Table.Data
                                   ">
-                                                                <td>
-                                                                    {{ rec.type }}
-                                                                </td>
-                                                                <td>
+                                                                <td class="text-left">
                                                                     {{ rec.category }}
                                                                 </td>
-                                                                <td>
+                                                                <td class="text-center">
                                                                     {{ rec.domain}}
                                                                 </td>
-                                                                <td>{{ rec.duration | timeFormat}}</td>
+                                                                <td class="text-center">{{ rec.duration | timeFormat}}</td>
 
-                                                                <td>{{ rec.hits }}</td>
-                                                                <td>{{ rec.action }}</td>
-                                                                <td>{{ rec.bandwidth }}</td>
-                                                                <td>{{ rec.application }}</td>
+                                                                <td class="text-center">{{ rec.hits }}</td>
+                                                                <td class="text-center">{{ rec.action }}</td>
+                                                                <td class="text-center">{{ rec.bandwidth }}</td>
+                                                                <td class="text-center">{{ rec.application }}</td>
                                                                 <!-- <td>{{ rec.reason }}</td> -->
 
                                                             </tr>
@@ -2541,8 +2556,8 @@
                                                          <thead class="text-primary">
                                                              <tr>
                                                                  <th class="text-left">Name</th>
-                                                                 <th class="text-left">Duration</th>
-                                                                 <th class="text-left">Bandwidth</th>
+                                                                 <th>Duration</th>
+                                                                 <th>Bandwidth</th>
  
                                                              </tr>
                                                          </thead>
@@ -2557,10 +2572,10 @@
                                                                      <!-- {{top.name}} -->
                                                                  </td>
                                                                  <!-- <td class="text-left">{{ rec.name }}</td> -->
-                                                                 <td class="text-left">
+                                                                 <td class="text-center">
                                                                      {{ rec.duration | timeFormat }}
                                                                  </td>
-                                                                 <td class="text-left">
+                                                                 <td class="text-center">
                                                                      {{ rec.bandwidth }}
                                                                  </td>
  

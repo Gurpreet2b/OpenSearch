@@ -84,7 +84,7 @@ label {
 
 .card {
   border-radius: 1rem;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .card-stats .card-body .numbers {
@@ -136,7 +136,8 @@ label {
 }
 
 .card-stats .card-body {
-  padding: 0px 7px;
+  padding: 10px 0px;
+  min-height: 80px;
 }
 
 @media (min-width: 768px) {
@@ -304,8 +305,8 @@ th {
 }
 
 .padding-bottom-zero .child {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .flex-spacer {
@@ -955,4 +956,26 @@ font-size: 16px !important;
 
 .chart-data-report{
   display: none;
+}
+
+
+.card-title-text-color{
+  font-size: 34px !important;
+  font-weight: 500 !important;
+  color: #ff9933 !important;
+  text-align: center;
+}
+
+/* .card-title-text-color:hover{
+  color: #fff;
+} */
+
+.card-text-color{
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #000;
+  text-align: center;
+}
+.r-card{
+  padding:5px;
 }

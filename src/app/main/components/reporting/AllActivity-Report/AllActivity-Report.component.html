@@ -311,37 +311,38 @@
                             </h2>
                         </div>
                         <div class="row padding-bottom-zero">
-                            <div class="col-lg-3 col-md-6 col-sm-6 child">
+                            <div class="col-lg-3 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-4 stat-icon">
+                                        <div class="r-card">
+                                            <!-- <div class="col-xs-4 col-md-4 stat-icon">
                                                 <div class="icon-big text-center icon-warning">
                                                     <i class="fa fa-layer-group fa-2x" aria-hidden="true">
                                                         <i class="fa fa-info-circle icon-fa-2x" aria-hidden="true"></i>
                                                     </i>
                                                 </div>
-                                            </div>
-                                            <div class="col-8 col-md-8">
-                                                <div class="numbers">
-                                                    <div class="p-t-color">
-                                                        <p class="card-category">Total Bandwidth</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pt-0">
-                                            <div class="col-12 col-md-12">
+                                            </div> -->
+                                            <div class="col-md-12">
                                                 <div class="numbers">
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
                                                     <div class="p-t-color">
-                                                        <p class="card-title">
+                                                        <p class="card-title-text-color">
                                                             {{ reportData_Overview?.TotalData.Top }}
                                                         </p>
                                                     </div>
                                                     <p></p>
                                                 </div>
                                             </div>
+                                           
+                                        </div>
+                                        <div class="r-card pt-0">
+                                            <div class="col-12 col-md-12">
+                                                <div class="numbers">
+                                                    <div class="p-t-color">
+                                                        <p class="card-text-color">TOTAL BANDWIDTH</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -349,31 +350,45 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-4 stat-icon">
+                                        <div class="r-card">
+                                            <!-- <div class="col-xs-4 col-md-4 stat-icon">
                                                 <div class="icon-big text-center icon-warning">
                                                     <i class="fa fa-layer-group fa-2x" aria-hidden="true">
                                                         <i class="fa fa-info-circle icon-fa-2x" aria-hidden="true"></i>
                                                     </i>
                                                 </div>
-                                            </div>
-                                            <div class="col-8 col-md-8">
+                                            </div> -->
+                                            <div class="col-md-12"  title= "{{ reportData_Overview?.TopSite.Top }}">
                                                 <div class="numbers">
+                                                    <!-- <p class="card-category">Total Bandwidth</p> -->
+                                                    <div class="p-t-color">
+                                                        <p class="card-title-text-color">
+                                                            
+                                                            {{ reportData_Overview?.TopSite.Top | slice: 0:8 }} <span *ngIf="reportData_Overview?.TopSite.Top.length > 8">...</span>
+                                                        </p>
+                                                    </div>
+                                                    <!-- <p class="card-title">
+                                                        {{ reportData_Overview?.TopSite.Top | slice:0.50 }}
+                                                        <span *ngIf="reportData_Overview.TopApplication.Top.length < 50">...</span>
+
+                                                    </p> -->
+
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="r-card pt-0">
+                                            <div class="col-md-12">
+                                                <div class="numbers">
+                                                    <div class="p-t-color">
+                                                        <p class="card-text-color">TOP SITE</p>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="numbers">
                                                     <p class="card-category">Top Site</p>
-                                                </div>
+                                                </div> -->
                                             </div>
-                                        </div>
-                                        <div class="row pt-0">
-                                            <div class="col-12 col-md-12">
-                                                <div class="numbers">
-                                                    <!-- <p class="card-category">Total Bandwidth</p> -->
-                                                    <p class="card-title">
-                                                        {{ reportData_Overview?.TopSite.Top }}
-                                                    </p>
-
-                                                    <p></p>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -381,32 +396,38 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-4 stat-icon">
+                                        <div class="r-card">
+                                            <!-- <div class="col-xs-4 col-md-4 stat-icon">
                                                 <div class="icon-big text-center icon-warning">
                                                     <i class="fa fa-layer-group fa-2x" aria-hidden="true">
                                                         <i class="fa fa-info-circle icon-fa-2x" aria-hidden="true"></i>
                                                     </i>
                                                 </div>
-                                            </div>
-                                            <div class="col-8 col-md-8">
-                                                <div class="numbers">
-                                                    <p class="card-category">Top Application</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pt-0">
-                                            <div class="col-12 col-md-12">
+                                            </div> -->
+                                            <div class="col-md-12">
                                                 <div class="numbers">
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
-                                                    <p class="card-title">
-                                                        <!-- {{ reportData_Overview?.TopApplication.Top }} -->
-                                                        {{ reportData_Overview?.TopApplication.Top }}
-                                                    </p>
+                                                    <div class="p-t-color">
+                                                        <p class="card-title-text-color">
+                                                            {{ reportData_Overview?.TopApplication.Top }}
+                                                        </p>
+                                                    </div>
+                                                 
 
                                                     <p></p>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="r-card pt-0">
+                                            <div class="col-md-12">
+                                                <div class="numbers">
+                                                    <div class="p-t-color">
+                                                        <p class="card-text-color">TOP APPLICATION</p>
+                                                    </div>
+                                                </div>
+                                              
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -414,30 +435,39 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 child">
                                 <div class="card card-stats cardx">
                                     <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 col-md-4 stat-icon">
+                                        <div class="r-card">
+                                            <!-- <div class="col-xs-4 col-md-4 stat-icon">
                                                 <div class="icon-big text-center icon-warning">
                                                     <i class="fa fa-layer-group fa-2x" aria-hidden="true">
                                                         <i class="fa fa-info-circle icon-fa-2x" aria-hidden="true"></i>
                                                     </i>
                                                 </div>
-                                            </div>
-                                            <div class="col-8 col-md-8">
+                                            </div> -->
+                                            <div class="col-md-12">
                                                 <div class="numbers">
-                                                    <p class="card-category">Top User</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row pt-0">
-                                            <div class="col-12 col-md-12">
-                                                <div class="numbers">
+                                                    <div class="p-t-color">
+                                                        <p class="card-title-text-color">
+                                                            {{ reportData_Overview?.TopUser.Top }}
+                                                        </p>
+                                                    </div>
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
-                                                    <p class="card-title">
+                                                    <!-- <p class="card-title">
                                                         {{ reportData_Overview?.TopUser.Top }}
-                                                    </p>
+                                                    </p> -->
                                                     <p></p>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="r-card pt-0">
+                                            <div class="col-md-12">
+                                                <div class="numbers">
+                                                    <div class="p-t-color">
+                                                        <p class="card-text-color">TOP USER</p>
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -482,8 +512,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
 
                             <div id="content-app-size" #content>
@@ -4290,7 +4318,7 @@
                                                         <thead class="text-primary">
                                                             <tr>
                                                                 <th class="text-left">Name</th>
-                                                                <th class="text-left">Duration</th>
+                                                                <th class="text-left">Hits</th>
                                                                 <th class="text-left">Bandwidth</th>
                                                             </tr>
                                                         </thead>
@@ -4300,7 +4328,7 @@
                                                                 <td class="text-left">{{ rec.name }}</td>
 
                                                                 <td class="text-left">
-                                                                    {{ rec.duration | timeFormat }}
+                                                                    {{ rec.hits }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.bandwidth }}

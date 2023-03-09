@@ -11,7 +11,8 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class FrameLinkComponent implements OnInit {
 
   public frameLink = "";
-  constructor(private _http: HttpService, private _auth: AuthService, private router:Router, private sanitizer: DomSanitizer) {
+  constructor(private _http: HttpService, private _auth: AuthService, private router:Router, private sanitizer: DomSanitizer,
+    private authService: AuthService) {
     this._http.get(`eql/link_embed`).subscribe(
       (res) => {
         this.frameLink = res.data;
@@ -30,7 +31,7 @@ export class FrameLinkComponent implements OnInit {
     );
    }
   ngOnInit(): void {
-    
+    this.authService.SetHeaderTitleName(`Honetpot`);
   }
   transform() {
     return this.sanitizer.bypassSecurityTrustResourceUrl(
