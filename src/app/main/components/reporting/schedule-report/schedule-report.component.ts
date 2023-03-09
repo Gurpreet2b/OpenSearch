@@ -324,7 +324,7 @@ export class ScheduleReportComponent implements OnInit {
         return;
     }
     this.AddEmailListArray.push(this.AddEmailForm.value.email);
-    this.AddEmailForm.reset();
+    // this.AddEmailForm.reset();
     this.DismissEmail();
   }
 
