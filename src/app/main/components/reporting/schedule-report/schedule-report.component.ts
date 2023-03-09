@@ -145,6 +145,7 @@ export class ScheduleReportComponent implements OnInit {
   public scheduleType: any = "daily";
   public AddEmailForm: FormGroup;
   public submitted = false;
+  public SMTPSettingsForm: FormGroup;
 
 
   ngOnInit(): void {
@@ -183,10 +184,137 @@ export class ScheduleReportComponent implements OnInit {
     this.AddEmailForm = this.fb.group({
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
     });
+
+    this.GetSMTPSettings();
+
+    this.SMTPSettingsForm = this.fb.group({
+      smtp_server: ['', [Validators.required]],
+      smtp_port: ['', [Validators.required]],
+      smtp_use_ssl: [false],
+      smtp_use_tls: [false],
+      smtp_use_authentication: [false],
+      smtp_username: ['', [Validators.required]],
+      smtp_password: ['', [Validators.required]],
+      smtp_from_address: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      test_email_address: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+    });
   }  
 
   // convenience getter for easy access to form fields
-  get f() { return this.AddEmailForm.controls; }
+  get f() { return this.SMTPSettingsForm.controls; }
+
+  onSubmitSMTP(type: any) {
+   this.submitted = true;
+   this.SMTPSettingsForm.markAllAsTouched();
+   if (!this.SMTPSettingsForm.valid) {
+     return;
+   }
+   const dataToSubmit = { ...this.SMTPSettingsForm.value };
+   const formData = new FormData();
+  
+   Object.keys(dataToSubmit).forEach(key => {
+     if (!formData.has(key)) {
+       formData.append(key, dataToSubmit[key])
+     }
+   });
+
+   this.loading = true;
+   if (type === 'save') {
+    this._http.post('eql/smtp_details/', formData).subscribe((res: any) => {
+      if (res.status === true) {
+        const responseData = res.data;
+        alert("SMTP Settings Detail Data Successfully !!")
+        this.DismissSMTPEmail();
+        this.loading = false;
+      } else {
+        alert(res.message);
+        this.loading = false;
+      }
+    }, error => {
+      if (error.error.code === 'token_not_valid') {
+        this.authService.logout();
+        this.router.navigate(['/signin']);
+        this.loading = false;
+        // alert(error.error.error);
+      } else {
+        this.loading = false;
+        alert(error.error.error);
+      }
+    });
+   } else {
+    this._http.post('eql/test_email/', formData).subscribe((res: any) => {
+      if (res.status === true) {
+        const responseData = res.data;
+        alert("SMTP Test Email Successfully !!")
+        this.DismissSMTPEmail();
+        this.loading = false;
+      } else {
+        alert(res.message);
+        this.loading = false;
+      }
+    }, error => {
+      if (error.error.code === 'token_not_valid') {
+        this.authService.logout();
+        this.router.navigate(['/signin']);
+        this.loading = false;
+        // alert(error.error.error);
+      } else {
+        this.loading = false;
+        alert(error.error.error);
+      }
+    });
+   }
+   
+
+ }
+
+ DismissSMTPEmail(){
+   const target = "#scheduleMail";
+   $(target).hide();
+   $('.modal-backdrop').remove();
+   $("body").removeClass("modal-open");
+   $("body").addClass("modal-overflow");
+ }
+
+
+ GetSMTPSettings() {
+   this.loading = true;
+   this._http.get('eql/smtp_details/', null).subscribe((res: any) => {
+     if (res.status === true) {
+       const responseData = res.data;
+       this.SMTPSettingsForm.setValue({
+         smtp_server: res.data.smtp_server,
+         smtp_port: res.data.smtp_port,
+         smtp_use_ssl: res.data.smtp_use_ssl,
+         smtp_use_tls: res.data.smtp_use_tls,
+         smtp_use_authentication: res.data.smtp_use_authentication,
+         smtp_username: res.data.smtp_username,
+         smtp_password: res.data.smtp_password,
+         smtp_from_address: res.data.smtp_from_address,
+         test_email_address: res.data.test_email_address
+       });
+
+       this.loading = false;
+     } else {
+       alert(res.message);
+       this.loading = false;
+     }
+   }, error => {
+     if (error.error.code === 'token_not_valid') {
+       this.authService.logout();
+       this.router.navigate(['/signin']);
+       this.loading = false;
+       // alert(error.error.error);
+     } else {
+       this.loading = false;
+       alert(error.error.error);
+     }
+   });
+ }
+
+
+  // convenience getter for easy access to form fields
+  get ff() { return this.AddEmailForm.controls; }
 
   addEmailSubmit() {
     this.submitted = true;
@@ -196,6 +324,7 @@ export class ScheduleReportComponent implements OnInit {
         return;
     }
     this.AddEmailListArray.push(this.AddEmailForm.value.email);
+    this.AddEmailForm.reset();
     this.DismissEmail();
   }
 
