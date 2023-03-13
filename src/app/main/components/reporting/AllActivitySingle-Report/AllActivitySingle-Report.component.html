@@ -372,7 +372,7 @@
                                             </div>
                                         </div>
                                         <div class="r-card pt-0">
-                                            <div class="col-md-8">
+                                            <div class="col-md-12">
                                                 <div class="numbers">
                                                     <p class="card-text-color">TOP SITE</p>
                                                 </div>
@@ -484,7 +484,7 @@
 
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div id="ApplicationChartData"></div>
+                                                    <div id="topApplicationId"></div>
                                                 </div>
                                             </div>
 
@@ -2111,9 +2111,7 @@
                                                                 <!-- <th class="text-left">Type</th> -->
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Domain</th>
-                                                                <th class="text-left">Application</th>
                                                                 <th class="text-left">Hits</th>
-                                                                <th class="text-left">Reason</th>
 
                                                                 <th class="text-left">Bandwidth</th>
 
@@ -2133,11 +2131,9 @@
                                                                 <td class="text-left">
                                                                     {{ rec.domain}}
                                                                 </td>
-                                                                <td class="text-left">{{ rec.application }}</td>
 
                                                                 <td class="text-left">{{ rec.hits }}</td>
 
-                                                                <td class="text-left">{{ rec.reason }}</td>
 
                                                                 <td class="text-left">{{ rec.bandwidth }}</td>
 
@@ -3409,9 +3405,7 @@
                                                                 <th class="text-left">Action</th>
                                                                 <th class="text-left">Duration</th>
                                                                 <th class="text-left">Bandwidth</th>
-                                                                <th class="text-left">Reason</th>
                                                                 <th class="text-left">Hits</th>
-                                                                <th class="text-left">Applications</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -3435,13 +3429,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.reason }}
-                                                                </td>
-                                                                <td class="text-left">
                                                                     {{ rec.hits }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.application }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -3574,9 +3562,7 @@
                                                                 <th class="text-left">Action</th>
                                                                 <th class="text-left">Duration</th>
                                                                 <th class="text-left">Bandwidth</th>
-                                                                <th class="text-left">Reason</th>
                                                                 <th class="text-left">Hits</th>
-                                                                <th class="text-left">Applications</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -3600,13 +3586,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.reason }}
-                                                                </td>
-                                                                <td class="text-left">
                                                                     {{ rec.hits }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.application }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>

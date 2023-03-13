@@ -171,7 +171,7 @@ export class AllActivitySingleReportComponent implements OnInit {
 
 
   //All Activity Chart Data
-public ApplicationChartData: any;
+  public topApplicationId: any;
 public BandwidthChartData: any;
 public FirewallChartData: any;
 public FirewallActionChartData: any;
@@ -2929,8 +2929,9 @@ public FirewallActionChartData: any;
   }
 
   reportingCharts() {
-    this.ApplicationChartData = Highcharts.chart('ApplicationChartData', this.ApplicationBySizeChartData);
+    // this.ApplicationChartData = Highcharts.chart('ApplicationChartData', this.ApplicationBySizeChartData);
     this.BandwidthChartData = Highcharts.chart('BandwidthChartData', this.BandwidthOverTimeChartData);
+    this.topApplicationId = Highcharts.chart('topApplicationId', this.ApplicationBySizeChartData);
   }
 
   adsghs() {

@@ -140,7 +140,7 @@ label {
 }
 
 .card-stats .card-body {
-  padding: 10px 0px;
+  padding: 0px 7px;
 }
 
 @media (min-width: 768px) {
@@ -308,8 +308,8 @@ th {
 }
 
 .padding-bottom-zero .child {
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
 }
 
 .flex-spacer {
@@ -968,9 +968,6 @@ font-size: 16px !important;
   text-align: center;
 }
 
-/* .card-title-text-color:hover{
-  color: #fff;
-} */
 
 .card-text-color{
   font-weight: 400 !important;

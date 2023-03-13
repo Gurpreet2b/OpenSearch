@@ -404,12 +404,12 @@
                                                     </i>
                                                 </div>
                                             </div> -->
-                                            <div class="col-md-12">
+                                            <div class="col-md-12" title=" {{ reportData_Overview?.TopApplication.Top }}">
                                                 <div class="numbers">
                                                     <!-- <p class="card-category">Total Bandwidth</p> -->
                                                     <div class="p-t-color">
                                                         <p class="card-title-text-color">
-                                                            {{ reportData_Overview?.TopApplication.Top }}
+                                                            {{ reportData_Overview?.TopApplication.Top |  slice: 0:6}} <span *ngIf="reportData_Overview?.TopApplication.Top.length > 6">...</span>
                                                         </p>
                                                     </div>
                                                  
@@ -649,74 +649,7 @@
                                 </div>
                             </div>
 
-                            <div id="content-department-size" #content>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-12 col-sm-12 col-lg-12">
-                                        <div class="card card-chart">
-                                            <div class="card-header">
-                                                <div class="col-lg-6">
-                                                    <h3 class="card-title">
-                                                        <i
-                                                            class="tim-icons icon-delivery-fast text-info"></i>Departments
-                                                        by Size
-                                                    </h3>
-                                                </div>
-                                                <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title"
-                                                        (click)="DownloadPDF('content-department-size')">
-                                                        <u>Export PDF</u>
-                                                    </h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body">
-                                                <div class="chart-area">
-                                                    <highcharts-chart [Highcharts]="Highcharts"
-                                                        [options]="DepartmentBySizeChartData"
-                                                        style="width: 100%; height: 100%">
-                                                    </highcharts-chart>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">Departments by Size </h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table tablesorter" id="">
-                                                        <thead class="text-primary">
-                                                            <tr>
-                                                                <th class="text-left">Name</th>
-                                                                <th class="text-left">Duration</th>
-                                                                <th class="text-left">Total</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let rec of departmentSize_data.Table.Data
-                                  ">
-                                                                <td class="text-left">{{ rec.name }}</td>
-
-
-                                                                <td class="text-left">
-                                                                    {{ rec.duration | timeFormat }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.total_mbs }}
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                          
 
                             <div class="row padding-bottom-zero">
                                 <div class="col-xs-6 col-sm-6 col-lg-12">
@@ -828,6 +761,7 @@
                                             <div class="card-body">
                                                 <div class="chart-area">
                                                     <highcharts-chart [Highcharts]="Highcharts"
+                                                    [callbackFunction]="chartCallbackStacked"
                                                         [options]="SitesBySizeChartData"
                                                         style="width: 100%; height: 100%">
                                                     </highcharts-chart>
@@ -2945,9 +2879,7 @@
                                                                 <!-- <th class="text-left">Type</th> -->
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Domain</th>
-                                                                <th class="text-left">Application</th>
                                                                 <th class="text-left">Hits</th>
-                                                                <th class="text-left">Reason</th>
 
                                                                 <th class="text-left">Bandwidth</th>
 
@@ -2967,11 +2899,8 @@
                                                                 <td class="text-left">
                                                                     {{ rec.domain}}
                                                                 </td>
-                                                                <td class="text-left">{{ rec.application }}</td>
 
                                                                 <td class="text-left">{{ rec.hits }}</td>
-
-                                                                <td class="text-left">{{ rec.reason }}</td>
 
                                                                 <td class="text-left">{{ rec.bandwidth }}</td>
 
@@ -3775,7 +3704,7 @@
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         <div class="card card-chart">
                                             <div class="card-header">
-                                                <h5 class="card-title">VPN Users</h5>
+                                                <h5 class="card-title">Categories Warned and Proceeded</h5>
                                                 <!-- <p class="card-category">Line Chart with Points</p> -->
                                             </div>
                                             <div class="card-body">
@@ -4386,21 +4315,17 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <!-- <th class="text-left">Type</th> -->
                                                                 <th class="text-left">Domain</th>
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Action</th>
                                                                 <th class="text-left">Duration</th>
                                                                 <th class="text-left">Bandwidth</th>
-                                                                <th class="text-left">Reason</th>
                                                                 <th class="text-left">Hits</th>
-                                                                <th class="text-left">Applications</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of allowedUnacceptableSites_data.AllowedUnacceptableSites.Table.Data
                                   ">
-                                                                <!-- <td class="text-left">{{ rec.type }}</td> -->
 
                                                                 <td class="text-left">
                                                                     {{ rec.domain }}
@@ -4418,13 +4343,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.reason }}
-                                                                </td>
-                                                                <td class="text-left">
                                                                     {{ rec.hits }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.application }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -4625,21 +4544,17 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <!-- <th class="text-left">Type</th> -->
                                                                 <th class="text-left">Domain</th>
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Action</th>
                                                                 <th class="text-left">Duration</th>
                                                                 <th class="text-left">Bandwidth</th>
-                                                                <th class="text-left">Reason</th>
                                                                 <th class="text-left">Hits</th>
-                                                                <th class="text-left">Applications</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of allowedUnproductiveSites_data.AllowedUnproductiveSites.Table.Data
                                   ">
-                                                                <!-- <td class="text-left">{{ rec.type }}</td> -->
 
                                                                 <td class="text-left">
                                                                     {{ rec.domain }}
@@ -4657,13 +4572,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left">
-                                                                    {{ rec.reason }}
-                                                                </td>
-                                                                <td class="text-left">
                                                                     {{ rec.hits }}
-                                                                </td>
-                                                                <td class="text-left">
-                                                                    {{ rec.application }}
                                                                 </td>
                                                             </tr>
                                                         </tbody>

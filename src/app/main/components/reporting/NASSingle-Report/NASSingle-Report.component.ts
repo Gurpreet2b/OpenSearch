@@ -2278,15 +2278,15 @@ export class NASSingleReportComponent implements OnInit {
           },
         },
       },
-      legend: {
-        align: 'right',
-        verticalAlign: 'top',
-        layout: 'vertical',
-        x: -5,
-        y: 95,
-        itemMarginTop: 5,
-        itemDistance: 20,
-      },
+      // legend: {
+      //   align: 'right',
+      //   verticalAlign: 'top',
+      //   layout: 'vertical',
+      //   x: -15,
+      //   y: 85,
+      //   itemMarginTop: 5,
+      //   itemDistance: 20,
+      // },
       series: [
         {
           type: 'pie',

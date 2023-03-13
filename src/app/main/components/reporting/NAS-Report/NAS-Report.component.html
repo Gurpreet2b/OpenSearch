@@ -3321,10 +3321,9 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                                
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Domain</th>
-                                                                <th class="text-left">Application</th>
                                                                 <th class="text-left">Hits</th>
                                                                 <th class="text-left">Reason</th>
                                                                 <th class="text-left">Size</th>
@@ -3337,15 +3336,11 @@
                                       .Table.Data
                                   ">
                                                                 <td class="text-left">
-                                                                    {{ rec.type }}
-                                                                </td>
-                                                                <td class="text-left">
                                                                     {{ rec.category }}
                                                                 </td>
                                                                 <td class="text-left">
                                                                     {{ rec.domain}}
                                                                 </td>
-                                                                <td class="text-left">{{ rec.application }}</td>
 
                                                                 <td class="text-left">{{ rec.hits }}</td>
 
@@ -3785,13 +3780,11 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Domains</th>
                                                                 <th class="text-left">Hits</th>
                                                                 <th class="text-left">Size</th>
                                                                 <th class="text-left">Reason</th>
-                                                                <th class="text-left">Application</th>
 
                                                             </tr>
                                                         </thead>
@@ -3800,10 +3793,6 @@
                                     let rec of unproductiveSites_data.BlockedUnproductiveSites
                                       .Table.Data
                                   ">
-
-                                                                <td class="text-left">
-                                                                    {{ rec.type }}
-                                                                </td>
                                                                 <td class="text-left">
                                                                     {{ rec.category}}
                                                                 </td>
@@ -3811,7 +3800,6 @@
                                                                 <td class="text-left">{{ rec.hits }}</td>
                                                                 <td class="text-left">{{ rec.size }}</td>
                                                                 <td class="text-left">{{ rec.reason }}</td>
-                                                                <td class="text-left">{{ rec.application }}</td>
 
 
                                                             </tr>
@@ -4780,11 +4768,9 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
                                                                 <th class="text-center">Domain</th>
                                                                 <th class="text-center">Category</th>
                                                                 <th class="text-center">Action</th>
-                                                                <th class="text-center">Application</th>
                                                                 <th class="text-center">Duration</th>
                                                                 <th class="text-center">Size</th>
                                                                 <th class="text-center">Hits</th>
@@ -4797,9 +4783,6 @@
                                                             <tr *ngFor="
                                     let rec of allowedUnacceptableSites_data.AllowedUnacceptableSites.Table.Data
                                   ">
-                                                                <td class="text-left">
-                                                                    {{ rec.type }}
-                                                                </td>
                                                                 <td class="text-center">
                                                                     {{ rec.domain }}
                                                                 </td>
@@ -4809,9 +4792,7 @@
                                                                 <td class="text-center">
                                                                     {{ rec.action}}
                                                                 </td>
-                                                                <td class="text-center">
-                                                                    {{ rec.application}}
-                                                                </td>
+                                                              
                                                                 <td class="text-center">
                                                                     {{ rec.duration | timeFormat}}
                                                                 </td>
@@ -5035,14 +5016,13 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
                                                                 <th>Category</th>
                                                                 <th>Domain</th>
                                                                 <th>Duration</th>
                                                                 <th>Hits</th>
                                                                 <th>Size</th>
                                                                 <th>Reason</th>
-                                                                <th>Application</th>
+                                                              
                                                                 <th>Action</th>
 
 
@@ -5052,9 +5032,6 @@
                                                             <tr *ngFor="
                                     let rec of unrpoductiveSites_data.AllowedUnproductiveSites.Table.Data
                                   ">
-                                                                <td class="text-left">
-                                                                    {{ rec.type }}
-                                                                </td>
                                                                 <td>
                                                                     {{ rec.category }}
                                                                 </td>
@@ -5073,9 +5050,7 @@
                                                                 <td>
                                                                     {{ rec.reason}}
                                                                 </td>
-                                                                <td>
-                                                                    {{ rec.application}}
-                                                                </td>
+                                                                
                                                                 <td>
                                                                     {{ rec.action}}
                                                                 </td>

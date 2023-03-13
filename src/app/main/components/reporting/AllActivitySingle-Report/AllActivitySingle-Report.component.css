@@ -123,6 +123,10 @@ label {
 
 }
 
+.r-card{
+  padding:5px;
+}
+
 .add_filter {
   padding: initial;
   margin-left: auto;
@@ -136,7 +140,7 @@ label {
 }
 
 .card-stats .card-body {
-  padding: 10px 0px;
+  padding: 0px 7px;
 }
 
 @media (min-width: 768px) {
@@ -233,12 +237,12 @@ th {
 
 .stat-icon {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   /* border: 1px solid white;
   border-radius: 100%;
   background-color: antiquewhite; */
-  padding: 10px;
+  /* padding: 10px; */
   max-height: 66px;
   max-width: 66px;
   height: 50px;
@@ -304,8 +308,8 @@ th {
 }
 
 .padding-bottom-zero .child {
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  flex-direction: column;
 }
 
 .flex-spacer {
@@ -958,22 +962,16 @@ font-size: 16px !important;
 }
 
 .card-title-text-color{
-  font-size: 34px !important;
+  font-size: 1.5rem !important;
   font-weight: 500 !important;
   color: #ff9933 !important;
   text-align: center;
 }
 
-/* .card-title-text-color:hover{
-  color: #fff;
-} */
 
 .card-text-color{
   font-weight: 400 !important;
   font-size: 14px !important;
   color: #000;
   text-align: center;
-}
-.r-card{
-  padding:5px;
 }

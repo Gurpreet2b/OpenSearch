@@ -673,78 +673,7 @@
                                 </div>
                             </div>
 
-                            <div style="page-break-after: always;"></div>
-                            <div id="content-department-size" #content>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-12 col-sm-12 col-lg-12">
-                                        <div class="card card-chart">
-                                            <div class="card-header">
-                                                <div class="col-lg-6">
-                                                    <h3 class="card-title">
-                                                        <i
-                                                            class="tim-icons icon-delivery-fast text-info"></i>Departments
-                                                        by Size
-                                                    </h3>
-                                                </div>
-                                                <div class="col-lg-6 text-right">
-                                                    <h3 class="card-title"
-                                                        (click)="DownloadPDF('content-department-size')">
-                                                        <u>Export PDF</u>
-                                                    </h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="card-body">
-                                                <div class="chart-area">
-                                                    <highcharts-chart [Highcharts]="Highcharts"
-                                                        [options]="DepartmentBySizeChartData"
-                                                        style="width: 100%; height: 100%">
-                                                    </highcharts-chart>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="page-break-after: always;"></div>
-                                <div class="row padding-bottom-zero">
-                                    <div class="col-xs-6 col-sm-6 col-lg-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">Departments by Size </h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table tablesorter" id="">
-                                                        <thead class="text-primary">
-                                                            <tr>
-                                                                <th class="text-left">Name</th>
-                                                                <th class="text-left">Duration</th>
-                                                                <th class="text-left">Total</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr *ngFor="let rec of departmentSize_data.Table; let i=index
-                                  ">
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
-
-
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                   {{ rec.duration | timeFormat }}
-                                                                </td>
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.total_mbs }}
-                                                                </td>
-                                                               
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            
                             <div style="page-break-after: always;"></div>
                             <div class="row padding-bottom-zero">
                                 <div class="col-xs-6 col-sm-6 col-lg-12">
@@ -758,7 +687,6 @@
                                                     <thead class="text-primary">
                                                         <tr>
                                                             <th class="text-left">Name</th>
-                                                            <th class="text-left">Type</th>
                                                             <th class="text-left">User</th>
                                                             <th class="text-left">Size</th>
                                                         </tr>
@@ -772,10 +700,6 @@
 
                                                             </td>
 
-
-                                                            <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                {{ rec.type }}
-                                                            </td>
                                                             <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                 {{ rec.user }}
                                                             </td>
@@ -1031,7 +955,6 @@
                                                         <thead class="text-primary">
                                                             <tr>
                                                                 <th class="text-left">Name</th>
-                                                                <th class="text-left">Type</th>
                                                                 <th class="text-left">Duration</th>
                                                                 <th class="text-left">Bandwidth</th>
                                                             </tr>
@@ -1041,7 +964,6 @@
                                   ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.name }}</td>
 
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.type }}</td>
 
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                    {{ rec.duration | timeFormat }}
@@ -3262,12 +3184,9 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Domain</th>
-                                                                <th class="text-left">Application</th>
                                                                 <th class="text-left">Hits</th>
-                                                                <th class="text-left">Reason</th>
 
                                                                 <th class="text-left">Bandwidth</th>
 
@@ -3279,19 +3198,14 @@
                                         .Table.Data; let i=index
                                     ">
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.type }}
-                                                                </td>
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.domain}}
                                                                 </td>
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.application }}</td>
 
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.hits }}</td>
 
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.reason }}</td>
 
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.bandwidth }}</td>
                                                                
@@ -3350,7 +3264,7 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                                
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Domain</th>
 
@@ -3362,9 +3276,7 @@
                                       let rec of blockedApplications_data.BlockedApplications
                                         .Table.Data; let i=index
                                     ">
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.type }}
-                                                                </td>
+                                    
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category }}
                                                                 </td>
@@ -4713,21 +4625,19 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                                
                                                                 <th class="text-left">Domain</th>
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Action</th>
                                                                 <th class="text-left">Duration</th>
                                                                 <th class="text-left">Bandwidth</th>
-                                                                <th class="text-left">Reason</th>
                                                                 <th class="text-left">Hits</th>
-                                                                <th class="text-left">Applications</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of allowedUnacceptableSites_data.AllowedUnacceptableSites.Table.Data; let i=index
                                   ">
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.type }}</td>
+                                  
 
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.domain }}
@@ -4745,13 +4655,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.reason }}
-                                                                </td>
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits }}
-                                                                </td>
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.application }}
                                                                 </td>
                                                                
                                                             </tr>
@@ -4958,21 +4862,19 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                                
                                                                 <th class="text-left">Domain</th>
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Action</th>
                                                                 <th class="text-left">Duration</th>
                                                                 <th class="text-left">Bandwidth</th>
-                                                                <th class="text-left">Reason</th>
                                                                 <th class="text-left">Hits</th>
-                                                                <th class="text-left">Applications</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of allowedUnproductiveSites_data.AllowedUnproductiveSites.Table.Data; let i=index
                                   ">
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.type }}</td>
+                                  
 
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.domain }}
@@ -4990,13 +4892,7 @@
                                                                     {{ rec.bandwidth }}
                                                                 </td>
                                                                 <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.reason }}
-                                                                </td>
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.hits }}
-                                                                </td>
-                                                                <td class="text-left"><div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.application }}
                                                                 </td>
                                                                
                                                             </tr>

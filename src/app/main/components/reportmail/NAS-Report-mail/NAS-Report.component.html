@@ -1663,22 +1663,19 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                              
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Domain</th>
-                                                                <th class="text-left">Application</th>
+                                                               
                                                                 <th class="text-left">Hits</th>
-                                                                <th class="text-left">Reason</th>
+                                                               
                                                                 <th class="text-left">Size</th>
 
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of acceptableSites_data.BlockedAcceptableSites.Table.Data; let i=index;">
-                                                                <td class="text-left">
-                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.type }}
-                                                                </td>
+                                                                
                                                                 <td class="text-left">
                                                                     <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category }}
@@ -1687,15 +1684,11 @@
                                                                     <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.domain}}
                                                                 </td>
-                                                                <td class="text-left">
-                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.application }}</td>
-
+                                                               
                                                                 <td class="text-left">
                                                                     <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.hits }}</td>
 
-                                                                <td class="text-left">
-                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.reason }}</td>
-
+                                                             
                                                                 <td class="text-left">
                                                                     <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.size }}</td>
                                                                 
@@ -2145,23 +2138,17 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
                                                                 <th class="text-left">Category</th>
                                                                 <th class="text-left">Domains</th>
                                                                 <th class="text-left">Hits</th>
                                                                 <th class="text-left">Size</th>
-                                                                <th class="text-left">Reason</th>
-                                                                <th class="text-left">Application</th>
-
+                                                              
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of unproductiveSites_data.BlockedUnproductiveSites.Table.Data; let i=index">
 
-                                                                <td class="text-left">
-                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.type }}
-                                                                </td>
+                                                                
                                                                 <td class="text-left">
                                                                     <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category}}
@@ -2172,11 +2159,7 @@
                                                                     <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.hits }}</td>
                                                                 <td class="text-left">
                                                                     <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.size }}</td>
-                                                                <td class="text-left">
-                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.reason }}</td>
-                                                                <td class="text-left">
-                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>{{ rec.application }}</td>
-                                                                
+                                                               
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -3158,7 +3141,6 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
                                                                 <th class="text-center">Domain</th>
                                                                 <th class="text-center">Category</th>
                                                                 <th class="text-center">Action</th>
@@ -3171,10 +3153,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of allowedUnacceptableSites_data.AllowedUnacceptableSites.Table.Data; let i=index">
-                                                                <td class="text-left">
-                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.type }}
-                                                                </td>
+                                                               
                                                                 <td class="text-center">
                                                                     <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.domain }}
@@ -3421,7 +3400,7 @@
                                                     <table class="table tablesorter" id="">
                                                         <thead class="text-primary">
                                                             <tr>
-                                                                <th class="text-left">Type</th>
+                                                               
                                                                 <th>Category</th>
                                                                 <th>Domain</th>
                                                                 <th>Duration</th>
@@ -3434,10 +3413,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr *ngFor="let rec of unrpoductiveSites_data.AllowedUnproductiveSites.Table.Data; let i=index">
-                                                                <td class="text-left">
-                                                                    <div *ngIf="i === 49" style="min-height: 15px;" ></div>
-                                                                    {{ rec.type }}
-                                                                </td>
+                                                              
                                                                 <td>
                                                                     <div *ngIf="i === 49" style="min-height: 15px;" ></div>
                                                                     {{ rec.category }}
